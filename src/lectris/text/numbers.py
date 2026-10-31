@@ -24,7 +24,7 @@ _GROUP: Final = 3
 def _join(gap: re.Match[str], thousands: bool) -> bool:
     """Whether the spaces around one separator are inside a number; ``thousands`` says whether
     the run's commas are laid out as thousands separators."""
-    if not gap["before"] or gap["after"]:
+    if not gap["before"]:
         return False
     return gap["separator"] == "." or thousands
 
