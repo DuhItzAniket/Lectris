@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - uses: DuhItzAniket/Repro@a474ff87a5bc5b959e6e05e9676e766fe5968028 # v1.6.0
+      - uses: DuhItzAniket/Repro@9bac85eec040aae88adcdc9338a309caa5592cf2 # v1.6.1
         with:
           agents: ${{ secrets.ANTHROPIC_API_KEY != '' && 'claude' || 'off' }}
         env:
