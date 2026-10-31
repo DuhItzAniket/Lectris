@@ -6,6 +6,11 @@ All notable changes to LECTRIS are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-10-31
+
+The first release: OCR output read from five formats, laid out in reading order, and cleaned by
+seventeen rules in three profiles, with every edit recorded.
+
 ### Added
 - The document model (pages, blocks, lines and words, with boxes and confidences) and edits:
   every text change is recorded as its rule, its span, what was there and what replaced it.
@@ -23,3 +28,6 @@ All notable changes to LECTRIS are documented here. The format follows
   noise lines; character and word alignment; character and word error rates.
 - The pipeline, with the `conservative`, `standard` and `aggressive` profiles; reports (summary,
   JSON, Markdown); the `lectris` command (`clean`, `eval`, `rules`).
+
+[Unreleased]: https://github.com/DuhItzAniket/Lectris/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/DuhItzAniket/Lectris/releases/tag/v0.1.0
