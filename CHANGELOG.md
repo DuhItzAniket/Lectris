@@ -19,3 +19,5 @@ All notable changes to LECTRIS are documented here. The format follows
   distances, and an optional lexicon.
 - Layout: words grouped into lines, columns, reading order by recursive XY-cut with skew
   correction, and paragraphs, with every threshold relative to the size of the text.
+- Confidence aggregation and low-confidence spans; text-quality heuristics and a rule that drops
+  noise lines; character and word alignment; character and word error rates.
