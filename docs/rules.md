@@ -101,10 +101,11 @@ Example: `"first line\nsecond line"` → `"first line second line"`.
 
 ### `confusables.in_numbers` — standard, aggressive
 Turns letters that look like digits into digits inside a number: `O`/`o` → `0`, `l`/`I` → `1`.
-Evidence: the token starts with a real digit, ends with a digit or `O`, and has at least two real
-digits. All letters of the token change, or none.
+Evidence: the token starts with a real digit, or with an `O` read for the zero before a decimal
+separator (`O.5` → `0.5`); it ends with a digit or `O`; and it has at least two real digits, or
+one after a leading `O.`. All letters of the token change, or none.
 Left alone: `S` and `B`, which codes use (`12B34`, `10S20`); `l23`, `A4`, `10B`, `1980S`,
-`COVID-19`, hexadecimal, and `|`, which may be a table rule.
+`COVID-19`, `O5`, `O.K.`, hexadecimal, and `|`, which may be a table rule.
 Example: `"1O5 species"` → `"105 species"`.
 
 ### `numbers.separators` — standard, aggressive
