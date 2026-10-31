@@ -22,6 +22,7 @@ _LETTER_TO_DIGIT: Final = str.maketrans("OolI", "0011")
 # letter, digit or underscore.
 _NUMBER: Final = re.compile(r"(?<!\w)[0-9OolI](?:[.,]?[0-9OolI])*(?!\w)")
 _DIGITS: Final = re.compile(r"[0-9]")
+_LEADING_ZERO: Final = re.compile(r"O[.,][0-9]")
 # The real digits a number needs before its letters are read as digits.
 _MIN_DIGITS: Final = 2
 # The letters a word needs before its digits are read as letters, and the most digits it holds.
@@ -35,14 +36,21 @@ _DIGIT_TO_UPPER: Final = {"0": "O", "1": "I", "5": "S", "8": "B"}
 _WORD: Final = re.compile(r"(?<!\w)[^\W_]+(?:['\N{RIGHT SINGLE QUOTATION MARK}][^\W_]+)*(?!\w)")
 
 
+def _leading_zero(token: str) -> bool:
+    """Whether ``token`` starts with an ``O`` read for the zero before a decimal separator, as in
+    ``O.5`` or ``O,75``: an ``O`` followed by ``.`` or ``,`` and a real digit."""
+    return _LEADING_ZERO.match(token) is not None
+
+
 def _number(match: re.Match[str]) -> str | None:
     token = match.group(0)
     number = token.translate(_LETTER_TO_DIGIT)
-    if number == token or not token[0].isdigit():
+    leading_zero = _leading_zero(token)
+    if number == token or not (token[0].isdigit() or leading_zero):
         return None
     if not (token[-1].isdigit() or token[-1] == "O"):
         return None
-    if len(_DIGITS.findall(token)) < _MIN_DIGITS:
+    if len(_DIGITS.findall(token)) < (1 if leading_zero else _MIN_DIGITS):
         return None
     return number
 
@@ -56,10 +64,13 @@ def in_numbers(text: str, /) -> Revision:
 
     - it is a run of digits, those letters, and ``.`` or ``,`` between them, not attached to any
       other letter, digit or underscore (a sign, currency symbol or ``%`` around it is fine);
-    - it starts with a real digit, so a code such as ``I95`` or ``l23`` is left alone;
+    - it starts with a real digit, so a code such as ``I95`` or ``l23`` is left alone; or it
+      starts with an ``O`` read for the zero before a decimal separator, an ``O`` followed by
+      ``.`` or ``,`` and a real digit: ``"O.5"`` becomes ``"0.5"``, ``"O,75"`` becomes
+      ``"0,75"``, while ``O5``, ``O.K.``, ``Oslo`` and ``O'Brien`` are left alone;
     - it ends with a real digit or with ``O``, so ``50l`` (litres) and ``10o`` (a degree sign
       read as ``o``) are left alone;
-    - it has at least two real digits.
+    - it has at least two real digits, or one after a leading ``O.``.
 
     ``S`` and ``B`` are left alone even between digits, although OCR also reads ``5`` and ``8``
     as them: part numbers, serials and postcodes use them (``12B34``, ``10S20``, ``0B1``).

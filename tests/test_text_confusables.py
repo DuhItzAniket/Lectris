@@ -20,6 +20,11 @@ class TestInNumbers:
             ("1l5 kg", "115 kg"),
             ("1o5 and 2I3", "105 and 213"),
             ("ISO 9OO1", "ISO 9001"),
+            # An O read for the zero before a decimal separator.
+            ("a dose of O.5 mg", "a dose of 0.5 mg"),
+            ("O,75 litre", "0,75 litre"),
+            ("(O.25%)", "(0.25%)"),
+            ("O.5O", "0.50"),
         ],
     )
     def test_letters_inside_a_number_become_digits(self, text: str, expected: str) -> None:
@@ -50,6 +55,13 @@ class TestInNumbers:
             "12|34",
             "SOS BOSS IOI",
             "1..O5",
+            # Words and codes that start with O: no decimal separator and digit after it.
+            "O5 road",
+            "it was O.K.",
+            "Oslo, O'Brien",
+            "O. 5 people",
+            "O.5km",
+            "OO.5",
         ],
     )
     def test_codes_and_words_are_left_alone(self, text: str) -> None:

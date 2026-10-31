@@ -10,6 +10,8 @@ All notable changes to LECTRIS are documented here. The format follows
 - The property tests try a fixed set of examples by default, so every run of the suite is the
   same and a failure reproduces exactly; `HYPOTHESIS_PROFILE=explore` searches with random
   examples.
+- `confusables.in_numbers` reads an `O` before a decimal separator and a digit as the zero OCR
+  misread: `O.5` becomes `0.5`, `O,75` becomes `0,75`. `O5`, `O.K.` and words are left alone.
 
 ## [0.1.0] - 2026-10-31
 
