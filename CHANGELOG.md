@@ -9,3 +9,5 @@ All notable changes to LECTRIS are documented here. The format follows
 ### Added
 - The document model (pages, blocks, lines and words, with boxes and confidences) and edits:
   every text change is recorded as its rule, its span, what was there and what replaced it.
+- Readers for hOCR, ALTO XML (versions 2 to 4), Tesseract TSV, JSON and plain text, and
+  detection of the format from the content. ALTO with entity declarations is refused.

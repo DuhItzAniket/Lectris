@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alto xmlns="http://www.loc.gov/standards/alto/ns-v2#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/standards/alto/ns-v2# http://www.loc.gov/standards/alto/alto-v2.0.xsd">
+  <Description>
+    <MeasurementUnit>pixel</MeasurementUnit>
+    <sourceImageInformation>
+      <fileName>ferry.png</fileName>
+    </sourceImageInformation>
+  </Description>
+  <Layout>
+    <Page ID="P1" PHYSICAL_IMG_NR="1" WIDTH="1000" HEIGHT="1400">
+      <PrintSpace HPOS="0" VPOS="0" WIDTH="1000" HEIGHT="1400">
+        <TextBlock ID="TB1" HPOS="80" VPOS="100" WIDTH="785" HEIGHT="100">
+          <TextLine ID="TL1" HPOS="80" VPOS="100" WIDTH="785" HEIGHT="40">
+            <String ID="S1" CONTENT="The" HPOS="80" VPOS="100" WIDTH="70" HEIGHT="40" WC="0.97"/>
+            <SP WIDTH="15" HPOS="150" VPOS="100"/>
+            <String ID="S2" CONTENT="ferry" HPOS="165" VPOS="100" WIDTH="100" HEIGHT="40" WC="0.93"/>
+            <SP WIDTH="15" HPOS="265" VPOS="100"/>
+            <String ID="S3" CONTENT="leaves" HPOS="280" VPOS="100" WIDTH="120" HEIGHT="40" WC="0.91"/>
+            <SP WIDTH="15" HPOS="400" VPOS="100"/>
+            <String ID="S4" CONTENT="at" HPOS="415" VPOS="105" WIDTH="35" HEIGHT="35" WC="0.99"/>
+            <SP WIDTH="15" HPOS="450" VPOS="100"/>
+            <String ID="S5" CONTENT="dawn" HPOS="465" VPOS="100" WIDTH="95" HEIGHT="40" WC="0.95"/>
+            <SP WIDTH="15" HPOS="560" VPOS="100"/>
+            <String ID="S6" CONTENT="and" HPOS="575" VPOS="100" WIDTH="65" HEIGHT="40" WC="0.96"/>
+            <SP WIDTH="15" HPOS="640" VPOS="100"/>
+            <String ID="S7" CONTENT="returns" HPOS="655" VPOS="100" WIDTH="135" HEIGHT="40" WC="0.9"/>
+            <SP WIDTH="15" HPOS="790" VPOS="100"/>
+            <String ID="S8" CONTENT="be" HPOS="805" VPOS="100" WIDTH="40" HEIGHT="40" WC="0.94" SUBS_TYPE="HypPart1" SUBS_CONTENT="before"/>
+            <HYP CONTENT="-" HPOS="845" VPOS="100" WIDTH="20" HEIGHT="40"/>
+          </TextLine>
+          <TextLine ID="TL2" HPOS="80" VPOS="160" WIDTH="430" HEIGHT="40">
+            <String ID="S9" CONTENT="fore" HPOS="80" VPOS="160" WIDTH="80" HEIGHT="40" WC="0.92" SUBS_TYPE="HypPart2" SUBS_CONTENT="before"/>
+            <SP WIDTH="15" HPOS="160" VPOS="160"/>
+            <String ID="S10" CONTENT="the" HPOS="175" VPOS="160" WIDTH="60" HEIGHT="40" WC="0.98"/>
+            <SP WIDTH="15" HPOS="235" VPOS="160"/>
+            <String ID="S11" CONTENT="market" HPOS="250" VPOS="160" WIDTH="130" HEIGHT="40" WC="0.88"/>
+            <SP WIDTH="15" HPOS="380" VPOS="160"/>
+            <String ID="S12" CONTENT="opens." HPOS="395" VPOS="160" WIDTH="115" HEIGHT="40" WC="0.86"/>
+          </TextLine>
+        </TextBlock>
+      </PrintSpace>
+    </Page>
+  </Layout>
+</alto>

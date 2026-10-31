@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alto xmlns="http://www.loc.gov/standards/alto/ns-v4#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/standards/alto/ns-v4# http://www.loc.gov/alto/v4/alto-4-4.xsd">
+  <Description>
+    <MeasurementUnit>mm10</MeasurementUnit>
+  </Description>
+  <Layout>
+    <Page ID="P3" PHYSICAL_IMG_NR="3" WIDTH="2100" HEIGHT="2970">
+      <TopMargin ID="TM" HPOS="0" VPOS="0" WIDTH="2100" HEIGHT="200">
+        <TextBlock ID="TB_head" HPOS="800" VPOS="100" WIDTH="500" HEIGHT="60">
+          <TextLine ID="TL_head" HPOS="800" VPOS="100" WIDTH="500" HEIGHT="60">
+            <String ID="S_h1" CONTENT="Field" HPOS="800" VPOS="100" WIDTH="220" HEIGHT="60" WC="0.9"/>
+            <SP WIDTH="30" HPOS="1020" VPOS="100"/>
+            <String ID="S_h2" CONTENT="Notes" HPOS="1050" VPOS="100" WIDTH="250" HEIGHT="60" WC="0.92"/>
+          </TextLine>
+        </TextBlock>
+      </TopMargin>
+      <LeftMargin ID="LM" HPOS="0" VPOS="200" WIDTH="150" HEIGHT="2570"/>
+      <RightMargin ID="RM" HPOS="1950" VPOS="200" WIDTH="150" HEIGHT="2570"/>
+      <BottomMargin ID="BM" HPOS="0" VPOS="2770" WIDTH="2100" HEIGHT="200">
+        <TextBlock ID="TB_foot" HPOS="1030" VPOS="2850" WIDTH="40" HEIGHT="50">
+          <TextLine ID="TL_foot" HPOS="1030" VPOS="2850" WIDTH="40" HEIGHT="50">
+            <String ID="S_f1" CONTENT="3" HPOS="1030" VPOS="2850" WIDTH="40" HEIGHT="50" WC="0.99"/>
+          </TextLine>
+        </TextBlock>
+      </BottomMargin>
+      <PrintSpace ID="PS" HPOS="150" VPOS="200" WIDTH="1800" HEIGHT="2570">
+        <TextBlock ID="TB_body" HPOS="200" VPOS="300" WIDTH="1700" HEIGHT="180">
+          <TextLine ID="TL1" HPOS="200" VPOS="300" WIDTH="1270" HEIGHT="70">
+            <String ID="S1" CONTENT="Hedgerows" HPOS="200" VPOS="300" WIDTH="380" HEIGHT="70" WC="0.96"/>
+            <SP WIDTH="30" HPOS="580" VPOS="300"/>
+            <String ID="S2" CONTENT="shelter" HPOS="610" VPOS="300" WIDTH="260" HEIGHT="70" WC="0.94"/>
+            <SP WIDTH="30" HPOS="870" VPOS="300"/>
+            <String ID="S3" CONTENT="wrens" HPOS="900" VPOS="310" WIDTH="210" HEIGHT="60" WC="0.9"/>
+            <SP WIDTH="30" HPOS="1110" VPOS="300"/>
+            <String ID="S4" CONTENT="and" HPOS="1140" VPOS="300" WIDTH="130" HEIGHT="70" WC="0.97"/>
+            <SP WIDTH="30" HPOS="1270" VPOS="300"/>
+            <String ID="S5" CONTENT="spar" HPOS="1300" VPOS="310" WIDTH="150" HEIGHT="70" WC="0.85"/>
+            <HYP CONTENT="¬" HPOS="1450" VPOS="320" WIDTH="20" HEIGHT="30"/>
+          </TextLine>
+          <TextLine ID="TL2" HPOS="200" VPOS="410" WIDTH="1700" HEIGHT="70">
+            <String ID="S6" CONTENT="rows" HPOS="200" VPOS="420" WIDTH="170" HEIGHT="60"/>
+            <SP WIDTH="30" HPOS="370" VPOS="410"/>
+            <String ID="S7" CONTENT="in" HPOS="400" WIDTH="60"/>
+            <SP WIDTH="30" HPOS="460" VPOS="410"/>
+            <String ID="S8" CONTENT="the" HPOS="490" VPOS="410" WIDTH="120" HEIGHT="70" WC="0.98"/>
+            <SP WIDTH="30" HPOS="610" VPOS="410"/>
+            <String ID="S9" CONTENT="" HPOS="640" VPOS="410" WIDTH="10" HEIGHT="70" WC="0.1"/>
+            <String ID="S10" CONTENT="colder" HPOS="660" VPOS="410" WIDTH="230" HEIGHT="70" WC="0.93"/>
+            <SP WIDTH="30" HPOS="890" VPOS="410"/>
+            <String ID="S11" CONTENT="months," HPOS="920" VPOS="410" WIDTH="300" HEIGHT="70" WC="0.91"/>
+            <SP WIDTH="30" HPOS="1220" VPOS="410"/>
+            <String ID="S12" CONTENT="writes" HPOS="1250" VPOS="410" WIDTH="230" HEIGHT="70" WC="0.95"/>
+            <SP WIDTH="30" HPOS="1480" VPOS="410"/>
+            <String ID="S13" CONTENT="Zoë." HPOS="1510" VPOS="410" WIDTH="390" HEIGHT="70" WC="0.8"/>
+          </TextLine>
+        </TextBlock>
+      </PrintSpace>
+    </Page>
+  </Layout>
+</alto>
