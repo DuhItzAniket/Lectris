@@ -14,6 +14,10 @@ uv run ruff check && uv run ruff format --check
 uv run mypy
 ```
 
+The property tests (Hypothesis) try a fixed set of examples, so every run of the suite is the
+same and a failure reproduces exactly. To search for new failing inputs, run
+`HYPOTHESIS_PROFILE=explore uv run pytest`, which tries random examples, and more of them.
+
 ## What a change needs
 
 - **Tests for what it changes and what it must leave alone.** A text rule's false positives

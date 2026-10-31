@@ -22,7 +22,7 @@ before changing code.
 
 ```
 uv sync                         # the environment, with the dev group
-uv run pytest                   # the tests
+uv run pytest                   # the tests (Hypothesis derandomised; HYPOTHESIS_PROFILE=explore to search)
 uv run ruff check               # lint
 uv run ruff format              # format (--check in CI)
 uv run mypy                     # strict types over src and tests
