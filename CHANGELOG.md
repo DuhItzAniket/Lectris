@@ -14,3 +14,6 @@ All notable changes to LECTRIS are documented here. The format follows
 - Normalisation rules: Unicode (NFC, ligatures, invisible characters, compatibility forms),
   whitespace (line breaks, runs of spaces, trimming), punctuation (spacing, quotes, dashes,
   ellipses), and unwrapping a paragraph onto one line.
+- Repairs: words hyphenated across line breaks rejoined, letters and digits that OCR confuses in
+  numbers and words, spaces inside numbers; Levenshtein, Damerau and OCR-weighted edit
+  distances, and an optional lexicon.
