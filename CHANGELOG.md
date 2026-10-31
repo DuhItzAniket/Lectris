@@ -6,6 +6,11 @@ All notable changes to LECTRIS are documented here. The format follows
 
 ## [Unreleased]
 
+### Changed
+- The property tests try a fixed set of examples by default, so every run of the suite is the
+  same and a failure reproduces exactly; `HYPOTHESIS_PROFILE=explore` searches with random
+  examples.
+
 ## [0.1.0] - 2026-10-31
 
 The first release: OCR output read from five formats, laid out in reading order, and cleaned by
