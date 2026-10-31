@@ -1,0 +1,43 @@
+{
+  "pages": [
+    {
+      "number": 4,
+      "width": 1240,
+      "height": 1754,
+      "blocks": [
+        {
+          "box": [100, 120, 900, 220],
+          "lines": [
+            {
+              "box": [100, 120, 880, 160],
+              "confidence": 0.9,
+              "words": [
+                {"text": "Orchards", "box": [100, 120, 300, 160], "confidence": 0.95},
+                {"text": "bloom", "box": [320, 120, 450, 160], "confidence": 0.91},
+                {"text": "late", "box": [470, 125, 560, 160]},
+                {"text": "  ", "box": [570, 125, 580, 160], "confidence": 0.2},
+                {"text": "this", "box": [590, 120, 680, 160], "confidence": 0.97},
+                {"text": "year.", "confidence": 0.88}
+              ]
+            },
+            {
+              "words": [
+                {"text": "Frost", "box": [100, 180, 220, 220], "confidence": 0.93},
+                {"text": "lingered.", "box": [240, 180, 420, 220], "confidence": 0.9}
+              ]
+            }
+          ]
+        },
+        {
+          "lines": [
+            {"text": "  Bees  came\tlate too. ", "box": [100, 300, 520, 340]},
+            {"text": "Only one line had a box.", "box": null}
+          ]
+        }
+      ]
+    },
+    {
+      "blocks": []
+    }
+  ]
+}

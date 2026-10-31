@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alto xmlns="http://www.loc.gov/standards/alto/ns-v3#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/standards/alto/ns-v3# http://www.loc.gov/alto/v3/alto-3-1.xsd">
+  <Description>
+    <MeasurementUnit>pixel</MeasurementUnit>
+  </Description>
+  <Layout>
+    <Page ID="P7" PHYSICAL_IMG_NR="7" WIDTH="1200" HEIGHT="1600">
+      <PrintSpace HPOS="50" VPOS="50" WIDTH="1100" HEIGHT="1500">
+        <TextBlock ID="TB1" HPOS="400" VPOS="80" WIDTH="400" HEIGHT="60">
+          <TextLine ID="TL1" HPOS="400" VPOS="80" WIDTH="400" HEIGHT="60">
+            <String ID="S1" CONTENT="Market" HPOS="400" VPOS="80" WIDTH="220" HEIGHT="60" WC="0.98"/>
+            <SP WIDTH="20" HPOS="620" VPOS="80"/>
+            <String ID="S2" CONTENT="Day" HPOS="640" VPOS="80" WIDTH="160" HEIGHT="60" WC="0.97"/>
+          </TextLine>
+        </TextBlock>
+        <ComposedBlock ID="CB1" HPOS="100" VPOS="200" WIDTH="1000" HEIGHT="400">
+          <TextBlock ID="TB2" HPOS="100" VPOS="200" WIDTH="480" HEIGHT="100">
+            <TextLine ID="TL2" HPOS="100" VPOS="200" WIDTH="420" HEIGHT="40">
+              <String ID="S3" CONTENT="Stalls" HPOS="100" VPOS="200" WIDTH="110" HEIGHT="40" WC="0.94"/>
+              <SP WIDTH="15" HPOS="210" VPOS="200"/>
+              <String ID="S4" CONTENT="open" HPOS="225" VPOS="205" WIDTH="90" HEIGHT="35" WC="0.92"/>
+              <SP WIDTH="15" HPOS="315" VPOS="200"/>
+              <String ID="S5" CONTENT="at" HPOS="330" VPOS="205" WIDTH="35" HEIGHT="35" WC="0.99"/>
+              <SP WIDTH="15" HPOS="365" VPOS="200"/>
+              <String ID="S6" CONTENT="six," HPOS="380" VPOS="200" WIDTH="140" HEIGHT="40" WC="0.81"/>
+            </TextLine>
+            <TextLine ID="TL3" HPOS="100" VPOS="260" WIDTH="480" HEIGHT="40">
+              <String ID="S7" CONTENT="fish" HPOS="100" VPOS="260" WIDTH="80" HEIGHT="40" WC="0.95"/>
+              <SP WIDTH="15" HPOS="180" VPOS="260"/>
+              <String ID="S8" CONTENT="first," HPOS="195" VPOS="260" WIDTH="105" HEIGHT="40" WC="0.9"/>
+              <SP WIDTH="15" HPOS="300" VPOS="260"/>
+              <String ID="S9" CONTENT="then" HPOS="315" VPOS="260" WIDTH="85" HEIGHT="40" WC="0.96"/>
+              <SP WIDTH="15" HPOS="400" VPOS="260"/>
+              <String ID="S10" CONTENT="bread." HPOS="415" VPOS="260" WIDTH="165" HEIGHT="40" WC="0.89"/>
+            </TextLine>
+          </TextBlock>
+          <Illustration ID="I1" HPOS="620" VPOS="200" WIDTH="480" HEIGHT="300"/>
+          <TextBlock ID="TB3" HPOS="100" VPOS="540" WIDTH="520" HEIGHT="40">
+            <TextLine ID="TL4" HPOS="100" VPOS="540" WIDTH="520" HEIGHT="40">
+              <String ID="S11" CONTENT="By" HPOS="100" VPOS="540" WIDTH="45" HEIGHT="40" WC="0.97"/>
+              <SP WIDTH="15" HPOS="145" VPOS="540"/>
+              <String ID="S12" CONTENT="noon" HPOS="160" VPOS="540" WIDTH="95" HEIGHT="40" WC="0.93"/>
+              <SP WIDTH="15" HPOS="255" VPOS="540"/>
+              <String ID="S13" CONTENT="the" HPOS="270" VPOS="540" WIDTH="60" HEIGHT="40" WC="0.98"/>
+              <SP WIDTH="15" HPOS="330" VPOS="540"/>
+              <String ID="S14" CONTENT="square" HPOS="345" VPOS="545" WIDTH="125" HEIGHT="35" WC="0.91"/>
+              <SP WIDTH="15" HPOS="470" VPOS="540"/>
+              <String ID="S15" CONTENT="empties." HPOS="485" VPOS="540" WIDTH="135" HEIGHT="40" WC="0.87"/>
+            </TextLine>
+          </TextBlock>
+        </ComposedBlock>
+      </PrintSpace>
+    </Page>
+    <Page ID="P8" PHYSICAL_IMG_NR="8" WIDTH="1200" HEIGHT="1600">
+      <PrintSpace HPOS="50" VPOS="50" WIDTH="1100" HEIGHT="1500">
+        <TextBlock ID="TB4">
+          <TextLine ID="TL5">
+            <String ID="S16" CONTENT="Rain" HPOS="100" VPOS="120" WIDTH="90" HEIGHT="40" WC="0.95"/>
+            <SP WIDTH="15" HPOS="190" VPOS="120"/>
+            <String ID="S17" CONTENT="fell" HPOS="205" VPOS="118" WIDTH="70" HEIGHT="42" WC="0.93"/>
+            <SP WIDTH="15" HPOS="275" VPOS="120"/>
+            <String ID="S18" CONTENT="all" HPOS="290" VPOS="120" WIDTH="50" HEIGHT="40" WC="0.99"/>
+            <SP WIDTH="15" HPOS="340" VPOS="120"/>
+            <String ID="S19" CONTENT="week." HPOS="355" VPOS="120" WIDTH="105" HEIGHT="44" WC="0.9"/>
+          </TextLine>
+        </TextBlock>
+      </PrintSpace>
+    </Page>
+  </Layout>
+</alto>
