@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+# OCR samples are read byte for byte by the tests.
+tests/data/** -text

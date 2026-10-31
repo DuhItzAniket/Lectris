@@ -1,0 +1,32 @@
+# Repro (https://github.com/DuhItzAniket/Repro) reproduces every pull request on its base and
+# its head, compares what each side does, and posts a Reproduction Card: VERIFIED, FLAGGED or
+# UNVERIFIABLE. With the repository secret ANTHROPIC_API_KEY set, Claude reviewers also judge
+# the pull request's claims against that evidence; without it, the checks are deterministic.
+name: Repro
+
+on: pull_request
+
+permissions:
+  contents: read
+  checks: write # the check run
+  pull-requests: write # the comment
+  id-token: write # signing the card
+  attestations: write
+  artifact-metadata: write
+
+concurrency:
+  group: repro-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  repro:
+    name: Repro
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: DuhItzAniket/Repro@b5b0ac779fe1f842f5aeeb98a73566b7e0ed58ae # v1.5.0
+        with:
+          agents: ${{ secrets.ANTHROPIC_API_KEY != '' && 'claude' || 'off' }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          REPRO_AGENT_MODEL: claude-haiku-5-5
