@@ -17,3 +17,5 @@ All notable changes to LECTRIS are documented here. The format follows
 - Repairs: words hyphenated across line breaks rejoined, letters and digits that OCR confuses in
   numbers and words, spaces inside numbers; Levenshtein, Damerau and OCR-weighted edit
   distances, and an optional lexicon.
+- Layout: words grouped into lines, columns, reading order by recursive XY-cut with skew
+  correction, and paragraphs, with every threshold relative to the size of the text.
