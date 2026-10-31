@@ -21,3 +21,5 @@ All notable changes to LECTRIS are documented here. The format follows
   correction, and paragraphs, with every threshold relative to the size of the text.
 - Confidence aggregation and low-confidence spans; text-quality heuristics and a rule that drops
   noise lines; character and word alignment; character and word error rates.
+- The pipeline, with the `conservative`, `standard` and `aggressive` profiles; reports (summary,
+  JSON, Markdown); the `lectris` command (`clean`, `eval`, `rules`).
