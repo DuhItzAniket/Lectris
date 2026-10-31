@@ -28,6 +28,9 @@ Repository = "https://github.com/DuhItzAniket/Lectris"
 Issues = "https://github.com/DuhItzAniket/Lectris/issues"
 Changelog = "https://github.com/DuhItzAniket/Lectris/blob/main/CHANGELOG.md"
 
+[project.scripts]
+lectris = "lectris.cli:main"
+
 [dependency-groups]
 dev = [
     "pytest>=9.1.1",
