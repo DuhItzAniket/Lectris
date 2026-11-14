@@ -1,8 +1,12 @@
 # LECTRIS
 
 OCR output, read back into clean, ordered text: every change it makes is recorded and explained.
-A Python library and CLI. The design is [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md); read it
-before changing code.
+A Python library and CLI, and a research project with a paper as its goal. The design is
+[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md); read it before changing code. Its sections are
+marked [v0.1] (built) or [v2, Phase N] (planned). The phases are in
+[docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md), their status in
+[docs/PHASE_STATUS.md](docs/PHASE_STATUS.md), the decisions in [docs/decisions/](docs/decisions/).
+The companion OCR engine is GLYPHARIS; the two meet only through its JSON output (ADR-0003).
 
 ## Ground rules
 
@@ -37,3 +41,15 @@ uv build                        # sdist and wheel
   change does to the output: Repro compares that description with what the changed functions
   actually return on the base and the head.
 - Update `CHANGELOG.md` under `Unreleased` for anything a user would notice.
+
+## Research discipline
+
+- **Parity.** Under the `parity` policy, output must stay byte for byte that of v0.1 (ADR-0006).
+- **Pre-registration.** Hypotheses (`research/hypotheses.md`) and experiments
+  (`research/experiments.md`) are written before they run; a hypothesis is never edited after its
+  experiment starts.
+- **Numbers come from generated reports only**, never typed by hand or estimated.
+- **Test sets** (GDC, external) are read only in Phase 13 and every read is logged in
+  `research/test_access_log.md` (and in GLYPHARIS's log for GDC).
+- **The page is the unit** for splits, bootstrap and the risk guarantee.
+- A phase closes through the gate in the implementation plan (§2), with its PHASE_STATUS entry.

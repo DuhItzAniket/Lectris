@@ -6,6 +6,12 @@ All notable changes to LECTRIS are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+- The research plan for v2: a target architecture in which rules propose candidate edits, evidence
+  (including the OCR engine's uncertainty) scores them, and a threshold that bounds the harm rate
+  accepts them; decision records, phases, roadmap, experiment protocol, risk register, dataset
+  cards and hypotheses. No change to what LECTRIS does.
+
 ### Changed
 - The property tests try a fixed set of examples by default, so every run of the suite is the
   same and a failure reproduces exactly; `HYPOTHESIS_PROFILE=explore` searches with random

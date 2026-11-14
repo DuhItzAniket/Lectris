@@ -17,6 +17,12 @@ makes, so you can audit a result, count what changed, or switch a rule off.
 It does not run OCR, process images or use language models, and it has no dependencies outside
 the standard library.
 
+> **Status: v0.1 released; v2 in planning.** v2 turns the rules into proposers whose candidates are
+> scored from evidence (including the OCR engine's own uncertainty) and accepted under a threshold
+> that bounds the harm done to correct text. It is designed alongside the
+> [GLYPHARIS](https://github.com/DuhItzAniket/Glypharis) OCR engine. See
+> [Research](#research).
+
 ## Example
 
 ```python
@@ -139,6 +145,24 @@ The architecture is in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 **Scope**: Latin-script text, horizontal lines (scans skewed by a few degrees are corrected),
 left-to-right reading order. Tables, and tables of contents whose page numbers stand far to the
 right, are read column by column.
+
+## Research
+
+LECTRIS v2 is also a research project: *auditable, risk-controlled post-OCR correction with engine
+uncertainty*. Every experiment is registered before it runs, and every reported number traces back
+to a generated report.
+
+| Document | What's in it |
+|---|---|
+| [Architecture](docs/ARCHITECTURE.md) | v0.1 as built and the v2 target: propose, evidence, decide |
+| [Implementation plan](docs/IMPLEMENTATION_PLAN.md) | research questions, phases, tasks and exit criteria |
+| [Roadmap](docs/ROADMAP.md) | milestones, dependencies, where LECTRIS meets GLYPHARIS |
+| [Phase status](docs/PHASE_STATUS.md) | what is done, with the numbers behind it |
+| [Experiment protocol](docs/EXPERIMENT_PROTOCOL.md) | splits, metrics (harm included), statistics, risk-control validity |
+| [Decisions](docs/decisions/) | architecture decision records |
+| [Risk register](docs/RISK_REGISTER.md) | known risks and mitigations |
+| [Datasets](DATASETS.md) | provenance, licences and roles |
+| [Research log](research/) | hypotheses, experiment registry, related work, paper outline |
 
 ## Development
 
