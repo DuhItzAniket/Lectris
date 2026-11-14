@@ -12,3 +12,9 @@ build/
 htmlcov/
 .env
 *_API_KEY.txt
+
+# Research data: engine outputs, ground truth and model packs stay out of the repository
+# (DATASETS.md); manifests under data/manifests/ are committed.
+data/*
+!data/manifests/
+*.lectris.json.gz
