@@ -85,6 +85,12 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 - `Page.source` (ADR-0003) is not added: no format names its image, and the caller knows the file.
 - `Glyph` and the `chars` field wait for GLYPHARIS to write them (it does not in 1.0).
 
-**Results (measured):** `uv run pytest`: 1,335 passed (2026-11-22). Cleaning the fixture gives
+**Part 1** merged as #18 (2026-11-23).
+
+**Part 2, implemented:** `lectris.edits.OffsetMap` (`from_edits`, `then`, `source`), with property
+tests against a character-by-character reference and for composition. `uv run pytest`: 1,347
+passed (2026-11-23).
+
+**Part 1 results (measured):** `uv run pytest`: 1,335 passed (2026-11-22). Cleaning the fixture gives
 the same text through the new reader as through the flat JSON reading, for all three profiles
 (a test).

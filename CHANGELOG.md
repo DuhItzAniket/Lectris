@@ -18,6 +18,8 @@ All notable changes to LECTRIS are documented here. The format follows
 - The model: a line's `polygon` and `detection` score, and the document's `engine` (`Engine`:
   name, version, model). Layout and `clean()` keep them, and LECTRIS's JSON form writes and reads
   them when they are set.
+- `lectris.edits.OffsetMap`: maps a span of a revision's output, or of the output of several
+  revisions in turn, back to the span of the input it came from.
 
 ### Changed
 - GLYPHARIS output is now detected as `glypharis` instead of `json`. Its words, boxes and
