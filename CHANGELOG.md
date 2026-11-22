@@ -24,6 +24,11 @@ All notable changes to LECTRIS are documented here. The format follows
   characters the engine weighed) and its `alternatives` (other readings of the whole word). ALTO
   `CC` and `ALTERNATIVE` are read into them, and so is the per-character `chars` field proposed
   for GLYPHARIS, when present. LECTRIS's JSON form writes and reads them when set.
+- The candidate core: the rules that guess (confusions, separators in numbers, spaces before
+  punctuation, de-hyphenation, noise lines) now propose `Candidate` edits, and `lectris.decide`
+  accepts them under a policy, recording a `Decision` for each (`Result.decisions()`). The
+  default policy, `PARITY`, accepts what LECTRIS v0.1 did, so the output is unchanged;
+  `Threshold` accepts candidates by a score. `clean()` takes `policy`.
 
 ### Changed
 - GLYPHARIS output is now detected as `glypharis` instead of `json`. Its words, boxes and

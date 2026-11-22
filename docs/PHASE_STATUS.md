@@ -7,8 +7,8 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 |---|---|---|---|
 | 0 | v0.1 rule engine | **COMPLETE** | `v0.1.0` |
 | 1 | Research planning | **COMPLETE** (merged in #15; no phase tag) | — |
-| 2 | Engine-aware input and the GLYPHARIS contract | **IN PROGRESS** (parts 1 and 2 merged; part 3 in review) | — |
-| 3 | Candidate core with v0.1 parity | not started | — |
+| 2 | Engine-aware input and the GLYPHARIS contract | **COMPLETE** (#18, #19, #20; no phase tag) | — |
+| 3 | Candidate core with v0.1 parity | **IN PROGRESS** (in review) | — |
 | 4 | Evaluation harness | not started | — |
 | 5 | Paired data | not started (needs GLYPHARIS output) | — |
 | 6 | Evidence models and model packs | not started | — |
@@ -67,7 +67,7 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 
 ## Phase 2 — Engine-aware input and the GLYPHARIS contract
 
-**Status:** IN PROGRESS (opened 2026-11-22). Lands in three pull requests:
+**Status:** COMPLETE (opened 2026-11-22, closed 2026-11-23). Landed in three pull requests:
 1. the GLYPHARIS reader and the model's detection fields (this branch, `phase/02-glypharis-reader`);
 2. `OffsetMap`, from edits and composed across stages, with property tests;
 3. ALTO `CC` and `ALTERNATIVE`, and `Glyph`, once a real input that carries them is in hand.
@@ -89,6 +89,8 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 
 **Part 2** merged as #19 (2026-11-23).
 
+**Part 3** merged as #20 (2026-11-23).
+
 **Part 3, implemented:** `Glyph` and `Word.glyphs`/`Word.alternatives`; ALTO `CC` (levels 0 to 9
 as confidences `1 - level/9`) and `ALTERNATIVE`; the GLYPHARIS reader reads ADR-0003's proposed
 `chars` when present (`LINE_PROPOSED`); LECTRIS's JSON form writes and reads glyphs and
@@ -102,3 +104,35 @@ passed (2026-11-23).
 **Part 1 results (measured):** `uv run pytest`: 1,335 passed (2026-11-22). Cleaning the fixture gives
 the same text through the new reader as through the flat JSON reading, for all three profiles
 (a test).
+
+---
+
+## Phase 3 — Candidate core with v0.1 parity
+
+**Status:** IN PROGRESS (opened 2026-11-23 on `phase/03-candidate-core`).
+
+**Implemented**
+- `Candidate` and `Decision` in `lectris.edits`; `Revision.decisions`.
+- `lectris.propose`: `PROPOSERS` (the six v0.1 repairs) and `candidates(revision)`, which marks
+  each of a rule's edits `v01 = 1`.
+- `lectris.decide`: `decide(text, candidates, policy)`, the `PARITY` and `Threshold` policies,
+  and weighted interval scheduling for overlaps (architecture §11.3).
+- The pipeline: a proposer step's edits go through `decide`; `clean(..., policy=PARITY)`;
+  `Result.decisions()` and `Judgement`.
+- `tests/legacy/`: a frozen copy of the v0.1 text rules, pipeline and profiles (ADR-0006), and
+  `tests/test_parity.py`.
+
+**Exit criteria**
+
+| Criterion | Result | Evidence |
+|---|---|---|
+| Parity byte for byte, text and every located edit, every profile | pass | `tests/test_parity.py`: all 9 samples × 3 profiles × with and without a lexicon; the README example; 300 generated OCR-like texts (and the random profile) |
+| Idempotence | pass | `tests/test_pipeline.py` (unchanged) |
+| The v0.1 public API unchanged | pass | every v0.1 test unchanged and passing |
+
+**Deviation from the plan.** The proposers propose only what their v0.1 rule applies: they wrap
+the rules instead of re-implementing them, so parity holds by construction and the rules keep their
+tests. Proposing what the v0.1 conditions decline (`v01 = 0`) moves to Phase 6, where the
+evidence that could accept such candidates arrives.
+
+**Results (measured):** `uv run pytest`: 1,476 passed (2026-11-23).
