@@ -369,17 +369,23 @@ No pack is bundled with the library until the licences of its sources are cleare
 [v0.1] Levenshtein, Damerau–Levenshtein and OCR-weighted distances; character and word
 alignment; CER and WER; confusion counts.
 
-[v2, Phase 4]
-- **Edit scoring.** Each edit (or candidate) is labelled *fix*, *harm* or *neutral* by aligning
-  the OCR text with the ground truth and comparing the distance in the edit's aligned window
-  before and after it.
-- **Line matching.** With boxes, OCR lines are matched to ground-truth lines by box overlap before
-  text is compared, so a reading-order difference is not counted as recognition errors. Layout
-  is scored separately (protocol §3.4).
-- **Statistics.** Paired bootstrap over pages (1,000 resamples, 95% CI) for every difference,
-  under the decision rule in the protocol.
-- **Experiments.** `lectris experiment run configs/LX-....json` runs a registered experiment and
-  writes `reports/LX-.../report.{md,json}`, with the code version, pack hash and data hashes.
+[v2, Phase 4 — built] `lectris.eval`:
+- **Ground truth** (`truth`): one JSON per page, lines with text and box.
+- **Line matching** (`matching`): OCR lines matched one to one with ground-truth lines by box
+  IoU (greedy, at least 0.5), so a reading-order difference is not counted as recognition
+  errors. Each block is compared with the ground truth of its matched lines; an unmatched
+  ground-truth line is a deletion, an unmatched OCR line an insertion. Without boxes, the page is
+  one block. Layout is scored separately (protocol §3.4, later).
+- **Edit scoring** (`scoring`): each edit is labelled *fix*, *harm* or *neutral* by its exact
+  marginal effect, in the normalised track, on the distance from its block's text (at the step
+  it was made) to the block's reference. Page CER and WER in the raw and normalised tracks; the
+  harm rate.
+- **Statistics** (`stats`): seeded paired bootstrap over pages (1,000 resamples, 95% percentile
+  interval).
+- **Experiments** (`experiment`): `lectris experiment run configs/LX-....json` reads a pairs
+  manifest, runs each system (a profile and a policy: `parity`, or `none` for baseline B0), and
+  writes `reports/LX-.../report.{md,json}`, with the LECTRIS version and the manifest's hash.
+  Reports hold aggregates only.
 
 ## 14. The pipeline and public interface (`lectris.pipeline`)
 

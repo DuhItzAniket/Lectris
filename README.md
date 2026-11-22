@@ -80,6 +80,7 @@ lectris clean scan.tsv --profile conservative
 lectris clean results/page.json             # what glypharis-ocr wrote
 lectris eval reference.txt page.txt         # character and word error rates
 lectris rules                               # every profile and its rules
+lectris experiment run configs/LX-MAIN-001.json  # a registered experiment's report
 ```
 
 The input's format is detected from its content; `--format` names it. `--lexicon words.txt` (one
