@@ -11,11 +11,11 @@ Every reader builds words, lines and blocks the same way:
 import codecs
 import math
 import re
-from collections.abc import Iterable
+from collections.abc import Iterable, Sequence
 from decimal import Decimal
 
 from lectris.errors import FormatError
-from lectris.model import Block, Box, Line, Word, union_of
+from lectris.model import Block, Box, Glyph, Line, Word, union_of
 
 # UTF-32 LE comes before UTF-16 LE: its byte order mark starts with UTF-16 LE's.
 _BYTE_ORDER_MARKS = (
@@ -109,10 +109,30 @@ def word_text(raw: str) -> str:
     return _BREAK.sub(" ", raw.strip())
 
 
-def make_word(raw: str, box: Box | None = None, confidence: float | None = None) -> Word | None:
-    """The word with text ``raw`` (see ``word_text``), or ``None`` if that text is empty."""
+def make_word(
+    raw: str,
+    box: Box | None = None,
+    confidence: float | None = None,
+    glyphs: Sequence[Glyph] | None = None,
+    alternatives: Iterable[str] = (),
+) -> Word | None:
+    """The word with text ``raw`` (see ``word_text``), or ``None`` if that text is empty.
+
+    ``glyphs`` spell ``raw``; they are kept only when the text needs no cleaning (a word whose
+    whitespace is stripped or folded loses them, since they no longer line up with its text).
+    ``alternatives`` are cleaned the same way; an empty one, one equal to the text and a repeat
+    are dropped.
+    """
     text = word_text(raw)
-    return Word(text, box, confidence) if text else None
+    if not text:
+        return None
+    readings: list[str] = []
+    for alternative in alternatives:
+        reading = word_text(alternative)
+        if reading and reading != text and reading not in readings:
+            readings.append(reading)
+    kept = tuple(glyphs) if glyphs is not None and text == raw else None
+    return Word(text, box, confidence, kept, tuple(readings))
 
 
 def make_line(

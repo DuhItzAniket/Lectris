@@ -4,7 +4,7 @@ import pytest
 
 from lectris.errors import FormatError
 from lectris.io import alto
-from lectris.model import Block, Box, Document, Line, Page, Word
+from lectris.model import Block, Box, Document, Glyph, Line, Page, Word
 
 DATA = Path(__file__).parent / "data" / "io"
 _BOX = Box(0, 0, 10, 10)
@@ -271,3 +271,76 @@ class TestMalformed:
             )
         with pytest.raises(FormatError, match="undefined entity"):
             alto.parse(content)
+
+
+def one_word(string_element: str) -> Word:
+    """The one word of a document whose one line holds ``string_element``."""
+    (line,) = alto.parse(document(f"<TextLine>{string_element}</TextLine>")).pages[0].lines
+    (word,) = line.words
+    return word
+
+
+class TestCharacterConfidences:
+    @pytest.mark.parametrize("cc", ["0 9 3", "093", " 0  9 3 "])
+    def test_cc_gives_each_character_a_confidence(self, cc: str) -> None:
+        word = one_word(f'<String CONTENT="cat" CC="{cc}"/>')
+        assert word.glyphs == (Glyph("c", 1.0), Glyph("a", 0.0), Glyph("t", 2 / 3))
+
+    def test_without_cc_a_word_has_no_glyphs(self) -> None:
+        assert one_word('<String CONTENT="cat"/>').glyphs is None
+
+    def test_a_hyphen_keeps_the_glyphs_and_adds_its_own(self) -> None:
+        line = (
+            alto.parse(
+                document('<TextLine><String CONTENT="bee" CC="000"/><HYP CONTENT="-"/></TextLine>')
+            )
+            .pages[0]
+            .lines[0]
+        )
+        assert line.words[0].text == "bee-"
+        assert line.words[0].glyphs == (
+            Glyph("b", 1.0),
+            Glyph("e", 1.0),
+            Glyph("e", 1.0),
+            Glyph("-"),
+        )
+
+    def test_a_word_whose_text_is_cleaned_loses_its_glyphs(self) -> None:
+        assert one_word('<String CONTENT=" cat" CC="0000"/>').glyphs is None
+
+    @pytest.mark.parametrize(
+        ("cc", "message"),
+        [
+            ("00", r"CC gives 2 levels for the 3 characters of 'cat'"),
+            ("0 0 10", r"CC gives 3 levels .*|each level is a digit"),
+            ("0a0", r"each level is a digit from 0 to 9"),
+            ("0 0 -1", r"each level is a digit from 0 to 9"),
+        ],
+    )
+    def test_a_bad_cc_is_an_error(self, cc: str, message: str) -> None:
+        with pytest.raises(FormatError, match=message):
+            one_word(f'<String ID="S1" CONTENT="cat" CC="{cc}"/>')
+
+
+class TestAlternatives:
+    def test_alternatives_are_other_readings_of_the_word(self) -> None:
+        word = one_word(
+            '<String CONTENT="modem"><ALTERNATIVE>modern</ALTERNATIVE>'
+            "<ALTERNATIVE PURPOSE='x'> rnodem </ALTERNATIVE>"
+            "<ALTERNATIVE>modem</ALTERNATIVE><ALTERNATIVE>modern</ALTERNATIVE>"
+            "<ALTERNATIVE/></String>"
+        )
+        assert word.alternatives == ("modern", "rnodem")  # cleaned; the text and repeats dropped
+
+    def test_a_hyphen_is_added_to_each_alternative(self) -> None:
+        line = (
+            alto.parse(
+                document(
+                    '<TextLine><String CONTENT="hon"><ALTERNATIVE>hen</ALTERNATIVE></String>'
+                    "<HYP/></TextLine>"
+                )
+            )
+            .pages[0]
+            .lines[0]
+        )
+        assert line.words[0].alternatives == ("hen-",)

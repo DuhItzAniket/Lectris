@@ -21,6 +21,12 @@ What is read, and where it goes:
 - A line's ``confidence`` (the recognizer's, calibrated) is the line's confidence, ``det_score``
   its detection score, ``polygon`` its polygon, and ``bbox`` its box; without ``bbox``, the box is
   the polygon's bounds.
+- A line's ``chars``, when present (proposed in LECTRIS's ADR-0003; GLYPHARIS 1.0 does not write
+  it): one entry per character of its text, spaces included, ``{"c": ..., "p": ..., "alt":
+  [[character, probability], ...]}``, become its words' glyphs, each with ``p`` as its confidence
+  and ``alt`` as its alternatives (sorted from the most to the least likely, and without ``c``
+  itself; ``""`` is the CTC blank). The characters must spell the text; the spaces' entries are
+  not kept, since words hold no spaces.
 
 What is ignored, deliberately: the top-level ``text`` (the lines' text joined, which would repeat
 them), ``seconds`` (timings), a line's ``quad`` (the rectangle around its polygon, which is kept)
@@ -29,6 +35,7 @@ keys are ignored too, so a later GLYPHARIS that adds keys is still read. Every e
 path of the value at fault, such as ``lines[3].det_score``.
 """
 
+import re
 from typing import Any
 
 from lectris.errors import FormatError
@@ -45,7 +52,7 @@ from lectris.io._json import (
     string,
     unit,
 )
-from lectris.model import Box, Document, Engine, Line, Page, Point, Word
+from lectris.model import Box, Document, Engine, Glyph, Line, Page, Point, Word
 
 ENGINE = "glypharis"
 """The name of the engine a GLYPHARIS document is read as coming from."""
@@ -61,6 +68,12 @@ LINE_READ = frozenset({"text", "confidence", "det_score", "bbox", "polygon"})
 
 LINE_IGNORED = frozenset({"quad", "confidence_at"})
 """The keys of a line GLYPHARIS writes that this reader ignores, deliberately."""
+
+LINE_PROPOSED = frozenset({"chars"})
+"""The keys of a line this reader reads that GLYPHARIS 1.0 does not write (ADR-0003)."""
+
+_WORD = re.compile(r"\S+")
+_PAIR = 2
 
 
 def parse(content: str) -> Document:
@@ -89,8 +102,14 @@ def parse(content: str) -> Document:
 
 def _line(value: Any, path: str) -> Line | None:
     line = obj(value, path)
+    text = string(required(line, "text", path), f"{path}.text")
+    glyphs = _chars(line["chars"], text, f"{path}.chars") if "chars" in line else None
     words = tuple(
-        Word(part) for part in string(required(line, "text", path), f"{path}.text").split()
+        Word(
+            match.group(),
+            glyphs=None if glyphs is None else glyphs[match.start() : match.end()],
+        )
+        for match in _WORD.finditer(text)
     )
     if not words:
         return None
@@ -103,6 +122,38 @@ def _line(value: Any, path: str) -> Line | None:
         outline,
         unit(line.get("det_score"), f"{path}.det_score", "a detection score"),
     )
+
+
+def _chars(value: Any, text: str, path: str) -> tuple[Glyph, ...] | None:
+    """A line's ``chars`` as one glyph per character of ``text``; ``null`` is none."""
+    if value is None:
+        return None
+    glyphs: list[Glyph] = []
+    for index, item in array(value, path):
+        where = f"{path}[{index}]"
+        entry = obj(item, where)
+        char = string(required(entry, "c", where), f"{where}.c")
+        if len(char) != 1:
+            raise FormatError(f"{where}.c: one character, not {char!r}")
+        readings: list[tuple[str, float]] = []
+        for position, pair in array(entry.get("alt", []), f"{where}.alt"):
+            at = f"{where}.alt[{position}]"
+            if not isinstance(pair, list) or len(pair) != _PAIR:
+                raise FormatError(f"{at}: an alternative is [character, probability]")
+            reading = string(pair[0], f"{at}[0]")
+            if len(reading) > 1:
+                raise FormatError(f"{at}[0]: one character or '', not {reading!r}")
+            probability = unit(pair[1], f"{at}[1]", "a probability")
+            if probability is None:
+                raise FormatError(f"{at}[1]: expected a number, not null")
+            if reading != char and reading not in {r for r, _ in readings}:
+                readings.append((reading, probability))
+        readings.sort(key=lambda pair: -pair[1])
+        glyphs.append(Glyph(char, unit(entry.get("p"), f"{where}.p"), tuple(readings)))
+    spelled = "".join(glyph.char for glyph in glyphs)
+    if spelled != text:
+        raise FormatError(f"{path}: the characters spell {spelled!r}, not the text {text!r}")
+    return tuple(glyphs)
 
 
 def _bounds(outline: tuple[Point, ...] | None) -> Box | None:

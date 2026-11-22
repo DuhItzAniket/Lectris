@@ -8,7 +8,7 @@ from lectris import clean, io
 from lectris.errors import FormatError
 from lectris.io import glypharis, jsonio
 from lectris.io.detect import detect
-from lectris.model import Box, Document, Engine, Word
+from lectris.model import Box, Document, Engine, Glyph, Word
 
 DATA = Path(__file__).parent / "data" / "io"
 SAMPLE = DATA / "glypharis.json"
@@ -86,7 +86,7 @@ class TestTheContract:
 
     def test_unknown_keys_are_ignored(self, raw: dict[str, Any], sample: Document) -> None:
         extended = raw | {"pages_seen": 1}
-        extended["lines"] = [line | {"chars": []} for line in raw["lines"]]
+        extended["lines"] = [line | {"lattice": []} for line in raw["lines"]]
         assert parse_data(extended) == sample
 
 
@@ -186,3 +186,42 @@ class TestMalformed:
     def test_not_json(self) -> None:
         with pytest.raises(FormatError, match="not valid JSON"):
             glypharis.parse('{"glypharis_version": ')
+
+
+def chars(text: str, p: float = 0.9) -> list[dict[str, Any]]:
+    return [{"c": char, "p": p, "alt": []} for char in text]
+
+
+class TestProposedChars:
+    def test_chars_become_the_words_glyphs(self) -> None:
+        entries = chars("ab cd")
+        entries[1] = {"c": "b", "p": 0.4, "alt": [["", 0.1], ["h", 0.5], ["b", 0.3]]}
+        line = parse_data(page_of({"text": "ab cd", "chars": entries})).pages[0].lines[0]
+        first, second = line.words
+        assert first.glyphs == (Glyph("a", 0.9), Glyph("b", 0.4, (("h", 0.5), ("", 0.1))))
+        assert second.glyphs == (Glyph("c", 0.9), Glyph("d", 0.9))
+
+    def test_the_proposed_key_is_apart_from_what_glypharis_1_writes(self) -> None:
+        assert frozenset({"chars"}) == glypharis.LINE_PROPOSED
+        assert not glypharis.LINE_PROPOSED & (glypharis.LINE_READ | glypharis.LINE_IGNORED)
+
+    def test_null_chars_is_none(self) -> None:
+        line = parse_data(page_of({"text": "ab", "chars": None})).pages[0].lines[0]
+        assert line.words[0].glyphs is None
+
+    @pytest.mark.parametrize(
+        ("entries", "message"),
+        [
+            (chars("abc"), r"lines\[0\]\.chars: the characters spell 'abc', not the text 'ab'"),
+            ([{"p": 0.5}, {"c": "b"}], r"chars\[0\]: 'c' is missing"),
+            ([{"c": "ab"}], r"chars\[0\]\.c: one character"),
+            ([{"c": "a", "p": 2}, {"c": "b"}], r"chars\[0\]\.p: a confidence is between"),
+            ([{"c": "a", "alt": [["x"]]}, {"c": "b"}], r"alt\[0\]: an alternative is \["),
+            ([{"c": "a", "alt": [["xy", 0.1]]}, {"c": "b"}], r"alt\[0\]\[0\]: one character"),
+            ([{"c": "a", "alt": [["x", None]]}, {"c": "b"}], r"alt\[0\]\[1\]: expected a num"),
+            ([{"c": "a", "alt": [["x", 1.5]]}, {"c": "b"}], r"alt\[0\]\[1\]: a probability is"),
+        ],
+    )
+    def test_bad_chars_are_errors(self, entries: list[Any], message: str) -> None:
+        with pytest.raises(FormatError, match=message):
+            parse_data(page_of({"text": "ab", "chars": entries}))

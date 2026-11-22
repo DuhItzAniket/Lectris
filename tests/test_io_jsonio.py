@@ -8,7 +8,10 @@ from hypothesis import strategies as st
 
 from lectris.errors import FormatError
 from lectris.io import jsonio
-from lectris.model import Block, Box, Document, Engine, Line, Page, Word
+from lectris.model import Block, Box, Document, Engine, Glyph, Line, Page, Word
+
+GLYPH_AS_ITSELF = {"char": "a", "alternatives": [["a", 1]]}
+GLYPH_NOT_A_PAIR = {"char": "a", "alternatives": [[1]]}
 
 DATA = Path(__file__).parent / "data" / "io"
 
@@ -138,6 +141,18 @@ class TestDumps:
         assert written["detection"] == 0.75
         assert jsonio.parse(jsonio.dumps(document)) == document
 
+    def test_glyphs_and_alternatives_are_written_when_set(self) -> None:
+        glyphs = (Glyph("o", 0.4, (("0", 0.5),)), Glyph("k"))
+        word = Word("ok", glyphs=glyphs, alternatives=("0k",))
+        document = Document((Page((Block((Line((word,)),)),)),))
+        written = json.loads(jsonio.dumps(document))["pages"][0]["blocks"][0]["lines"][0]
+        assert written["words"][0]["glyphs"] == [
+            {"char": "o", "confidence": 0.4, "alternatives": [["0", 0.5]]},
+            {"char": "k", "confidence": None, "alternatives": []},
+        ]
+        assert written["words"][0]["alternatives"] == ["0k"]
+        assert jsonio.parse(jsonio.dumps(document)) == document
+
     def test_indent_and_unicode(self) -> None:
         document = Document((Page((Block((Line((Word("Ånd"),)),)),)),))
         compact = jsonio.dumps(document, indent=None)
@@ -162,7 +177,28 @@ def boxes(draw: st.DrawFn) -> Box | None:
     return Box(x0, y0, x1, y1)
 
 
-words = st.builds(Word, word_texts, boxes(), confidences)
+@st.composite
+def glyphs_of(draw: st.DrawFn, text: str) -> tuple[Glyph, ...] | None:
+    if draw(st.booleans()):
+        return None
+    result = []
+    for char in text:
+        others = [reading for reading in ("", "x", "0", "l") if reading != char]
+        readings = draw(st.lists(st.sampled_from(others), unique=True, max_size=3))
+        probabilities = sorted((draw(st.floats(0, 1)) for _ in readings), reverse=True)
+        pairs = tuple(zip(readings, probabilities, strict=True))
+        result.append(Glyph(char, draw(confidences), pairs))
+    return tuple(result)
+
+
+@st.composite
+def words_drawn(draw: st.DrawFn) -> Word:
+    text = draw(word_texts)
+    others = st.lists(word_texts.filter(lambda reading: reading != text), unique=True, max_size=2)
+    return Word(text, draw(boxes()), draw(confidences), draw(glyphs_of(text)), tuple(draw(others)))
+
+
+words = words_drawn()
 points = st.tuples(finite, finite)
 polygons = st.none() | st.lists(points, min_size=3, max_size=5).map(tuple)
 lines = st.builds(
@@ -232,6 +268,22 @@ class TestMalformed:
             ({"pages": [], "engine": {}}, r"^engine: 'name' is missing"),
             ({"pages": [], "engine": {"name": ""}}, r"^engine\.name: an engine's name is not"),
             ({"pages": [], "engine": {"name": "x", "model": 1}}, r"^engine\.model: expected a"),
+            (
+                one_line({"words": [{"text": "ab", "glyphs": [{"char": "a"}]}]}),
+                r"words\[0\]\.glyphs: the glyphs spell a text other than 'ab'",
+            ),
+            (
+                one_line({"words": [{"text": "a", "glyphs": [GLYPH_AS_ITSELF]}]}),
+                r"glyphs\[0\]: an alternative to 'a' is another",
+            ),
+            (
+                one_line({"words": [{"text": "a", "glyphs": [GLYPH_NOT_A_PAIR]}]}),
+                r"glyphs\[0\]\.alternatives\[0\]: an alternative is",
+            ),
+            (
+                one_line({"words": [{"text": "a", "alternatives": "b"}]}),
+                r"\.alternatives: expected an array",
+            ),
         ],
     )
     def test_errors_name_the_path(self, data: Any, message: str) -> None:
