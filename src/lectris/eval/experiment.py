@@ -206,6 +206,22 @@ def markdown(report: dict[str, Any]) -> str:
         "system's normalised CER minus the uncorrected text's, in points. The harm rate is the "
         "characters broken by harmful edits per reference character (ADR-0002).",
         "",
+        "## Edits by rule",
+        "",
+        "| System | Rule | Fix | Harm | Neutral | Net effect (characters) |",
+        "|---|---|---|---|---|---|",
+    ]
+    for name, result in report["results"].items():
+        for rule, counts in result["by_rule"].items():
+            lines.append(
+                f"| {name} | `{rule}` | {counts['fix']} | {counts['harm']} | "
+                f"{counts['neutral']} | {counts['effect']:+d} |"
+            )
+    lines += [
+        "",
+        "The net effect is the sum of the edits' effects on the distance to the reference: "
+        "below zero the rule repaired more than it broke.",
+        "",
     ]
     return "\n".join(lines)
 
@@ -293,7 +309,21 @@ def _summary(pages: Sequence[PageScore], config: Config) -> dict[str, Any]:
         "precision": fixes / (fixes + harms) if fixes + harms else None,
         "pages_worse": sum(1 for page in pages if page.chars.after > page.chars.before)
         / len(pages),
+        "by_rule": _by_rule(pages),
     }
+
+
+def _by_rule(pages: Sequence[PageScore]) -> dict[str, dict[str, int]]:
+    """Each rule's edits by label, and the sum of their effects, rules in name order."""
+    found: dict[str, dict[str, int]] = {}
+    for page in pages:
+        for item in page.labels:
+            counts = found.setdefault(
+                item.edit.rule, {"fix": 0, "harm": 0, "neutral": 0, "effect": 0}
+            )
+            counts[item.label] += 1
+            counts["effect"] += item.effect
+    return dict(sorted(found.items()))
 
 
 def _pct(value: Any, *, digits: int = 2) -> str:

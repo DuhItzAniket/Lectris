@@ -15,4 +15,5 @@
 | R-11 | Normalisation credited as correction | medium | medium | normalised track is primary (protocol §2) | protocol |
 | R-12 | A derived word list or pack carries a share-alike licence (HierText CC BY-SA 4.0) | medium | low | word counts from PG-19 only; HierText text used for fitting packs that are not published unless the licence is cleared | Phase 6, 17 |
 | R-13 | The 24-hour target for v0.2 slips | high | low | v0.2 is the integration only; the research phases do not depend on the deadline | roadmap |
+| R-15 | Line-level ground truth (HierText, GDC) keeps line-end hyphens, so correct de-hyphenation and unwrapping score as harm and cancel real repairs | **seen** (LX-DATA-001: `hyphenation.join` +240 characters) | high | score layout operations apart: a layout-neutral track that treats line boundaries alike on both sides (through `OffsetMap`); designed and registered before Phase 10 | Phase 6–10, owner |
 | R-14 | Parity with v0.1 blocks needed fixes | low | medium | ADR-0006 revisit: fix in both, document | Phase 3 |

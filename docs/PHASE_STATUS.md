@@ -10,7 +10,7 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 | 2 | Engine-aware input and the GLYPHARIS contract | **COMPLETE** (#18, #19, #20; no phase tag) | — |
 | 3 | Candidate core with v0.1 parity | **COMPLETE** (#21; no phase tag) | — |
 | 4 | Evaluation harness | **COMPLETE** (#22; no phase tag) | — |
-| 5 | Paired data | **IN PROGRESS** | — |
+| 5 | Paired data | **COMPLETE** (in review) | — |
 | 6 | Evidence models and model packs | not started | — |
 | 7 | Acceptance model and risk control | not started | — |
 | 8 | Explanations, flags and the v0.3 interface | not started | — |
@@ -162,3 +162,44 @@ distance, not a token window; the raw track folds whitespace. No experiment had 
 recall of correctable errors; both need paired data and come with Phase 10.
 
 **Results (measured):** `uv run pytest`: 1,507 passed (2026-11-23).
+
+---
+
+## Phase 5 — Paired data
+
+**Status:** COMPLETE (opened and closed 2026-11-23 on `phase/05-paired-data`; the owner approved
+running GLYPHARIS on this machine overnight).
+
+**Implemented**
+- GLYPHARIS glypharis_v1 (the clean 1.0 install, PyTorch backend, CPU) run on all 1,724
+  HierText validation images, its JSON in the git-ignored `data/engine/` (about 55 minutes).
+- `scripts/build_hiertext_pairs.py`: ground truth per page (`lectris.eval.truth`, with GLYPHARIS's
+  don't-care rule), page-level splits and manifests in `data/manifests/pairs/` (ids, paths,
+  SHA-256 and the document-slice flag only).
+- `scripts/error_taxonomy.py`: character errors split into in-token, spacing, missed-line and
+  extra-line.
+- `lectris.eval`: don't-care lines (`drop_dont_care`); the experiment report's edits by rule.
+- LX-DATA-001, registered before it ran, on the fit split.
+
+**Exit criteria**
+
+| Criterion | Result | Evidence |
+|---|---|---|
+| Splits deterministic and disjoint by page | pass | `tests/test_scripts_pairs.py`; `data/manifests/pairs/hiertext_val_glypharis_v1.json`: fit 861, cal 430, dev 433 pages (document slice 52, 26, 27) |
+| Audit written | pass | `reports/LX-DATA-001/report.md` |
+| Share of errors inside one token measured | pass | `reports/LX-DATA-001/taxonomy.md`: 18.9% (all fit pages), 14.1% (document slice) |
+
+**Results (measured, fit split; reports/LX-DATA-001):** uncorrected CER 28.03% [24.67, 32.66],
+WER 44.40% [40.59, 49.49]. B1-standard ΔCER −0.00 [−0.04, +0.03] points, harm rate 0.041%; by
+rule, see the report. 50.4% of errors are missed lines and 28.1% extra lines.
+
+**Known issues**
+- R-15 (new): de-hyphenation and unwrapping score as harm against HierText's line-level ground
+  truth (`hyphenation.join` 3 fixes / 123 harms). The scoring needs a layout-neutral track before
+  any hypothesis is tested (research log, 2026-11-23).
+- The GLYPHARIS install reports `glypharis_version` "0.1.0.dev0" for the glypharis_v1 model.
+- The GLYPHARIS run on GlyphSynth validation (ADR-0005's auxiliary set) is not done: its
+  validation data is line images, not pages, and needs the recognizer alone.
+- Tesseract outputs (the transfer engine) are not built: Tesseract is not installed here.
+
+**Results (tests):** `uv run pytest`: 1,522 passed (2026-11-23).

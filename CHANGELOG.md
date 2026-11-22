@@ -35,7 +35,8 @@ All notable changes to LECTRIS are documented here. The format follows
   registered experiment from its configuration into a JSON and Markdown report.
 - Don't-care ground truth: a truth line can be marked `"care": false` (illegible, handwritten,
   vertical), and OCR lines on such lines are left out of the scoring, as GLYPHARIS's page metrics
-  do (`lectris.eval.scoring.drop_dont_care`).
+  do (`lectris.eval.scoring.drop_dont_care`). An experiment's report breaks each system's
+  edits down by rule.
 
 ### Changed
 - GLYPHARIS output is now detected as `glypharis` instead of `json`. Its words, boxes and

@@ -1,0 +1,40 @@
+{
+  "manifest": "data/manifests/pairs/hiertext_val_glypharis_v1_fit.json",
+  "track": "normalised",
+  "all": {
+    "pages": 861,
+    "reference_chars": 428904,
+    "errors": 121802,
+    "cer": 0.28398429485386006,
+    "counts": {
+      "in_token": 22974,
+      "spacing": 3127,
+      "missed_line": 61417,
+      "extra_line": 34284
+    },
+    "shares": {
+      "in_token": 0.18861759248616608,
+      "spacing": 0.02567281325429796,
+      "missed_line": 0.5042363836390207,
+      "extra_line": 0.2814732106205153
+    }
+  },
+  "document_slice": {
+    "pages": 52,
+    "reference_chars": 57183,
+    "errors": 28113,
+    "cer": 0.4916321284297781,
+    "counts": {
+      "in_token": 3953,
+      "spacing": 375,
+      "missed_line": 15304,
+      "extra_line": 8481
+    },
+    "shares": {
+      "in_token": 0.1406111051826557,
+      "spacing": 0.013339024650517554,
+      "missed_line": 0.5443744886707217,
+      "extra_line": 0.301675381496105
+    }
+  }
+}
