@@ -8,8 +8,8 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 | 0 | v0.1 rule engine | **COMPLETE** | `v0.1.0` |
 | 1 | Research planning | **COMPLETE** (merged in #15; no phase tag) | — |
 | 2 | Engine-aware input and the GLYPHARIS contract | **COMPLETE** (#18, #19, #20; no phase tag) | — |
-| 3 | Candidate core with v0.1 parity | **IN PROGRESS** (in review) | — |
-| 4 | Evaluation harness | not started | — |
+| 3 | Candidate core with v0.1 parity | **COMPLETE** (#21; no phase tag) | — |
+| 4 | Evaluation harness | **IN PROGRESS** (in review) | — |
 | 5 | Paired data | not started (needs GLYPHARIS output) | — |
 | 6 | Evidence models and model packs | not started | — |
 | 7 | Acceptance model and risk control | not started | — |
@@ -109,7 +109,7 @@ the same text through the new reader as through the flat JSON reading, for all t
 
 ## Phase 3 — Candidate core with v0.1 parity
 
-**Status:** IN PROGRESS (opened 2026-11-23 on `phase/03-candidate-core`).
+**Status:** COMPLETE (opened 2026-11-23 on `phase/03-candidate-core`, merged as #21).
 
 **Implemented**
 - `Candidate` and `Decision` in `lectris.edits`; `Revision.decisions`.
@@ -136,3 +136,28 @@ tests. Proposing what the v0.1 conditions decline (`v01 = 0`) moves to Phase 6, 
 evidence that could accept such candidates arrives.
 
 **Results (measured):** `uv run pytest`: 1,476 passed (2026-11-23).
+
+---
+
+## Phase 4 — Evaluation harness
+
+**Status:** IN PROGRESS (opened 2026-11-23 on `phase/04-eval-harness`).
+
+**Implemented:** `lectris.eval` with `truth`, `matching`, `scoring`, `stats` and `experiment`
+(architecture §13); `lectris experiment run CONFIG [-o reports]`.
+
+**Exit criteria**
+
+| Criterion | Result | Evidence |
+|---|---|---|
+| Scoring tested on hand-made pairs with known labels, including reading-order swaps and insertions | pass | `tests/test_eval.py`: a swap, a fix, a harm, neutral transforms and unwrapping, unmatched lines both ways, pages without boxes, the `none` policy, words |
+| The bootstrap reproduces for a seed | pass | `TestBootstrap`, `test_the_report_is_the_same_on_every_run` |
+| A dry-run experiment writes a report | pass | `TestExperiment.test_a_dry_run_writes_its_report` (three hand-made GLYPHARIS pages) |
+
+**Changes to the protocol** (its §10): the edit label is the exact marginal effect on the block's
+distance, not a token window; the raw track folds whitespace. No experiment had run.
+
+**Not done here:** the layout metrics of protocol §3.4 (Kendall's τ, paragraph F1) and the
+recall of correctable errors; both need paired data and come with Phase 10.
+
+**Results (measured):** `uv run pytest`: 1,507 passed (2026-11-23).

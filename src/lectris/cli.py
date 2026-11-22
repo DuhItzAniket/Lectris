@@ -1,4 +1,5 @@
-"""The ``lectris`` command: clean OCR output, evaluate it against a reference, list the rules."""
+"""The ``lectris`` command: clean OCR output, evaluate it against a reference, list the rules,
+run a registered experiment."""
 
 import argparse
 import sys
@@ -49,6 +50,14 @@ def _parser() -> argparse.ArgumentParser:
     score.add_argument("--ignore-case", action="store_true", help="compare case-insensitively")
 
     commands.add_parser("rules", help="list the profiles and the rules each one runs")
+
+    experiment = commands.add_parser("experiment", help="run a registered experiment")
+    actions = experiment.add_subparsers(dest="action", required=True, metavar="ACTION")
+    start = actions.add_parser("run", help="run an experiment's configuration into its report")
+    start.add_argument("config", type=Path, help="the experiment's configuration (JSON)")
+    start.add_argument(
+        "-o", "--output", type=Path, default=Path("reports"), help="reports go in OUTPUT/<id>/"
+    )
     return parser
 
 
@@ -117,6 +126,15 @@ def _eval(arguments: argparse.Namespace) -> int:
     return 0
 
 
+def _experiment(arguments: argparse.Namespace) -> int:
+    from lectris.eval import experiment  # noqa: PLC0415 - only this command needs it
+
+    config = experiment.load_config(arguments.config)
+    as_json, as_markdown = experiment.write(experiment.run(config), arguments.output / config.id)
+    sys.stdout.write(f"{as_json}\n{as_markdown}\n")
+    return 0
+
+
 def _rules() -> int:
     for profile in PROFILES.values():
         sys.stdout.write(f"{profile.name}: {profile.description}\n")
@@ -134,6 +152,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             return _clean(arguments)
         if arguments.command == "eval":
             return _eval(arguments)
+        if arguments.command == "experiment":
+            return _experiment(arguments)
         return _rules()
     except (LectrisError, OSError, ValueError) as error:
         sys.stderr.write(f"lectris: {error}\n")

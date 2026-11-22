@@ -20,7 +20,8 @@ Roles are fixed by [ADR-0005](decisions/ADR-0005-data-roles.md).
 ## 2. Text normalisation tracks
 
 So that normalisation is not credited as correction, every CER/WER is reported in two tracks:
-- **Raw:** ground truth and output compared as they are (NFC only).
+- **Raw:** ground truth and output compared as they are, in NFC, with each whitespace run
+  one space (line breaks are layout, not text).
 - **Normalised:** both sides through LECTRIS's transforms (Unicode, whitespace, dashes, quotes)
   before comparison. **This is the primary track**: it measures what the proposers and the
   decision layer did, not the transforms.
@@ -32,10 +33,10 @@ So that normalisation is not credited as correction, every CER/WER is reported i
 - Change against the uncorrected output: ΔCER (points), relative CER reduction.
 
 ### 3.2 Edit quality
-- Each accepted edit is aligned to the ground truth: the OCR line and its matched ground-truth line
-  are aligned (Levenshtein with backtrace), and the edit's window is its span extended to token
-  boundaries. Δ = distance(window after) − distance(window before).
-  **Fix**: Δ < 0. **Harm**: Δ > 0. **Neutral**: Δ = 0.
+- Each accepted edit is scored by its exact marginal effect: Δ = distance(block reference, the
+  block's text at the edit's step with the edit applied) − distance(block reference, that text
+  without it), in the normalised track, where a block's reference is the ground truth of its
+  matched lines (§3.3). **Fix**: Δ < 0. **Harm**: Δ > 0. **Neutral**: Δ = 0.
 - **Harm rate** (the guaranteed risk): per page, Σ Δ over harmful edits / max(1, |ground truth|).
 - **Precision**: fixes / (fixes + harms). **Recall**: characters fixed / characters in
   locally correctable errors (errors inside one token or one inter-token gap of a matched line).
@@ -111,3 +112,5 @@ deterministic for their inputs. Run time is the only number that may differ betw
 | Date | Change | Reason | Affects |
 |---|---|---|---|
 | 2026-11-14 | first version | Phase 1 | — |
+| 2026-11-23 | §3.2: an edit's Δ is its exact marginal effect on its block's distance to the block's reference, not a distance in a token window | a window needs a choice of its edges and an alignment that can be ambiguous; the block is small enough to measure exactly (Phase 4) | every edit label; no experiment had run |
+| 2026-11-23 | §2: the raw track folds whitespace runs to one space | line breaks and unwrapping are layout, which §3.4 scores apart (Phase 4) | raw CER; no experiment had run |

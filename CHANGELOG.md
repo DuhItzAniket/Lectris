@@ -29,6 +29,10 @@ All notable changes to LECTRIS are documented here. The format follows
   accepts them under a policy, recording a `Decision` for each (`Result.decisions()`). The
   default policy, `PARITY`, accepts what LECTRIS v0.1 did, so the output is unchanged;
   `Threshold` accepts candidates by a score. `clean()` takes `policy`.
+- `lectris.eval` and `lectris experiment run`: score cleaned pages against their ground truth
+  (lines matched by box overlap, CER and WER in a raw and a normalised track, every edit labelled
+  a fix, a harm or neutral, the harm rate), with a seeded paired bootstrap over pages, and run a
+  registered experiment from its configuration into a JSON and Markdown report.
 
 ### Changed
 - GLYPHARIS output is now detected as `glypharis` instead of `json`. Its words, boxes and
