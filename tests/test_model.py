@@ -2,7 +2,7 @@ import math
 
 import pytest
 
-from lectris.model import Block, Box, Document, Line, Page, Word, union_of
+from lectris.model import Block, Box, Document, Engine, Line, Page, Word, union_of
 
 
 class TestBox:
@@ -51,6 +51,56 @@ class TestConfidence:
     @pytest.mark.parametrize("confidence", [0.0, 0.5, 1.0, None])
     def test_a_confidence_in_range_or_unknown_is_kept(self, confidence: float | None) -> None:
         assert Word("word", confidence=confidence).confidence == confidence
+
+
+class TestDetection:
+    def test_a_line_keeps_its_polygon_and_detection_score(self) -> None:
+        polygon = ((0.0, 1.0), (10.0, 0.0), (10.0, 5.0), (0.0, 6.0))
+        line = Line((Word("tilted"),), polygon=polygon, detection=0.8)
+        assert (line.polygon, line.detection) == (polygon, 0.8)
+        assert Line((Word("plain"),)).polygon is None
+
+    @pytest.mark.parametrize("score", [-0.01, 1.01])
+    def test_a_detection_score_outside_0_and_1_is_refused(self, score: float) -> None:
+        with pytest.raises(ValueError, match="a detection score is between 0 and 1"):
+            Line((), detection=score)
+
+    @pytest.mark.parametrize(
+        ("polygon", "message"),
+        [
+            (((0.0, 0.0), (1.0, 1.0)), "at least 3 points, not 2"),
+            (((0.0, 0.0), (1.0, 1.0), (math.nan, 2.0)), "pairs of finite numbers"),
+            (((0.0, 0.0), (1.0, 1.0), (2.0,)), "pairs of finite numbers"),
+        ],
+    )
+    def test_a_polygon_needs_three_finite_points(
+        self, polygon: tuple[tuple[float, float], ...], message: str
+    ) -> None:
+        with pytest.raises(ValueError, match=message):
+            Line((), polygon=polygon)
+
+
+class TestEngine:
+    def test_a_document_can_name_its_engine(self) -> None:
+        engine = Engine("glypharis", "1.0.0", "glypharis-1.0.0")
+        assert Document((), engine=engine).engine == engine
+        assert Document(()).engine is None
+        assert Engine("tesseract") == Engine("tesseract", None, None)
+
+    @pytest.mark.parametrize(
+        ("name", "version", "model", "message"),
+        [
+            ("", None, None, "an engine has a name"),
+            ("  ", None, None, "an engine has a name"),
+            ("glypharis", "", None, "None when unknown, not empty"),
+            ("glypharis", "1.0.0", "", "None when unknown, not empty"),
+        ],
+    )
+    def test_names_and_versions_are_not_empty(
+        self, name: str, version: str | None, model: str | None, message: str
+    ) -> None:
+        with pytest.raises(ValueError, match=message):
+            Engine(name, version, model)
 
 
 class TestText:

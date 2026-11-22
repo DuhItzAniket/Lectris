@@ -11,8 +11,19 @@ All notable changes to LECTRIS are documented here. The format follows
   (including the OCR engine's uncertainty) scores them, and a threshold that bounds the harm rate
   accepts them; decision records, phases, roadmap, experiment protocol, risk register, dataset
   cards and hypotheses. No change to what LECTRIS does.
+- A reader for the JSON the GLYPHARIS OCR engine writes (`OCRResult.to_json()`), detected from
+  its `glypharis_version` key, or chosen with `--format glypharis`. It keeps what the flat JSON
+  form dropped: the page's size, each line's polygon and detection score, and the engine and
+  model versions. The cleaned text is the same as before.
+- The model: a line's `polygon` and `detection` score, and the document's `engine` (`Engine`:
+  name, version, model). Layout and `clean()` keep them, and LECTRIS's JSON form writes and reads
+  them when they are set.
 
 ### Changed
+- GLYPHARIS output is now detected as `glypharis` instead of `json`. Its words, boxes and
+  confidences are read as before.
+- In LECTRIS's own JSON form, `engine` at the top level and `polygon` and `detection` in a line
+  are now read, so a value of the wrong kind there is an error, where it used to be ignored.
 - The property tests try a fixed set of examples by default, so every run of the suite is the
   same and a failure reproduces exactly; `HYPOTHESIS_PROFILE=explore` searches with random
   examples.

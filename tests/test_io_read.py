@@ -7,7 +7,7 @@ import pytest
 
 from lectris import io
 from lectris.errors import FormatError
-from lectris.io import alto, hocr, jsonio, plain, tsv
+from lectris.io import alto, glypharis, hocr, jsonio, plain, tsv
 from lectris.model import Document
 
 DATA = Path(__file__).parent / "data" / "io"
@@ -18,12 +18,13 @@ READERS: list[tuple[str, str, Callable[[str], Document]]] = [
     ("tesseract.tsv", "tsv", tsv.parse),
     ("document.json", "json", jsonio.parse),
     ("flat_lines.json", "json", jsonio.parse),
+    ("glypharis.json", "glypharis", glypharis.parse),
     ("pages.txt", "text", plain.parse),
 ]
 
 
 def test_the_formats() -> None:
-    assert io.FORMATS == ("hocr", "alto", "tsv", "json", "text")
+    assert io.FORMATS == ("hocr", "alto", "tsv", "json", "glypharis", "text")
 
 
 @pytest.mark.parametrize(("name", "format_name", "reader"), READERS)
@@ -55,7 +56,7 @@ def test_a_format_overrides_detection() -> None:
 
 @pytest.mark.parametrize("format_name", ["HOCR", "xml", "txt", ""])
 def test_an_unknown_format_is_a_value_error(tmp_path: Path, format_name: str) -> None:
-    message = r"unknown format .*; the formats are hocr, alto, tsv, json, text"
+    message = r"unknown format .*; the formats are hocr, alto, tsv, json, glypharis, text"
     with pytest.raises(ValueError, match=message):
         io.parse("text", format=format_name)
     path = tmp_path / "page.txt"

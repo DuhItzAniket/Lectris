@@ -19,6 +19,7 @@ ALTO_V4 = "http://www.loc.gov/standards/alto/ns-v4#"
         ("tesseract.tsv", "tsv"),
         ("document.json", "json"),
         ("flat_lines.json", "json"),
+        ("glypharis.json", "glypharis"),
         ("pages.txt", "text"),
     ],
 )
@@ -86,6 +87,20 @@ def test_other_markup_is_text(content: str) -> None:
     ],
 )
 def test_json_objects_and_arrays_of_objects(content: str, expected: str) -> None:
+    assert detect(content) == expected
+
+
+@pytest.mark.parametrize(
+    ("content", "expected"),
+    [
+        ('{"glypharis_version": "1.0.0", "lines": []}', "glypharis"),
+        ('{\n "glypharis_version" : "1.0.0"', "glypharis"),
+        ('{"lines": [], "glypharis_version": "1.0.0"}', "json"),
+        ('{"glypharis_versions": "1.0.0"}', "json"),
+        ('[{"glypharis_version": "1.0.0"}]', "json"),
+    ],
+)
+def test_glypharis_output_starts_with_its_version(content: str, expected: str) -> None:
     assert detect(content) == expected
 
 

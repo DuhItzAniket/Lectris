@@ -1,17 +1,53 @@
 """The document model: pages of blocks of lines of words, with boxes and confidences.
 
 Coordinates are image coordinates: the origin is the top-left corner and ``y`` grows downwards.
-A confidence is a float in ``[0, 1]``, or ``None`` when the OCR engine gave none.
+A confidence is a float in ``[0, 1]``, or ``None`` when the OCR engine gave none. A line can also
+keep what an engine's detector found: its outline (``polygon``) and its score (``detection``),
+apart from the recognition ``confidence``. A document can name the ``Engine`` that read it.
 """
 
 import math
 from collections.abc import Iterable
 from dataclasses import dataclass
 
+type Point = tuple[float, float]
 
-def _check_confidence(confidence: float | None) -> None:
+_MIN_POLYGON_POINTS = 3
+_POINT_VALUES = 2
+
+
+def _check_confidence(confidence: float | None, what: str = "a confidence") -> None:
     if confidence is not None and not (0.0 <= confidence <= 1.0):
-        raise ValueError(f"a confidence is between 0 and 1, not {confidence!r}")
+        raise ValueError(f"{what} is between 0 and 1, not {confidence!r}")
+
+
+def _check_polygon(polygon: tuple[Point, ...] | None) -> None:
+    if polygon is None:
+        return
+    if len(polygon) < _MIN_POLYGON_POINTS:
+        raise ValueError(f"a polygon has at least 3 points, not {len(polygon)}")
+    for point in polygon:
+        if len(point) != _POINT_VALUES or not all(math.isfinite(value) for value in point):
+            raise ValueError(f"a polygon's points are pairs of finite numbers, not {point!r}")
+
+
+@dataclass(frozen=True, slots=True)
+class Engine:
+    """The OCR engine that read a document: its name, its version and its model, when known.
+
+    Evidence fitted on one engine's output (what it confuses, how its confidences are
+    calibrated) holds for that engine and model only, so a document keeps them.
+    """
+
+    name: str
+    version: str | None = None
+    model: str | None = None
+
+    def __post_init__(self) -> None:
+        if not self.name.strip():
+            raise ValueError("an engine has a name")
+        if self.version == "" or self.model == "":
+            raise ValueError("an engine's version or model is None when unknown, not empty")
 
 
 @dataclass(frozen=True, slots=True)
@@ -88,14 +124,23 @@ class Word:
 
 @dataclass(frozen=True, slots=True)
 class Line:
-    """A line of words, left to right."""
+    """A line of words, left to right.
+
+    ``polygon`` is the line's outline as the engine's detector found it (at least three points,
+    for a rotated or curved line), and ``detection`` the detector's score for it, in ``[0, 1]``.
+    Both are ``None`` when the engine gives none.
+    """
 
     words: tuple[Word, ...]
     box: Box | None = None
     confidence: float | None = None
+    polygon: tuple[Point, ...] | None = None
+    detection: float | None = None
 
     def __post_init__(self) -> None:
         _check_confidence(self.confidence)
+        _check_confidence(self.detection, "a detection score")
+        _check_polygon(self.polygon)
 
     @property
     def text(self) -> str:
@@ -142,9 +187,10 @@ class Page:
 
 @dataclass(frozen=True, slots=True)
 class Document:
-    """An OCR'd document: its pages in order."""
+    """An OCR'd document: its pages in order, and the engine that read it when known."""
 
     pages: tuple[Page, ...]
+    engine: Engine | None = None
 
     @property
     def text(self) -> str:

@@ -7,6 +7,7 @@ measurements they share. Every function returns new values; nothing is changed i
 """
 
 import math
+from dataclasses import replace
 
 from lectris.layout.geometry import deskew as turn_back
 from lectris.layout.geometry import skew
@@ -88,8 +89,9 @@ def arrange_document(
     deskew: bool = True,
 ) -> Document:
     """The document with each page arranged by ``arrange``, with the same options."""
-    return Document(
-        tuple(
+    return replace(
+        document,
+        pages=tuple(
             arrange(
                 page,
                 min_gap=min_gap,
@@ -101,7 +103,7 @@ def arrange_document(
                 deskew=deskew,
             )
             for page in document.pages
-        )
+        ),
     )
 
 
@@ -123,5 +125,5 @@ def _visual_lines(line: Line, angle: float) -> list[Line]:
             result.append(Line(words, box=union_of(word.box for word in words)))
         return result
     if line.box is None:
-        return [Line(line.words, box=union_of(boxes), confidence=line.confidence)]
+        return [replace(line, box=union_of(boxes))]
     return [line]
