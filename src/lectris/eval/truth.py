@@ -8,7 +8,9 @@ One page per JSON file:
      "lines": [{"text": "Orchards bloom late", "box": [100, 120, 880, 160]}, ...]}
 
 ``page`` and ``lines`` are required, and each line's ``text``; ``box`` is ``[x0, y0, x1, y1]``
-or ``null``. A line's text is kept as it is: the scoring normalises both sides alike.
+or ``null``. A line's text is kept as it is: the scoring normalises both sides alike. A line with
+``"care": false`` is *don't care* (illegible, handwritten or vertical text, as GLYPHARIS's page
+metrics define it): an OCR line on it is left out of the scoring, and it is never a miss.
 """
 
 from dataclasses import dataclass
@@ -27,6 +29,7 @@ class TruthLine:
 
     text: str
     box: Box | None = None
+    care: bool = True
 
 
 @dataclass(frozen=True, slots=True)
@@ -41,6 +44,13 @@ class TruthPage:
     @property
     def text(self) -> str:
         return "\n".join(line.text for line in self.lines)
+
+    @property
+    def counted(self) -> "TruthPage":
+        """The page with only the lines that count (``care``)."""
+        return TruthPage(
+            self.page, tuple(line for line in self.lines if line.care), self.width, self.height
+        )
 
 
 def parse(content: str) -> TruthPage:
@@ -77,6 +87,7 @@ def dumps(page: TruthPage) -> str:
                 if line.box is None
                 else [line.box.x0, line.box.y0, line.box.x1, line.box.y1],
             }
+            | ({} if line.care else {"care": False})
             for line in page.lines
         ],
     }
@@ -86,4 +97,7 @@ def dumps(page: TruthPage) -> str:
 def _line(value: Any, path: str) -> TruthLine:
     line = obj(value, path)
     text = string(required(line, "text", path), f"{path}.text")
-    return TruthLine(text, box(line.get("box"), f"{path}.box"))
+    care = line.get("care", True)
+    if not isinstance(care, bool):
+        raise FormatError(f"{path}.care: true or false, not {care!r}")
+    return TruthLine(text, box(line.get("box"), f"{path}.box"), care)

@@ -7,6 +7,11 @@ ground-truth line no OCR line is matched with is a deletion: its characters coun
 before and after cleaning alike. Without boxes on either side, nothing can be matched, and the
 whole page is compared as one block, in the order each side gives.
 
+**Don't care.** Ground-truth lines marked ``care: false`` (illegible, handwritten, vertical)
+do not count, as in GLYPHARIS's page metrics: ``drop_dont_care`` removes, before cleaning, every
+OCR line that is matched with no line that counts but is matched with a don't-care line, or lies
+mostly (half its area or more) inside one; ``score_page`` scores against the lines that count.
+
 **Two tracks.** ``raw`` compares texts in NFC with whitespace runs made one space (line breaks
 are layout, not text). ``normalised``, the primary track, also passes both sides through
 LECTRIS's transforms (compatibility forms, invisible characters, ligatures, dashes, straight
@@ -25,14 +30,14 @@ effects) divided by the characters of its reference (at least 1): the risk ADR-0
 import re
 import unicodedata
 from collections.abc import Callable, Iterable, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Literal
 
 from lectris.edits import Edit, apply_edits
 from lectris.eval.matching import Matching, match_lines
 from lectris.eval.truth import TruthPage
 from lectris.metrics import char_errors, word_errors
-from lectris.model import Line
+from lectris.model import Document, Line
 from lectris.pipeline import CleanBlock, Result
 from lectris.text import punctuation, unicode
 
@@ -114,8 +119,52 @@ class PageScore:
         return self.harm_chars / max(1, self.chars.reference)
 
 
+def drop_dont_care(document: Document, truth: TruthPage, *, iou_threshold: float = 0.5) -> Document:
+    """``document`` without the OCR lines that lie on ``truth``'s don't-care lines.
+
+    Lines are matched with the lines that count first, so a don't-care line never takes a match
+    from one that counts; of the lines left, those matched with a don't-care line, or lying half
+    or more inside one, are dropped (with blocks left empty). A document whose lines have no
+    boxes is returned as it is.
+    """
+    ignored = [line.box for line in truth.lines if not line.care and line.box is not None]
+    if not ignored:
+        return document
+    lines = [line for page in document.pages for line in page.lines]
+    counted = [line.box for line in truth.lines if line.care]
+    first = match_lines([line.box for line in lines], counted, threshold=iou_threshold)
+    left = list(first.ocr_unmatched)
+    second = match_lines([lines[i].box for i in left], ignored, threshold=iou_threshold)
+    drop = {id(lines[left[i]]) for i, _ in second.pairs}
+    for i in left:
+        line_box = lines[i].box
+        if (
+            line_box is not None
+            and line_box.area > 0
+            and any(
+                (overlap := line_box.intersection(other)) is not None
+                and overlap.area >= line_box.area / 2
+                for other in ignored
+            )
+        ):
+            drop.add(id(lines[i]))
+    if not drop:
+        return document
+    pages = []
+    for page in document.pages:
+        blocks = []
+        for block in page.blocks:
+            kept = tuple(line for line in block.lines if id(line) not in drop)
+            if kept:
+                blocks.append(replace(block, lines=kept))
+        pages.append(replace(page, blocks=tuple(blocks)))
+    return replace(document, pages=tuple(pages))
+
+
 def score_page(result: Result, truth: TruthPage, *, iou_threshold: float = 0.5) -> PageScore:
-    """``result`` (one OCR page, cleaned) scored against ``truth``; see the module's docs."""
+    """``result`` (one OCR page, cleaned) scored against ``truth``'s lines that count; see the
+    module's docs. Drop the OCR lines on don't-care lines first (``drop_dont_care``)."""
+    truth = truth.counted
     blocks = _blocks_with_lines(result)
     ocr_lines = [line for _, lines in blocks for line in lines]
     matching = match_lines(

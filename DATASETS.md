@@ -17,6 +17,16 @@ publishing model packs.
 | FUNSD (optional) | form images through the engines | external test | non-commercial research and education only | evaluation only |
 | OmniDocBench (optional) | page images through the engines | external test | research use only | evaluation only |
 
+## Paired data (Phase 5)
+
+`scripts/build_hiertext_pairs.py` turns HierText validation into LECTRIS's ground truth (one
+file per page, `lectris.eval.truth`; a line's box is the box around its quadrilateral; a line
+counts when legible, printed, horizontal and not empty, else it is don't care) and writes one
+manifest per split to `data/manifests/pairs/`: page ids, relative paths, SHA-256 of each file,
+and the document-slice flag, with a summary of the counts. The splits follow ADR-0005: fit 50%,
+cal 25%, dev 25%, by page, stratified by the document slice (≥ 100 lines that count), ordered by
+SHA-256 of `lectris-v1` + the image id.
+
 ## Engine outputs
 
 Pairs are produced by:

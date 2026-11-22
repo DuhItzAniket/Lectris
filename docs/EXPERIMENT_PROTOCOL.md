@@ -49,6 +49,12 @@ OCR lines are matched to ground-truth lines one to one by the IoU of their boxes
 threshold 0.5 _(tunable)_). Unmatched OCR lines are insertions, unmatched ground-truth lines are
 deletions; both count in CER but are outside any edit's window (they are not locally correctable).
 
+**Don't care.** As in GLYPHARIS's page metrics, a ground-truth line counts only if it is legible,
+printed (not handwritten), horizontal (not vertical) and not empty; every other line is *don't
+care*. Before cleaning, an OCR line that matches no line that counts, but matches a don't-care
+line or lies half or more inside one, is dropped (`lectris.eval.scoring.drop_dont_care`; lines
+that count are matched first). A don't-care line is never a deletion.
+
 ### 3.4 Layout (secondary)
 Reading order: Kendall's τ between the order of matched lines and the ground truth's order, for
 the engine's order and for LECTRIS's layout. Paragraph grouping: pairwise F1 over lines of the same
@@ -113,4 +119,5 @@ deterministic for their inputs. Run time is the only number that may differ betw
 |---|---|---|---|
 | 2026-11-14 | first version | Phase 1 | — |
 | 2026-11-23 | §3.2: an edit's Δ is its exact marginal effect on its block's distance to the block's reference, not a distance in a token window | a window needs a choice of its edges and an alignment that can be ambiguous; the block is small enough to measure exactly (Phase 4) | every edit label; no experiment had run |
+| 2026-11-23 | §3.3: don't-care ground-truth lines (illegible, handwritten, vertical, empty), and OCR lines on them dropped before cleaning | the same rule as GLYPHARIS's page metrics, so the two projects score one page alike (Phase 5) | every page score; no experiment had run |
 | 2026-11-23 | §2: the raw track folds whitespace runs to one space | line breaks and unwrapping are layout, which §3.4 scores apart (Phase 4) | raw CER; no experiment had run |

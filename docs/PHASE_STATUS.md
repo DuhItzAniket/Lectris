@@ -9,8 +9,8 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 | 1 | Research planning | **COMPLETE** (merged in #15; no phase tag) | — |
 | 2 | Engine-aware input and the GLYPHARIS contract | **COMPLETE** (#18, #19, #20; no phase tag) | — |
 | 3 | Candidate core with v0.1 parity | **COMPLETE** (#21; no phase tag) | — |
-| 4 | Evaluation harness | **IN PROGRESS** (in review) | — |
-| 5 | Paired data | not started (needs GLYPHARIS output) | — |
+| 4 | Evaluation harness | **COMPLETE** (#22; no phase tag) | — |
+| 5 | Paired data | **IN PROGRESS** | — |
 | 6 | Evidence models and model packs | not started | — |
 | 7 | Acceptance model and risk control | not started | — |
 | 8 | Explanations, flags and the v0.3 interface | not started | — |
@@ -35,6 +35,7 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 | GLYPHARIS output (JSON) on HierText validation and GlyphSynth validation pages, with the model version | Phase 5 | open |
 | Tesseract installed, its version, for the transfer engine | Phase 5 | open |
 | Target venue (journal or conference) and its page limit | Phase 16 | open |
+| PyPI: a pending publisher for `lectris` and the protected `pypi` environment (docs/RELEASING.md); the release workflow is merged (#23) | first PyPI release | open |
 
 ---
 
@@ -141,7 +142,7 @@ evidence that could accept such candidates arrives.
 
 ## Phase 4 — Evaluation harness
 
-**Status:** IN PROGRESS (opened 2026-11-23 on `phase/04-eval-harness`).
+**Status:** COMPLETE (opened 2026-11-23 on `phase/04-eval-harness`, merged as #22).
 
 **Implemented:** `lectris.eval` with `truth`, `matching`, `scoring`, `stats` and `experiment`
 (architecture §13); `lectris experiment run CONFIG [-o reports]`.
