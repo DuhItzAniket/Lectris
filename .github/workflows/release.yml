@@ -1,0 +1,259 @@
+# Release: build, check and draft a release; PyPI gets it only after the owner publishes it.
+#
+# Stage 1, manual dispatch only. With dry_run on (the default) it runs every check on the
+# dispatched commit against the would-be tag and creates nothing. With dry_run off it builds from
+# the tag, runs the same checks, and creates a DRAFT GitHub release holding the sdist, the wheel
+# and their SHA256SUMS, with the tag's CHANGELOG section as its notes.
+#
+# Stage 2, when the owner publishes the draft by hand: the pypi job, in the protected environment
+# "pypi" (the owner is its required reviewer), downloads the release's files, checks them against
+# SHA256SUMS and uploads exactly those through Trusted Publishing. No token is stored and nothing
+# is rebuilt. docs/RELEASING.md lists the one-time setup on PyPI and GitHub.
+#
+# A tag push never runs this workflow. Every action is pinned by its full commit SHA.
+
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run: build and check only, create nothing"
+        type: boolean
+        required: true
+        default: true
+      tag:
+        description: "Release tag, vX.Y.Z (must exist when dry_run is off)"
+        type: string
+        required: true
+  release:
+    types: [published]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  UV_VERSION: "0.13.0"
+
+jobs:
+  check-build:
+    name: build and check (stage 1)
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      commit: ${{ steps.commit.outputs.sha }}
+    steps:
+      - name: Check the inputs
+        env:
+          TAG: ${{ inputs.tag }}
+        run: |
+          if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([a-z]+[0-9]+)?$ ]]; then
+            echo "::error::the tag is vX.Y.Z (a pre-release suffix such as rc1 allowed), not '$TAG'"
+            exit 1
+          fi
+
+      # A dry run builds the dispatched commit; off dry run, the tag itself (it must exist).
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.dry_run && github.sha || format('refs/tags/{0}', inputs.tag) }}
+          persist-credentials: false
+
+      - name: Record the commit
+        id: commit
+        run: |
+          test -z "$(git status --porcelain)"
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          git log -1 --format='%H %s'
+
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: ${{ env.UV_VERSION }}
+
+      - name: The tag is the package version, and CHANGELOG has its section
+        env:
+          TAG: ${{ inputs.tag }}
+        run: |
+          uv run --no-project --python 3.13 python - <<'PY'
+          import os, re, sys, tomllib
+          version = tomllib.load(open("pyproject.toml", "rb"))["project"]["version"]
+          tag = os.environ["TAG"]
+          if tag != f"v{version}":
+              sys.exit(f"::error::the tag {tag} is not v{version}, the version in pyproject.toml")
+          changelog = open("CHANGELOG.md", encoding="utf-8").read()
+          if not re.search(rf"^## \[{re.escape(version)}\] - \d{{4}}-\d{{2}}-\d{{2}}$", changelog, re.M):
+              sys.exit(f"::error::CHANGELOG.md has no dated section for {version}")
+          print(f"{tag} is the package version and has its CHANGELOG section")
+          PY
+
+      - name: The tests, as CI runs them
+        run: |
+          uv sync --locked
+          uv run --locked pytest -q
+
+      - name: Build the sdist and the wheel from the clean checkout
+        run: |
+          test -z "$(git status --porcelain)"
+          uv build --out-dir dist/
+          ls -l dist/
+
+      - name: Install the wheel alone in a fresh environment and run it, from outside the checkout
+        working-directory: ${{ runner.temp }}
+        run: |
+          uv venv --python 3.12 check
+          uv pip install --python check "$GITHUB_WORKSPACE"/dist/*.whl
+          check/bin/lectris --version
+          printf 'An exam-\nple of \xef\xac\x81ne text.\n' | check/bin/lectris clean -
+          check/bin/python -c "import lectris, importlib.metadata as m; \
+            assert m.version('lectris') == lectris.__version__; print(lectris.__file__)"
+          check/bin/python -c "import importlib.metadata as m; \
+            assert not m.requires('lectris'), m.requires('lectris')"
+
+      - name: Write SHA256SUMS
+        working-directory: dist
+        run: |
+          sha256sum -- *.whl *.tar.gz > SHA256SUMS
+          cat SHA256SUMS
+
+      - name: "Guard: dist holds one sdist, one wheel and SHA256SUMS, nothing else"
+        working-directory: dist
+        run: |
+          shopt -s nullglob
+          wheels=(lectris-*-py3-none-any.whl)
+          sdists=(lectris-*.tar.gz)
+          all=(*)
+          if [ "${#wheels[@]}" -ne 1 ] || [ "${#sdists[@]}" -ne 1 ] || [ "${#all[@]}" -ne 3 ] \
+            || [ ! -f SHA256SUMS ]; then
+            echo "::error::dist/ must hold exactly one wheel, one sdist and SHA256SUMS: ${all[*]}"
+            exit 1
+          fi
+          sha256sum -c --strict SHA256SUMS
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: dist
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
+
+  draft-release:
+    name: draft GitHub release (stage 1, dry_run off)
+    needs: check-build
+    if: github.event_name == 'workflow_dispatch' && inputs.dry_run == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: refs/tags/${{ inputs.tag }}
+          persist-credentials: false
+
+      - name: The tag points at the commit check-build built and checked
+        env:
+          TAG: ${{ inputs.tag }}
+          BUILT: ${{ needs.check-build.outputs.commit }}
+        run: |
+          head="$(git rev-parse HEAD)"
+          if [ "$head" != "$BUILT" ]; then
+            echo "::error::the tag $TAG is $head, but check-build built $BUILT"
+            exit 1
+          fi
+
+      - name: No release exists for the tag yet
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            echo "::error::a release for $TAG already exists; nothing is replaced"
+            exit 1
+          fi
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: dist
+          path: dist/
+
+      - name: The notes are the tag's CHANGELOG section
+        env:
+          TAG: ${{ inputs.tag }}
+        run: |
+          python3 - <<'PY'
+          import os, re
+          version = os.environ["TAG"][1:]
+          text = open("CHANGELOG.md", encoding="utf-8").read()
+          start = re.search(rf"^## \[{re.escape(version)}\].*$", text, re.M)
+          end = re.search(r"^## \[", text[start.end():], re.M)
+          section = text[start.end(): start.end() + end.start() if end else len(text)]
+          links = re.compile(r"^\[[^\]]+\]: ")  # the compare links at the bottom of the file
+          section = "\n".join(line for line in section.splitlines() if not links.match(line))
+          open(os.environ["RUNNER_TEMP"] + "/notes.md", "w", encoding="utf-8").write(section.strip() + "\n")
+          PY
+          cat "$RUNNER_TEMP/notes.md"
+
+      - name: Create the draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          (cd dist && sha256sum -c --strict SHA256SUMS)
+          gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --draft --verify-tag \
+            --title "LECTRIS $TAG" --notes-file "$RUNNER_TEMP/notes.md" dist/*
+          echo "Draft release $TAG created; it is not published."
+
+  pypi:
+    name: upload to PyPI (stage 2, after the owner publishes the release)
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: pypi
+      url: https://pypi.org/project/lectris/
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      # No checkout and no build: only the files stage 1 checked and the owner published go up.
+      - name: Download the release's files and check them against SHA256SUMS
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          mkdir release-assets && cd release-assets
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern SHA256SUMS
+          awk '{ name = $2; sub(/^\*/, "", name); print name }' SHA256SUMS > names.txt
+          wheels=0
+          sdists=0
+          while IFS= read -r name; do
+            if [[ "$name" =~ ^lectris-[0-9][0-9A-Za-z.]*-py3-none-any\.whl$ ]]; then
+              wheels=$((wheels + 1))
+            elif [[ "$name" =~ ^lectris-[0-9][0-9A-Za-z.]*\.tar\.gz$ ]]; then
+              sdists=$((sdists + 1))
+            else
+              echo "::error::unexpected file in SHA256SUMS: $name"
+              exit 1
+            fi
+            gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "$name"
+          done < names.txt
+          if [ "$wheels" -ne 1 ] || [ "$sdists" -ne 1 ] || [ "$(wc -l < names.txt)" -ne 2 ]; then
+            echo "::error::SHA256SUMS must list exactly one wheel and one sdist"
+            exit 1
+          fi
+          sha256sum -c --strict SHA256SUMS
+          mkdir ../dist
+          while IFS= read -r name; do cp -- "$name" ../dist/; done < names.txt
+          ls -l ../dist/
+
+      - uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3
+        with:
+          packages-dir: dist/

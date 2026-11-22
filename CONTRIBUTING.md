@@ -47,3 +47,9 @@ each side, and posts a Reproduction Card on the pull request:
 
 So describe what your change does, including what it changes in the output. A refactor that
 claims no behaviour change will be held to that.
+
+## Releases
+
+Releases are built, checked and drafted by `.github/workflows/release.yml`, and uploaded to PyPI
+by Trusted Publishing only after the owner publishes the draft. The steps are in
+[docs/RELEASING.md](docs/RELEASING.md).
