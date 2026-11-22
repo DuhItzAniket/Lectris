@@ -4,6 +4,11 @@
 blocks in reading order (when the profile asks for it and the lines have boxes), and runs each
 block's text through the profile's rules. The result holds the cleaned text, each block's source
 and revisions, and the layout document.
+
+A step whose rule guesses (a proposer, ``lectris.propose.PROPOSERS``) does not change the text
+itself: its edits become candidates, and ``lectris.decide`` accepts some of them under the
+pipeline's policy, recording a decision for each. Under the default policy, ``PARITY``, it accepts
+exactly what the rule would have done, so the output is LECTRIS v0.1's.
 """
 
 import re
@@ -12,8 +17,10 @@ from dataclasses import dataclass, field, replace
 from types import MappingProxyType
 from typing import Final
 
+from lectris import propose
 from lectris.confidence import block_confidence
-from lectris.edits import Edit, Revision
+from lectris.decide import PARITY, Policy, decide
+from lectris.edits import Decision, Edit, Revision
 from lectris.io import plain
 from lectris.io._common import strip_bom
 from lectris.layout import arrange
@@ -31,7 +38,7 @@ class Step:
     """One text rule in a profile, with its options.
 
     ``lexicon`` steps receive the pipeline's lexicon, when one is given, as their ``lexicon``
-    option.
+    option. A step whose rule is a proposer (``proposer``) has its edits decided by ``policy``.
     """
 
     rule: Callable[..., Revision]
@@ -42,11 +49,19 @@ class Step:
     def id(self) -> str:
         return rule_id(self.rule)
 
-    def apply(self, text: str, lexicon: Lexicon | None) -> Revision:
+    @property
+    def proposer(self) -> bool:
+        """Whether the rule guesses, so that its edits are candidates to decide on."""
+        return self.id in propose.PROPOSERS
+
+    def apply(self, text: str, lexicon: Lexicon | None, policy: Policy = PARITY) -> Revision:
         options = dict(self.options)
         if self.lexicon and lexicon is not None:
             options["lexicon"] = lexicon
-        return self.rule(text, **options)
+        revision = self.rule(text, **options)
+        if not self.proposer:
+            return revision
+        return decide(text, propose.candidates(revision), policy)
 
 
 @dataclass(frozen=True, slots=True)
@@ -75,6 +90,16 @@ class Change:
     block: int
     step: int
     edit: Edit
+
+
+@dataclass(frozen=True, slots=True)
+class Judgement:
+    """One decision on a candidate edit, located like a ``Change``."""
+
+    page: int
+    block: int
+    step: int
+    decision: Decision
 
 
 @dataclass(frozen=True, slots=True)
@@ -114,6 +139,13 @@ class Result:
                 for edit in revision.edits:
                     yield Change(block.page, block.index, step, edit)
 
+    def decisions(self) -> Iterator[Judgement]:
+        """Every decision on a candidate, accepted or declined, block by block, step by step."""
+        for block in self.blocks:
+            for step, (_, revision) in enumerate(block.revisions):
+                for decision in revision.decisions:
+                    yield Judgement(block.page, block.index, step, decision)
+
     def counts(self) -> dict[str, int]:
         """How many edits each rule made, in the profile's order (rules with none included)."""
         counts: dict[str, int] = {}
@@ -124,12 +156,16 @@ class Result:
 
 
 def run_rules(
-    text: str, steps: tuple[Step, ...], *, lexicon: Lexicon | None = None
+    text: str,
+    steps: tuple[Step, ...],
+    *,
+    lexicon: Lexicon | None = None,
+    policy: Policy = PARITY,
 ) -> tuple[str, tuple[tuple[str, Revision], ...]]:
     """``text`` through each step in order: the final text and each step's revision."""
     revisions: list[tuple[str, Revision]] = []
     for step in steps:
-        revision = step.apply(text, lexicon)
+        revision = step.apply(text, lexicon, policy)
         revisions.append((step.id, revision))
         text = revision.text
     return text, tuple(revisions)
@@ -143,8 +179,9 @@ def _clean_block(
     index: int,
     profile: Profile,
     lexicon: Lexicon | None,
+    policy: Policy,
 ) -> CleanBlock:
-    text, revisions = run_rules(source, profile.steps, lexicon=lexicon)
+    text, revisions = run_rules(source, profile.steps, lexicon=lexicon, policy=policy)
     return CleanBlock(
         page=page,
         index=index,
@@ -192,6 +229,7 @@ def clean(
     *,
     profile: "Profile | str" = "standard",
     lexicon: Lexicon | None = None,
+    policy: Policy = PARITY,
 ) -> Result:
     """Clean OCR output: arrange each page, then run every block's text through the rules.
 
@@ -201,7 +239,8 @@ def clean(
     a document's blocks reach them as their lines' text (``Block.text``). ``profile`` is a
     ``Profile`` or the name of one in ``lectris.profiles.PROFILES``. A ``lexicon`` makes the
     rules that can use one more precise (de-hyphenation, confusions in words); without one they
-    rely on their local evidence.
+    rely on their local evidence. ``policy`` decides on the candidates the guessing rules
+    propose (``lectris.decide``); the default, ``PARITY``, accepts what LECTRIS v0.1 did.
     """
     from lectris.profiles import get  # noqa: PLC0415 - the profiles import this module
 
@@ -217,6 +256,7 @@ def clean(
                 index=index,
                 profile=chosen,
                 lexicon=lexicon,
+                policy=policy,
             )
             for page_index, page in enumerate(document.pages)
             for index, block in enumerate(page.blocks)
@@ -227,7 +267,13 @@ def clean(
         document = replace(document, pages=tuple(arrange(page) for page in document.pages))
     blocks = tuple(
         _clean_block(
-            block.text, block, page=page.number, index=index, profile=chosen, lexicon=lexicon
+            block.text,
+            block,
+            page=page.number,
+            index=index,
+            profile=chosen,
+            lexicon=lexicon,
+            policy=policy,
         )
         for page in document.pages
         for index, block in enumerate(page.blocks)

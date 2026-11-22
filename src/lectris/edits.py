@@ -4,6 +4,9 @@ A rule returns a ``Revision``: its output text, and the edits that turn its inpu
 output. ``start`` and ``end`` are offsets in the input; edits are sorted and do not overlap, and
 ``apply_edits(input, revision.edits) == revision.text`` always holds. ``OffsetMap`` maps a span
 of a revision's output, or of the output of several revisions in turn, back to the input.
+
+A proposer suggests ``Candidate`` edits instead; ``lectris.decide`` turns each into a
+``Decision`` and the accepted ones into the revision's edits.
 """
 
 import re
@@ -36,11 +39,64 @@ class Edit:
 
 
 @dataclass(frozen=True, slots=True)
+class Candidate:
+    """An edit a proposer suggests, with the evidence it found, before anything decides on it.
+
+    The span, ``before`` and ``after`` follow ``Edit``'s rules. ``features`` are named numbers
+    the decision layer reads, sorted by name, each name once (``feature`` reads one).
+    """
+
+    rule: str
+    start: int
+    end: int
+    before: str
+    after: str
+    features: tuple[tuple[str, float], ...] = ()
+
+    def __post_init__(self) -> None:
+        self.edit()  # the same checks as an edit's
+        names = [name for name, _ in self.features]
+        if names != sorted(set(names)):
+            raise ValueError(f"a candidate's features are sorted by name, each once: {names}")
+
+    def edit(self) -> Edit:
+        """The edit this candidate would make."""
+        return Edit(self.rule, self.start, self.end, self.before, self.after)
+
+    def feature(self, name: str, default: float = 0.0) -> float:
+        """The value of the feature ``name``, or ``default`` if the candidate has none."""
+        for key, value in self.features:
+            if key == name:
+                return value
+        return default
+
+
+@dataclass(frozen=True, slots=True)
+class Decision:
+    """What the decision layer made of a candidate: accepted or not, and why.
+
+    ``probability`` is the candidate's chance of being right and ``threshold`` the bar it had to
+    reach, when the policy has them; ``reason`` says in words why it was accepted or declined.
+    """
+
+    candidate: Candidate
+    accepted: bool
+    reason: str
+    probability: float | None = None
+    threshold: float | None = None
+
+
+@dataclass(frozen=True, slots=True)
 class Revision:
-    """A rule's output: the new text, and the edits from the rule's input to it."""
+    """A rule's output: the new text, and the edits from the rule's input to it.
+
+    A proposer's revision also keeps its ``decisions``: one per candidate, accepted or declined.
+    Its accepted candidates are its edits.
+    """
 
     text: str
     edits: tuple[Edit, ...] = ()
+    decisions: tuple[Decision, ...] = ()
 
     @property
     def changed(self) -> bool:

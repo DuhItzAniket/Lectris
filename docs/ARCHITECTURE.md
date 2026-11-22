@@ -169,15 +169,17 @@ that edit replaced (an inserted one to the gap it was inserted into); a position
 the character at it came from. Property tests check every span against a character-by-character
 reference, and composition against mapping through each stage in turn.
 
-**[v2, Phase 3] Decisions.**
+**[v2, Phase 3 — built] Decisions.**
 
 ```python
-Candidate(rule: str, start: int, end: int, before: str, after: str, features: Mapping[str, float])
-Decision(candidate: Candidate, probability: float, threshold: float, accepted: bool, reason: str)
+Candidate(rule, start, end, before, after, features: tuple[tuple[str, float], ...] = ())
+Decision(candidate, accepted: bool, reason: str, probability: float | None, threshold: float | None)
 ```
 
-An accepted decision becomes an `Edit` with the same rule and span. `Revision` gains `decisions`
-(the accepted and the declined), and the `Edit` contract is unchanged.
+A candidate obeys an edit's checks; its features are sorted by name, each once
+(`candidate.feature(name)` reads one). An accepted decision becomes an `Edit` with the same rule
+and span. `Revision` gains `decisions` (the accepted and the declined, in span order), and the
+`Edit` contract is unchanged.
 
 ## 6. L0 Ingest: readers (`lectris.io`)
 
@@ -246,9 +248,12 @@ rule is a function `rule(text: str, /, **options) -> Revision` (a transform) or
 
 ## 9. L3 Propose: proposers (`lectris.propose`)
 
-[v2, Phase 3] A **proposer** finds spans that may be OCR errors and proposes replacements. It
-attaches rule-specific features (for example, "both halves are in the lexicon"), but it does not
-decide.
+[v2, Phase 3 — built for the v0.1 rules] A **proposer** finds spans that may be OCR errors and
+proposes replacements. It attaches rule-specific features (for example, "both halves are in the
+lexicon"), but it does not decide. `lectris.propose.PROPOSERS` names the v0.1 rules that guess;
+a pipeline step whose rule is one of them hands the rule's edits to the decision layer as
+candidates with the feature `v01 = 1`. In Phase 6 each also proposes what its v0.1 conditions
+decline (`v01 = 0`), with features for the decision to weigh.
 
 | Proposer | From | What it proposes |
 |---|---|---|
@@ -313,17 +318,21 @@ guaranteed. Under a different engine or domain the guarantee does not carry over
 §5 measures how far it holds in practice.
 
 ### 11.3 Conflicts
-[v2, Phase 7] Overlapping candidates (`rn` → `m` and `modem` → `modern` on the same token) are
-resolved by weighted interval scheduling: the accepted non-overlapping set maximises
-Σ (p·gain − (1 − p)·cost), where gain and cost are the candidate's character counts. Ties break by
-rule order, then offset, so the result is deterministic.
+[v2, Phase 3 — built] Overlapping candidates (`rn` → `m` and `modem` → `modern` on the same
+token) are resolved by weighted interval scheduling among those the policy passes: the accepted
+non-overlapping set maximises Σ p · size, the expected number of characters changed rightly
+(`size` is the longer of `before` and `after`, at least 1; p is 1 under `parity`). A tie leaves
+the text as it was. Two candidates overlap when their spans share a character, when both insert at
+one place, or when one inserts inside the other's span; an insertion at the edge of a span does
+not overlap it. Candidates are ordered by span, rule and replacement, so the result is
+deterministic. A property test checks the chosen set against every subset of small inputs.
 
 ### 11.4 Policies
 | Policy | What decides | Use |
 |---|---|---|
-| `parity` | every candidate the v0.1 rule would have applied is accepted (the proposer's v0.1 condition is a feature, and its value is the decision) | reproduces v0.1 byte for byte (Phase 3 exit), the rule baseline in the paper |
-| `risk` | §11.1–11.3 with the profile's α | the default once a model pack exists |
-| `threshold` | p ≥ a fixed λ, no guarantee | ablations, threshold sweeps |
+| `parity` **[built]** (`lectris.decide.PARITY`) | every candidate the v0.1 rule would have applied (`v01 = 1`) is accepted | reproduces v0.1 byte for byte (Phase 3 exit, `tests/test_parity.py`), the rule baseline in the paper |
+| `risk` [Phase 7] | §11.1–11.3 with the profile's α | the default once a model pack exists |
+| `threshold` **[built]** (`Threshold(score, λ)`) | p ≥ a fixed λ, no guarantee | ablations, threshold sweeps |
 
 Without a model pack, `clean()` uses `parity`. That is LECTRIS v0.1's behaviour, so no user is
 broken.
@@ -384,11 +393,14 @@ result.changes()  # every edit, located by page, block and step
 result.counts()  # edits per rule
 ```
 
-[v2, Phase 3 and 8] Additions; every v0.1 call keeps its meaning.
+[v2, Phase 3 — built] `clean(..., policy=PARITY)` and `result.decisions()` (every candidate,
+accepted or declined, located by page, block and step).
+
+[v2, Phase 8] Additions; every v0.1 call keeps its meaning.
 
 ```python
 result = lectris.clean(document, profile="standard", pack=lectris.models.load("pack.json.gz"))
-result.decisions()  # every candidate: accepted or declined, with evidence and probability
+result.decisions()  # with evidence and probability
 result.flags()  # spans for review
 result.guarantee  # α, δ, λ̂ and whether the pack matches the input's engine
 ```
