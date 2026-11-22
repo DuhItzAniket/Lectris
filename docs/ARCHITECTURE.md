@@ -128,17 +128,21 @@ Readers convert their format's scale (hOCR's `x_wconf` and TSV's `conf` are 0–
 - `Page.source`, listed in ADR-0003, is not added: no input format names its image, and the
   caller knows the file it read.
 
-**[v2, later] Character uncertainty**, once an engine writes it (GLYPHARIS `chars`, ADR-0003, or
-ALTO `CC`/`ALTERNATIVE`):
+**[v2, Phase 2 — built] Character uncertainty**, where an engine writes it (ALTO `CC` and
+`ALTERNATIVE`; GLYPHARIS `chars` as proposed in ADR-0003):
 
 ```python
-Glyph(char: str, confidence: float | None, alternatives: tuple[tuple[str, float], ...] = ())
+Glyph(char: str, confidence: float | None = None, alternatives: tuple[tuple[str, float], ...] = ())
+Word(..., glyphs: tuple[Glyph, ...] | None = None, alternatives: tuple[str, ...] = ())
 ```
 
-A word's `glyphs`, when present, spell its `text` exactly (`"".join(g.char for g in glyphs) ==
-text`, else `ValueError`). Alternatives are other characters the engine considered at that
-position, with their probabilities, sorted, never including `char`. The empty string means
-"nothing here" (CTC blank), which makes a deletion a candidate.
+A word's `glyphs`, when present, spell its `text` exactly (else `ValueError`). A glyph's
+alternatives are other single characters the engine weighed at that place, with their
+probabilities, from the most to the least likely, never `char` itself and none twice; `""` means
+"nothing here" (CTC blank), which makes a deletion a candidate. A word's `alternatives` are other
+readings of the whole word (ALTO `ALTERNATIVE`). A reader keeps glyphs only when the word's text
+needs no whitespace cleaning, so they always line up with it; an ALTO `HYP` hyphen appends a
+glyph without confidence and is appended to each alternative.
 
 ## 5. Edits, offset maps and provenance (`lectris.edits`, `lectris.decide`)
 
@@ -191,8 +195,8 @@ An accepted decision becomes an `Edit` with the same rule and span. `Revision` g
 
 | Format | Module | Uncertainty read |
 |---|---|---|
-| GLYPHARIS JSON (`OCRResult.to_dict`) **[built]** | `glypharis` | `glypharis_version`, `model_version` (the engine), page `width`/`height`, line `text`, `confidence`, `det_score`, `bbox`, `polygon`; ignored on purpose: `text`, `seconds`, `quad`, `confidence_at`. The module lists both sets and a contract test checks them against a sample of GLYPHARIS 1.0's output ([ADR-0003](decisions/ADR-0003-engine-aware-input.md)). Per-character `chars` later, when GLYPHARIS writes them |
-| ALTO | `alto` | `CC` (character confidences) and `ALTERNATIVE` elements, if present |
+| GLYPHARIS JSON (`OCRResult.to_dict`) **[built]** | `glypharis` | `glypharis_version`, `model_version` (the engine), page `width`/`height`, line `text`, `confidence`, `det_score`, `bbox`, `polygon`; ignored on purpose: `text`, `seconds`, `quad`, `confidence_at`. The module lists both sets and a contract test checks them against a sample of GLYPHARIS 1.0's output ([ADR-0003](decisions/ADR-0003-engine-aware-input.md)). Per-character `chars` (ADR-0003's proposal, `LINE_PROPOSED`) are read when present; GLYPHARIS 1.0 does not write them |
+| ALTO **[built]** | `alto` | `CC` (one level per character, 0 sure to 9 unsure, read as the confidence `1 - level/9`) and `ALTERNATIVE` (other readings of the word), if present |
 | hOCR | `hocr` | per-character confidences and choices from Tesseract's extended hOCR, if present (to be checked against real Tesseract output, Phase 2) |
 
 `lectris.io.read(source, format=None)` detects the format from the content; GLYPHARIS JSON is

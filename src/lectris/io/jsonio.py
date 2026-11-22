@@ -16,10 +16,12 @@ page's position; ``width``, ``height``, ``box`` and ``confidence`` are optional.
 that is absent is the union of its parts' boxes, while ``null`` means it has none (which is what
 ``dumps`` writes for a missing box, so that reading back gives the same document).
 
-Three keys are optional and written only when the document has them: a line's ``polygon``
-(``[[x, y], ...]``, at least three points) and ``detection`` (the detector's score, 0 to 1), and
-the top-level ``engine`` (``{"name": ..., "version": ..., "model": ...}``, only ``name``
-required).
+Some keys are optional and written only when the document has them: a word's ``glyphs``
+(``[{"char": ..., "confidence": ..., "alternatives": [[character, probability], ...]}, ...]``,
+spelling its text) and ``alternatives`` (other readings of the word, ``[...]``), a line's
+``polygon`` (``[[x, y], ...]``, at least three points) and ``detection`` (the detector's score,
+0 to 1), and the top-level ``engine`` (``{"name": ..., "version": ..., "model": ...}``, only
+``name`` required).
 
 The flat form is ``{"lines": [...]}`` or a top-level list of lines, each
 ``{"text": ..., "bbox": [x0, y0, x1, y1], "confidence": ...}``, with only ``text`` required. It is
@@ -48,7 +50,9 @@ from lectris.io._json import (
     string,
     unit,
 )
-from lectris.model import Block, Box, Document, Engine, Line, Page, Word, union_of
+from lectris.model import Block, Box, Document, Engine, Glyph, Line, Page, Word, union_of
+
+_PAIR = 2
 
 
 def parse(content: str) -> Document:
@@ -78,8 +82,9 @@ def parse(content: str) -> Document:
 def dumps(document: Document, *, indent: int | None = 2) -> str:
     """``document`` in LECTRIS's JSON form; ``parse`` reads it back as an equal document.
 
-    Every key is written; missing boxes and confidences are ``null``. A line's ``polygon`` and
-    ``detection``, and the document's ``engine``, are written only when they are set. ``indent``
+    Every key is written; missing boxes and confidences are ``null``. A word's ``glyphs`` and
+    ``alternatives``, a line's ``polygon`` and ``detection``, and the document's ``engine``, are
+    written only when they are set. ``indent``
     is passed to ``json.dumps`` (``None`` for one line). Text is written as UTF-8, not as ``\\u``
     escapes.
     """
@@ -166,11 +171,46 @@ def _line(value: Any, path: str, *, box_key: str) -> Line | None:
 def _word(value: Any, path: str) -> Word | None:
     word = obj(value, path)
     text = string(required(word, "text", path), f"{path}.text")
+    glyphs = _glyphs(word.get("glyphs"), f"{path}.glyphs")
+    if glyphs is not None and "".join(glyph.char for glyph in glyphs) != text:
+        raise FormatError(f"{path}.glyphs: the glyphs spell a text other than {text!r}")
+    alternatives = [
+        string(item, f"{path}.alternatives[{index}]")
+        for index, item in array(word.get("alternatives", []), f"{path}.alternatives")
+    ]
     return make_word(
         text,
         box(word.get("box"), f"{path}.box"),
         unit(word.get("confidence"), f"{path}.confidence"),
+        glyphs,
+        alternatives,
     )
+
+
+def _glyphs(value: Any, path: str) -> tuple[Glyph, ...] | None:
+    if value is None:
+        return None
+    glyphs: list[Glyph] = []
+    for index, item in array(value, path):
+        where = f"{path}[{index}]"
+        glyph = obj(item, where)
+        char = string(required(glyph, "char", where), f"{where}.char")
+        readings = []
+        for position, pair in array(glyph.get("alternatives", []), f"{where}.alternatives"):
+            at = f"{where}.alternatives[{position}]"
+            if not isinstance(pair, list) or len(pair) != _PAIR:
+                raise FormatError(f"{at}: an alternative is [character, probability]")
+            probability = unit(pair[1], f"{at}[1]", "a probability")
+            if probability is None:
+                raise FormatError(f"{at}[1]: expected a number, not null")
+            readings.append((string(pair[0], f"{at}[0]"), probability))
+        try:
+            glyphs.append(
+                Glyph(char, unit(glyph.get("confidence"), f"{where}.confidence"), tuple(readings))
+            )
+        except ValueError as error:
+            raise FormatError(f"{where}: {error}") from None
+    return tuple(glyphs)
 
 
 def _box_or_union(data: dict[str, Any], key: str, path: str, parts: list[Box | None]) -> Box | None:
@@ -196,15 +236,32 @@ def _line_data(line: Line) -> dict[str, Any]:
     data: dict[str, Any] = {
         "box": _box_data(line.box),
         "confidence": line.confidence,
-        "words": [
-            {"text": word.text, "box": _box_data(word.box), "confidence": word.confidence}
-            for word in line.words
-        ],
+        "words": [_word_data(word) for word in line.words],
     }
     if line.polygon is not None:
         data["polygon"] = [list(point) for point in line.polygon]
     if line.detection is not None:
         data["detection"] = line.detection
+    return data
+
+
+def _word_data(word: Word) -> dict[str, Any]:
+    data: dict[str, Any] = {
+        "text": word.text,
+        "box": _box_data(word.box),
+        "confidence": word.confidence,
+    }
+    if word.glyphs is not None:
+        data["glyphs"] = [
+            {
+                "char": glyph.char,
+                "confidence": glyph.confidence,
+                "alternatives": [list(pair) for pair in glyph.alternatives],
+            }
+            for glyph in word.glyphs
+        ]
+    if word.alternatives:
+        data["alternatives"] = list(word.alternatives)
     return data
 
 

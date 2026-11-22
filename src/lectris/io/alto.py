@@ -12,7 +12,11 @@ namespace. Each ``Layout/Page`` is a page:
   any space (the schema has no place for one, but some producers write it), is read too, where
   it stands in document order among the page's spaces.
 - A ``TextLine`` is a line, a ``String`` a word (``CONTENT``, and ``WC``, already 0 to 1, as its
-  confidence). ``SP`` is the space between words and is skipped. ``HYP`` marks a hyphen at the
+  confidence). ``CC``, when present, gives one confidence level per character of ``CONTENT``,
+  from 0 (sure) to 9 (unsure), as digits separated by spaces or not: the word's glyphs, each
+  with the confidence ``1 - level / 9`` (so 0 is 1.0 and 9 is 0.0); a count that does not match
+  the characters is an error. A ``String``'s ``ALTERNATIVE`` children are other readings of the
+  word. ``SP`` is the space between words and is skipped. ``HYP`` marks a hyphen at the
   line's end: its ``CONTENT`` (``-`` when it has none) is appended to the line's last word, and
   its box joins that word's box. ``SUBS_CONTENT`` is not used: joining hyphenated words is the
   text rules' work, and they record it.
@@ -30,6 +34,7 @@ standalone document, a reference to an undeclared entity is an error.
 """
 
 import xml.etree.ElementTree as ET
+from decimal import Decimal
 from xml.parsers import expat
 
 from lectris.errors import FormatError
@@ -42,7 +47,7 @@ from lectris.io._common import (
     parse_number,
     strip_bom,
 )
-from lectris.model import Block, Box, Document, Line, Page, Word
+from lectris.model import Block, Box, Document, Glyph, Line, Page, Word
 
 NAMESPACES = (
     "http://www.loc.gov/standards/alto/ns-v2#",
@@ -52,6 +57,7 @@ NAMESPACES = (
 """The namespaces of ALTO 2, 3 and 4. A document in no namespace is read too."""
 
 _SPACES = ("TopMargin", "LeftMargin", "PrintSpace", "RightMargin", "BottomMargin")
+_LEVELS = frozenset("0123456789")
 
 
 def parse(content: str | bytes) -> Document:
@@ -188,7 +194,19 @@ class _Reader:
                 confidence = (
                     None if wc is None else parse_confidence(wc.strip(), self._what(child, "WC"))
                 )
-                word = make_word(child.get("CONTENT", ""), self._box(child), confidence)
+                content = child.get("CONTENT", "")
+                alternatives = (
+                    "".join(item.itertext())
+                    for item in child
+                    if item.tag == self.prefix + "ALTERNATIVE"
+                )
+                word = make_word(
+                    content,
+                    self._box(child),
+                    confidence,
+                    self._glyphs(child, content),
+                    alternatives,
+                )
                 if word is not None:
                     words.append(word)
             elif child.tag == self.prefix + "HYP":
@@ -196,14 +214,43 @@ class _Reader:
                 words = self._hyphenate(words, hyphen, self._box(child))
         return make_line(words, self._box(element))
 
+    def _glyphs(self, string: ET.Element, content: str) -> tuple[Glyph, ...] | None:
+        """``CC``: one level per character of ``content``, from 0 (sure) to 9 (unsure), as
+        glyphs whose confidence is ``1 - level / 9``; ``None`` without ``CC``."""
+        value = string.get("CC")
+        if value is None:
+            return None
+        levels = value.split() if any(c.isspace() for c in value.strip()) else list(value.strip())
+        what = self._what(string, "CC")
+        if len(levels) != len(content):
+            raise FormatError(
+                f"{what} gives {len(levels)} levels for the {len(content)} characters of "
+                f"{content!r}"
+            )
+        if not all(len(level) == 1 and level in _LEVELS for level in levels):
+            raise FormatError(f"{what} is {value!r}; each level is a digit from 0 to 9")
+        return tuple(
+            Glyph(char, float(Decimal(1) - Decimal(level) / 9))
+            for char, level in zip(content, levels, strict=True)
+        )
+
     @staticmethod
     def _hyphenate(words: list[Word], hyphen: str, box: Box | None) -> list[Word]:
-        """``words`` with ``hyphen`` appended to the last one, or as a word if there is none."""
+        """``words`` with ``hyphen`` appended to the last one, or as a word if there is none.
+
+        The last word keeps its glyphs, the hyphen's own with no confidence after them, and its
+        alternatives, each with the hyphen appended too.
+        """
         if not words:
             return [Word(hyphen, box)]
         last = words[-1]
         joined = last.box.union(box) if last.box is not None and box is not None else last.box
-        return [*words[:-1], Word(last.text + hyphen, joined, last.confidence)]
+        glyphs = None if last.glyphs is None else (*last.glyphs, *(Glyph(char) for char in hyphen))
+        alternatives = tuple(reading + hyphen for reading in last.alternatives)
+        return [
+            *words[:-1],
+            Word(last.text + hyphen, joined, last.confidence, glyphs, alternatives),
+        ]
 
     def _box(self, element: ET.Element) -> Box | None:
         hpos, vpos, width, height = (

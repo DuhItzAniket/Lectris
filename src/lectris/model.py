@@ -3,7 +3,9 @@
 Coordinates are image coordinates: the origin is the top-left corner and ``y`` grows downwards.
 A confidence is a float in ``[0, 1]``, or ``None`` when the OCR engine gave none. A line can also
 keep what an engine's detector found: its outline (``polygon``) and its score (``detection``),
-apart from the recognition ``confidence``. A document can name the ``Engine`` that read it.
+apart from the recognition ``confidence``. A word can keep its characters (``Glyph``), each
+with its confidence and the alternatives the engine weighed, and other readings of the whole
+word. A document can name the ``Engine`` that read it.
 """
 
 import math
@@ -111,15 +113,63 @@ def union_of(boxes: Iterable[Box | None]) -> Box | None:
 
 
 @dataclass(frozen=True, slots=True)
+class Glyph:
+    """One character as the OCR engine read it: how sure it was, and what else it considered.
+
+    ``char`` is one character. ``alternatives`` are the other readings the engine weighed at
+    that place, as ``(character, probability)`` from the most to the least likely; ``""`` stands
+    for "nothing here" (a CTC blank), so a deletion has evidence too. ``char`` is never among
+    them, and no reading appears twice.
+    """
+
+    char: str
+    confidence: float | None = None
+    alternatives: tuple[tuple[str, float], ...] = ()
+
+    def __post_init__(self) -> None:
+        if len(self.char) != 1:
+            raise ValueError(f"a glyph is one character, not {self.char!r}")
+        _check_confidence(self.confidence)
+        seen: set[str] = set()
+        previous = 1.0
+        for reading, probability in self.alternatives:
+            if len(reading) > 1 or reading == self.char or reading in seen:
+                raise ValueError(
+                    f"an alternative to {self.char!r} is another single character or '', "
+                    f"given once, not {reading!r}"
+                )
+            _check_confidence(probability, "an alternative's probability")
+            if probability > previous:
+                raise ValueError("alternatives go from the most to the least likely")
+            seen.add(reading)
+            previous = probability
+
+
+@dataclass(frozen=True, slots=True)
 class Word:
-    """One word as the OCR engine read it."""
+    """One word as the OCR engine read it.
+
+    ``glyphs``, when the engine reports its characters one by one, spell ``text`` exactly.
+    ``alternatives`` are other readings of the whole word the engine offered (ALTO's
+    ``ALTERNATIVE``), each different from ``text`` and given once.
+    """
 
     text: str
     box: Box | None = None
     confidence: float | None = None
+    glyphs: tuple[Glyph, ...] | None = None
+    alternatives: tuple[str, ...] = ()
 
     def __post_init__(self) -> None:
         _check_confidence(self.confidence)
+        if self.glyphs is not None and "".join(glyph.char for glyph in self.glyphs) != self.text:
+            raise ValueError(f"a word's glyphs spell its text {self.text!r}")
+        if len(set(self.alternatives)) != len(self.alternatives) or any(
+            not reading or reading == self.text for reading in self.alternatives
+        ):
+            raise ValueError(
+                f"a word's alternatives differ from its text {self.text!r}, each given once"
+            )
 
 
 @dataclass(frozen=True, slots=True)

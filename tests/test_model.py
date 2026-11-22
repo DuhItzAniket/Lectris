@@ -2,7 +2,7 @@ import math
 
 import pytest
 
-from lectris.model import Block, Box, Document, Engine, Line, Page, Word, union_of
+from lectris.model import Block, Box, Document, Engine, Glyph, Line, Page, Word, union_of
 
 
 class TestBox:
@@ -78,6 +78,48 @@ class TestDetection:
     ) -> None:
         with pytest.raises(ValueError, match=message):
             Line((), polygon=polygon)
+
+
+class TestGlyphs:
+    def test_a_word_keeps_its_glyphs_and_alternatives(self) -> None:
+        glyphs = (Glyph("o", 0.4, (("0", 0.5), ("", 0.1))), Glyph("k", 0.99))
+        word = Word("ok", glyphs=glyphs, alternatives=("0k",))
+        assert (word.glyphs, word.alternatives) == (glyphs, ("0k",))
+        assert Word("ok").glyphs is None
+        assert Word("ok").alternatives == ()
+
+    def test_glyphs_spell_the_text(self) -> None:
+        with pytest.raises(ValueError, match="spell its text 'ok'"):
+            Word("ok", glyphs=(Glyph("o"),))
+
+    @pytest.mark.parametrize("alternatives", [("ok",), ("",), ("0k", "0k")])
+    def test_alternatives_differ_from_the_text_once_each(
+        self, alternatives: tuple[str, ...]
+    ) -> None:
+        with pytest.raises(ValueError, match="alternatives differ from its text"):
+            Word("ok", alternatives=alternatives)
+
+    @pytest.mark.parametrize(
+        ("char", "alternatives", "message"),
+        [
+            ("ab", (), "one character"),
+            ("", (), "one character"),
+            ("o", (("o", 0.1),), "another single character"),
+            ("o", (("0", 0.2), ("0", 0.1)), "given once"),
+            ("o", (("00", 0.1),), "another single character"),
+            ("o", (("0", 1.5),), "an alternative's probability is between 0 and 1"),
+            ("o", (("0", 0.1), ("c", 0.2)), "from the most to the least likely"),
+        ],
+    )
+    def test_a_glyph_is_one_character_with_ordered_alternatives(
+        self, char: str, alternatives: tuple[tuple[str, float], ...], message: str
+    ) -> None:
+        with pytest.raises(ValueError, match=message):
+            Glyph(char, None, alternatives)
+
+    def test_a_glyph_confidence_is_checked(self) -> None:
+        with pytest.raises(ValueError, match="a confidence is between 0 and 1"):
+            Glyph("a", 1.2)
 
 
 class TestEngine:

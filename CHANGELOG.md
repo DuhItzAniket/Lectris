@@ -20,12 +20,17 @@ All notable changes to LECTRIS are documented here. The format follows
   them when they are set.
 - `lectris.edits.OffsetMap`: maps a span of a revision's output, or of the output of several
   revisions in turn, back to the span of the input it came from.
+- Character uncertainty: a word's `glyphs` (`Glyph`: each character's confidence and the other
+  characters the engine weighed) and its `alternatives` (other readings of the whole word). ALTO
+  `CC` and `ALTERNATIVE` are read into them, and so is the per-character `chars` field proposed
+  for GLYPHARIS, when present. LECTRIS's JSON form writes and reads them when set.
 
 ### Changed
 - GLYPHARIS output is now detected as `glypharis` instead of `json`. Its words, boxes and
   confidences are read as before.
-- In LECTRIS's own JSON form, `engine` at the top level and `polygon` and `detection` in a line
-  are now read, so a value of the wrong kind there is an error, where it used to be ignored.
+- In LECTRIS's own JSON form, `engine` at the top level, `polygon` and `detection` in a line,
+  and `glyphs` and `alternatives` in a word are now read, so a value of the wrong kind there is
+  an error, where it used to be ignored.
 - The property tests try a fixed set of examples by default, so every run of the suite is the
   same and a failure reproduces exactly; `HYPOTHESIS_PROFILE=explore` searches with random
   examples.

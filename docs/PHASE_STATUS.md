@@ -7,7 +7,7 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 |---|---|---|---|
 | 0 | v0.1 rule engine | **COMPLETE** | `v0.1.0` |
 | 1 | Research planning | **COMPLETE** (merged in #15; no phase tag) | — |
-| 2 | Engine-aware input and the GLYPHARIS contract | **IN PROGRESS** (part 1 of 3: the GLYPHARIS reader) | — |
+| 2 | Engine-aware input and the GLYPHARIS contract | **IN PROGRESS** (parts 1 and 2 merged; part 3 in review) | — |
 | 3 | Candidate core with v0.1 parity | not started | — |
 | 4 | Evaluation harness | not started | — |
 | 5 | Paired data | not started (needs GLYPHARIS output) | — |
@@ -86,6 +86,14 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 - `Glyph` and the `chars` field wait for GLYPHARIS to write them (it does not in 1.0).
 
 **Part 1** merged as #18 (2026-11-23).
+
+**Part 2** merged as #19 (2026-11-23).
+
+**Part 3, implemented:** `Glyph` and `Word.glyphs`/`Word.alternatives`; ALTO `CC` (levels 0 to 9
+as confidences `1 - level/9`) and `ALTERNATIVE`; the GLYPHARIS reader reads ADR-0003's proposed
+`chars` when present (`LINE_PROPOSED`); LECTRIS's JSON form writes and reads glyphs and
+alternatives when set. hOCR character confidences are not read: no real Tesseract output with
+them is at hand to check the format against. `uv run pytest`: 1,388 passed (2026-11-23).
 
 **Part 2, implemented:** `lectris.edits.OffsetMap` (`from_edits`, `then`, `source`), with property
 tests against a character-by-character reference and for composition. `uv run pytest`: 1,347
