@@ -77,6 +77,7 @@ LECTRIS needs Python 3.12 or newer.
 lectris clean page.hocr                     # the cleaned text, on standard output
 lectris clean page.xml -o page.txt -r report.json --summary
 lectris clean scan.tsv --profile conservative
+lectris clean results/page.json             # what glypharis-ocr wrote
 lectris eval reference.txt page.txt         # character and word error rates
 lectris rules                               # every profile and its rules
 ```
@@ -103,7 +104,7 @@ from pathlib import Path
 
 from lectris import clean, io, report
 
-document = io.read("page.hocr")  # or .xml (ALTO), .tsv, .json, .txt
+document = io.read("page.hocr")  # or .xml (ALTO), .tsv, .json (incl. GLYPHARIS), .txt
 result = clean(document, profile="standard")
 print(report.summary(result))  # edits per rule
 Path("report.json").write_text(report.to_json(result), encoding="utf-8")
@@ -115,6 +116,7 @@ Path("report.json").write_text(report.to_json(result), encoding="utf-8")
 | ALTO XML 2–4 | text blocks, lines and strings with their positions, `WC` confidences and `HYP` hyphens |
 | Tesseract TSV | pages, paragraphs, lines and words with boxes and confidences |
 | JSON | LECTRIS's own form, or a flat list of lines with `text`, `bbox` and `confidence` |
+| [GLYPHARIS](https://github.com/DuhItzAniket/Glypharis) JSON | the engine and model versions, the page size, and each line's text, box, polygon, calibrated confidence and detection score |
 | Plain text | pages separated by form feeds, paragraphs by blank lines |
 
 When the lines have boxes, the layout steps put them in reading order (columns read whole, a

@@ -8,7 +8,7 @@ from hypothesis import strategies as st
 
 from lectris.errors import FormatError
 from lectris.io import jsonio
-from lectris.model import Block, Box, Document, Line, Page, Word
+from lectris.model import Block, Box, Document, Engine, Line, Page, Word
 
 DATA = Path(__file__).parent / "data" / "io"
 
@@ -127,6 +127,17 @@ class TestDumps:
             ]
         }
 
+    def test_the_engine_polygon_and_detection_are_written_when_set(self) -> None:
+        polygon = ((0.0, 1.0), (9.0, 0.0), (9.0, 4.0))
+        line = Line((Word("a"),), polygon=polygon, detection=0.75)
+        document = Document((Page((Block((line,)),)),), engine=Engine("glypharis", "1.0.0"))
+        data = json.loads(jsonio.dumps(document))
+        assert data["engine"] == {"name": "glypharis", "version": "1.0.0", "model": None}
+        written = data["pages"][0]["blocks"][0]["lines"][0]
+        assert written["polygon"] == [[0, 1], [9, 0], [9, 4]]
+        assert written["detection"] == 0.75
+        assert jsonio.parse(jsonio.dumps(document)) == document
+
     def test_indent_and_unicode(self) -> None:
         document = Document((Page((Block((Line((Word("Ånd"),)),)),)),))
         compact = jsonio.dumps(document, indent=None)
@@ -152,13 +163,23 @@ def boxes(draw: st.DrawFn) -> Box | None:
 
 
 words = st.builds(Word, word_texts, boxes(), confidences)
-lines = st.builds(Line, st.lists(words, min_size=1, max_size=4).map(tuple), boxes(), confidences)
+points = st.tuples(finite, finite)
+polygons = st.none() | st.lists(points, min_size=3, max_size=5).map(tuple)
+lines = st.builds(
+    Line,
+    st.lists(words, min_size=1, max_size=4).map(tuple),
+    boxes(),
+    confidences,
+    polygons,
+    confidences,
+)
+engines = st.none() | st.builds(Engine, word_texts, st.none() | word_texts, st.none() | word_texts)
 blocks = st.builds(Block, st.lists(lines, min_size=1, max_size=3).map(tuple), boxes())
 sizes = st.none() | st.floats(0, 1e6)
 pages = st.builds(
     Page, st.lists(blocks, max_size=3).map(tuple), sizes, sizes, st.integers(-5, 10_000)
 )
-documents = st.builds(Document, st.lists(pages, max_size=3).map(tuple))
+documents = st.builds(Document, st.lists(pages, max_size=3).map(tuple), engines)
 
 
 @given(documents)
@@ -205,6 +226,12 @@ class TestMalformed:
             (one_line({"text": "a", "confidence": 93}), r"lines\[0\]\.confidence: .*between"),
             ([{"text": "a"}, {"text": "b", "bbox": "0 0 1 1"}], r"^\[1\]\.bbox: a box is"),
             ({"lines": [{"text": "a", "confidence": "high"}]}, r"^lines\[0\]\.confidence: "),
+            (one_line({"text": "a", "detection": 2}), r"lines\[0\]\.detection: a detection score"),
+            (one_line({"text": "a", "polygon": [[0, 0]]}), r"lines\[0\]\.polygon: a polygon is"),
+            ({"pages": [], "engine": "glypharis"}, r"^engine: expected an object, not a string"),
+            ({"pages": [], "engine": {}}, r"^engine: 'name' is missing"),
+            ({"pages": [], "engine": {"name": ""}}, r"^engine\.name: an engine's name is not"),
+            ({"pages": [], "engine": {"name": "x", "model": 1}}, r"^engine\.model: expected a"),
         ],
     )
     def test_errors_name_the_path(self, data: Any, message: str) -> None:

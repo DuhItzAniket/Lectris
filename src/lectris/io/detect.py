@@ -8,8 +8,12 @@ whitespace, and applies these rules in order:
      instructions and DOCTYPE, is named ``alto`` (with or without a namespace prefix);
    - else ``"hocr"`` if an element has ``ocr_page`` among its classes;
    - else ``"text"``: markup LECTRIS does not read.
-2. ``"json"`` if it starts like a JSON object (``{`` then ``"`` or ``}``) or like an array of
-   objects (``[`` then ``{`` or ``]``). Text such as ``[Illegible]`` or ``{sic}`` does not.
+2. JSON:
+   - ``"glypharis"`` if it is a JSON object whose first key is ``glypharis_version``, which is
+     how GLYPHARIS writes its output (``--format glypharis`` reads one with its keys in another
+     order);
+   - else ``"json"`` if it starts like a JSON object (``{`` then ``"`` or ``}``) or like an array
+     of objects (``[`` then ``{`` or ``]``). Text such as ``[Illegible]`` or ``{sic}`` does not.
 3. ``"tsv"`` if the first line is Tesseract's TSV header.
 4. ``"text"`` otherwise.
 
@@ -34,11 +38,13 @@ _ROOT = re.compile(r"\s*<(?:[A-Za-z_][\w.-]*:)?([A-Za-z_][\w.-]*)")
 # An attribute named class, in any case as HTML allows, with ocr_page among its values.
 _OCR_PAGE = re.compile(r"""(?<![\w-])(?i:class)\s*=\s*["']?[^"'<>]*(?<![\w-])ocr_page(?![\w-])""")
 _JSON_START = re.compile(r'\{\s*["}]|\[\s*[{\]]')
+_GLYPHARIS_START = re.compile(r'\{\s*"glypharis_version"\s*:')
 _TSV_HEADER = "\t".join(HEADER)
 
 
 def detect(content: str | bytes) -> str:
-    """The format of ``content``: ``"hocr"``, ``"alto"``, ``"tsv"``, ``"json"`` or ``"text"``.
+    """The format of ``content``: ``"hocr"``, ``"alto"``, ``"tsv"``, ``"json"``, ``"glypharis"``
+    or ``"text"``.
 
     See the module's documentation for the rules. Any content gets an answer: ``"text"`` is the
     fallback, and the format's reader decides whether the content is valid.
@@ -50,6 +56,8 @@ def detect(content: str | bytes) -> str:
         if _root_name(start) == "alto":
             return "alto"
         return "hocr" if _OCR_PAGE.search(start) else "text"
+    if _GLYPHARIS_START.match(start):
+        return "glypharis"
     if _JSON_START.match(start):
         return "json"
     if text.split("\n", 1)[0].rstrip() == _TSV_HEADER:

@@ -105,31 +105,40 @@ origin is the top-left corner and `y` grows downwards.
 | Type | Fields | Text |
 |---|---|---|
 | `Box` | `x0, y0, x1, y1` (floats, `x0 <= x1`, `y0 <= y1`, else `ValueError`) | — |
-| `Word` | `text`, `box=None`, `confidence=None`, [v2] `glyphs=None` | the word |
-| `Line` | `words`, `box=None`, `confidence=None`, [v2] `polygon=None`, `detection=None` | words joined by one space |
+| `Word` | `text`, `box=None`, `confidence=None`, [v2, later] `glyphs=None` | the word |
+| `Line` | `words`, `box=None`, `confidence=None`, `polygon=None`, `detection=None` | words joined by one space |
 | `Block` | `lines`, `box=None` | lines joined by `\n` |
-| `Page` | `blocks`, `width=None`, `height=None`, `number=1`, [v2] `source=None` | blocks joined by a blank line |
-| `Document` | `pages`, [v2] `engine=None` | pages joined by a blank line |
+| `Page` | `blocks`, `width=None`, `height=None`, `number=1` | blocks joined by a blank line |
+| `Document` | `pages`, `engine=None` | pages joined by a blank line |
+| `Engine` | `name`, `version=None`, `model=None` (empty strings refused: unknown is `None`) | — |
 
 A confidence is a float in `[0, 1]` or `None` (unknown); anything else raises `ValueError`.
 Readers convert their format's scale (hOCR's `x_wconf` and TSV's `conf` are 0–100).
 
-**[v2, Phase 2] Uncertainty.**
+**[v2, Phase 2 — built] The engine's detection.**
+- `Line.detection` is the detector's score (GLYPHARIS `det_score`), in `[0, 1]`, kept apart from
+  the recognition `confidence`. `Line.polygon` keeps a rotated or curved line's outline (at least
+  three finite points).
+- `Document.engine` identifies the engine and model that produced the input
+  (`Engine("glypharis", "1.0.0", "glypharis-1.0.0")`). Engine-specific evidence (the channel
+  model, calibration) is valid only for the engine it was fitted on
+  ([ADR-0003](decisions/ADR-0003-engine-aware-input.md)).
+- Layout and the pipeline keep these fields: a line that stays whole keeps its polygon and score;
+  a line split into visual lines keeps neither, as it already kept no confidence.
+- `Page.source`, listed in ADR-0003, is not added: no input format names its image, and the
+  caller knows the file it read.
+
+**[v2, later] Character uncertainty**, once an engine writes it (GLYPHARIS `chars`, ADR-0003, or
+ALTO `CC`/`ALTERNATIVE`):
 
 ```python
 Glyph(char: str, confidence: float | None, alternatives: tuple[tuple[str, float], ...] = ())
-Engine(name: str, version: str, model: str)          # e.g. ("glypharis", "0.1.0", "glypharis-0.1.0")
 ```
 
-- A word's `glyphs`, when present, spell its `text` exactly (`"".join(g.char for g in glyphs) ==
-  text`, else `ValueError`). Alternatives are other characters the engine considered at that
-  position, with their probabilities, sorted, never including `char`. The empty string means
-  "nothing here" (CTC blank), which makes a deletion a candidate.
-- `Line.detection` is the detector's score (GLYPHARIS `det_score`), kept apart from the
-  recognition `confidence`. `Line.polygon` keeps a rotated or curved line's outline.
-- `Document.engine` identifies the engine and model that produced the input. Engine-specific
-  evidence (the channel model, calibration) is valid only for the engine it was fitted on
-  ([ADR-0003](decisions/ADR-0003-engine-aware-input.md)).
+A word's `glyphs`, when present, spell its `text` exactly (`"".join(g.char for g in glyphs) ==
+text`, else `ValueError`). Alternatives are other characters the engine considered at that
+position, with their probabilities, sorted, never including `char`. The empty string means
+"nothing here" (CTC blank), which makes a deletion a candidate.
 
 ## 5. Edits, offset maps and provenance (`lectris.edits`, `lectris.decide`)
 
@@ -180,12 +189,15 @@ An accepted decision becomes an `Edit` with the same rule and span. `Revision` g
 
 | Format | Module | Uncertainty read |
 |---|---|---|
-| GLYPHARIS JSON (`OCRResult.to_dict`) | `glypharis` | page `width`/`height`, line `confidence`, `det_score`, `polygon`, `quad`, `glypharis_version`, `model_version`; per-character `chars` when the engine writes them ([ADR-0003](decisions/ADR-0003-engine-aware-input.md), the contract) |
+| GLYPHARIS JSON (`OCRResult.to_dict`) **[built]** | `glypharis` | `glypharis_version`, `model_version` (the engine), page `width`/`height`, line `text`, `confidence`, `det_score`, `bbox`, `polygon`; ignored on purpose: `text`, `seconds`, `quad`, `confidence_at`. The module lists both sets and a contract test checks them against a sample of GLYPHARIS 1.0's output ([ADR-0003](decisions/ADR-0003-engine-aware-input.md)). Per-character `chars` later, when GLYPHARIS writes them |
 | ALTO | `alto` | `CC` (character confidences) and `ALTERNATIVE` elements, if present |
 | hOCR | `hocr` | per-character confidences and choices from Tesseract's extended hOCR, if present (to be checked against real Tesseract output, Phase 2) |
 
 `lectris.io.read(source, format=None)` detects the format from the content; GLYPHARIS JSON is
-recognised by its `glypharis_version` key. Inputs are untrusted: readers never fetch external
+recognised by `glypharis_version` as its first key, which is how GLYPHARIS writes it
+(`format="glypharis"` reads one whose keys are in another order). LECTRIS's own JSON form also
+carries a line's `polygon` and `detection` and the document's `engine`, written only when set, so
+a document read from GLYPHARIS round-trips through `jsonio.dumps`. Inputs are untrusted: readers never fetch external
 resources, and XML is parsed by the standard library's expat, which resolves no external entities.
 
 ## 7. L1 Layout (`lectris.layout`)

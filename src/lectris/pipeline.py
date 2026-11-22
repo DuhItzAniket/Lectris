@@ -8,7 +8,7 @@ and revisions, and the layout document.
 
 import re
 from collections.abc import Callable, Iterator, Mapping
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from types import MappingProxyType
 from typing import Final
 
@@ -224,7 +224,7 @@ def clean(
         return Result(chosen.name, document, blocks)
     document = source
     if chosen.arrange:
-        document = Document(tuple(arrange(page) for page in document.pages))
+        document = replace(document, pages=tuple(arrange(page) for page in document.pages))
     blocks = tuple(
         _clean_block(
             block.text, block, page=page.number, index=index, profile=chosen, lexicon=lexicon
