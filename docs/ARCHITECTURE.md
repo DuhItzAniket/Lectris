@@ -157,11 +157,13 @@ Revision(text: str, edits: tuple[Edit, ...])
 - Rule ids are `"<module>.<rule>"`, for example `"hyphenation.join"`. They are stable and appear
   in reports and model packs.
 
-**[v2, Phase 2] Offset maps.** `OffsetMap.from_edits(edits)` maps offsets in a stage's output back
-to its input. Maps compose across stages, so evidence for a span at any stage can find the
-glyphs (and their confidences) it came from. An inserted character maps to the gap it was
-inserted into. A property test checks that composing maps equals mapping through each stage in
-turn.
+**[v2, Phase 2 — built] Offset maps.** `OffsetMap.from_edits(edits)` maps a span of a stage's
+output back to the smallest span of its input it came from; `first.then(second)` composes stages,
+so evidence for a span at any stage can find the words (and their confidences) it came from.
+A character no edit wrote maps to its own place; a character an edit wrote maps to the whole span
+that edit replaced (an inserted one to the gap it was inserted into); a position maps to where
+the character at it came from. Property tests check every span against a character-by-character
+reference, and composition against mapping through each stage in turn.
 
 **[v2, Phase 3] Decisions.**
 
