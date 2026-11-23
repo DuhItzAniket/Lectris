@@ -84,3 +84,28 @@ tested.
 - The lexicon proposers produce many candidates on scene text (about 27 per page on 40 fit
   pages, most of them `lexical.word` on names and labels): the acceptance model of Phase 7 has to
   decline most of them, which is the case for risk control.
+
+## 2026-11-23 — Phase 7: acceptance, risk control, and what it buys on dev
+
+- **Acceptance.** A logistic model on 18,172 fit candidates (2,634 fixes) is well calibrated on
+  12,857 cal candidates: ECE 0.044, Brier 0.063 (LX-CAL-003). The strongest evidence is the
+  language model's change (weight +0.98, standardised), then the edit's size; the engine's line
+  confidence and detection score both have negative weights (−0.25): the less sure the engine
+  was, the likelier a correction is right. That is the engine-aware evidence H2 is about.
+- **The power limit.** With 430 calibration pages, zero observed loss cannot rule out a risk
+  above 1 − δ^(1/n) = 0.00534 (δ = 0.1). ADR-0002's budgets of 0.001 and 0.005 were below it, so
+  no threshold could be certified (LX-CAL-001). ADR-0008 sets 0.01 / 0.02 / 0.05.
+- **Certified is not useful.** The most permissive certified thresholds (0.33 / 0.2 / 0.06,
+  LX-CAL-002) accept mostly wrong candidates while staying under budget. ADR-0009 picks, among
+  the certified thresholds, the one with the best estimated CER change: 0.51–0.52, where expected
+  gain turns positive. Fixed-sequence testing's family-wise control keeps the guarantee.
+- **Dev (LX-RISK-001, full runs).** Every profile's harm rate is far below its budget (0.017%
+  for α = 1%, 0.095% for α = 2%). Precision rises from 54% (v0.1 rules) to 68–76%, and the new
+  `lexical.word` proposer contributes 100 fixes against 32 harms. But ΔCER is −0.03 [−0.06,
+  +0.01] points: real, small, and not separated from zero. On HierText the corrector works on a
+  ceiling of about 5 CER points (the in-token errors), and most of the 26 points are lost or
+  invented lines.
+- **For the paper:** the method does what it claims (bounded harm, higher precision), but
+  HierText is the wrong showcase for its CER gains. The document-domain test (GDC, Phase 13)
+  and a corpus where in-token errors dominate are where the gains should show; the error
+  taxonomy should be reported next to every CER number.

@@ -6,7 +6,7 @@
 | R-02 | GLYPHARIS exports no character uncertainty, so the character-level part of RQ2 cannot run | medium | medium | ADR-0003 proposes `chars`; RQ2 still compares line-level evidence against none | owner, Phase 2 |
 | R-03 | The novelty claim (distribution-free harm control for post-OCR correction) is already published | medium | high | literature search before Phase 10; if found, the contribution becomes engine-aware evidence and the joint system, and the paper cites it | Phase 1 follow-up |
 | R-04 | Edits on one page are dependent; edit-level statistics would be too optimistic | high | high | page is the unit for splits, bootstrap and risk (ADR-0002) | protocol |
-| R-05 | Too few calibration pages: λ̂ very strict, low recall | medium | high | power check in Phase 7; pool cal pages across slices; report the recall cost against the oracle | Phase 7 |
+| R-05 | Too few calibration pages: λ̂ very strict, low recall | **seen** (LX-CAL-001: 430 pages cannot certify α < 0.00534; budgets raised by ADR-0008) | high | power check in Phase 7; pool cal pages across slices; report the recall cost against the oracle | Phase 7 |
 | R-06 | Harm labels wrong where alignment is ambiguous | medium | medium | windowed alignment on matched lines; 200 edits checked by hand (protocol §3.2) | Phase 4, 10 |
 | R-07 | The GLYPHARIS model changes after packs are fitted | high | medium | packs keyed by `model_version`; refit on the final model before reported runs (ADR-0003, 0007) | every phase |
 | R-08 | Pure-Python fitting too slow | medium | low | pruning, capped corpus; measured in Phase 6; ADR-0004 revisit condition | Phase 6 |

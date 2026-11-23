@@ -19,7 +19,10 @@ stated.
 - **Test:** Phase 10 (LX-MAIN-*); confirmed once on GDC in Phase 13.
 - **Success criterion:** ΔCER vs B0 CI-separated below zero; dev harm rate ≤ α; ΔCER vs B1 ≤ 0
   (CI-separated, or no clear difference with lower harm).
-- **Status:** open.
+- **Status:** testing. First dev evidence (LX-RISK-001, Phase 7, full runs on 433 dev
+  pages): LX-standard ΔCER vs uncorrected −0.03 [−0.06, +0.01] points, not CI-separated
+  from zero; harm rate 0.095% (α = 0.02 under ADR-0008); B1-standard +0.00 [−0.03, +0.04].
+  The CER criterion is not met on this evidence; the decision waits for Phase 10.
 
 ### H2 — Engine uncertainty raises recall at the same budget (RQ2)
 

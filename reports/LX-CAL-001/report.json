@@ -1,0 +1,2029 @@
+{
+  "id": "LX-CAL-001",
+  "calibration": {
+    "brier": 0.06302248263300214,
+    "cal_candidates": 12857,
+    "cal_fixes": 1010,
+    "cal_pages": 430,
+    "ece": 0.04413462359520651,
+    "fit_candidates": 18172,
+    "fit_fixes": 2634,
+    "fit_pages": 861,
+    "grid_steps": 100,
+    "l2": 1.0,
+    "reliability": [
+      [
+        0.001961864714614742,
+        0.005834305717619603,
+        857
+      ],
+      [
+        0.0064682982269050416,
+        0.003500583430571762,
+        857
+      ],
+      [
+        0.01457335465454651,
+        0.011668611435239206,
+        857
+      ],
+      [
+        0.02713983239683664,
+        0.010501750291715286,
+        857
+      ],
+      [
+        0.04093712840865662,
+        0.015169194865810968,
+        857
+      ],
+      [
+        0.05446834730762486,
+        0.021003500583430573,
+        857
+      ],
+      [
+        0.06718997014385333,
+        0.019836639439906652,
+        857
+      ],
+      [
+        0.08112925214875212,
+        0.05710955710955711,
+        858
+      ],
+      [
+        0.09674823962625292,
+        0.057176196032672114,
+        857
+      ],
+      [
+        0.11485360295114902,
+        0.056009334889148193,
+        857
+      ],
+      [
+        0.13873722855927625,
+        0.07817969661610269,
+        857
+      ],
+      [
+        0.1690220394238892,
+        0.09801633605600933,
+        857
+      ],
+      [
+        0.2119822424403216,
+        0.14352392065344224,
+        857
+      ],
+      [
+        0.2863776588921893,
+        0.18786464410735124,
+        857
+      ],
+      [
+        0.5206160117743228,
+        0.4125874125874126,
+        858
+      ]
+    ]
+  },
+  "profiles": {
+    "aggressive": {
+      "alpha": 0.02,
+      "delta": 0.1,
+      "threshold": 0.2,
+      "pages": 430,
+      "smallest_certifiable_alpha": 0.005340537406247292,
+      "candidates": 12862,
+      "curve": [
+        {
+          "threshold": 1.0,
+          "mean_loss": 0.0,
+          "accepted": 0,
+          "p_value": 0.0001687378642196047
+        },
+        {
+          "threshold": 0.99,
+          "mean_loss": 0.0,
+          "accepted": 2,
+          "p_value": 0.0001687378642196047
+        },
+        {
+          "threshold": 0.98,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 8,
+          "p_value": 0.00017999910864129146
+        },
+        {
+          "threshold": 0.97,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 10,
+          "p_value": 0.00017999910864129146
+        },
+        {
+          "threshold": 0.96,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 12,
+          "p_value": 0.00017999910864129146
+        },
+        {
+          "threshold": 0.95,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 16,
+          "p_value": 0.00017999910864129146
+        },
+        {
+          "threshold": 0.94,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 19,
+          "p_value": 0.00017999910864129146
+        },
+        {
+          "threshold": 0.93,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 24,
+          "p_value": 0.00017999910864129146
+        },
+        {
+          "threshold": 0.92,
+          "mean_loss": 4.122048275846444e-05,
+          "accepted": 28,
+          "p_value": 0.00019172248612957016
+        },
+        {
+          "threshold": 0.91,
+          "mean_loss": 4.122048275846444e-05,
+          "accepted": 31,
+          "p_value": 0.00019172248612957016
+        },
+        {
+          "threshold": 0.9,
+          "mean_loss": 4.122048275846444e-05,
+          "accepted": 36,
+          "p_value": 0.00019172248612957016
+        },
+        {
+          "threshold": 0.89,
+          "mean_loss": 4.682429334966646e-05,
+          "accepted": 45,
+          "p_value": 0.0001945799662625773
+        },
+        {
+          "threshold": 0.88,
+          "mean_loss": 7.130409751123316e-05,
+          "accepted": 51,
+          "p_value": 0.00020694352506810834
+        },
+        {
+          "threshold": 0.87,
+          "mean_loss": 7.482770568600413e-05,
+          "accepted": 56,
+          "p_value": 0.00020871711062540535
+        },
+        {
+          "threshold": 0.86,
+          "mean_loss": 7.482770568600413e-05,
+          "accepted": 61,
+          "p_value": 0.00020871711062540535
+        },
+        {
+          "threshold": 0.85,
+          "mean_loss": 0.00010054452122807553,
+          "accepted": 66,
+          "p_value": 0.00022169116506544015
+        },
+        {
+          "threshold": 0.84,
+          "mean_loss": 0.00010054452122807553,
+          "accepted": 68,
+          "p_value": 0.00022169116506544015
+        },
+        {
+          "threshold": 0.83,
+          "mean_loss": 0.00013100268373244131,
+          "accepted": 77,
+          "p_value": 0.00023723712173370163
+        },
+        {
+          "threshold": 0.82,
+          "mean_loss": 0.00013100268373244131,
+          "accepted": 80,
+          "p_value": 0.00023723712173370163
+        },
+        {
+          "threshold": 0.81,
+          "mean_loss": 0.00013100268373244131,
+          "accepted": 86,
+          "p_value": 0.00023723712173370163
+        },
+        {
+          "threshold": 0.8,
+          "mean_loss": 0.00013100268373244131,
+          "accepted": 94,
+          "p_value": 0.00023723712173370163
+        },
+        {
+          "threshold": 0.79,
+          "mean_loss": 0.0001425727404257191,
+          "accepted": 97,
+          "p_value": 0.00024321911609472905
+        },
+        {
+          "threshold": 0.78,
+          "mean_loss": 0.0001425727404257191,
+          "accepted": 103,
+          "p_value": 0.00024321911609472905
+        },
+        {
+          "threshold": 0.77,
+          "mean_loss": 0.00015024792654898258,
+          "accepted": 108,
+          "p_value": 0.00024721472424993747
+        },
+        {
+          "threshold": 0.76,
+          "mean_loss": 0.0001549524343674655,
+          "accepted": 111,
+          "p_value": 0.0002496752567462933
+        },
+        {
+          "threshold": 0.75,
+          "mean_loss": 0.00022031457399099763,
+          "accepted": 121,
+          "p_value": 0.000284886990787579
+        },
+        {
+          "threshold": 0.74,
+          "mean_loss": 0.00022228207094137736,
+          "accepted": 125,
+          "p_value": 0.0002859794502265727
+        },
+        {
+          "threshold": 0.73,
+          "mean_loss": 0.00025106850731655304,
+          "accepted": 134,
+          "p_value": 0.0003022015478032584
+        },
+        {
+          "threshold": 0.72,
+          "mean_loss": 0.00025106850731655304,
+          "accepted": 136,
+          "p_value": 0.0003022015478032584
+        },
+        {
+          "threshold": 0.71,
+          "mean_loss": 0.000253526838601277,
+          "accepted": 143,
+          "p_value": 0.0003036081098656271
+        },
+        {
+          "threshold": 0.7,
+          "mean_loss": 0.00025538136921957744,
+          "accepted": 146,
+          "p_value": 0.000304671462361613
+        },
+        {
+          "threshold": 0.69,
+          "mean_loss": 0.00027986117338114414,
+          "accepted": 152,
+          "p_value": 0.0003188934922677147
+        },
+        {
+          "threshold": 0.68,
+          "mean_loss": 0.00029330821263725393,
+          "accepted": 160,
+          "p_value": 0.00032685643306063335
+        },
+        {
+          "threshold": 0.67,
+          "mean_loss": 0.00030202860388202254,
+          "accepted": 164,
+          "p_value": 0.00033207902998474726
+        },
+        {
+          "threshold": 0.66,
+          "mean_loss": 0.00030755500197853007,
+          "accepted": 170,
+          "p_value": 0.0003354130028985257
+        },
+        {
+          "threshold": 0.65,
+          "mean_loss": 0.00031315881256973205,
+          "accepted": 173,
+          "p_value": 0.00033881308036516
+        },
+        {
+          "threshold": 0.64,
+          "mean_loss": 0.0003612742796300465,
+          "accepted": 184,
+          "p_value": 0.0003688345177060985
+        },
+        {
+          "threshold": 0.63,
+          "mean_loss": 0.0003612742796300465,
+          "accepted": 191,
+          "p_value": 0.0003688345177060985
+        },
+        {
+          "threshold": 0.62,
+          "mean_loss": 0.0003744426740520864,
+          "accepted": 200,
+          "p_value": 0.0003773173054450951
+        },
+        {
+          "threshold": 0.61,
+          "mean_loss": 0.0003744426740520864,
+          "accepted": 207,
+          "p_value": 0.0003773173054450951
+        },
+        {
+          "threshold": 0.6,
+          "mean_loss": 0.0003776952354441826,
+          "accepted": 213,
+          "p_value": 0.0003794306613827216
+        },
+        {
+          "threshold": 0.59,
+          "mean_loss": 0.00039137826953033653,
+          "accepted": 225,
+          "p_value": 0.00038840085510596895
+        },
+        {
+          "threshold": 0.58,
+          "mean_loss": 0.00041664021886633626,
+          "accepted": 236,
+          "p_value": 0.0004053055911183441
+        },
+        {
+          "threshold": 0.57,
+          "mean_loss": 0.0005298879837070998,
+          "accepted": 246,
+          "p_value": 0.00048688624828659757
+        },
+        {
+          "threshold": 0.56,
+          "mean_loss": 0.0005631815137247115,
+          "accepted": 256,
+          "p_value": 0.0005127820691192607
+        },
+        {
+          "threshold": 0.55,
+          "mean_loss": 0.0005711504830824208,
+          "accepted": 273,
+          "p_value": 0.0005191157404453545
+        },
+        {
+          "threshold": 0.54,
+          "mean_loss": 0.0005851028641345429,
+          "accepted": 280,
+          "p_value": 0.0005303330617964801
+        },
+        {
+          "threshold": 0.53,
+          "mean_loss": 0.0006017051876827987,
+          "accepted": 290,
+          "p_value": 0.0005438957973279786
+        },
+        {
+          "threshold": 0.52,
+          "mean_loss": 0.0006093240051990627,
+          "accepted": 304,
+          "p_value": 0.0005501988367806801
+        },
+        {
+          "threshold": 0.51,
+          "mean_loss": 0.0006463368107262529,
+          "accepted": 321,
+          "p_value": 0.0005815404955819169
+        },
+        {
+          "threshold": 0.5,
+          "mean_loss": 0.0006911123177615988,
+          "accepted": 343,
+          "p_value": 0.0006210960897288364
+        },
+        {
+          "threshold": 0.49,
+          "mean_loss": 0.0007151024863073839,
+          "accepted": 361,
+          "p_value": 0.0006430512550165594
+        },
+        {
+          "threshold": 0.48,
+          "mean_loss": 0.0007764544160538315,
+          "accepted": 383,
+          "p_value": 0.0007017062844243742
+        },
+        {
+          "threshold": 0.47,
+          "mean_loss": 0.000833776091398006,
+          "accepted": 405,
+          "p_value": 0.0007598955712196818
+        },
+        {
+          "threshold": 0.46,
+          "mean_loss": 0.0008683638028186601,
+          "accepted": 428,
+          "p_value": 0.0007966559551057653
+        },
+        {
+          "threshold": 0.45,
+          "mean_loss": 0.0009158365319108094,
+          "accepted": 451,
+          "p_value": 0.000849206963656359
+        },
+        {
+          "threshold": 0.44,
+          "mean_loss": 0.0009660952886927898,
+          "accepted": 482,
+          "p_value": 0.0009075769319164219
+        },
+        {
+          "threshold": 0.43,
+          "mean_loss": 0.0009909793643821786,
+          "accepted": 508,
+          "p_value": 0.0009375511039983794
+        },
+        {
+          "threshold": 0.42,
+          "mean_loss": 0.0010397374305919451,
+          "accepted": 544,
+          "p_value": 0.0009984104108016433
+        },
+        {
+          "threshold": 0.41,
+          "mean_loss": 0.0010746582825684184,
+          "accepted": 573,
+          "p_value": 0.0010437770442330457
+        },
+        {
+          "threshold": 0.4,
+          "mean_loss": 0.001122382013400476,
+          "accepted": 608,
+          "p_value": 0.0011082556917459353
+        },
+        {
+          "threshold": 0.39,
+          "mean_loss": 0.0011975195441066564,
+          "accepted": 657,
+          "p_value": 0.0012158018169326687
+        },
+        {
+          "threshold": 0.38,
+          "mean_loss": 0.0012742729930836263,
+          "accepted": 704,
+          "p_value": 0.0013336453033284098
+        },
+        {
+          "threshold": 0.37,
+          "mean_loss": 0.0014061825286878402,
+          "accepted": 740,
+          "p_value": 0.0015563134186006736
+        },
+        {
+          "threshold": 0.36,
+          "mean_loss": 0.001503494687120974,
+          "accepted": 783,
+          "p_value": 0.0017380764169832594
+        },
+        {
+          "threshold": 0.35,
+          "mean_loss": 0.0015691888490431127,
+          "accepted": 822,
+          "p_value": 0.0018697473302584397
+        },
+        {
+          "threshold": 0.34,
+          "mean_loss": 0.001667454117667112,
+          "accepted": 870,
+          "p_value": 0.0020809743309382856
+        },
+        {
+          "threshold": 0.33,
+          "mean_loss": 0.0018058071149458425,
+          "accepted": 933,
+          "p_value": 0.002409298464704894
+        },
+        {
+          "threshold": 0.32,
+          "mean_loss": 0.0020964867414743366,
+          "accepted": 1006,
+          "p_value": 0.003230473630643349
+        },
+        {
+          "threshold": 0.31,
+          "mean_loss": 0.0028400963622221744,
+          "accepted": 1082,
+          "p_value": 0.00635030772783513
+        },
+        {
+          "threshold": 0.3,
+          "mean_loss": 0.002976774882036605,
+          "accepted": 1145,
+          "p_value": 0.007119544006636151
+        },
+        {
+          "threshold": 0.29,
+          "mean_loss": 0.003173958193926378,
+          "accepted": 1216,
+          "p_value": 0.008356676678392615
+        },
+        {
+          "threshold": 0.28,
+          "mean_loss": 0.003549109749950314,
+          "accepted": 1324,
+          "p_value": 0.011173438533869094
+        },
+        {
+          "threshold": 0.27,
+          "mean_loss": 0.003791146836264736,
+          "accepted": 1417,
+          "p_value": 0.013352979802174453
+        },
+        {
+          "threshold": 0.26,
+          "mean_loss": 0.004169841000634519,
+          "accepted": 1515,
+          "p_value": 0.017414719445761256
+        },
+        {
+          "threshold": 0.25,
+          "mean_loss": 0.004499691828047318,
+          "accepted": 1627,
+          "p_value": 0.0216818501772696
+        },
+        {
+          "threshold": 0.24,
+          "mean_loss": 0.004818278249170739,
+          "accepted": 1746,
+          "p_value": 0.026528475830086634
+        },
+        {
+          "threshold": 0.23,
+          "mean_loss": 0.005142071179008769,
+          "accepted": 1854,
+          "p_value": 0.03226326290978237
+        },
+        {
+          "threshold": 0.22,
+          "mean_loss": 0.005484158912464479,
+          "accepted": 1978,
+          "p_value": 0.03929623617843708
+        },
+        {
+          "threshold": 0.21,
+          "mean_loss": 0.006527834003440485,
+          "accepted": 2157,
+          "p_value": 0.06789271301540747
+        },
+        {
+          "threshold": 0.2,
+          "mean_loss": 0.007144600312532963,
+          "accepted": 2340,
+          "p_value": 0.09058233493434993
+        },
+        {
+          "threshold": 0.19,
+          "mean_loss": 0.007660904801089848,
+          "accepted": 2537,
+          "p_value": 0.11327201629406772
+        },
+        {
+          "threshold": 0.18,
+          "mean_loss": 0.008310186492849434,
+          "accepted": 2741,
+          "p_value": 0.14687710254814607
+        },
+        {
+          "threshold": 0.17,
+          "mean_loss": 0.009111010617624284,
+          "accepted": 2961,
+          "p_value": 0.18517210139353388
+        },
+        {
+          "threshold": 0.16,
+          "mean_loss": 0.009951281003129435,
+          "accepted": 3226,
+          "p_value": 0.2576593729097464
+        },
+        {
+          "threshold": 0.15,
+          "mean_loss": 0.011380998288625294,
+          "accepted": 3505,
+          "p_value": 0.3795077053554671
+        },
+        {
+          "threshold": 0.14,
+          "mean_loss": 0.012576810634190992,
+          "accepted": 3815,
+          "p_value": 0.49889137530717415
+        },
+        {
+          "threshold": 0.13,
+          "mean_loss": 0.013867591794565193,
+          "accepted": 4149,
+          "p_value": 0.6302569774924057
+        },
+        {
+          "threshold": 0.12,
+          "mean_loss": 0.015241983192172287,
+          "accepted": 4485,
+          "p_value": 0.7631428991550574
+        },
+        {
+          "threshold": 0.11,
+          "mean_loss": 0.016916092169121027,
+          "accepted": 4912,
+          "p_value": 0.8958127644016952
+        },
+        {
+          "threshold": 0.1,
+          "mean_loss": 0.019202885044349156,
+          "accepted": 5403,
+          "p_value": 0.9929624568674424
+        },
+        {
+          "threshold": 0.09,
+          "mean_loss": 0.021436906248271836,
+          "accepted": 5913,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.08,
+          "mean_loss": 0.024151247990884996,
+          "accepted": 6526,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.07,
+          "mean_loss": 0.026637265422686372,
+          "accepted": 7083,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.06,
+          "mean_loss": 0.02939689435464317,
+          "accepted": 7762,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.05,
+          "mean_loss": 0.0327216046867599,
+          "accepted": 8444,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.04,
+          "mean_loss": 0.036074556813016544,
+          "accepted": 9070,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.03,
+          "mean_loss": 0.03963743277420628,
+          "accepted": 9700,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.02,
+          "mean_loss": 0.04279667291825409,
+          "accepted": 10303,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.01,
+          "mean_loss": 0.04764409535494007,
+          "accepted": 11141,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.0,
+          "mean_loss": 0.05685979218909263,
+          "accepted": 12862,
+          "p_value": 1.0
+        }
+      ]
+    },
+    "conservative": {
+      "alpha": 0.001,
+      "delta": 0.1,
+      "threshold": null,
+      "pages": 430,
+      "smallest_certifiable_alpha": 0.005340537406247292,
+      "candidates": 12787,
+      "curve": [
+        {
+          "threshold": 1.0,
+          "mean_loss": 0.0,
+          "accepted": 0,
+          "p_value": 0.6503691570121838
+        },
+        {
+          "threshold": 0.99,
+          "mean_loss": 0.0,
+          "accepted": 0,
+          "p_value": 0.6503691570121838
+        },
+        {
+          "threshold": 0.98,
+          "mean_loss": 0.0,
+          "accepted": 0,
+          "p_value": 0.6503691570121838
+        },
+        {
+          "threshold": 0.97,
+          "mean_loss": 0.0,
+          "accepted": 0,
+          "p_value": 0.6503691570121838
+        },
+        {
+          "threshold": 0.96,
+          "mean_loss": 0.0,
+          "accepted": 0,
+          "p_value": 0.6503691570121838
+        },
+        {
+          "threshold": 0.95,
+          "mean_loss": 0.0,
+          "accepted": 2,
+          "p_value": 0.6503691570121838
+        },
+        {
+          "threshold": 0.94,
+          "mean_loss": 0.0,
+          "accepted": 3,
+          "p_value": 0.6503691570121838
+        },
+        {
+          "threshold": 0.93,
+          "mean_loss": 0.0,
+          "accepted": 5,
+          "p_value": 0.6503691570121838
+        },
+        {
+          "threshold": 0.92,
+          "mean_loss": 2.241524236480807e-05,
+          "accepted": 8,
+          "p_value": 0.6811588847115958
+        },
+        {
+          "threshold": 0.91,
+          "mean_loss": 2.241524236480807e-05,
+          "accepted": 9,
+          "p_value": 0.6811588847115958
+        },
+        {
+          "threshold": 0.9,
+          "mean_loss": 2.241524236480807e-05,
+          "accepted": 9,
+          "p_value": 0.6811588847115958
+        },
+        {
+          "threshold": 0.89,
+          "mean_loss": 2.241524236480807e-05,
+          "accepted": 10,
+          "p_value": 0.6811588847115958
+        },
+        {
+          "threshold": 0.88,
+          "mean_loss": 2.241524236480807e-05,
+          "accepted": 12,
+          "p_value": 0.6811588847115958
+        },
+        {
+          "threshold": 0.87,
+          "mean_loss": 2.5938850539579035e-05,
+          "accepted": 14,
+          "p_value": 0.6850133580281278
+        },
+        {
+          "threshold": 0.86,
+          "mean_loss": 2.5938850539579035e-05,
+          "accepted": 16,
+          "p_value": 0.6850133580281278
+        },
+        {
+          "threshold": 0.85,
+          "mean_loss": 2.7175861920083737e-05,
+          "accepted": 19,
+          "p_value": 0.6863371167068338
+        },
+        {
+          "threshold": 0.84,
+          "mean_loss": 2.7175861920083737e-05,
+          "accepted": 20,
+          "p_value": 0.6863371167068338
+        },
+        {
+          "threshold": 0.83,
+          "mean_loss": 2.7175861920083737e-05,
+          "accepted": 23,
+          "p_value": 0.6863371167068338
+        },
+        {
+          "threshold": 0.82,
+          "mean_loss": 2.7175861920083737e-05,
+          "accepted": 24,
+          "p_value": 0.6863371167068338
+        },
+        {
+          "threshold": 0.81,
+          "mean_loss": 2.7175861920083737e-05,
+          "accepted": 25,
+          "p_value": 0.6863371167068338
+        },
+        {
+          "threshold": 0.8,
+          "mean_loss": 2.7175861920083737e-05,
+          "accepted": 28,
+          "p_value": 0.6863371167068338
+        },
+        {
+          "threshold": 0.79,
+          "mean_loss": 2.7175861920083737e-05,
+          "accepted": 29,
+          "p_value": 0.6863371167068338
+        },
+        {
+          "threshold": 0.78,
+          "mean_loss": 2.7175861920083737e-05,
+          "accepted": 31,
+          "p_value": 0.6863371167068338
+        },
+        {
+          "threshold": 0.77,
+          "mean_loss": 2.7175861920083737e-05,
+          "accepted": 33,
+          "p_value": 0.6863371167068338
+        },
+        {
+          "threshold": 0.76,
+          "mean_loss": 3.188036973856664e-05,
+          "accepted": 35,
+          "p_value": 0.6912480015875809
+        },
+        {
+          "threshold": 0.75,
+          "mean_loss": 3.882931813104325e-05,
+          "accepted": 40,
+          "p_value": 0.6981914724403508
+        },
+        {
+          "threshold": 0.74,
+          "mean_loss": 3.882931813104325e-05,
+          "accepted": 43,
+          "p_value": 0.6981914724403508
+        },
+        {
+          "threshold": 0.73,
+          "mean_loss": 4.313595034465221e-05,
+          "accepted": 48,
+          "p_value": 0.7023360191320903
+        },
+        {
+          "threshold": 0.72,
+          "mean_loss": 4.313595034465221e-05,
+          "accepted": 49,
+          "p_value": 0.7023360191320903
+        },
+        {
+          "threshold": 0.71,
+          "mean_loss": 4.559428162937614e-05,
+          "accepted": 56,
+          "p_value": 0.7046535235697308
+        },
+        {
+          "threshold": 0.7,
+          "mean_loss": 5.326946775263962e-05,
+          "accepted": 59,
+          "p_value": 0.7116863580585434
+        },
+        {
+          "threshold": 0.69,
+          "mean_loss": 5.326946775263962e-05,
+          "accepted": 62,
+          "p_value": 0.7116863580585434
+        },
+        {
+          "threshold": 0.68,
+          "mean_loss": 5.514645031547162e-05,
+          "accepted": 68,
+          "p_value": 0.7133632483435929
+        },
+        {
+          "threshold": 0.67,
+          "mean_loss": 5.619165543697671e-05,
+          "accepted": 71,
+          "p_value": 0.7142901932459504
+        },
+        {
+          "threshold": 0.66,
+          "mean_loss": 6.171805353348425e-05,
+          "accepted": 78,
+          "p_value": 0.7191139516568326
+        },
+        {
+          "threshold": 0.65,
+          "mean_loss": 6.171805353348425e-05,
+          "accepted": 79,
+          "p_value": 0.7191139516568326
+        },
+        {
+          "threshold": 0.64,
+          "mean_loss": 0.00011503204921402824,
+          "accepted": 90,
+          "p_value": 0.7605319997727475
+        },
+        {
+          "threshold": 0.63,
+          "mean_loss": 0.00011503204921402824,
+          "accepted": 94,
+          "p_value": 0.7605319997727475
+        },
+        {
+          "threshold": 0.62,
+          "mean_loss": 0.00011663038694279032,
+          "accepted": 102,
+          "p_value": 0.7616600504603783
+        },
+        {
+          "threshold": 0.61,
+          "mean_loss": 0.00011663038694279032,
+          "accepted": 107,
+          "p_value": 0.7616600504603783
+        },
+        {
+          "threshold": 0.6,
+          "mean_loss": 0.0001198829483348866,
+          "accepted": 112,
+          "p_value": 0.7639386441705545
+        },
+        {
+          "threshold": 0.59,
+          "mean_loss": 0.00013009496541305715,
+          "accepted": 122,
+          "p_value": 0.7709504524404553
+        },
+        {
+          "threshold": 0.58,
+          "mean_loss": 0.00014622949598308392,
+          "accepted": 128,
+          "p_value": 0.7816181363351536
+        },
+        {
+          "threshold": 0.57,
+          "mean_loss": 0.0002500236779159253,
+          "accepted": 137,
+          "p_value": 0.8406496756122596
+        },
+        {
+          "threshold": 0.56,
+          "mean_loss": 0.00028331720793353703,
+          "accepted": 145,
+          "p_value": 0.8567251643619672
+        },
+        {
+          "threshold": 0.55,
+          "mean_loss": 0.00029128617729124633,
+          "accepted": 161,
+          "p_value": 0.8603966716040876
+        },
+        {
+          "threshold": 0.54,
+          "mean_loss": 0.000297537740181969,
+          "accepted": 165,
+          "p_value": 0.863231156721778
+        },
+        {
+          "threshold": 0.53,
+          "mean_loss": 0.0003097521743050384,
+          "accepted": 174,
+          "p_value": 0.8686554936418234
+        },
+        {
+          "threshold": 0.52,
+          "mean_loss": 0.00032084200882928583,
+          "accepted": 188,
+          "p_value": 0.8734529475860467
+        },
+        {
+          "threshold": 0.51,
+          "mean_loss": 0.00034433930634413586,
+          "accepted": 201,
+          "p_value": 0.8832301823908922
+        },
+        {
+          "threshold": 0.5,
+          "mean_loss": 0.0003875164756507198,
+          "accepted": 219,
+          "p_value": 0.8998907317663974
+        },
+        {
+          "threshold": 0.49,
+          "mean_loss": 0.00041150664419650486,
+          "accepted": 236,
+          "p_value": 0.9084555382883284
+        },
+        {
+          "threshold": 0.48,
+          "mean_loss": 0.00045408857484921376,
+          "accepted": 254,
+          "p_value": 0.9225100545321954
+        },
+        {
+          "threshold": 0.47,
+          "mean_loss": 0.0005234009229812244,
+          "accepted": 278,
+          "p_value": 0.9424434218496643
+        },
+        {
+          "threshold": 0.46,
+          "mean_loss": 0.0005598431650201789,
+          "accepted": 303,
+          "p_value": 0.9515524146340226
+        },
+        {
+          "threshold": 0.45,
+          "mean_loss": 0.0005903311587030828,
+          "accepted": 322,
+          "p_value": 0.9584857403663519
+        },
+        {
+          "threshold": 0.44,
+          "mean_loss": 0.000637309828890777,
+          "accepted": 349,
+          "p_value": 0.967994586708759
+        },
+        {
+          "threshold": 0.43,
+          "mean_loss": 0.0006650409639310217,
+          "accepted": 373,
+          "p_value": 0.97296376248931
+        },
+        {
+          "threshold": 0.42,
+          "mean_loss": 0.0007091145946434111,
+          "accepted": 399,
+          "p_value": 0.9799178385227019
+        },
+        {
+          "threshold": 0.41,
+          "mean_loss": 0.0007393613663515107,
+          "accepted": 421,
+          "p_value": 0.9840429012423897
+        },
+        {
+          "threshold": 0.4,
+          "mean_loss": 0.0007942850395840289,
+          "accepted": 451,
+          "p_value": 0.9902430269414425
+        },
+        {
+          "threshold": 0.39,
+          "mean_loss": 0.0008616969400177702,
+          "accepted": 493,
+          "p_value": 0.9956888417251099
+        },
+        {
+          "threshold": 0.38,
+          "mean_loss": 0.0009371975037091889,
+          "accepted": 537,
+          "p_value": 0.9991332026632308
+        },
+        {
+          "threshold": 0.37,
+          "mean_loss": 0.001064100203320774,
+          "accepted": 570,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.36,
+          "mean_loss": 0.001214562646083561,
+          "accepted": 606,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.35,
+          "mean_loss": 0.0012724610174725088,
+          "accepted": 642,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.34,
+          "mean_loss": 0.001340118183989148,
+          "accepted": 683,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.33,
+          "mean_loss": 0.0014408290777312806,
+          "accepted": 729,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.32,
+          "mean_loss": 0.0017123982940458128,
+          "accepted": 797,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.31,
+          "mean_loss": 0.0018641794682769032,
+          "accepted": 857,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.3,
+          "mean_loss": 0.002006684106582877,
+          "accepted": 914,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.29,
+          "mean_loss": 0.002163442035405186,
+          "accepted": 974,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.28,
+          "mean_loss": 0.0024129695552470463,
+          "accepted": 1074,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.27,
+          "mean_loss": 0.0027334290947744603,
+          "accepted": 1167,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.26,
+          "mean_loss": 0.002973714154219685,
+          "accepted": 1256,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.25,
+          "mean_loss": 0.003245548098861589,
+          "accepted": 1351,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.24,
+          "mean_loss": 0.0035142792144940583,
+          "accepted": 1460,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.23,
+          "mean_loss": 0.003819349747368774,
+          "accepted": 1566,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.22,
+          "mean_loss": 0.004109236139633677,
+          "accepted": 1691,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.21,
+          "mean_loss": 0.004557740624700389,
+          "accepted": 1855,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.2,
+          "mean_loss": 0.005090364308435797,
+          "accepted": 2018,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.19,
+          "mean_loss": 0.005562932365192449,
+          "accepted": 2207,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.18,
+          "mean_loss": 0.0061216262283592,
+          "accepted": 2390,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.17,
+          "mean_loss": 0.006894452734568786,
+          "accepted": 2611,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.16,
+          "mean_loss": 0.007711482498523873,
+          "accepted": 2869,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.15,
+          "mean_loss": 0.008689195459189005,
+          "accepted": 3145,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.14,
+          "mean_loss": 0.00995528852987395,
+          "accepted": 3446,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.13,
+          "mean_loss": 0.011153718026283534,
+          "accepted": 3768,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.12,
+          "mean_loss": 0.01239387201744993,
+          "accepted": 4098,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.11,
+          "mean_loss": 0.014002141060110294,
+          "accepted": 4518,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.1,
+          "mean_loss": 0.016435822733921773,
+          "accepted": 5034,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.09,
+          "mean_loss": 0.019514565592447176,
+          "accepted": 5534,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.08,
+          "mean_loss": 0.02225395556533398,
+          "accepted": 6141,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.07,
+          "mean_loss": 0.02490675133166184,
+          "accepted": 6754,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.06,
+          "mean_loss": 0.02835915602244873,
+          "accepted": 7481,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.05,
+          "mean_loss": 0.03191008404086376,
+          "accepted": 8222,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.04,
+          "mean_loss": 0.035206763535673175,
+          "accepted": 8897,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.03,
+          "mean_loss": 0.03902580416928722,
+          "accepted": 9581,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.02,
+          "mean_loss": 0.04265393968970812,
+          "accepted": 10224,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.01,
+          "mean_loss": 0.04760201543018646,
+          "accepted": 11081,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.0,
+          "mean_loss": 0.0567441719517977,
+          "accepted": 12787,
+          "p_value": 1.0
+        }
+      ]
+    },
+    "standard": {
+      "alpha": 0.005,
+      "delta": 0.1,
+      "threshold": null,
+      "pages": 430,
+      "smallest_certifiable_alpha": 0.005340537406247292,
+      "candidates": 12857,
+      "curve": [
+        {
+          "threshold": 1.0,
+          "mean_loss": 0.0,
+          "accepted": 0,
+          "p_value": 0.11585765144771713
+        },
+        {
+          "threshold": 0.99,
+          "mean_loss": 0.0,
+          "accepted": 2,
+          "p_value": 0.11585765144771713
+        },
+        {
+          "threshold": 0.98,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 8,
+          "p_value": 0.12219706437572407
+        },
+        {
+          "threshold": 0.97,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 10,
+          "p_value": 0.12219706437572407
+        },
+        {
+          "threshold": 0.96,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 12,
+          "p_value": 0.12219706437572407
+        },
+        {
+          "threshold": 0.95,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 16,
+          "p_value": 0.12219706437572407
+        },
+        {
+          "threshold": 0.94,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 19,
+          "p_value": 0.12219706437572407
+        },
+        {
+          "threshold": 0.93,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 24,
+          "p_value": 0.12219706437572407
+        },
+        {
+          "threshold": 0.92,
+          "mean_loss": 4.122048275846444e-05,
+          "accepted": 28,
+          "p_value": 0.1284094236618562
+        },
+        {
+          "threshold": 0.91,
+          "mean_loss": 4.122048275846444e-05,
+          "accepted": 30,
+          "p_value": 0.1284094236618562
+        },
+        {
+          "threshold": 0.9,
+          "mean_loss": 4.122048275846444e-05,
+          "accepted": 35,
+          "p_value": 0.1284094236618562
+        },
+        {
+          "threshold": 0.89,
+          "mean_loss": 4.682429334966646e-05,
+          "accepted": 44,
+          "p_value": 0.1298839013467919
+        },
+        {
+          "threshold": 0.88,
+          "mean_loss": 7.130409751123316e-05,
+          "accepted": 50,
+          "p_value": 0.13611379043699565
+        },
+        {
+          "threshold": 0.87,
+          "mean_loss": 7.482770568600413e-05,
+          "accepted": 55,
+          "p_value": 0.13698913772859314
+        },
+        {
+          "threshold": 0.86,
+          "mean_loss": 7.482770568600413e-05,
+          "accepted": 60,
+          "p_value": 0.13698913772859314
+        },
+        {
+          "threshold": 0.85,
+          "mean_loss": 0.00010054452122807553,
+          "accepted": 65,
+          "p_value": 0.14326687710308425
+        },
+        {
+          "threshold": 0.84,
+          "mean_loss": 0.00010054452122807553,
+          "accepted": 67,
+          "p_value": 0.14326687710308425
+        },
+        {
+          "threshold": 0.83,
+          "mean_loss": 0.00013100268373244131,
+          "accepted": 76,
+          "p_value": 0.15052494189309573
+        },
+        {
+          "threshold": 0.82,
+          "mean_loss": 0.00013100268373244131,
+          "accepted": 79,
+          "p_value": 0.15052494189309573
+        },
+        {
+          "threshold": 0.81,
+          "mean_loss": 0.00013100268373244131,
+          "accepted": 85,
+          "p_value": 0.15052494189309573
+        },
+        {
+          "threshold": 0.8,
+          "mean_loss": 0.00013100268373244131,
+          "accepted": 93,
+          "p_value": 0.15052494189309573
+        },
+        {
+          "threshold": 0.79,
+          "mean_loss": 0.0001425727404257191,
+          "accepted": 96,
+          "p_value": 0.15324820046309365
+        },
+        {
+          "threshold": 0.78,
+          "mean_loss": 0.0001425727404257191,
+          "accepted": 102,
+          "p_value": 0.15324820046309365
+        },
+        {
+          "threshold": 0.77,
+          "mean_loss": 0.00015024792654898258,
+          "accepted": 107,
+          "p_value": 0.15504695543648497
+        },
+        {
+          "threshold": 0.76,
+          "mean_loss": 0.0001549524343674655,
+          "accepted": 110,
+          "p_value": 0.15614681790217103
+        },
+        {
+          "threshold": 0.75,
+          "mean_loss": 0.00022031457399099763,
+          "accepted": 120,
+          "p_value": 0.1712866469334148
+        },
+        {
+          "threshold": 0.74,
+          "mean_loss": 0.00022228207094137736,
+          "accepted": 124,
+          "p_value": 0.17173973112239985
+        },
+        {
+          "threshold": 0.73,
+          "mean_loss": 0.00025106850731655304,
+          "accepted": 133,
+          "p_value": 0.17836045752688956
+        },
+        {
+          "threshold": 0.72,
+          "mean_loss": 0.00025106850731655304,
+          "accepted": 135,
+          "p_value": 0.17836045752688956
+        },
+        {
+          "threshold": 0.71,
+          "mean_loss": 0.000253526838601277,
+          "accepted": 142,
+          "p_value": 0.17892534398556498
+        },
+        {
+          "threshold": 0.7,
+          "mean_loss": 0.00025538136921957744,
+          "accepted": 145,
+          "p_value": 0.1793514521750378
+        },
+        {
+          "threshold": 0.69,
+          "mean_loss": 0.00027986117338114414,
+          "accepted": 151,
+          "p_value": 0.18497449961579124
+        },
+        {
+          "threshold": 0.68,
+          "mean_loss": 0.00029330821263725393,
+          "accepted": 159,
+          "p_value": 0.1880632117495613
+        },
+        {
+          "threshold": 0.67,
+          "mean_loss": 0.00030202860388202254,
+          "accepted": 163,
+          "p_value": 0.1900666590461735
+        },
+        {
+          "threshold": 0.66,
+          "mean_loss": 0.00030755500197853007,
+          "accepted": 169,
+          "p_value": 0.191336577400742
+        },
+        {
+          "threshold": 0.65,
+          "mean_loss": 0.00031315881256973205,
+          "accepted": 172,
+          "p_value": 0.19262454747887947
+        },
+        {
+          "threshold": 0.64,
+          "mean_loss": 0.0003612742796300465,
+          "accepted": 183,
+          "p_value": 0.20369957378997466
+        },
+        {
+          "threshold": 0.63,
+          "mean_loss": 0.0003612742796300465,
+          "accepted": 190,
+          "p_value": 0.20369957378997466
+        },
+        {
+          "threshold": 0.62,
+          "mean_loss": 0.0003744426740520864,
+          "accepted": 199,
+          "p_value": 0.20673729106534744
+        },
+        {
+          "threshold": 0.61,
+          "mean_loss": 0.0003744426740520864,
+          "accepted": 206,
+          "p_value": 0.20673729106534744
+        },
+        {
+          "threshold": 0.6,
+          "mean_loss": 0.0003776952354441826,
+          "accepted": 212,
+          "p_value": 0.20748812745874928
+        },
+        {
+          "threshold": 0.59,
+          "mean_loss": 0.00039137826953033653,
+          "accepted": 224,
+          "p_value": 0.21064921635073455
+        },
+        {
+          "threshold": 0.58,
+          "mean_loss": 0.00041664021886633626,
+          "accepted": 235,
+          "p_value": 0.21649638274303126
+        },
+        {
+          "threshold": 0.57,
+          "mean_loss": 0.0005298879837070998,
+          "accepted": 245,
+          "p_value": 0.24291597083641212
+        },
+        {
+          "threshold": 0.56,
+          "mean_loss": 0.0005631815137247115,
+          "accepted": 255,
+          "p_value": 0.25075391644098893
+        },
+        {
+          "threshold": 0.55,
+          "mean_loss": 0.0005711504830824208,
+          "accepted": 272,
+          "p_value": 0.252634951082082
+        },
+        {
+          "threshold": 0.54,
+          "mean_loss": 0.0005851028641345429,
+          "accepted": 279,
+          "p_value": 0.2559329992496472
+        },
+        {
+          "threshold": 0.53,
+          "mean_loss": 0.0006017051876827987,
+          "accepted": 289,
+          "p_value": 0.25986517622869754
+        },
+        {
+          "threshold": 0.52,
+          "mean_loss": 0.0006093240051990627,
+          "accepted": 303,
+          "p_value": 0.2616724698916674
+        },
+        {
+          "threshold": 0.51,
+          "mean_loss": 0.0006463368107262529,
+          "accepted": 320,
+          "p_value": 0.27047756232764525
+        },
+        {
+          "threshold": 0.5,
+          "mean_loss": 0.0006911123177615988,
+          "accepted": 342,
+          "p_value": 0.28118446214234377
+        },
+        {
+          "threshold": 0.49,
+          "mean_loss": 0.0007151024863073839,
+          "accepted": 360,
+          "p_value": 0.2869454525555358
+        },
+        {
+          "threshold": 0.48,
+          "mean_loss": 0.0007764544160538315,
+          "accepted": 382,
+          "p_value": 0.3017532396919177
+        },
+        {
+          "threshold": 0.47,
+          "mean_loss": 0.000833776091398006,
+          "accepted": 404,
+          "p_value": 0.31568076195067424
+        },
+        {
+          "threshold": 0.46,
+          "mean_loss": 0.0008683638028186601,
+          "accepted": 427,
+          "p_value": 0.32412507261017337
+        },
+        {
+          "threshold": 0.45,
+          "mean_loss": 0.0009158365319108094,
+          "accepted": 450,
+          "p_value": 0.33576133674660735
+        },
+        {
+          "threshold": 0.44,
+          "mean_loss": 0.0009660952886927898,
+          "accepted": 481,
+          "p_value": 0.3481342398711938
+        },
+        {
+          "threshold": 0.43,
+          "mean_loss": 0.0009909793643821786,
+          "accepted": 507,
+          "p_value": 0.3542790874697613
+        },
+        {
+          "threshold": 0.42,
+          "mean_loss": 0.0010397374305919451,
+          "accepted": 543,
+          "p_value": 0.36635201564854364
+        },
+        {
+          "threshold": 0.41,
+          "mean_loss": 0.0010746582825684184,
+          "accepted": 572,
+          "p_value": 0.37502278326556165
+        },
+        {
+          "threshold": 0.4,
+          "mean_loss": 0.001122382013400476,
+          "accepted": 607,
+          "p_value": 0.3869006927429926
+        },
+        {
+          "threshold": 0.39,
+          "mean_loss": 0.0011975195441066564,
+          "accepted": 656,
+          "p_value": 0.40565528826585634
+        },
+        {
+          "threshold": 0.38,
+          "mean_loss": 0.0012742729930836263,
+          "accepted": 703,
+          "p_value": 0.4248607276273635
+        },
+        {
+          "threshold": 0.37,
+          "mean_loss": 0.0014061825286878402,
+          "accepted": 739,
+          "p_value": 0.45790946038867103
+        },
+        {
+          "threshold": 0.36,
+          "mean_loss": 0.001503494687120974,
+          "accepted": 782,
+          "p_value": 0.4822615513332475
+        },
+        {
+          "threshold": 0.35,
+          "mean_loss": 0.0015691888490431127,
+          "accepted": 821,
+          "p_value": 0.4986583008683604
+        },
+        {
+          "threshold": 0.34,
+          "mean_loss": 0.001667454117667112,
+          "accepted": 869,
+          "p_value": 0.5230806101729437
+        },
+        {
+          "threshold": 0.33,
+          "mean_loss": 0.0018058071149458425,
+          "accepted": 932,
+          "p_value": 0.5571631805485684
+        },
+        {
+          "threshold": 0.32,
+          "mean_loss": 0.0020964867414743366,
+          "accepted": 1005,
+          "p_value": 0.6270188603881749
+        },
+        {
+          "threshold": 0.31,
+          "mean_loss": 0.0028400963622221744,
+          "accepted": 1081,
+          "p_value": 0.7873898278304883
+        },
+        {
+          "threshold": 0.3,
+          "mean_loss": 0.002976774882036605,
+          "accepted": 1144,
+          "p_value": 0.8129715776723341
+        },
+        {
+          "threshold": 0.29,
+          "mean_loss": 0.003173958193926378,
+          "accepted": 1215,
+          "p_value": 0.8473239307070435
+        },
+        {
+          "threshold": 0.28,
+          "mean_loss": 0.003549109749950314,
+          "accepted": 1323,
+          "p_value": 0.9036850770242382
+        },
+        {
+          "threshold": 0.27,
+          "mean_loss": 0.003791146836264736,
+          "accepted": 1416,
+          "p_value": 0.9333873380067091
+        },
+        {
+          "threshold": 0.26,
+          "mean_loss": 0.004169841000634519,
+          "accepted": 1514,
+          "p_value": 0.9689188581080059
+        },
+        {
+          "threshold": 0.25,
+          "mean_loss": 0.004499691828047318,
+          "accepted": 1626,
+          "p_value": 0.9888669896663032
+        },
+        {
+          "threshold": 0.24,
+          "mean_loss": 0.004818278249170739,
+          "accepted": 1745,
+          "p_value": 0.998556405318918
+        },
+        {
+          "threshold": 0.23,
+          "mean_loss": 0.005142071179008769,
+          "accepted": 1853,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.22,
+          "mean_loss": 0.005484158912464479,
+          "accepted": 1977,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.21,
+          "mean_loss": 0.006527834003440485,
+          "accepted": 2156,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.2,
+          "mean_loss": 0.007144600312532963,
+          "accepted": 2339,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.19,
+          "mean_loss": 0.007660904801089848,
+          "accepted": 2536,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.18,
+          "mean_loss": 0.008310186492849434,
+          "accepted": 2740,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.17,
+          "mean_loss": 0.009111010617624284,
+          "accepted": 2960,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.16,
+          "mean_loss": 0.009938215939110621,
+          "accepted": 3224,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.15,
+          "mean_loss": 0.011367933224606481,
+          "accepted": 3503,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.14,
+          "mean_loss": 0.012563745570172178,
+          "accepted": 3812,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.13,
+          "mean_loss": 0.013854526730546381,
+          "accepted": 4146,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.12,
+          "mean_loss": 0.015228918128153471,
+          "accepted": 4482,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.11,
+          "mean_loss": 0.016903027105102213,
+          "accepted": 4909,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.1,
+          "mean_loss": 0.01918981998033034,
+          "accepted": 5400,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.09,
+          "mean_loss": 0.021423841184253025,
+          "accepted": 5910,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.08,
+          "mean_loss": 0.024133795037440998,
+          "accepted": 6522,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.07,
+          "mean_loss": 0.026619812469242377,
+          "accepted": 7079,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.06,
+          "mean_loss": 0.029379441401199174,
+          "accepted": 7758,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.05,
+          "mean_loss": 0.032704151733315895,
+          "accepted": 8440,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.04,
+          "mean_loss": 0.036057103859572545,
+          "accepted": 9066,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.03,
+          "mean_loss": 0.03961997982076228,
+          "accepted": 9695,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.02,
+          "mean_loss": 0.04277921996481009,
+          "accepted": 10298,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.01,
+          "mean_loss": 0.047626642401496076,
+          "accepted": 11136,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.0,
+          "mean_loss": 0.05684233923564863,
+          "accepted": 12857,
+          "p_value": 1.0
+        }
+      ]
+    }
+  },
+  "weights": [
+    {
+      "feature": "lm",
+      "weight": 0.9828112744586698
+    },
+    {
+      "feature": "lm_per_char",
+      "weight": 0.5712203869345914
+    },
+    {
+      "feature": "size",
+      "weight": 0.53213719439199
+    },
+    {
+      "feature": "detection",
+      "weight": -0.25022875006620826
+    },
+    {
+      "feature": "line_confidence",
+      "weight": -0.24691865343474942
+    },
+    {
+      "feature": "channel",
+      "weight": 0.1118286964831013
+    },
+    {
+      "feature": "digits",
+      "weight": -0.0909524323514995
+    },
+    {
+      "feature": "deletion",
+      "weight": 0.07546591398000141
+    },
+    {
+      "feature": "rule=punctuation.spacing",
+      "weight": 0.07458215662793721
+    },
+    {
+      "feature": "rule=lexical.word",
+      "weight": -0.07351357137428366
+    },
+    {
+      "feature": "rule=segmentation.merge",
+      "weight": 0.06917662638888271
+    },
+    {
+      "feature": "v01",
+      "weight": 0.06527289265040088
+    },
+    {
+      "feature": "rule=confusables.in_numbers",
+      "weight": 0.06283664614032979
+    },
+    {
+      "feature": "rule=numbers.separators",
+      "weight": -0.05499384568471779
+    },
+    {
+      "feature": "insertion",
+      "weight": 0.05314433472359298
+    },
+    {
+      "feature": "rule=segmentation.split",
+      "weight": 0.05314433472359298
+    },
+    {
+      "feature": "word_gain",
+      "weight": -0.04854550948638412
+    },
+    {
+      "feature": "word_after",
+      "weight": -0.048052286407987706
+    },
+    {
+      "feature": "rule=noise.drop_lines",
+      "weight": 0.028180628287900005
+    },
+    {
+      "feature": "word_before",
+      "weight": 0.007466693133535789
+    },
+    {
+      "feature": "engine_missing",
+      "weight": 0.0023915705406789742
+    }
+  ],
+  "bias": -2.5563101334395952
+}

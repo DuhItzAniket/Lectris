@@ -47,7 +47,7 @@ from dataclasses import dataclass, replace
 from typing import Final, Literal
 
 from lectris.decide import Policy
-from lectris.edits import Edit, apply_edits
+from lectris.edits import Candidate, Edit, apply_edits
 from lectris.eval.matching import Matching, match_lines
 from lectris.eval.truth import TruthPage
 from lectris.lexicon import Lexicon
@@ -364,3 +364,74 @@ def _score_whole(
         ocr_lines=ocr_lines,
         truth_lines=len(truth.lines),
     )
+
+
+@dataclass(frozen=True, slots=True)
+class LabelledCandidate:
+    """A candidate, accepted or not, with its effect where it was proposed (Phase 7's data)."""
+
+    page: str
+    block: int
+    step: int
+    candidate: Candidate
+    accepted: bool
+    effect: int
+    reference_chars: int
+
+    @property
+    def fixes(self) -> bool:
+        """Whether accepting the candidate brings its block closer to the reference."""
+        return self.effect < 0
+
+
+def label_candidates(
+    result: Result,
+    truth: TruthPage,
+    *,
+    iou_threshold: float = 0.5,
+    lexicon: Lexicon | None = None,
+    steps: Sequence[Step] | None = None,
+) -> list[LabelledCandidate]:
+    """Every candidate of every decision in ``result`` (layout rules left out), with the exact
+    marginal effect it has on its block's distance to the laid-out reference when applied to the
+    text its stage received, accepted or not. Pages without boxes give no candidates: their
+    blocks have no reference of their own."""
+    if steps is None:
+        from lectris.profiles import get  # noqa: PLC0415 - the profiles import the pipeline
+
+        steps = get(result.profile).steps
+    truth = truth.counted
+    blocks = _blocks_with_lines(result)
+    ocr_lines = [line for _, lines in blocks for line in lines]
+    matching = match_lines(
+        [line.box for line in ocr_lines],
+        [line.box for line in truth.lines],
+        threshold=iou_threshold,
+    )
+    if not matching.pairs:
+        return []
+    references = _references(blocks, truth, matching)
+    reference_chars = sum(len(normalised(line.text)) for line in truth.lines)
+    found: list[LabelledCandidate] = []
+    for (block, _), reference in zip(blocks, references, strict=True):
+        target = normalised(lay_out(reference, steps, result.policy, lexicon))
+        text = block.source
+        for step, (_, revision) in enumerate(block.revisions):
+            judged = [d for d in revision.decisions if d.candidate.rule not in LAYOUT_RULES]
+            if judged:
+                base = _distance(target, text)
+                for decision in judged:
+                    changed = apply_edits(text, (decision.candidate.edit(),))
+                    found.append(
+                        LabelledCandidate(
+                            truth.page,
+                            block.index,
+                            step,
+                            decision.candidate,
+                            decision.accepted,
+                            _distance(target, changed) - base,
+                            reference_chars,
+                        )
+                    )
+            text = revision.text
+    return found

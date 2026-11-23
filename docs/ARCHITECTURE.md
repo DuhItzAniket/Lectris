@@ -288,7 +288,7 @@ engine features are missing (with a "missing" indicator) when the input has no u
 ## 11. L5 Decide (`lectris.decide`)
 
 ### 11.1 Acceptance model
-[v2, Phase 7] The probability that a candidate is right, p = σ(w · φ(candidate)): a logistic
+[v2, Phase 7 — built: `lectris.models.acceptance`] The probability that a candidate is right, p = σ(w · φ(candidate)): a logistic
 regression with L2 regularisation over the features, fitted by iteratively reweighted least
 squares (a few dozen features; standard library). One model is fitted per engine pack, with the
 rule as a feature, so rules with few candidates borrow strength from the others. Calibration is
@@ -312,8 +312,16 @@ et al.) on the calibration split, which is made of whole pages:
 - If no λ passes, the profile accepts no guesses (transforms still apply). It says so in the
   report.
 
-Profiles become risk budgets _(tunable)_: `conservative` α = 0.001, `standard` α = 0.005,
-`aggressive` α = 0.02, all with δ = 0.1. Precision of accepted edits, recall of correctable
+**[Phase 7 — built: `lectris.models.risk`, `lectris.eval.calibrate`, `lectris calibrate`]**
+Two refinements, from the power check (LX-CAL-001, LX-CAL-002): the budgets are what the
+calibration pages can certify (ADR-0008), and the threshold used is the certified one with the
+largest estimated CER reduction on the calibration pages, not the most permissive (ADR-0009);
+fixed-sequence testing controls the error over every certified threshold, so the choice keeps
+the guarantee. A page's loss at a threshold is estimated from each candidate's marginal effect
+where `PARITY` proposed it; the realised harm is measured with full runs (LX-RISK-001).
+
+Profiles become risk budgets (ADR-0008): `conservative` α = 0.01, `standard` α = 0.02,
+`aggressive` α = 0.05, all with δ = 0.1. Precision of accepted edits, recall of correctable
 errors and the fraction of pages made worse are reported for each, but only the harm rate is
 guaranteed. Under a different engine or domain the guarantee does not carry over, and protocol
 §5 measures how far it holds in practice.

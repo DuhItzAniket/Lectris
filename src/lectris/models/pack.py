@@ -6,7 +6,11 @@ A pack is one gzip JSON file (``*.lectris.json.gz``):
   each source it read with its SHA-256 and size;
 - ``language``: the character language model (``charlm.CharLM``);
 - ``channel``: the engine's confusions (``channel.Channel``);
-- ``lexicon``: word counts.
+- ``lexicon``: word counts;
+- ``acceptance`` (after ``lectris calibrate``): the acceptance model (``acceptance.Acceptance``);
+- ``risk`` (after ``lectris calibrate``): per profile, its risk budget ``alpha`` and ``delta``, the
+  threshold used (the most useful one Learn-then-Test certified, ADR-0009) and the most permissive
+  certified one (``Budget``), with the calibration they were chosen on.
 
 ``fit`` builds one: the channel from the OCR and ground-truth lines matched on the pages of a
 pairs manifest (both sides in the normalised track, the form the proposers see), the language
@@ -23,7 +27,7 @@ import io as stdio
 import json
 import re
 from collections import Counter
-from collections.abc import Iterable, Sequence
+from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Final
@@ -32,6 +36,7 @@ from lectris import __version__
 from lectris.errors import LectrisError
 from lectris.lexicon import Lexicon
 from lectris.model import Document
+from lectris.models.acceptance import Acceptance
 from lectris.models.channel import Channel
 from lectris.models.charlm import CharLM
 
@@ -56,6 +61,21 @@ class Source:
     role: str
 
 
+@dataclass(frozen=True, slots=True)
+class Budget:
+    """A profile's risk budget and the threshold chosen for it on calibration pages.
+
+    ``threshold`` is ``None`` when no threshold could be shown to keep the harm rate below
+    ``alpha``: then the profile accepts no candidate.
+    """
+
+    alpha: float
+    delta: float
+    threshold: float | None
+    pages: int
+    permissive: float | None = None
+
+
 @dataclass(frozen=True)
 class ModelPack:
     """The fitted models, and the manifest of what they were fitted on."""
@@ -67,6 +87,9 @@ class ModelPack:
     lexicon: Lexicon
     sources: tuple[Source, ...]
     lectris_version: str = __version__
+    acceptance: Acceptance | None = None
+    risk: Mapping[str, Budget] | None = None
+    calibration: Mapping[str, Any] | None = None
 
     def matches(self, document: Document) -> bool:
         """Whether ``document`` came from the engine and model this pack was fitted for."""
@@ -86,7 +109,26 @@ class ModelPack:
             "language": self.language.to_data(),
             "channel": self.channel.to_data(),
             "lexicon": dict(sorted(self.lexicon.counts().items())),
-        }
+        } | self._decision_data()
+
+    def _decision_data(self) -> dict[str, Any]:
+        data: dict[str, Any] = {}
+        if self.acceptance is not None:
+            data["acceptance"] = self.acceptance.to_data()
+        if self.risk is not None:
+            data["risk"] = {
+                name: {
+                    "alpha": b.alpha,
+                    "delta": b.delta,
+                    "threshold": b.threshold,
+                    "pages": b.pages,
+                    "permissive": b.permissive,
+                }
+                for name, b in sorted(self.risk.items())
+            }
+        if self.calibration is not None:
+            data["calibration"] = dict(self.calibration)
+        return data
 
 
 def words(text: str) -> list[str]:
@@ -166,6 +208,20 @@ def load(path: str | Path) -> ModelPack:
                 for s in manifest["sources"]
             ),
             lectris_version=str(manifest["lectris_version"]),
+            acceptance=Acceptance.from_data(data["acceptance"]) if "acceptance" in data else None,
+            risk={
+                str(name): Budget(
+                    float(b["alpha"]),
+                    float(b["delta"]),
+                    None if b["threshold"] is None else float(b["threshold"]),
+                    int(b["pages"]),
+                    None if b.get("permissive") is None else float(b["permissive"]),
+                )
+                for name, b in data["risk"].items()
+            }
+            if "risk" in data
+            else None,
+            calibration=data.get("calibration"),
         )
     except PackError:
         raise
