@@ -8,11 +8,16 @@ Errors of up to ``MAX_SPAN`` characters on each side are counted as confusions (
 intended character that was read as itself counts as a match.
 
 The probability of reading ``intended`` as ``observed`` (both up to ``MAX_SPAN`` characters, not
-both empty) is the count of that confusion, plus ``alpha``, over the times ``intended`` occurred
-in the intended texts, plus ``alpha`` times the number of observed forms seen; a confusion never
-seen gets ``alpha`` alone. The probability of an insertion (``intended`` empty) is per intended
-character. ``log_likelihood(intended, observed)`` aligns the two and sums the logarithms of its
-matches and errors: the evidence a candidate edit gets from the channel.
+both empty) is additively smoothed over the model's observed forms:
+
+    (count(intended, observed) + alpha) / (occurrences(intended) + alpha * K)
+
+where ``K`` is the number of different observed forms the model has seen, plus one for any
+other. An intended string never seen in training reads as each form with probability ``1 / K``,
+and a confusion never seen has ``alpha`` in its numerator only. The probability of an insertion
+(``intended`` empty) is per intended character. ``log_likelihood(intended, observed)`` aligns
+the two and sums the logarithms of its matches and errors: the evidence a candidate edit gets
+from the channel.
 """
 
 import math
@@ -65,8 +70,7 @@ class Channel:
         self._occurrences = dict(occurrences)
         self._chars = chars
         self._alpha = alpha
-        forms: Counter[str] = Counter(intended for intended, _ in self._confusions)
-        self._forms = dict(forms)
+        self._forms = len({observed for _, observed in self._confusions}) + 1
 
     @classmethod
     def fit(cls, pairs: Iterable[tuple[str, str]], *, alpha: float = 0.5) -> "Channel":
@@ -88,8 +92,7 @@ class Channel:
         count = self._confusions.get((intended, observed), 0)
         # An insertion (nothing intended) is counted per intended character.
         base = self._occurrences.get(intended, 0) if intended else self._chars
-        forms = self._forms.get(intended, 0) + 1
-        return (count + self._alpha) / (base + self._alpha * forms)
+        return (count + self._alpha) / (base + self._alpha * self._forms)
 
     def log_likelihood(self, intended: str, observed: str) -> float:
         """log P(``observed`` | ``intended``), the sum over the aligned pieces (natural log)."""

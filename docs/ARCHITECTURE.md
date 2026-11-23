@@ -262,9 +262,9 @@ decline (`v01 = 0`), with features for the decision to weigh.
 | `punctuation.spacing` | v0.1 rule | spaces before punctuation removed |
 | `hyphenation.join` | v0.1 rule | a word hyphenated across a line break rejoined (or the hyphen kept, for a compound) |
 | `noise.drop_lines` | v0.1 rule | a noise line deleted |
-| `channel.lexical` [Phase 6] | new | for a token outside the lexicon, in-lexicon words within a weighted channel distance (a SymSpell-style deletion index, standard library) |
-| `engine.alternatives` [Phase 6] | new | a low-confidence character replaced by the engine's own alternative (needs glyphs) |
-| `segmentation.spaces` [Phase 6] | new | a missing space inserted (`thecat`) or a spurious one removed (`th e`) |
+| `lexical.word` **[built, Phase 6]** | new | for a token of letters outside the lexicon, the lexicon's words one edit away (a SymSpell-style deletion index, standard library), the most frequent first, in the token's case |
+| `engine.alternatives` [later] | new | a low-confidence character replaced by the engine's own alternative (needs glyphs, which GLYPHARIS 1.0 does not write) |
+| `segmentation.split`, `segmentation.merge` **[built, Phase 6]** | new | a missing space inserted between two lexicon words (`quietyear`) or a spurious one removed when the two parts make a word and one of them is not (`hiv es`) |
 
 The v0.1 rules keep their names, their tests and their "left alone" lists. In v2, their regexes
 and conditions become the proposers' **candidate generators** (recall) and features (evidence).
@@ -272,7 +272,8 @@ How strict each one was in v0.1 is reproduced by the parity policy (§11.4).
 
 ## 10. L4 Evidence (`lectris.evidence`)
 
-[v2, Phase 6] Each candidate gets a feature vector. Every feature is defined on plain text, and
+[v2, Phase 6 — built: `lectris.evidence`; `clean(..., pack=...)`] Each candidate gets a
+feature vector (the module's documentation lists the exact names). Every feature is defined on plain text, and
 engine features are missing (with a "missing" indicator) when the input has no uncertainty.
 
 | Group | Features _(tunable)_ | Source |

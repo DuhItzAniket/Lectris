@@ -11,7 +11,7 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 | 3 | Candidate core with v0.1 parity | **COMPLETE** (#21; no phase tag) | — |
 | 4 | Evaluation harness | **COMPLETE** (#22; no phase tag) | — |
 | 5 | Paired data | **COMPLETE** (#24, R-15 fix #25; no phase tag) | — |
-| 6 | Evidence models and model packs | **IN PROGRESS** (part 1 of 2 in review) | — |
+| 6 | Evidence models and model packs | **COMPLETE** (#26, part 2 in review) | — |
 | 7 | Acceptance model and risk control | not started | — |
 | 8 | Explanations, flags and the v0.3 interface | not started | — |
 | 9 | Baselines | not started | — |
@@ -209,7 +209,7 @@ rule, see the report. 50.4% of errors are missed lines and 28.1% extra lines.
 
 ## Phase 6 — Evidence models and model packs
 
-**Status:** IN PROGRESS (opened 2026-11-23). Two pull requests: (1) the models, the pack and
+**Status:** COMPLETE (opened and closed 2026-11-23). Two pull requests: (1, #26) the models, the pack and
 `lectris fit` (`phase/06-evidence-models`); (2) the evidence features and the new proposers.
 
 **Part 1, implemented**
@@ -235,3 +235,23 @@ rule, see the report. 50.4% of errors are missed lines and 28.1% extra lines.
 18,499 words, 973,373 bytes. GLYPHARIS's most frequent confusions are deletions: a space (1,123),
 a full stop (373), single letters (`i` 310, `e` 289); then inserted spaces (619) and full stops
 (342).
+
+**Part 2, implemented**
+- `lectris.evidence`: channel, language, lexicon, engine (through the composed `OffsetMap` to the
+  lines a span came from), shape and rule features for every candidate.
+- `lectris.propose`: `Lexical` (`lexical.word`) and `Segmentation` (`segmentation.split`,
+  `segmentation.merge`), on a pack's word list.
+- The pipeline: `clean(..., pack=...)` scores every candidate and runs the lexicon proposers as two
+  final stages; their candidates are `v01 = 0`, so `PARITY` declines them and the text is v0.1's.
+  On 40 fit pages, 1,076 candidates in 0.7 s, the text unchanged (a check, not a reported result).
+- **Bug fixed:** the channel model's smoothing let an intended string never seen in training
+  read as anything with probability 1. Fixed (smoothing over the model's observed forms), with
+  tests. LX-FIT-001's channel numbers came from the faulty model; LX-FIT-002 re-runs it.
+
+**LX-FIT-002 (the same criteria after the fix):** perplexity 12.478 [11.559, 13.464] (the
+language model was not affected); channel minus uniform **+0.1539** nats per intended character
+[0.1067, 0.2191] (LX-FIT-001, faulty: +0.2596); the second fit is the same file. The exit
+criteria still hold.
+
+**Deviation:** the v0.1 rules do not yet propose what their own conditions decline; the lexicon
+proposers supply the `v01 = 0` candidates instead. `engine.alternatives` waits for glyphs.
