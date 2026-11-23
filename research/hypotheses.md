@@ -77,4 +77,6 @@ stated.
 - **Statement:** LECTRIS `standard` with a pack needs at most 10% of GLYPHARIS's CPU time per page
   on the same machine (median over dev).
 - **Test:** Phase 15 (LX-EFF-*).
-- **Status:** open.
+- **Status:** supported (LX-EFF-001, 2026-11-23, 433 dev pages, this machine): LECTRIS needs a
+  median 0.0078 s per page with the calibrated pack, GLYPHARIS 1.590 s (its own log); the median
+  per-page ratio is 0.0050, the 95th percentile 0.0092, against the 0.10 the statement allows.
