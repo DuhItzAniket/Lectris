@@ -70,3 +70,17 @@ tested.
   single letters), then inserted spaces and full stops, rather than the substitutions (`rn`/`m`,
   `0`/`O`) that classic OCR correction targets. Proposers for missing characters and spaces
   (Phase 6, part 2) matter more for this engine than confusion tables.
+
+## 2026-11-23 — A channel smoothing bug, and LX-FIT-002
+
+- A test of the evidence features found that the channel model gave an intended string never
+  seen in training probability 1 for any reading: the denominator added `alpha` once per form
+  seen *for that string*, which is zero for an unseen one. The smoothing now runs over all the
+  observed forms the model knows (about 300 for GLYPHARIS), so an unseen string reads as each
+  form with probability 1/K.
+- LX-FIT-001's channel figure (+0.26 nats per character over uniform) came from the faulty model.
+  LX-FIT-002, the same run after the fix: **+0.154 [0.107, 0.219]**. Smaller, still clearly
+  above zero: the exit criterion holds. Both reports stay in the repository.
+- The lexicon proposers produce many candidates on scene text (about 27 per page on 40 fit
+  pages, most of them `lexical.word` on names and labels): the acceptance model of Phase 7 has to
+  decline most of them, which is the case for risk control.

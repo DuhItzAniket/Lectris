@@ -9,23 +9,37 @@ A step whose rule guesses (a proposer, ``lectris.propose.PROPOSERS``) does not c
 itself: its edits become candidates, and ``lectris.decide`` accepts some of them under the
 pipeline's policy, recording a decision for each. Under the default policy, ``PARITY``, it accepts
 exactly what the rule would have done, so the output is LECTRIS v0.1's.
+
+With a model pack (``clean(..., pack=...)``), every candidate is scored by ``lectris.evidence``
+before the decision, through the map from the stage's text back to the block's source, and two
+more stages run after the profile's: the lexicon proposers ``lexical.word`` and
+``segmentation`` (``lectris.propose``), on the pack's word list. Their candidates are ones no
+v0.1 rule makes (``v01 = 0``): ``PARITY`` declines them all, so the text changes only under a
+policy that weighs the evidence.
 """
 
 import re
 from collections.abc import Callable, Iterator, Mapping
 from dataclasses import dataclass, field, replace
 from types import MappingProxyType
-from typing import Final
+from typing import TYPE_CHECKING, Final
 
 from lectris import propose
 from lectris.confidence import block_confidence
 from lectris.decide import PARITY, Policy, decide
-from lectris.edits import Decision, Edit, Revision
+from lectris.edits import Candidate, Decision, Edit, OffsetMap, Revision
 from lectris.io import plain
 from lectris.io._common import strip_bom
 from lectris.layout import arrange
 from lectris.lexicon import Lexicon
 from lectris.model import Block, Box, Document
+
+if TYPE_CHECKING:
+    from lectris.evidence import BlockLines, Evidence
+    from lectris.models.pack import ModelPack
+
+type Scorer = Callable[[str, tuple[Candidate, ...]], tuple[Candidate, ...]]
+"""Adds evidence to a stage's candidates, given the stage's text."""
 
 
 def rule_id(rule: Callable[..., Revision]) -> str:
@@ -54,14 +68,21 @@ class Step:
         """Whether the rule guesses, so that its edits are candidates to decide on."""
         return self.id in propose.PROPOSERS
 
-    def apply(self, text: str, lexicon: Lexicon | None, policy: Policy = PARITY) -> Revision:
+    def apply(
+        self,
+        text: str,
+        lexicon: Lexicon | None,
+        policy: Policy = PARITY,
+        scorer: Scorer | None = None,
+    ) -> Revision:
         options = dict(self.options)
         if self.lexicon and lexicon is not None:
             options["lexicon"] = lexicon
         revision = self.rule(text, **options)
         if not self.proposer:
             return revision
-        return decide(text, propose.candidates(revision), policy)
+        found = propose.candidates(revision)
+        return decide(text, found if scorer is None else scorer(text, found), policy)
 
 
 @dataclass(frozen=True, slots=True)
@@ -163,14 +184,64 @@ def run_rules(
     *,
     lexicon: Lexicon | None = None,
     policy: Policy = PARITY,
+    pack: "ModelPack | None" = None,
+    block: "BlockLines | None" = None,
 ) -> tuple[str, tuple[tuple[str, Revision], ...]]:
-    """``text`` through each step in order: the final text and each step's revision."""
+    """``text`` through each step in order: the final text and each step's revision.
+
+    With ``pack``, candidates are scored with its evidence (``block`` gives the lines behind the
+    text) and the lexicon proposers run last (the module's documentation).
+    """
     revisions: list[tuple[str, Revision]] = []
+    offsets = OffsetMap()
+    evidence, extras = (None, ()) if pack is None else _with_pack(pack)
+    if evidence is not None and block is None:
+        from lectris.evidence import BlockLines  # noqa: PLC0415 - packs are optional
+
+        block = BlockLines.of(text, ())
+
+    def scorer_for(stage_offsets: OffsetMap) -> Scorer | None:
+        if evidence is None or block is None:
+            return None
+        return lambda t, found: evidence.score(t, found, stage_offsets, block)
+
     for step in steps:
-        revision = step.apply(text, lexicon, policy)
+        revision = step.apply(text, lexicon, policy, scorer_for(offsets))
         revisions.append((step.id, revision))
+        offsets = offsets.then(OffsetMap.from_edits(revision.edits))
+        text = revision.text
+    for stage, proposer in extras:
+        found = proposer(text)
+        scorer = scorer_for(offsets)
+        revision = decide(text, found if scorer is None else scorer(text, found), policy)
+        revisions.append((stage, revision))
+        offsets = offsets.then(OffsetMap.from_edits(revision.edits))
         text = revision.text
     return text, tuple(revisions)
+
+
+_PACKS: dict[
+    int,
+    tuple["ModelPack", "Evidence", tuple[tuple[str, Callable[[str], tuple[Candidate, ...]]], ...]],
+] = {}
+
+
+def _with_pack(
+    pack: "ModelPack",
+) -> tuple["Evidence", tuple[tuple[str, Callable[[str], tuple[Candidate, ...]]], ...]]:
+    """The evidence and the lexicon proposers for ``pack``, built once per pack."""
+    cached = _PACKS.get(id(pack))
+    if cached is None or cached[0] is not pack:
+        from lectris.evidence import Evidence  # noqa: PLC0415 - packs are optional
+
+        extras = (
+            ("lexical.word", propose.Lexical(pack.lexicon)),
+            ("segmentation", propose.Segmentation(pack.lexicon)),
+        )
+        cached = (pack, Evidence(pack), extras)
+        _PACKS.clear()  # one pack at a time is the usual case; never keep many alive
+        _PACKS[id(pack)] = cached
+    return cached[1], cached[2]
 
 
 def _clean_block(
@@ -182,8 +253,16 @@ def _clean_block(
     profile: Profile,
     lexicon: Lexicon | None,
     policy: Policy,
+    pack: "ModelPack | None" = None,
 ) -> CleanBlock:
-    text, revisions = run_rules(source, profile.steps, lexicon=lexicon, policy=policy)
+    lines = None
+    if pack is not None:
+        from lectris.evidence import BlockLines  # noqa: PLC0415 - packs are optional
+
+        lines = BlockLines.of(source, block.lines)
+    text, revisions = run_rules(
+        source, profile.steps, lexicon=lexicon, policy=policy, pack=pack, block=lines
+    )
     return CleanBlock(
         page=page,
         index=index,
@@ -232,6 +311,7 @@ def clean(
     profile: "Profile | str" = "standard",
     lexicon: Lexicon | None = None,
     policy: Policy = PARITY,
+    pack: "ModelPack | None" = None,
 ) -> Result:
     """Clean OCR output: arrange each page, then run every block's text through the rules.
 
@@ -242,7 +322,9 @@ def clean(
     ``Profile`` or the name of one in ``lectris.profiles.PROFILES``. A ``lexicon`` makes the
     rules that can use one more precise (de-hyphenation, confusions in words); without one they
     rely on their local evidence. ``policy`` decides on the candidates the guessing rules
-    propose (``lectris.decide``); the default, ``PARITY``, accepts what LECTRIS v0.1 did.
+    propose (``lectris.decide``); the default, ``PARITY``, accepts what LECTRIS v0.1 did. A
+    model ``pack`` (``lectris.models.pack``) adds evidence to every candidate and runs the
+    lexicon proposers (the module's documentation).
     """
     from lectris.profiles import get  # noqa: PLC0415 - the profiles import this module
 
@@ -259,6 +341,7 @@ def clean(
                 profile=chosen,
                 lexicon=lexicon,
                 policy=policy,
+                pack=pack,
             )
             for page_index, page in enumerate(document.pages)
             for index, block in enumerate(page.blocks)
@@ -276,6 +359,7 @@ def clean(
             profile=chosen,
             lexicon=lexicon,
             policy=policy,
+            pack=pack,
         )
         for page in document.pages
         for index, block in enumerate(page.blocks)

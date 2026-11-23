@@ -91,6 +91,17 @@ class TestChannel:
         assert channel.log_likelihood("modem", "rnodem") > channel.log_likelihood("modem", "qodem")
         assert channel.top(3)[0][:2] == ("m", "rn")
 
+    def test_an_unseen_character_is_not_read_with_certainty(self) -> None:
+        channel = Channel.fit(PAIRS)
+        assert channel.prob("x", "") < 0.1  # "x" never occurs in the intended texts
+        seen = Channel.fit([("hives", "hves")] * 3)  # the engine often loses this "i"
+        assert seen.log_likelihood("hxves", "hves") < seen.log_likelihood("hives", "hves")
+
+    def test_probabilities_of_an_intended_character_sum_to_at_most_one(self) -> None:
+        channel = Channel.fit(PAIRS)
+        forms = {b for a, b in errors("modern", "rnodern")} | {"", "m", "o", "0", "O"}
+        assert sum(channel.prob("m", form) for form in forms) <= 1
+
     def test_round_trip(self) -> None:
         channel = Channel.fit(PAIRS)
         again = Channel.from_data(json.loads(json.dumps(channel.to_data())))

@@ -44,6 +44,11 @@ All notable changes to LECTRIS are documented here. The format follows
 - Model packs and `lectris fit`: a character language model (modified Kneser-Ney), a channel
   model of what an engine confuses, and word counts, fitted on paired data and plain text into
   one deterministic file (`lectris.models`); `Lexicon.counts()`.
+- Evidence and lexicon proposers: with `clean(..., pack=...)`, every candidate edit gets
+  features (channel, language model, lexicon, the engine's confidence for the lines it came from,
+  shape, rule), and two more proposers run: words one edit from a lexicon word
+  (`lexical.word`) and missing or spurious spaces (`segmentation.split`, `segmentation.merge`).
+  Under the default policy they are declined, so the text does not change.
 
 ### Changed
 - GLYPHARIS output is now detected as `glypharis` instead of `json`. Its words, boxes and
@@ -56,6 +61,10 @@ All notable changes to LECTRIS are documented here. The format follows
   examples.
 - `confusables.in_numbers` reads an `O` before a decimal separator and a digit as the zero OCR
   misread: `O.5` becomes `0.5`, `O,75` becomes `0,75`. `O5`, `O.K.` and words are left alone.
+
+### Fixed
+- The channel model gave an intended string never seen in training probability 1 for any
+  reading; its smoothing now runs over all the observed forms the model knows.
 
 ## [0.1.0] - 2026-10-31
 
