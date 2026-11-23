@@ -4,8 +4,8 @@ Baseline B3 (ByT5-small fine-tuned on the fit split's line pairs) against LECTRI
 
 | System | CER | ΔCER vs uncorrected (points) | Repaired | Harm rate | Pages worse |
 |---|---|---|---|---|---|
-| B1-standard | 26.17% | +0.00 [-0.03, +0.04] | 0.047% | 0.042% | 6.0% |
-| LX-standard | 26.14% | -0.03 [-0.06, +0.01] | 0.098% | 0.060% | 8.5% |
+| B1-standard | 26.16% | -0.00 [-0.03, +0.04] | 0.047% | 0.042% | 5.8% |
+| LX-standard | 26.13% | -0.03 [-0.07, +0.00] | 0.098% | 0.060% | 7.2% |
 | B3 (tau any) | 27.24% | +1.08 [+0.44, +1.88] | 0.157% | 1.231% | 18.0% |
 | B3 (tau -1) | 27.22% | +1.05 [+0.43, +1.85] | 0.157% | 1.204% | 18.0% |
 | B3 (tau -0.5) | 26.60% | +0.44 [+0.07, +0.91] | 0.150% | 0.584% | 15.0% |
@@ -18,5 +18,5 @@ Baseline B3 (ByT5-small fine-tuned on the fit split's line pairs) against LECTRI
 | B3 (tau -0.005) | 26.17% | +0.00 [-0.00, +0.01] | 0.002% | 0.002% | 2.5% |
 | B3 (tau 0) | 26.17% | +0.00 [+0.00, +0.01] | 0.000% | 0.000% | 2.3% |
 
-- LX-standard minus B3 (every correction kept), CER: -1.10 [-1.89, -0.46] points.
-- Harm-matched: the most permissive B3 within LX-standard's harm rate keeps corrections with log probability >= -0.005; LX-standard minus it, CER: -0.03 [-0.07, +0.01] points.
+- LX-standard minus B3 (every correction kept), CER: -1.11 [-1.90, -0.47] points.
+- Harm-matched: the most permissive B3 within LX-standard's harm rate keeps corrections with log probability >= -0.005; LX-standard minus it, CER: -0.04 [-0.08, -0.00] points.

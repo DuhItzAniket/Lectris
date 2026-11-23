@@ -1,7 +1,7 @@
 {
   "id": "LX-DATA-002",
   "question": "LX-DATA-001 again, with layout-neutral references (R-15): the reference is laid out by the system's own layout steps, so de-hyphenation and unwrapping are scored apart. Same pairs, systems and seed. Descriptive: no hypothesis is tested on it.",
-  "lectris_version": "0.1.0",
+  "lectris_version": "0.3.0",
   "pages": 861,
   "manifest_sha256": "cff59396f452f740b524b319b57526f69aae228681072a4c89c57f0714ff1dd0",
   "resamples": 1000,
@@ -98,24 +98,24 @@
     },
     "B1-conservative": {
       "cer": {
-        "estimate": 0.2803532463726305,
-        "low": 0.24670391258293897,
-        "high": 0.32657396201249783
+        "estimate": 0.2803372188602607,
+        "low": 0.24669950825701004,
+        "high": 0.3265559988952683
       },
       "cer_raw": {
-        "estimate": 0.2804494114468493,
-        "low": 0.24684264884970017,
-        "high": 0.3265986612986885
+        "estimate": 0.28043338393447953,
+        "low": 0.24683824452377126,
+        "high": 0.3265806981814589
       },
       "wer": {
-        "estimate": 0.44419281376518216,
-        "low": 0.40606416562660597,
-        "high": 0.49503386888369727
+        "estimate": 0.44410425101214573,
+        "low": 0.4060029855859824,
+        "high": 0.49494690072297204
       },
       "cer_change": {
-        "estimate": 1.3737867745547213e-05,
-        "low": -4.730693448699178e-06,
-        "high": 3.190570496794616e-05
+        "estimate": -2.2896446242578688e-06,
+        "low": -1.5859745473741926e-05,
+        "high": 9.209502364539732e-06
       },
       "harm_rate": {
         "estimate": 0.0,
@@ -129,7 +129,7 @@
       "fixed_chars": 0,
       "harm_chars": 0,
       "precision": null,
-      "pages_worse": 0.008130081300813009,
+      "pages_worse": 0.0023228803716608595,
       "by_rule": {
         "hyphenation.join": {
           "fix": 0,
@@ -142,14 +142,14 @@
     },
     "B1-standard": {
       "cer": {
-        "estimate": 0.27971443552246256,
+        "estimate": 0.27970985623321404,
         "low": 0.24609171127881804,
-        "high": 0.32595328796508616
+        "high": 0.32594866484207413
       },
       "cer_raw": {
-        "estimate": 0.2798106005966814,
+        "estimate": 0.2798060213074329,
         "low": 0.24623044754557927,
-        "high": 0.32599027294918265
+        "high": 0.32598564982617056
       },
       "wer": {
         "estimate": 0.4424974696356275,
@@ -157,9 +157,9 @@
         "high": 0.4932327490570224
       },
       "cer_change": {
-        "estimate": -0.0006250729824223983,
-        "low": -0.0009874583560202659,
-        "high": -0.0003749589888605934
+        "estimate": -0.0006296522716709139,
+        "low": -0.000987690788168018,
+        "high": -0.00037852773112291273
       },
       "harm_rate": {
         "estimate": 0.00013284576355084758,
@@ -173,7 +173,7 @@
       "fixed_chars": 293,
       "harm_chars": 20,
       "precision": 0.8971428571428571,
-      "pages_worse": 0.017421602787456445,
+      "pages_worse": 0.015098722415795587,
       "by_rule": {
         "confusables.in_numbers": {
           "fix": 13,
@@ -221,14 +221,14 @@
     },
     "B1-aggressive": {
       "cer": {
-        "estimate": 0.27971443552246256,
+        "estimate": 0.27970985623321404,
         "low": 0.24609171127881804,
-        "high": 0.3259463532805681
+        "high": 0.325941730157556
       },
       "cer_raw": {
-        "estimate": 0.2798106005966814,
+        "estimate": 0.2798060213074329,
         "low": 0.24623044754557927,
-        "high": 0.3259833382646645
+        "high": 0.3259787151416525
       },
       "wer": {
         "estimate": 0.4424974696356275,
@@ -236,9 +236,9 @@
         "high": 0.4932327490570224
       },
       "cer_change": {
-        "estimate": -0.0006250729824223983,
-        "low": -0.0009897655017119021,
-        "high": -0.00037399446488191974
+        "estimate": -0.0006296522716709139,
+        "low": -0.0009928560016433479,
+        "high": -0.0003762610980024162
       },
       "harm_rate": {
         "estimate": 0.00013388369043720186,
@@ -252,7 +252,7 @@
       "fixed_chars": 294,
       "harm_chars": 21,
       "precision": 0.8926553672316384,
-      "pages_worse": 0.018583042973286876,
+      "pages_worse": 0.016260162601626018,
       "by_rule": {
         "confusables.in_numbers": {
           "fix": 13,
@@ -312,5 +312,6 @@
         }
       }
     }
-  }
+  },
+  "comparisons": {}
 }

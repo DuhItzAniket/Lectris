@@ -66,10 +66,11 @@ punctuation.spacing ' ' -> ''
 ## Install
 
 ```bash
-pip install git+https://github.com/DuhItzAniket/Lectris
+pip install lectris
 ```
 
-LECTRIS needs Python 3.12 or newer.
+LECTRIS needs Python 3.12 or newer and nothing else at run time. The latest code from the
+repository: `pip install git+https://github.com/DuhItzAniket/Lectris`.
 
 ## The command line
 

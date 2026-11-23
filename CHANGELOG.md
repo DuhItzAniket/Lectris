@@ -6,6 +6,20 @@ All notable changes to LECTRIS are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- Evaluation (`lectris.eval.scoring`, `lectris experiment run`): a layout-neutral reference now
+  rejoins hyphenated words exactly where the cleaned text rejoined them. Under the `risk` policy
+  the reference's joins were decided again on the ground truth without the pack's evidence, so
+  LECTRIS's own de-hyphenations were counted as errors. Cleaning output is unchanged.
+
+### Added
+
+- `scripts/build_gdc_pairs.py`: test pairs from GLYPHARIS's frozen GDC pages and an engine's
+  output, with GLYPHARIS's rule for the lines that count.
+- The Phase 13 test on GDC 1.1 (`reports/LX-TEST-002/`): LECTRIS-standard lowers CER by 0.02
+  points [0.01, 0.04] at a 0.012% harm rate, more than the v0.1 rules.
+
 ## [0.3.0] - 2026-11-23
 
 Risk-controlled, engine-aware correction. The rules that guess now propose candidate edits;
