@@ -9,7 +9,7 @@ Milestones, the order of the phases, and where LECTRIS and GLYPHARIS meet. The p
 |---|---|---|---|
 | v0.1.0 ✅ | rule engine, five readers, layout, metrics | 0 | — |
 | v0.2.0 | **integration-ready**: GLYPHARIS reader and contract, uncertainty model, propose/decide core with v0.1 parity, evaluation harness | 2, 3, 4 | — |
-| v0.3.0 | **the method**: evidence models, model packs, acceptance model, risk control, explanations and flags — **built** (2026-11-23), not yet released | 6, 7, 8 | Phase 5 data (GLYPHARIS output) |
+| v0.3.0 | **the method**: evidence models, model packs, acceptance model, risk control, explanations and flags — **tagged 0.3.0** (2026-11-23, with v0.2's work); a draft GitHub release until the owner publishes it | 6, 7, 8 | Phase 5 data (GLYPHARIS output) |
 | v0.4.0 | **results on dev**: baselines, main study, ablations, engine transfer | 9–12 | final GLYPHARIS model for reported numbers |
 | v1.0.0 | test evaluation, error analysis, efficiency, paper, release | 13–17 | GLYPHARIS test-set freeze and its paper's model |
 
@@ -58,7 +58,7 @@ research number come after, and do not block the joint test.
 | | State |
 |---|---|
 | v0.2 (Phases 2–4) | built and merged |
-| v0.3 (Phases 5–8: paired data, evidence, packs, risk control, interface) | built and merged; not released |
+| v0.3 (Phases 5–8: paired data, evidence, packs, risk control, interface) | tagged v0.3.0; draft release, waiting for the owner to publish it (after the PyPI setup) |
 | Phase 9 baselines | B0, B1, B2 done; B3 (ByT5) and B4 (LLM) wait for the research environment (ADR-0004 point 3, Proposed) |
 | Phase 10 main study (dev) | H1 first evidence (ΔCER −0.03 [−0.06, +0.01], not CI-separated); H3 partly supported (0 violations in 1,000 re-splits; recall clause not met) |
 | Phase 11 ablations | H2 supported on dev for the line-level arm (LX-ABL-001); the character arm waits for GLYPHARIS `chars` |

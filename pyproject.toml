@@ -1,6 +1,6 @@
 [project]
 name = "lectris"
-version = "0.1.0"
+version = "0.3.0"
 description = "OCR output, read back into clean, ordered text: every change it makes is recorded and explained."
 readme = "README.md"
 license = "Apache-2.0"
