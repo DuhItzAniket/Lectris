@@ -2,8 +2,8 @@
 
 Every read of a test set (GDC, external sets), in order: date, set, what was run (code commit,
 pack hash, GLYPHARIS model version), why, and the report. GDC reads are also logged in
-GLYPHARIS's `research/test_access_log.md`; the owner keeps that one (LECTRIS does not write to
-the GLYPHARIS repository).
+GLYPHARIS's `research/test_access_log.md`, by the owner (LECTRIS work does not write to the
+GLYPHARIS repository); LX-TEST-001 and LX-TEST-002 are there since DuhItzAniket/Glypharis#32.
 
 | Date | Set | Run | Reason | Report |
 |---|---|---|---|---|
