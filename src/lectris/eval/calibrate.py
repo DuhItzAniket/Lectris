@@ -33,7 +33,7 @@ from lectris.eval import truth as truth_io
 from lectris.eval.experiment import Pair
 from lectris.eval.scoring import LabelledCandidate, drop_dont_care, label_candidates
 from lectris.models.acceptance import Acceptance, calibration
-from lectris.models.pack import Budget, ModelPack, PackError
+from lectris.models.pack import Budget, ModelPack
 from lectris.models.risk import certified, grid
 from lectris.pipeline import clean
 
@@ -42,8 +42,6 @@ BUDGETS: Final = {"conservative": 0.01, "standard": 0.02, "aggressive": 0.05}
 
 DELTA: Final = 0.1
 """The confidence the budgets are held with is ``1 - DELTA``."""
-
-_DECLINE: Final = Threshold(lambda _: 0.0, 1.0)
 
 
 @dataclass(frozen=True, slots=True)
@@ -176,13 +174,5 @@ def calibrate(
 
 
 def risk_policy(pack: ModelPack, profile: str) -> Threshold:
-    """The ``risk`` policy of ``profile``: accept a candidate whose probability reaches the
-    threshold the pack's calibration chose for it; accept nothing when none was chosen."""
-    if pack.acceptance is None or pack.risk is None:
-        raise PackError("the pack is not calibrated: run lectris calibrate first")
-    if profile not in pack.risk:
-        raise PackError(f"the pack has no risk budget for the profile {profile!r}")
-    threshold = pack.risk[profile].threshold
-    if threshold is None:
-        return _DECLINE
-    return Threshold(pack.acceptance.probability, threshold)
+    """The ``risk`` policy of ``profile`` (``ModelPack.policy``)."""
+    return pack.policy(profile)

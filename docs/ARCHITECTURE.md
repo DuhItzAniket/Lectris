@@ -347,10 +347,11 @@ Without a model pack, `clean()` uses `parity`. That is LECTRIS v0.1's behaviour,
 broken.
 
 ### 11.5 Review flags
-[v2, Phase 8] A declined candidate with p ≥ λ_flag _(tunable)_, and any span whose engine
+[v2, Phase 8 — built: `Result.flags`] A declined candidate with p ≥ λ_flag _(tunable)_, and any span whose engine
 confidence is below a threshold, is reported as a `Flag`: its span, the best candidate, its
 probability and why it was declined. It is selective prediction, in the archive's terms: what a
-person should look at.
+person should look at. Built: the declined candidates with p ≥ 0.3 _(tunable)_; spans of low
+engine confidence are not flagged on their own yet.
 
 ## 12. Model packs and fitting (`lectris.models`)
 
@@ -414,17 +415,22 @@ result.counts()  # edits per rule
 [v2, Phase 3 — built] `clean(..., policy=PARITY)` and `result.decisions()` (every candidate,
 accepted or declined, located by page, block and step).
 
-[v2, Phase 8] Additions; every v0.1 call keeps its meaning.
+[v2, Phase 8 — built] Additions; every v0.1 call keeps its meaning.
 
 ```python
-result = lectris.clean(document, profile="standard", pack=lectris.models.load("pack.json.gz"))
-result.decisions()  # with evidence and probability
-result.flags()  # spans for review
-result.guarantee  # α, δ, λ̂ and whether the pack matches the input's engine
+model = lectris.models.pack.load("calibrated.lectris.json.gz")
+result = lectris.clean(document, pack=model, policy=model.policy("standard"))
+result.decisions()  # every candidate, with its evidence, probability and threshold
+result.flags()  # declined but likely candidates, for review
+result.guarantee  # Guarantee(alpha, delta, threshold, engine, model), or None
+result.guarantee_applies  # whether the input came from that engine and model
 ```
 
-`lectris.report` renders a result as a summary, JSON or Markdown, and [v2] includes the evidence
-behind each edit. The CLI adds `lectris fit`, `lectris experiment` and `lectris clean --pack`.
+`lectris.report` renders a result as a summary, JSON or Markdown; the JSON holds the guarantee,
+every decision with its features, and the flags; the Markdown states the guarantee and lists the
+flags. The CLI has `lectris fit`, `lectris calibrate`, `lectris experiment` and
+`lectris clean --pack [--policy parity|risk|none]`, which uses the risk policy when the pack is
+calibrated and warns when the guarantee does not apply to the input.
 
 GLYPHARIS and LECTRIS are joined only through the JSON contract; neither imports the other:
 

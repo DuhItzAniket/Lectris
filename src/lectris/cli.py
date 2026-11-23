@@ -6,6 +6,7 @@ import sys
 from collections.abc import Callable, Sequence
 from importlib.metadata import version
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from lectris import io, metrics, report
 from lectris.errors import LectrisError
@@ -13,6 +14,10 @@ from lectris.io._common import decode
 from lectris.io.detect import detect
 from lectris.lexicon import Lexicon
 from lectris.model import Document
+
+if TYPE_CHECKING:
+    from lectris.decide import Policy
+    from lectris.models.pack import ModelPack
 from lectris.pipeline import clean
 from lectris.profiles import PROFILES
 
@@ -33,6 +38,14 @@ def _parser() -> argparse.ArgumentParser:
     run.add_argument("-p", "--profile", choices=tuple(PROFILES), default="standard")
     run.add_argument("-o", "--output", type=Path, help="write the text here (standard output)")
     run.add_argument("-l", "--lexicon", type=Path, help="a word list: one word per line")
+    run.add_argument(
+        "--pack", type=Path, help="a model pack: evidence, the lexicon proposers, the risk policy"
+    )
+    run.add_argument(
+        "--policy",
+        choices=("parity", "risk", "none"),
+        help="how guesses are decided (risk with a calibrated pack, else parity)",
+    )
     run.add_argument("-r", "--report", type=Path, help="write the report of every edit here")
     run.add_argument(
         "--report-format", choices=_REPORT_FORMATS, default="json", help="the report's format"
@@ -112,7 +125,8 @@ def _read_input(argument: str, format_name: str | None) -> Document | str:
 def _clean(arguments: argparse.Namespace) -> int:
     document = _read_input(arguments.input, arguments.format)
     lexicon = None if arguments.lexicon is None else Lexicon.from_file(arguments.lexicon)
-    result = clean(document, profile=arguments.profile, lexicon=lexicon)
+    model, policy = _pack_and_policy(arguments, document)
+    result = clean(document, profile=arguments.profile, lexicon=lexicon, policy=policy, pack=model)
     text = result.text + "\n" if result.text else ""
     if arguments.output is None:
         _write(text)
@@ -128,6 +142,34 @@ def _clean(arguments: argparse.Namespace) -> int:
     if arguments.summary:
         sys.stderr.write(report.summary(result))
     return 0
+
+
+def _pack_and_policy(
+    arguments: argparse.Namespace, document: Document | str
+) -> tuple["ModelPack | None", "Policy"]:
+    """The pack and the policy ``clean`` asked for, with a warning when a risk guarantee
+    cannot apply to the input."""
+    from lectris.decide import PARITY  # noqa: PLC0415 - only packs need these
+    from lectris.eval.experiment import NONE  # noqa: PLC0415
+
+    if arguments.pack is None:
+        if arguments.policy == "risk":
+            raise LectrisError("--policy risk needs --pack")
+        return None, NONE if arguments.policy == "none" else PARITY
+    from lectris.models import pack  # noqa: PLC0415
+
+    model = pack.load(arguments.pack)
+    name = arguments.policy or ("risk" if model.acceptance is not None else "parity")
+    if name == "risk":
+        engine = document.engine if isinstance(document, Document) else None
+        if engine is None or (engine.name, engine.model) != (model.engine, model.model):
+            seen = "plain text" if engine is None else f"{engine.name} {engine.model}"
+            sys.stderr.write(
+                f"lectris: the pack was calibrated for {model.engine} {model.model}, the input "
+                f"is from {seen}: its harm guarantee does not apply to this input\n"
+            )
+        return model, model.policy(arguments.profile)
+    return model, NONE if name == "none" else PARITY
 
 
 def _eval(arguments: argparse.Namespace) -> int:

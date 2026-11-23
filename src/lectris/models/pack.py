@@ -33,6 +33,7 @@ from pathlib import Path
 from typing import Any, Final
 
 from lectris import __version__
+from lectris.decide import Guarantee, Threshold
 from lectris.errors import LectrisError
 from lectris.lexicon import Lexicon
 from lectris.model import Document
@@ -90,6 +91,20 @@ class ModelPack:
     acceptance: Acceptance | None = None
     risk: Mapping[str, Budget] | None = None
     calibration: Mapping[str, Any] | None = None
+
+    def policy(self, profile: str) -> Threshold:
+        """The ``risk`` policy of ``profile``: accept a candidate whose probability reaches the
+        threshold the calibration chose for it, with the guarantee it holds; accept nothing when
+        none was certified. ``PackError`` if the pack is not calibrated for ``profile``."""
+        if self.acceptance is None or self.risk is None:
+            raise PackError("the pack is not calibrated: run lectris calibrate first")
+        if profile not in self.risk:
+            raise PackError(f"the pack has no risk budget for the profile {profile!r}")
+        budget = self.risk[profile]
+        guarantee = Guarantee(budget.alpha, budget.delta, budget.threshold, self.engine, self.model)
+        if budget.threshold is None:
+            return Threshold(lambda _: 0.0, 1.0, guarantee)
+        return Threshold(self.acceptance.probability, budget.threshold, guarantee)
 
     def matches(self, document: Document) -> bool:
         """Whether ``document`` came from the engine and model this pack was fitted for."""

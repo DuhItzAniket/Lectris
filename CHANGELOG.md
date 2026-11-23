@@ -54,6 +54,12 @@ All notable changes to LECTRIS are documented here. The format follows
   to keep the harm rate within the profile's budget, the most useful of the certified ones
   (`lectris.models.acceptance`, `lectris.models.risk`, `lectris.eval.calibrate`). Experiments
   can run a calibrated pack under the `risk` policy.
+- `lectris clean --pack P [--policy parity|risk|none]`; `ModelPack.policy(profile)`;
+  `Result.guarantee` and `Result.guarantee_applies` (the promise, and whether the input came from
+  the engine it was calibrated for, with a warning on the command line when not);
+  `Result.flags()` (declined but likely corrections, for review). The JSON report holds the
+  guarantee, every decision with its probability and evidence, and the flags; the Markdown report
+  states the guarantee and lists the flags.
 
 ### Changed
 - GLYPHARIS output is now detected as `glypharis` instead of `json`. Its words, boxes and

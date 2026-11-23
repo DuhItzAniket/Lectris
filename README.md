@@ -89,6 +89,38 @@ The input's format is detected from its content; `--format` names it. `--lexicon
 word per line, an optional count after it) makes de-hyphenation and the confusion rules more
 precise. No dictionary is bundled.
 
+## With a model pack: risk-controlled corrections
+
+A model pack holds what LECTRIS learns about one OCR engine: what it confuses, a character
+language model, word counts, and an acceptance model calibrated so that each profile keeps the
+harm it does to correct text within a budget, with a stated confidence.
+
+```bash
+lectris fit --pairs fit.json --engine glypharis --model glypharis_v1 --text books/ -o pack.lectris.json.gz
+lectris calibrate --pack pack.lectris.json.gz --fit fit.json --cal cal.json -o calibrated.lectris.json.gz
+lectris clean page.json --pack calibrated.lectris.json.gz -r report.md --report-format markdown
+```
+
+With a calibrated pack, every guess (the v0.1 rules' and those of two more proposers: words one
+edit from a lexicon word, missing and spurious spaces) is accepted only if its probability of
+being right reaches the profile's threshold. The report states the guarantee, for instance
+*harm rate at most 0.02 with confidence 0.9*, and whether it applies: it holds only for input
+from the engine and model the pack was calibrated for, and the command warns when it does not.
+It also lists, *for review*, the corrections it declined that were still likely.
+
+```python
+from lectris import clean, io
+from lectris.models import pack
+
+model = pack.load("calibrated.lectris.json.gz")
+result = clean(io.read("page.json"), pack=model, policy=model.policy("standard"))
+result.guarantee, result.guarantee_applies  # the promise, and whether it holds here
+result.flags()  # declined but likely corrections
+```
+
+Without a pack, LECTRIS behaves exactly as v0.1. The pairs come from running the engine on pages
+with ground truth; `scripts/build_hiertext_pairs.py` builds them for HierText.
+
 ## Profiles
 
 | Profile | What it changes |

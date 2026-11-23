@@ -148,3 +148,33 @@ word or the bracket starts one. With `high_punctuation=True` it also removes the
 Left alone: numbers and times (`3 . 14`, `10 : 30`), ellipses, `.gitignore`, `f( x )`, and line
 breaks.
 Example: `"species , most"` → `"species, most"`.
+
+## Proposers and evidence (v2)
+
+The rules above that guess (`confusables.*`, `numbers.separators`, `punctuation.spacing`,
+`hyphenation.join`, `noise.drop_lines`) propose their edits as candidates; without a model pack,
+or under the `parity` policy, every candidate their own conditions accept is accepted, so they
+behave as described above. With a pack, two more proposers run after the profile's rules, on
+the pack's word list, and every candidate gets evidence (`lectris.evidence`) that a calibrated
+acceptance model weighs (`lectris clean --pack`).
+
+### `lexical.word` — with a pack
+For a token of letters (without the punctuation around it) that is not in the lexicon, proposes
+the lexicon's words one edit away: a character the engine lost, added or misread, the most
+frequent first, at most three, in the token's case.
+Left alone: words in the lexicon, tokens shorter than three letters, and tokens with a digit or
+another non-letter inside (`1O5`, `l0ng`: the confusion rules handle those).
+Example: `"the hves"` → `"the hives"` (when the acceptance model accepts it).
+
+### `segmentation.split` and `segmentation.merge` — with a pack
+Inserts a space inside a token that is two lexicon words run together, or removes the space
+between two tokens that make a lexicon word, when one of them is not a word.
+Left alone: two words that are both in the lexicon are never merged (`the rest`), and tokens
+shorter than four letters are not split.
+Example: `"a quietyear"` → `"a quiet year"`.
+
+### Evidence
+Every candidate gets: the channel score (how plausible the text is as this engine's error), the
+change in the character model's log probability, the lexicon frequency of the word before and
+after, the recognition confidence and detection score of the lines it came from, the edit's
+shape and its rule. `lectris.evidence` lists the exact names.

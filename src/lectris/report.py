@@ -21,14 +21,28 @@ def summary(result: Result) -> str:
 
 
 def to_dict(result: Result) -> dict[str, Any]:
-    """The report as plain data: the profile, each block's source and text, and its edits.
+    """The report as plain data: the profile, the guarantee, each block's source and text, its
+    edits and the decisions on its candidates, and the flags for review.
 
-    An edit's ``start`` and ``end`` are offsets in the text its rule received: the block's
-    source after the steps before it.
+    An edit's or a decision's ``start`` and ``end`` are offsets in the text its rule received:
+    the block's source after the steps before it. ``guarantee`` is ``null`` unless the policy is
+    risk-controlled; ``applies`` says whether the input came from the engine it was calibrated
+    for.
     """
+    guarantee = result.guarantee
     return {
         "format": FORMAT_VERSION,
         "profile": result.profile,
+        "guarantee": None
+        if guarantee is None
+        else {
+            "alpha": guarantee.alpha,
+            "delta": guarantee.delta,
+            "threshold": guarantee.threshold,
+            "engine": guarantee.engine,
+            "model": guarantee.model,
+            "applies": result.guarantee_applies,
+        },
         "counts": result.counts(),
         "blocks": [
             {
@@ -50,8 +64,39 @@ def to_dict(result: Result) -> dict[str, Any]:
                     for step, (_, revision) in enumerate(block.revisions)
                     for edit in revision.edits
                 ],
+                "decisions": [
+                    {
+                        "step": step,
+                        "rule": d.candidate.rule,
+                        "start": d.candidate.start,
+                        "end": d.candidate.end,
+                        "before": d.candidate.before,
+                        "after": d.candidate.after,
+                        "accepted": d.accepted,
+                        "reason": d.reason,
+                        "probability": d.probability,
+                        "threshold": d.threshold,
+                        "features": dict(d.candidate.features),
+                    }
+                    for step, (_, revision) in enumerate(block.revisions)
+                    for d in revision.decisions
+                ],
             }
             for block in result.blocks
+        ],
+        "flags": [
+            {
+                "page": f.page,
+                "block": f.block,
+                "step": f.step,
+                "rule": f.rule,
+                "start": f.start,
+                "end": f.end,
+                "before": f.before,
+                "after": f.after,
+                "probability": f.probability,
+            }
+            for f in result.flags()
         ],
     }
 
@@ -63,7 +108,17 @@ def to_json(result: Result, *, indent: int | None = 2) -> str:
 
 def to_markdown(result: Result, *, limit: int = 200) -> str:
     """A readable report: the counts, then each edit as before → after, up to ``limit``."""
-    lines = [f"# LECTRIS report ({result.profile})", "", "| Rule | Edits |", "|---|---:|"]
+    lines = [f"# LECTRIS report ({result.profile})", ""]
+    guarantee = result.guarantee
+    if guarantee is not None:
+        applies = "applies" if result.guarantee_applies else "does NOT apply (another engine)"
+        lines += [
+            f"Risk-controlled: harm rate at most {guarantee.alpha} with confidence "
+            f"{1 - guarantee.delta:g}, threshold {guarantee.threshold}, for "
+            f"{guarantee.engine} {guarantee.model}; the guarantee {applies}.",
+            "",
+        ]
+    lines += ["| Rule | Edits |", "|---|---:|"]
     lines += [f"| `{rule}` | {count} |" for rule, count in result.counts().items()]
     lines += ["", "## Edits", ""]
     shown = 0
@@ -79,6 +134,14 @@ def to_markdown(result: Result, *, limit: int = 200) -> str:
         shown += 1
     if shown == 0:
         lines.append("No edits.")
+    flags = result.flags()
+    if flags:
+        lines += ["", "## For review", ""]
+        lines += [
+            f"- page {f.page}, block {f.block}, `{f.rule}` ({f.probability:.2f}): "
+            f"{_quote(f.before)} → {_quote(f.after)}"
+            for f in flags[:limit]
+        ]
     return "\n".join(lines) + "\n"
 
 

@@ -53,11 +53,32 @@ PARITY: Final = Parity()
 
 
 @dataclass(frozen=True, slots=True)
+class Guarantee:
+    """What a risk-controlled policy promises, and for which engine.
+
+    With probability at least ``1 - delta`` over the calibration pages, the expected harm rate on
+    new pages like them, from ``engine``'s ``model``, is at most ``alpha`` (ADR-0002, ADR-0008).
+    ``threshold`` is ``None`` when no threshold could be certified: then no guess is accepted.
+    """
+
+    alpha: float
+    delta: float
+    threshold: float | None
+    engine: str
+    model: str
+
+
+@dataclass(frozen=True, slots=True)
 class Threshold:
-    """Accepts the candidates whose ``score`` is at least ``threshold``, both in ``[0, 1]``."""
+    """Accepts the candidates whose ``score`` is at least ``threshold``, both in ``[0, 1]``.
+
+    A risk-controlled threshold (``lectris.models.pack.ModelPack.policy``) carries its
+    ``guarantee``.
+    """
 
     score: Callable[[Candidate], float]
     threshold: float
+    guarantee: Guarantee | None = None
 
     def __post_init__(self) -> None:
         if not 0 <= self.threshold <= 1:
