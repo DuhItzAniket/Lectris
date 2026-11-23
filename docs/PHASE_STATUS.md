@@ -20,7 +20,7 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 | 12 | Engine transfer | not started | — |
 | 13 | Test evaluation | not started | — |
 | 14 | Error analysis | not started | — |
-| 15 | Efficiency | not started | — |
+| 15 | Efficiency | **IN PROGRESS** (H6 measured: LX-EFF-001) | — |
 | 16 | Research package | not started | — |
 | 17 | Release v1.0 | not started | — |
 
@@ -363,3 +363,9 @@ owner's call (docs/RELEASING.md).
 - **H2** (LX-ABL-001, Phase 11's first ablation): supported on dev for the line-level arm; the
   engine features add +0.03 [+0.02, +0.04] points of repaired characters at the same budget.
   `lectris calibrate --exclude` and paired `compare` in experiment configs make ablations.
+
+## Phase 15 — Efficiency (in progress)
+
+- **H6** (LX-EFF-001, 433 dev pages, this machine): LECTRIS-standard with the calibrated pack,
+  median 0.0078 s per page (95th percentile 0.0223); GLYPHARIS, from its own log, 1.590 s; median
+  per-page ratio 0.0050. Supported. Memory and the neural baselines' times are still to measure.

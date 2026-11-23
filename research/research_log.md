@@ -138,3 +138,11 @@ tested.
   passed through its JSON, tells LECTRIS where corrections are likely to be right. H2 is
   supported on dev for the line-level arm; per-character confidences (`chars`, ADR-0003) are the
   next step, and need GLYPHARIS to export them.
+
+## 2026-11-23 — H6: correction is almost free next to recognition (LX-EFF-001)
+
+- With the calibrated pack and the risk policy, LECTRIS reads a page of GLYPHARIS output and
+  cleans it in a median 7.8 ms (95th percentile 22 ms) on the laptop's CPU; GLYPHARIS took a
+  median 1.59 s per page to recognise it. The ratio is 0.5% per page (median), 0.9% at the 95th
+  percentile. The pack is 0.98 MB. H6 is supported with room to spare: the evidence, the
+  proposers and the decision cost nothing a user would notice.

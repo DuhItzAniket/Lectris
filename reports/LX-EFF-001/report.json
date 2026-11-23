@@ -1,0 +1,22 @@
+{
+  "id": "LX-EFF-001",
+  "pages": 433,
+  "profile": "standard",
+  "machine": {
+    "python": "3.13.13",
+    "system": "Windows"
+  },
+  "lectris_seconds": {
+    "median": 0.007797199999913573,
+    "p95": 0.0223002999991877,
+    "mean": 0.009748801616519635
+  },
+  "engine_seconds": {
+    "median": 1.59,
+    "p95": 3.61,
+    "mean": 1.8823556581986143
+  },
+  "ratio_median": 0.00498542857323108,
+  "ratio_p95": 0.009161565217452691,
+  "pack_bytes": 975010
+}
