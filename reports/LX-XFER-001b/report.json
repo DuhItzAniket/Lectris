@@ -1,0 +1,66 @@
+{
+  "id": "LX-XFER-001b",
+  "seed": 1337,
+  "fixed": true,
+  "pack_engine": "glypharis glypharis_v1",
+  "pairs": [
+    "hiertext_val_tesseract_5.4_cal.json",
+    "hiertext_val_tesseract_5.4_dev.json"
+  ],
+  "profiles": {
+    "aggressive": {
+      "alpha": 0.05,
+      "delta": 0.1,
+      "resplits": 1000,
+      "no_threshold": 0,
+      "violations": 0,
+      "violation_share": 0.0,
+      "binomial_upper_95": 0.003826898586390522,
+      "test_loss_mean": 5.620143514979942e-05,
+      "test_loss_max": 0.00011070690457610539,
+      "threshold_mean": 0.52,
+      "recall_gap_mean": 0.7236276034832286,
+      "pages": 863,
+      "calibration_pages": 430,
+      "ece": 0.07695361357814211,
+      "brier": 0.10626868032138342,
+      "candidates": 10499
+    },
+    "conservative": {
+      "alpha": 0.01,
+      "delta": 0.1,
+      "resplits": 1000,
+      "no_threshold": 0,
+      "violations": 0,
+      "violation_share": 0.0,
+      "binomial_upper_95": 0.003826898586390522,
+      "test_loss_mean": 1.5312836365099317e-05,
+      "test_loss_max": 3.0363776513356644e-05,
+      "threshold_mean": 0.51,
+      "recall_gap_mean": 0.9884539535576754,
+      "pages": 863,
+      "calibration_pages": 430,
+      "ece": 0.06897458246471821,
+      "brier": 0.1025758448047299,
+      "candidates": 10127
+    },
+    "standard": {
+      "alpha": 0.02,
+      "delta": 0.1,
+      "resplits": 1000,
+      "no_threshold": 0,
+      "violations": 0,
+      "violation_share": 0.0,
+      "binomial_upper_95": 0.003826898586390522,
+      "test_loss_mean": 5.620143514979942e-05,
+      "test_loss_max": 0.00011070690457610539,
+      "threshold_mean": 0.52,
+      "recall_gap_mean": 0.7234709873600162,
+      "pages": 863,
+      "calibration_pages": 430,
+      "ece": 0.07696746435810511,
+      "brier": 0.10623720989185508,
+      "candidates": 10496
+    }
+  }
+}

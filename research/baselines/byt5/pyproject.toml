@@ -1,0 +1,25 @@
+# Baseline B3 (protocol §6; ADR-0004, point 3): ByT5-small fine-tuned for line-level post-OCR
+# correction. A research environment of its own: torch and transformers never enter the lectris
+# package, its dependencies or its CI. Run from this folder: `uv sync`, then the scripts.
+[project]
+name = "lectris-byt5-baseline"
+version = "0"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "torch==2.14.1",
+    "transformers>=4.46",
+    "safetensors>=0.4",
+    "lectris",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu126" }
+lectris = { path = "../../..", editable = true }
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true

@@ -85,6 +85,9 @@ ignore = [
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["S101", "PLR2004", "ARG"]
+# Research baselines (ADR-0004): scripts in their own environment, which print their report
+# and seed their own generators.
+"research/**" = ["T201", "S311", "PLR0915", "PLR2004"]
 
 [tool.ruff.lint.flake8-tidy-imports]
 ban-relative-imports = "all"

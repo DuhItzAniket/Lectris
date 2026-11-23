@@ -62,7 +62,7 @@ stated.
   calibration on the new engine restores validity.
 - **Test:** Phase 12 (LX-XFER-*).
 - **Success criterion:** each of the three parts decided separately.
-- **Status:** open.
+- **Status:** testing (LX-XFER-001, registered 2026-11-23).
 
 ### H5 — Against neural correction at matched harm (RQ1)
 
@@ -70,7 +70,8 @@ stated.
   higher harm rate; at matched harm, LECTRIS lowers CER at least as much.
 - **Test:** Phase 10 (LX-BASE-*, LX-MAIN-*), if B3 is approved (ADR-0004).
 - **Success criterion:** each part CI-separated; "inconclusive" if B3 cannot be harm-matched.
-- **Status:** open.
+- **Status:** testing (LX-BASE-002, registered 2026-11-23; the research environment approved by
+  the owner the same day; compared with LECTRIS-standard, the profile calibrated as ADR-0008/9 set).
 
 ### H6 — Correction is cheap next to recognition (RQ6)
 
