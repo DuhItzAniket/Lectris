@@ -18,9 +18,15 @@ hyphenated words. Against such a reference a correct de-hyphenation would count 
 (RISK_REGISTER R-15). So the reference the cleaned text is compared with is laid out the way the
 cleaned text was: the block's reference lines, joined by line breaks, are passed through the
 same layout steps the system ran (``hyphenation.join`` and ``unwrap.join_lines``, in the
-profile's order, under the system's policy). A line-break decision is then the same on both
-sides and is neither a fix nor a harm; where the OCR text near a line end differs from the
-ground truth, the decisions can differ, and that difference counts. The uncorrected text is
+profile's order). ``hyphenation.join`` proposes, and its decisions are the system's: the
+reference rejoins a word across a line break exactly where the system rejoined the block's
+(that break mapped back to the block's OCR lines, and both lines on its sides matched), when the
+rule finds a word to rejoin there. The policy is not asked again on the ground truth: a scoring
+policy (``risk``) scores only the OCR's candidates, so its decisions on the reference would not
+be the system's (LX-TEST-001's re-run). A line-break decision is then the same on both sides and
+is neither a fix nor a harm; where the OCR text near a line end differs from the ground truth,
+the two sides can still differ, and that difference counts. Without boxes (the page compared
+as one block), the reference is laid out under the system's policy. The uncorrected text is
 compared with the reference lines as they are. Layout edits are labelled *layout*: they are
 scored apart, on data with reading-text ground truth.
 
@@ -46,8 +52,8 @@ from collections.abc import Callable, Iterable, Sequence
 from dataclasses import dataclass, replace
 from typing import Final, Literal
 
-from lectris.decide import Policy
-from lectris.edits import Candidate, Edit, apply_edits
+from lectris.decide import PARITY, Policy
+from lectris.edits import Candidate, Edit, OffsetMap, apply_edits, revise
 from lectris.eval.matching import Matching, match_lines
 from lectris.eval.truth import TruthPage
 from lectris.lexicon import Lexicon
@@ -80,13 +86,63 @@ def normalised(text: str) -> str:
 
 
 def lay_out(
-    text: str, steps: Sequence[Step], policy: Policy, lexicon: Lexicon | None = None
+    text: str,
+    steps: Sequence[Step],
+    policy: Policy,
+    lexicon: Lexicon | None = None,
+    *,
+    joins: frozenset[int] | None = None,
 ) -> str:
-    """``text`` through the layout steps among ``steps``, in their order, under ``policy``."""
+    """``text`` through the layout steps among ``steps``, in their order, under ``policy``.
+
+    With ``joins``, ``hyphenation.join`` joins a word exactly at those line junctions of
+    ``text`` (``k``: the break after its line ``k``, counting from 0) where the rule finds one,
+    whatever ``policy`` would decide: the decisions a system made on its own text, carried over
+    to the reference (``score_page``).
+    """
     for step in steps:
-        if step.id in LAYOUT_RULES:
+        if step.id == _HYPHENATION and joins is not None:
+            found = step.apply(text, lexicon, PARITY).edits
+            text = revise(text, [e for e in found if _junction(text, e) in joins]).text
+        elif step.id in LAYOUT_RULES:
             text = step.apply(text, lexicon, policy).text
     return text
+
+
+_HYPHENATION: Final = "hyphenation.join"
+
+
+def _junction(text: str, edit: Edit) -> int:
+    """The line junction a ``hyphenation.join`` edit joins across (each edit spans one break)."""
+    return text.count("\n", 0, edit.start + edit.before.index("\n"))
+
+
+def _joins(block: CleanBlock) -> frozenset[int]:
+    """The line junctions of ``block.source`` where the system's ``hyphenation.join`` joined a
+    word, found by mapping each of its edits back through the revisions before it."""
+    offsets = OffsetMap()
+    for rule, revision in block.revisions:
+        if rule == _HYPHENATION:
+            found: set[int] = set()
+            for edit in revision.edits:
+                start, end = offsets.source(edit.start, edit.end)
+                span = block.source[start:end]
+                if span.count("\n") == 1:
+                    found.add(block.source.count("\n", 0, start + span.index("\n")))
+            return frozenset(found)
+        offsets = offsets.then(OffsetMap.from_edits(revision.edits))
+    return frozenset()
+
+
+def _reference_joins(joins: frozenset[int], matched: Sequence[int]) -> frozenset[int]:
+    """``joins`` (junctions of the OCR block) as junctions of its reference, whose line ``k`` is
+    the ground truth of the block's line ``matched[k]``: a junction carries over when the lines
+    on both sides of it are matched."""
+    return frozenset(
+        k
+        for k in range(len(matched) - 1)
+        if matched[k] in joins and matched[k + 1] == matched[k] + 1
+    )
 
 
 @dataclass(frozen=True, slots=True)
@@ -223,8 +279,9 @@ def score_page(
     )
     if not matching.pairs and not _any_box(ocr_lines, truth):
         return _score_whole(result, truth, len(ocr_lines), laid)
-    references = _references(blocks, truth, matching)
-    laid_out = [laid(reference) for reference in references]
+    found = _references(blocks, truth, matching)
+    references = [reference for reference, _ in found]
+    laid_out = _laid_out(blocks, found, steps, result.policy, lexicon)
     missing = [truth.lines[j].text for j in matching.truth_unmatched]
     sources = [block.source for block, _ in blocks]
     cleaned = [block.text for block, _ in blocks]
@@ -261,16 +318,38 @@ def _any_box(lines: Iterable[Line], truth: TruthPage) -> bool:
 
 def _references(
     blocks: Sequence[tuple[CleanBlock, tuple[Line, ...]]], truth: TruthPage, matching: Matching
-) -> list[str]:
-    """Each block's reference: its matched ground-truth lines, one per line, in its order."""
+) -> list[tuple[str, tuple[int, ...]]]:
+    """Each block's reference: its matched ground-truth lines, one per line, in its order, with
+    the block's lines (their offsets in the block) that they are matched with."""
     of = dict(matching.pairs)
-    references: list[str] = []
+    references: list[tuple[str, tuple[int, ...]]] = []
     position = 0
     for _, lines in blocks:
-        matched = [of.get(position + offset) for offset in range(len(lines))]
-        references.append("\n".join(truth.lines[j].text for j in matched if j is not None))
+        matched = tuple(o for o in range(len(lines)) if position + o in of)
+        references.append(("\n".join(truth.lines[of[position + o]].text for o in matched), matched))
         position += len(lines)
     return references
+
+
+def _laid_out(
+    blocks: Sequence[tuple[CleanBlock, tuple[Line, ...]]],
+    references: Sequence[tuple[str, tuple[int, ...]]],
+    steps: Sequence[Step],
+    policy: Policy,
+    lexicon: Lexicon | None,
+) -> list[str]:
+    """Each block's reference laid out as the block was: its words rejoined across the line
+    breaks where the system rejoined the block's, then the other layout steps."""
+    return [
+        lay_out(
+            reference,
+            steps,
+            policy,
+            lexicon,
+            joins=_reference_joins(_joins(block), matched),
+        )
+        for (block, _), (reference, matched) in zip(blocks, references, strict=True)
+    ]
 
 
 def _labels(
@@ -410,11 +489,13 @@ def label_candidates(
     )
     if not matching.pairs:
         return []
-    references = _references(blocks, truth, matching)
+    references = _laid_out(
+        blocks, _references(blocks, truth, matching), steps, result.policy, lexicon
+    )
     reference_chars = sum(len(normalised(line.text)) for line in truth.lines)
     found: list[LabelledCandidate] = []
     for (block, _), reference in zip(blocks, references, strict=True):
-        target = normalised(lay_out(reference, steps, result.policy, lexicon))
+        target = normalised(reference)
         text = block.source
         for step, (_, revision) in enumerate(block.revisions):
             judged = [d for d in revision.decisions if d.candidate.rule not in LAYOUT_RULES]
