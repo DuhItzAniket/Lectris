@@ -41,6 +41,9 @@ All notable changes to LECTRIS are documented here. The format follows
   (de-hyphenation, unwrapping), so a correct de-hyphenation against line-level ground truth is
   not counted as a harm; layout edits are labelled `layout` and counted apart. `Result` keeps the
   `policy` that cleaned it.
+- Model packs and `lectris fit`: a character language model (modified Kneser-Ney), a channel
+  model of what an engine confuses, and word counts, fitted on paired data and plain text into
+  one deterministic file (`lectris.models`); `Lexicon.counts()`.
 
 ### Changed
 - GLYPHARIS output is now detected as `glypharis` instead of `json`. Its words, boxes and

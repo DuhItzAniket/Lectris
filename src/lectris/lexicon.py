@@ -148,6 +148,11 @@ class Lexicon:
         """The count of ``word``, or 0 if it is not in the lexicon."""
         return self._counts.get(self._key(word), 0)
 
+    def counts(self) -> dict[str, int]:
+        """Every word with its count, as the lexicon keys them (lower-cased unless
+        case-sensitive): a copy, so ``Lexicon(lexicon.counts())`` is an equal lexicon."""
+        return dict(self._counts)
+
     def suggest(self, word: str, *, max_distance: float = 1.0, limit: int = 5) -> tuple[str, ...]:
         """The lexicon's words nearest to ``word``: at most ``limit`` of them, each within
         ``max_distance`` by ``lectris.distance.ocr_distance`` with ``OCR_COSTS``.

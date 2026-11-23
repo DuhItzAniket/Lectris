@@ -51,6 +51,17 @@ def _parser() -> argparse.ArgumentParser:
 
     commands.add_parser("rules", help="list the profiles and the rules each one runs")
 
+    fitting = commands.add_parser("fit", help="fit a model pack on paired data")
+    fitting.add_argument("--pairs", type=Path, required=True, help="a pairs manifest (fit split)")
+    fitting.add_argument("--engine", required=True, help="the engine's name, as documents name it")
+    fitting.add_argument("--model", required=True, help="the engine's model version")
+    fitting.add_argument(
+        "--text", type=Path, action="append", default=[], help="a folder of .txt files (repeatable)"
+    )
+    fitting.add_argument("--max-chars", type=int, default=3_000_000, help="text read at most")
+    fitting.add_argument("--order", type=int, default=5, help="the language model's order")
+    fitting.add_argument("-o", "--output", type=Path, required=True, help="the pack to write")
+
     experiment = commands.add_parser("experiment", help="run a registered experiment")
     actions = experiment.add_subparsers(dest="action", required=True, metavar="ACTION")
     start = actions.add_parser("run", help="run an experiment's configuration into its report")
@@ -135,6 +146,44 @@ def _experiment(arguments: argparse.Namespace) -> int:
     return 0
 
 
+def _fit(arguments: argparse.Namespace) -> int:
+    import hashlib  # noqa: PLC0415 - only this command needs these
+
+    from lectris.eval.experiment import load_pairs  # noqa: PLC0415
+    from lectris.eval.lines import matched_lines  # noqa: PLC0415
+    from lectris.models import pack  # noqa: PLC0415
+
+    pairs: list[tuple[str, str]] = []
+    truth: list[str] = []
+    for page in matched_lines(load_pairs(arguments.pairs)):
+        pairs.extend(page.pairs)
+        truth.extend(page.truth)
+    texts = [path for folder in arguments.text for path in sorted(folder.glob("*.txt"))]
+    manifest = arguments.pairs.read_bytes()
+    fitted = pack.fit(
+        pairs,
+        truth,
+        engine=arguments.engine,
+        model=arguments.model,
+        texts=texts,
+        max_chars=arguments.max_chars,
+        order=arguments.order,
+        sources=(
+            pack.Source(
+                arguments.pairs.name,
+                hashlib.sha256(manifest).hexdigest(),
+                "channel, language, lexicon",
+            ),
+        ),
+    )
+    pack.save(fitted, arguments.output)
+    sys.stdout.write(
+        f"{arguments.output}: {len(pairs)} line pairs, {len(fitted.lexicon)} words, "
+        f"{fitted.language.size} n-grams\n"
+    )
+    return 0
+
+
 def _rules() -> int:
     for profile in PROFILES.values():
         sys.stdout.write(f"{profile.name}: {profile.description}\n")
@@ -154,6 +203,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             return _eval(arguments)
         if arguments.command == "experiment":
             return _experiment(arguments)
+        if arguments.command == "fit":
+            return _fit(arguments)
         return _rules()
     except (LectrisError, OSError, ValueError) as error:
         sys.stderr.write(f"lectris: {error}\n")

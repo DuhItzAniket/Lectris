@@ -1,0 +1,118 @@
+{
+  "pack": {
+    "sha256": "ae8385328e35faf4ea3db44084182c2002d21f41f9c19d4dc46f6caa6c4ea326",
+    "bytes": 973373,
+    "engine": "glypharis",
+    "model": "glypharis_v1",
+    "ngrams": 346294,
+    "order": 5,
+    "words": 18499,
+    "sources": 8
+  },
+  "fit_seconds": 10.0,
+  "deterministic": true,
+  "dev_pages": 433,
+  "dev_chars": 219958,
+  "dev_line_pairs_chars": 190532,
+  "uniform_model": {
+    "error_rate": 0.07000890500611548,
+    "alphabet": 309
+  },
+  "language_perplexity": {
+    "estimate": 12.478199802331117,
+    "low": 11.558515071107598,
+    "high": 13.464117957109261
+  },
+  "channel_log_likelihood_per_char": {
+    "estimate": -0.4785789645972097,
+    "low": -0.5830681019662072,
+    "high": -0.3929407182673486
+  },
+  "uniform_log_likelihood_per_char": {
+    "estimate": -0.7382282723007303,
+    "low": -0.9101448538548257,
+    "high": -0.606159959589689
+  },
+  "channel_minus_uniform": {
+    "estimate": 0.25964930770352057,
+    "low": 0.2110421036803543,
+    "high": 0.32811784886266804
+  },
+  "top_confusions": [
+    {
+      "intended": " ",
+      "observed": "",
+      "count": 1123
+    },
+    {
+      "intended": "",
+      "observed": " ",
+      "count": 619
+    },
+    {
+      "intended": ".",
+      "observed": "",
+      "count": 373
+    },
+    {
+      "intended": "",
+      "observed": ".",
+      "count": 342
+    },
+    {
+      "intended": "i",
+      "observed": "",
+      "count": 310
+    },
+    {
+      "intended": "e",
+      "observed": "",
+      "count": 289
+    },
+    {
+      "intended": "A",
+      "observed": "",
+      "count": 230
+    },
+    {
+      "intended": "r",
+      "observed": "",
+      "count": 229
+    },
+    {
+      "intended": "I",
+      "observed": "",
+      "count": 228
+    },
+    {
+      "intended": "a",
+      "observed": "",
+      "count": 226
+    },
+    {
+      "intended": "l",
+      "observed": "",
+      "count": 221
+    },
+    {
+      "intended": "t",
+      "observed": "",
+      "count": 214
+    },
+    {
+      "intended": "T",
+      "observed": "",
+      "count": 210
+    },
+    {
+      "intended": "n",
+      "observed": "",
+      "count": 205
+    },
+    {
+      "intended": "o",
+      "observed": "",
+      "count": 192
+    }
+  ]
+}
