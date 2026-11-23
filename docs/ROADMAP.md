@@ -67,5 +67,4 @@ research number come after, and do not block the joint test.
 | Phase 15 efficiency | H6 supported (LX-EFF-001: 0.5% of GLYPHARIS's time per page) |
 
 **Decisions waiting for the owner:** decide whether GLYPHARIS exports per-character `chars`
-(ADR-0003; the H2 character arm); add the GDC reads to GLYPHARIS's test access log; the target
-venue (Phase 16).
+(ADR-0003; the H2 character arm); the target venue (Phase 16).

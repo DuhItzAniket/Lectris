@@ -36,7 +36,7 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 | Tesseract installed, its version, for the transfer engine | Phase 5 | **done** (5.4.0, 2026-11-23; H4 run) |
 | Target venue (journal or conference) and its page limit | Phase 16 | open |
 | PyPI: a pending publisher for `lectris` and the protected `pypi` environment (docs/RELEASING.md); the release workflow is merged (#23) | first PyPI release | **done** (2026-11-23): v0.3.0 published on PyPI by the release workflow (Trusted Publishing) |
-| The GDC test (Phase 13): freeze the configuration and run it once, logging the access in both projects | Phase 13 | **done** in LECTRIS (LX-TEST-001, re-run as LX-TEST-002 after a scoring fix; `research/test_access_log.md`); the GLYPHARIS log entry is the owner's, since LECTRIS work does not touch that repository |
+| The GDC test (Phase 13): freeze the configuration and run it once, logging the access in both projects | Phase 13 | **done** in LECTRIS (LX-TEST-001, re-run as LX-TEST-002 after a scoring fix; `research/test_access_log.md`); logged in GLYPHARIS too (DuhItzAniket/Glypharis#32, by the owner) |
 | Reproduce the calibrated pack from code: it was calibrated at the Phase 7 code, before the `lexical_rank` feature; today's `lectris calibrate` on the same inputs gives other thresholds (0.43 / 0.54 / 0.43) | Phase 16 (reproducibility) | open: record the commit to calibrate at, or recalibrate and re-run dev (the test may not be re-run for it) |
 
 ---
@@ -432,5 +432,5 @@ lie inside a token, 5.0% are spacing, 45.6% missed lines, 26.4% extra lines.
 on GDC; H3's check on GDC passes for every profile (the recall gap not measured there). The
 effects are small, bounded by the share of errors inside a token.
 
-**Known issues:** the first run is kept and logged; numbers come from LX-TEST-002 only. The
-GLYPHARIS-side access log is the owner's to write.
+**Known issues:** the first run is kept and logged; numbers come from LX-TEST-002 only. Both
+reads are logged in GLYPHARIS as well (DuhItzAniket/Glypharis#32).
