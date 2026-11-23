@@ -49,6 +49,11 @@ All notable changes to LECTRIS are documented here. The format follows
   shape, rule), and two more proposers run: words one edit from a lexicon word
   (`lexical.word`) and missing or spurious spaces (`segmentation.split`, `segmentation.merge`).
   Under the default policy they are declined, so the text does not change.
+- Risk-controlled acceptance: `lectris calibrate` fits an acceptance model (logistic regression)
+  on labelled candidates and chooses, per profile, the threshold that Learn-then-Test certifies
+  to keep the harm rate within the profile's budget, the most useful of the certified ones
+  (`lectris.models.acceptance`, `lectris.models.risk`, `lectris.eval.calibrate`). Experiments
+  can run a calibrated pack under the `risk` policy.
 
 ### Changed
 - GLYPHARIS output is now detected as `glypharis` instead of `json`. Its words, boxes and

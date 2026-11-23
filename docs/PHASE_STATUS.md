@@ -11,8 +11,8 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 | 3 | Candidate core with v0.1 parity | **COMPLETE** (#21; no phase tag) | — |
 | 4 | Evaluation harness | **COMPLETE** (#22; no phase tag) | — |
 | 5 | Paired data | **COMPLETE** (#24, R-15 fix #25; no phase tag) | — |
-| 6 | Evidence models and model packs | **COMPLETE** (#26, part 2 in review) | — |
-| 7 | Acceptance model and risk control | not started | — |
+| 6 | Evidence models and model packs | **COMPLETE** (#26, #27; no phase tag) | — |
+| 7 | Acceptance model and risk control | **COMPLETE** (in review) | — |
 | 8 | Explanations, flags and the v0.3 interface | not started | — |
 | 9 | Baselines | not started | — |
 | 10 | Main study (dev) | not started | — |
@@ -255,3 +255,57 @@ criteria still hold.
 
 **Deviation:** the v0.1 rules do not yet propose what their own conditions decline; the lexicon
 proposers supply the `v01 = 0` candidates instead. `engine.alternatives` waits for glyphs.
+
+---
+
+## Phase 7 — Acceptance model and risk control
+
+**Status:** COMPLETE (opened and closed 2026-11-23 on `phase/07-acceptance`).
+
+**Implemented**
+- `lectris.eval.scoring.label_candidates`: every candidate, accepted or not, with its exact
+  marginal effect where it was proposed.
+- `lectris.models.acceptance`: logistic regression with L2 by Newton's method (plain Python,
+  deterministic); `calibration` (ECE over equal-mass bins, reliability, Brier).
+- `lectris.models.risk`: Hoeffding-Bentkus p-values, fixed-sequence Learn-then-Test
+  (`certified`, `learn_then_test`), the threshold grid.
+- `lectris.eval.calibrate`: `calibrate` (acceptance on fit, thresholds on cal), `risk_policy`;
+  packs carry `acceptance`, `risk` (`Budget`) and `calibration`; `lectris calibrate`.
+- Experiments: systems can name a pack and the `risk` policy.
+- ADR-0008 (budgets the calibration pages can certify) and ADR-0009 (the most useful certified
+  threshold).
+
+**Exit criteria**
+
+| Criterion | Result | Evidence |
+|---|---|---|
+| On simulated data the realised risk exceeds α in at most δ of the repetitions | pass | `tests/test_acceptance_risk.py::TestLearnThenTest::test_the_guarantee_holds_in_simulation` (300 repetitions) |
+| Calibration report on held-out candidates | ECE 0.0441, Brier 0.0630 on 12,857 cal candidates | `reports/LX-CAL-003/report.md` |
+| Profiles defined | conservative 0.01, standard 0.02, aggressive 0.05 (δ 0.1); thresholds 0.51, 0.52, 0.52 | same; ADR-0008, ADR-0009 |
+
+**The power check (LX-CAL-001, LX-CAL-002).** With ADR-0002's budgets, standard (0.005) and
+conservative (0.001) got no threshold: 430 cal pages cannot certify a risk below 0.00534 even
+with zero loss. ADR-0008 sets budgets above that limit. The most permissive certified thresholds
+were then 0.33 / 0.2 / 0.06, where most accepted candidates are wrong; ADR-0009 uses the most
+useful certified one instead.
+
+**Validation on dev (LX-RISK-001, full runs, 433 pages)**
+
+| System | CER | ΔCER (points) | Harm rate (budget) | Fix / harm | Precision |
+|---|---|---|---|---|---|
+| uncorrected | 26.17% | — | — | — | — |
+| B1-standard (v0.1) | 26.17% | +0.00 [−0.03, +0.04] | 0.078% | 60 / 51 | 54.05% |
+| LX-conservative | 26.15% | −0.01 [−0.03, +0.01] | 0.017% (1%) | 112 / 36 | 75.68% |
+| LX-standard | 26.14% | −0.03 [−0.06, +0.01] | 0.095% (2%) | 174 / 85 | 67.18% |
+
+Every profile's dev harm rate is far below its budget, and precision rises from 54% (v0.1) to
+67–76%. The CER gain is small and its interval reaches zero: on this data the corrector's ceiling
+is the 18.9% of errors that lie inside a token.
+
+**Known issues**
+- The guarantee is loose (budgets of 1–5% against realised harm below 0.1%): more calibration
+  pages would allow tighter budgets (ADR-0008).
+- `noise.drop_lines` is much less precise on dev (46 fixes / 37 harms) than on fit
+  (126 / 13); it needs features of its own (the noise score) for the acceptance model to judge it.
+
+**Results (tests):** `uv run pytest`: 1,584 passed (2026-11-23).

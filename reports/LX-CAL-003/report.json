@@ -1,0 +1,2335 @@
+{
+  "id": "LX-CAL-003",
+  "calibration": {
+    "brier": 0.06302248263300214,
+    "cal_candidates": 12857,
+    "cal_fixes": 1010,
+    "cal_pages": 430,
+    "ece": 0.04413462359520651,
+    "fit_candidates": 18172,
+    "fit_fixes": 2634,
+    "fit_pages": 861,
+    "grid_steps": 100,
+    "l2": 1.0,
+    "reliability": [
+      [
+        0.001961864714614742,
+        0.005834305717619603,
+        857
+      ],
+      [
+        0.0064682982269050416,
+        0.003500583430571762,
+        857
+      ],
+      [
+        0.01457335465454651,
+        0.011668611435239206,
+        857
+      ],
+      [
+        0.02713983239683664,
+        0.010501750291715286,
+        857
+      ],
+      [
+        0.04093712840865662,
+        0.015169194865810968,
+        857
+      ],
+      [
+        0.05446834730762486,
+        0.021003500583430573,
+        857
+      ],
+      [
+        0.06718997014385333,
+        0.019836639439906652,
+        857
+      ],
+      [
+        0.08112925214875212,
+        0.05710955710955711,
+        858
+      ],
+      [
+        0.09674823962625292,
+        0.057176196032672114,
+        857
+      ],
+      [
+        0.11485360295114902,
+        0.056009334889148193,
+        857
+      ],
+      [
+        0.13873722855927625,
+        0.07817969661610269,
+        857
+      ],
+      [
+        0.1690220394238892,
+        0.09801633605600933,
+        857
+      ],
+      [
+        0.2119822424403216,
+        0.14352392065344224,
+        857
+      ],
+      [
+        0.2863776588921893,
+        0.18786464410735124,
+        857
+      ],
+      [
+        0.5206160117743228,
+        0.4125874125874126,
+        858
+      ]
+    ]
+  },
+  "profiles": {
+    "aggressive": {
+      "alpha": 0.05,
+      "delta": 0.1,
+      "threshold": 0.52,
+      "permissive": 0.06,
+      "pages": 430,
+      "smallest_certifiable_alpha": 0.005340537406247292,
+      "candidates": 12862,
+      "curve": [
+        {
+          "threshold": 1.0,
+          "mean_loss": 0.0,
+          "accepted": 0,
+          "net_effect": 0,
+          "p_value": 2.6372437647940383e-10
+        },
+        {
+          "threshold": 0.99,
+          "mean_loss": 0.0,
+          "accepted": 2,
+          "net_effect": -12,
+          "p_value": 2.6372437647940383e-10
+        },
+        {
+          "threshold": 0.98,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 8,
+          "net_effect": -17,
+          "p_value": 2.8348828005472064e-10
+        },
+        {
+          "threshold": 0.97,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 10,
+          "net_effect": -21,
+          "p_value": 2.8348828005472064e-10
+        },
+        {
+          "threshold": 0.96,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 12,
+          "net_effect": -25,
+          "p_value": 2.8348828005472064e-10
+        },
+        {
+          "threshold": 0.95,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 16,
+          "net_effect": -31,
+          "p_value": 2.8348828005472064e-10
+        },
+        {
+          "threshold": 0.94,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 19,
+          "net_effect": -33,
+          "p_value": 2.8348828005472064e-10
+        },
+        {
+          "threshold": 0.93,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 24,
+          "net_effect": -39,
+          "p_value": 2.8348828005472064e-10
+        },
+        {
+          "threshold": 0.92,
+          "mean_loss": 4.122048275846444e-05,
+          "accepted": 28,
+          "net_effect": -35,
+          "p_value": 3.0472179449506765e-10
+        },
+        {
+          "threshold": 0.91,
+          "mean_loss": 4.122048275846444e-05,
+          "accepted": 31,
+          "net_effect": -37,
+          "p_value": 3.0472179449506765e-10
+        },
+        {
+          "threshold": 0.9,
+          "mean_loss": 4.122048275846444e-05,
+          "accepted": 36,
+          "net_effect": -41,
+          "p_value": 3.0472179449506765e-10
+        },
+        {
+          "threshold": 0.89,
+          "mean_loss": 4.682429334966646e-05,
+          "accepted": 45,
+          "net_effect": -50,
+          "p_value": 3.0997025217626136e-10
+        },
+        {
+          "threshold": 0.88,
+          "mean_loss": 7.130409751123316e-05,
+          "accepted": 51,
+          "net_effect": -53,
+          "p_value": 3.329696954589713e-10
+        },
+        {
+          "threshold": 0.87,
+          "mean_loss": 7.482770568600413e-05,
+          "accepted": 56,
+          "net_effect": -56,
+          "p_value": 3.3630576956190113e-10
+        },
+        {
+          "threshold": 0.86,
+          "mean_loss": 7.482770568600413e-05,
+          "accepted": 61,
+          "net_effect": -61,
+          "p_value": 3.3630576956190113e-10
+        },
+        {
+          "threshold": 0.85,
+          "mean_loss": 0.00010054452122807553,
+          "accepted": 66,
+          "net_effect": -60,
+          "p_value": 3.609727978622165e-10
+        },
+        {
+          "threshold": 0.84,
+          "mean_loss": 0.00010054452122807553,
+          "accepted": 68,
+          "net_effect": -63,
+          "p_value": 3.609727978622165e-10
+        },
+        {
+          "threshold": 0.83,
+          "mean_loss": 0.00013100268373244131,
+          "accepted": 77,
+          "net_effect": -66,
+          "p_value": 3.911086331066628e-10
+        },
+        {
+          "threshold": 0.82,
+          "mean_loss": 0.00013100268373244131,
+          "accepted": 80,
+          "net_effect": -68,
+          "p_value": 3.911086331066628e-10
+        },
+        {
+          "threshold": 0.81,
+          "mean_loss": 0.00013100268373244131,
+          "accepted": 86,
+          "net_effect": -73,
+          "p_value": 3.911086331066628e-10
+        },
+        {
+          "threshold": 0.8,
+          "mean_loss": 0.00013100268373244131,
+          "accepted": 94,
+          "net_effect": -81,
+          "p_value": 3.911086331066628e-10
+        },
+        {
+          "threshold": 0.79,
+          "mean_loss": 0.0001425727404257191,
+          "accepted": 97,
+          "net_effect": -82,
+          "p_value": 4.028649080897817e-10
+        },
+        {
+          "threshold": 0.78,
+          "mean_loss": 0.0001425727404257191,
+          "accepted": 103,
+          "net_effect": -88,
+          "p_value": 4.028649080897817e-10
+        },
+        {
+          "threshold": 0.77,
+          "mean_loss": 0.00015024792654898258,
+          "accepted": 108,
+          "net_effect": -89,
+          "p_value": 4.1076550312908936e-10
+        },
+        {
+          "threshold": 0.76,
+          "mean_loss": 0.0001549524343674655,
+          "accepted": 111,
+          "net_effect": -88,
+          "p_value": 4.156496866963042e-10
+        },
+        {
+          "threshold": 0.75,
+          "mean_loss": 0.00022031457399099763,
+          "accepted": 121,
+          "net_effect": -83,
+          "p_value": 4.8706672107433e-10
+        },
+        {
+          "threshold": 0.74,
+          "mean_loss": 0.00022228207094137736,
+          "accepted": 125,
+          "net_effect": -84,
+          "p_value": 4.893265229828227e-10
+        },
+        {
+          "threshold": 0.73,
+          "mean_loss": 0.00025106850731655304,
+          "accepted": 134,
+          "net_effect": -86,
+          "p_value": 5.231828723702874e-10
+        },
+        {
+          "threshold": 0.72,
+          "mean_loss": 0.00025106850731655304,
+          "accepted": 136,
+          "net_effect": -89,
+          "p_value": 5.231828723702874e-10
+        },
+        {
+          "threshold": 0.71,
+          "mean_loss": 0.000253526838601277,
+          "accepted": 143,
+          "net_effect": -92,
+          "p_value": 5.261446155058893e-10
+        },
+        {
+          "threshold": 0.7,
+          "mean_loss": 0.00025538136921957744,
+          "accepted": 146,
+          "net_effect": -93,
+          "p_value": 5.28386415101546e-10
+        },
+        {
+          "threshold": 0.69,
+          "mean_loss": 0.00027986117338114414,
+          "accepted": 152,
+          "net_effect": -95,
+          "p_value": 5.585942954864692e-10
+        },
+        {
+          "threshold": 0.68,
+          "mean_loss": 0.00029330821263725393,
+          "accepted": 160,
+          "net_effect": -96,
+          "p_value": 5.756876733641565e-10
+        },
+        {
+          "threshold": 0.67,
+          "mean_loss": 0.00030202860388202254,
+          "accepted": 164,
+          "net_effect": -96,
+          "p_value": 5.869676403389011e-10
+        },
+        {
+          "threshold": 0.66,
+          "mean_loss": 0.00030755500197853007,
+          "accepted": 170,
+          "net_effect": -96,
+          "p_value": 5.941968347427543e-10
+        },
+        {
+          "threshold": 0.65,
+          "mean_loss": 0.00031315881256973205,
+          "accepted": 173,
+          "net_effect": -96,
+          "p_value": 6.015919765123132e-10
+        },
+        {
+          "threshold": 0.64,
+          "mean_loss": 0.0003612742796300465,
+          "accepted": 184,
+          "net_effect": -91,
+          "p_value": 6.678609120228354e-10
+        },
+        {
+          "threshold": 0.63,
+          "mean_loss": 0.0003612742796300465,
+          "accepted": 191,
+          "net_effect": -98,
+          "p_value": 6.678609120228354e-10
+        },
+        {
+          "threshold": 0.62,
+          "mean_loss": 0.0003744426740520864,
+          "accepted": 200,
+          "net_effect": -99,
+          "p_value": 6.86895938156373e-10
+        },
+        {
+          "threshold": 0.61,
+          "mean_loss": 0.0003744426740520864,
+          "accepted": 207,
+          "net_effect": -103,
+          "p_value": 6.86895938156373e-10
+        },
+        {
+          "threshold": 0.6,
+          "mean_loss": 0.0003776952354441826,
+          "accepted": 213,
+          "net_effect": -106,
+          "p_value": 6.916590929424704e-10
+        },
+        {
+          "threshold": 0.59,
+          "mean_loss": 0.00039137826953033653,
+          "accepted": 225,
+          "net_effect": -108,
+          "p_value": 7.119682902045385e-10
+        },
+        {
+          "threshold": 0.58,
+          "mean_loss": 0.00041664021886633626,
+          "accepted": 236,
+          "net_effect": -108,
+          "p_value": 7.506412379957869e-10
+        },
+        {
+          "threshold": 0.57,
+          "mean_loss": 0.0005298879837070998,
+          "accepted": 246,
+          "net_effect": -108,
+          "p_value": 9.443068887251776e-10
+        },
+        {
+          "threshold": 0.56,
+          "mean_loss": 0.0005631815137247115,
+          "accepted": 256,
+          "net_effect": -107,
+          "p_value": 1.0081119900491268e-09
+        },
+        {
+          "threshold": 0.55,
+          "mean_loss": 0.0005711504830824208,
+          "accepted": 273,
+          "net_effect": -114,
+          "p_value": 1.023882262460991e-09
+        },
+        {
+          "threshold": 0.54,
+          "mean_loss": 0.0005851028641345429,
+          "accepted": 280,
+          "net_effect": -114,
+          "p_value": 1.0519691002283345e-09
+        },
+        {
+          "threshold": 0.53,
+          "mean_loss": 0.0006017051876827987,
+          "accepted": 290,
+          "net_effect": -115,
+          "p_value": 1.086193679515589e-09
+        },
+        {
+          "threshold": 0.52,
+          "mean_loss": 0.0006093240051990627,
+          "accepted": 304,
+          "net_effect": -116,
+          "p_value": 1.102196834474981e-09
+        },
+        {
+          "threshold": 0.51,
+          "mean_loss": 0.0006463368107262529,
+          "accepted": 321,
+          "net_effect": -116,
+          "p_value": 1.1826814065546068e-09
+        },
+        {
+          "threshold": 0.5,
+          "mean_loss": 0.0006911123177615988,
+          "accepted": 343,
+          "net_effect": -115,
+          "p_value": 1.2863770892688318e-09
+        },
+        {
+          "threshold": 0.49,
+          "mean_loss": 0.0007151024863073839,
+          "accepted": 361,
+          "net_effect": -113,
+          "p_value": 1.3449292494145288e-09
+        },
+        {
+          "threshold": 0.48,
+          "mean_loss": 0.0007764544160538315,
+          "accepted": 383,
+          "net_effect": -110,
+          "p_value": 1.5047474440577307e-09
+        },
+        {
+          "threshold": 0.47,
+          "mean_loss": 0.000833776091398006,
+          "accepted": 405,
+          "net_effect": -109,
+          "p_value": 1.6680287341260261e-09
+        },
+        {
+          "threshold": 0.46,
+          "mean_loss": 0.0008683638028186601,
+          "accepted": 428,
+          "net_effect": -111,
+          "p_value": 1.7735346928555869e-09
+        },
+        {
+          "threshold": 0.45,
+          "mean_loss": 0.0009158365319108094,
+          "accepted": 451,
+          "net_effect": -109,
+          "p_value": 1.9274419903036904e-09
+        },
+        {
+          "threshold": 0.44,
+          "mean_loss": 0.0009660952886927898,
+          "accepted": 482,
+          "net_effect": -106,
+          "p_value": 2.102533918659799e-09
+        },
+        {
+          "threshold": 0.43,
+          "mean_loss": 0.0009909793643821786,
+          "accepted": 508,
+          "net_effect": -108,
+          "p_value": 2.194102987316933e-09
+        },
+        {
+          "threshold": 0.42,
+          "mean_loss": 0.0010397374305919451,
+          "accepted": 544,
+          "net_effect": -109,
+          "p_value": 2.3834028270264344e-09
+        },
+        {
+          "threshold": 0.41,
+          "mean_loss": 0.0010746582825684184,
+          "accepted": 573,
+          "net_effect": -106,
+          "p_value": 2.527401837153478e-09
+        },
+        {
+          "threshold": 0.4,
+          "mean_loss": 0.001122382013400476,
+          "accepted": 608,
+          "net_effect": -106,
+          "p_value": 2.736212491397578e-09
+        },
+        {
+          "threshold": 0.39,
+          "mean_loss": 0.0011975195441066564,
+          "accepted": 657,
+          "net_effect": -110,
+          "p_value": 3.095038037465475e-09
+        },
+        {
+          "threshold": 0.38,
+          "mean_loss": 0.0012742729930836263,
+          "accepted": 704,
+          "net_effect": -111,
+          "p_value": 3.502860025139743e-09
+        },
+        {
+          "threshold": 0.37,
+          "mean_loss": 0.0014061825286878402,
+          "accepted": 740,
+          "net_effect": -113,
+          "p_value": 4.31337260208939e-09
+        },
+        {
+          "threshold": 0.36,
+          "mean_loss": 0.001503494687120974,
+          "accepted": 783,
+          "net_effect": -108,
+          "p_value": 5.011933192058628e-09
+        },
+        {
+          "threshold": 0.35,
+          "mean_loss": 0.0015691888490431127,
+          "accepted": 822,
+          "net_effect": -101,
+          "p_value": 5.537859801580914e-09
+        },
+        {
+          "threshold": 0.34,
+          "mean_loss": 0.001667454117667112,
+          "accepted": 870,
+          "net_effect": -88,
+          "p_value": 6.415209973455059e-09
+        },
+        {
+          "threshold": 0.33,
+          "mean_loss": 0.0018058071149458425,
+          "accepted": 933,
+          "net_effect": -65,
+          "p_value": 7.858003274223367e-09
+        },
+        {
+          "threshold": 0.32,
+          "mean_loss": 0.0020964867414743366,
+          "accepted": 1006,
+          "net_effect": -46,
+          "p_value": 1.1860825562813022e-08
+        },
+        {
+          "threshold": 0.31,
+          "mean_loss": 0.0028400963622221744,
+          "accepted": 1082,
+          "net_effect": -12,
+          "p_value": 3.156480432896779e-08
+        },
+        {
+          "threshold": 0.3,
+          "mean_loss": 0.002976774882036605,
+          "accepted": 1145,
+          "net_effect": 11,
+          "p_value": 3.741465191773599e-08
+        },
+        {
+          "threshold": 0.29,
+          "mean_loss": 0.003173958193926378,
+          "accepted": 1216,
+          "net_effect": 37,
+          "p_value": 4.7589249287334844e-08
+        },
+        {
+          "threshold": 0.28,
+          "mean_loss": 0.003549109749950314,
+          "accepted": 1324,
+          "net_effect": 82,
+          "p_value": 7.413682991744047e-08
+        },
+        {
+          "threshold": 0.27,
+          "mean_loss": 0.003791146836264736,
+          "accepted": 1417,
+          "net_effect": 120,
+          "p_value": 9.777923277394115e-08
+        },
+        {
+          "threshold": 0.26,
+          "mean_loss": 0.004169841000634519,
+          "accepted": 1515,
+          "net_effect": 156,
+          "p_value": 1.4879337259822051e-07
+        },
+        {
+          "threshold": 0.25,
+          "mean_loss": 0.004499691828047318,
+          "accepted": 1627,
+          "net_effect": 191,
+          "p_value": 2.0010206634537406e-07
+        },
+        {
+          "threshold": 0.24,
+          "mean_loss": 0.004818278249170739,
+          "accepted": 1746,
+          "net_effect": 235,
+          "p_value": 2.9518962862383364e-07
+        },
+        {
+          "threshold": 0.23,
+          "mean_loss": 0.005142071179008769,
+          "accepted": 1854,
+          "net_effect": 267,
+          "p_value": 4.096213781481309e-07
+        },
+        {
+          "threshold": 0.22,
+          "mean_loss": 0.005484158912464479,
+          "accepted": 1978,
+          "net_effect": 313,
+          "p_value": 5.735186371367564e-07
+        },
+        {
+          "threshold": 0.21,
+          "mean_loss": 0.006527834003440485,
+          "accepted": 2157,
+          "net_effect": 395,
+          "p_value": 1.515887662415773e-06
+        },
+        {
+          "threshold": 0.2,
+          "mean_loss": 0.007144600312532963,
+          "accepted": 2340,
+          "net_effect": 490,
+          "p_value": 2.6001944410395587e-06
+        },
+        {
+          "threshold": 0.19,
+          "mean_loss": 0.007660904801089848,
+          "accepted": 2537,
+          "net_effect": 599,
+          "p_value": 4.012635147256968e-06
+        },
+        {
+          "threshold": 0.18,
+          "mean_loss": 0.008310186492849434,
+          "accepted": 2741,
+          "net_effect": 719,
+          "p_value": 6.778478577696484e-06
+        },
+        {
+          "threshold": 0.17,
+          "mean_loss": 0.009111010617624284,
+          "accepted": 2961,
+          "net_effect": 850,
+          "p_value": 9.302516653747896e-06
+        },
+        {
+          "threshold": 0.16,
+          "mean_loss": 0.009951281003129435,
+          "accepted": 3226,
+          "net_effect": 1018,
+          "p_value": 2.3204218913720664e-05
+        },
+        {
+          "threshold": 0.15,
+          "mean_loss": 0.011380998288625294,
+          "accepted": 3505,
+          "net_effect": 1192,
+          "p_value": 4.3952457394089884e-05
+        },
+        {
+          "threshold": 0.14,
+          "mean_loss": 0.012576810634190992,
+          "accepted": 3815,
+          "net_effect": 1400,
+          "p_value": 0.0001309291671599329
+        },
+        {
+          "threshold": 0.13,
+          "mean_loss": 0.013867591794565193,
+          "accepted": 4149,
+          "net_effect": 1626,
+          "p_value": 0.00017312986804886375
+        },
+        {
+          "threshold": 0.12,
+          "mean_loss": 0.015241983192172287,
+          "accepted": 4485,
+          "net_effect": 1862,
+          "p_value": 0.0005849435681814245
+        },
+        {
+          "threshold": 0.11,
+          "mean_loss": 0.016916092169121027,
+          "accepted": 4912,
+          "net_effect": 2167,
+          "p_value": 0.0013770651866830185
+        },
+        {
+          "threshold": 0.1,
+          "mean_loss": 0.019202885044349156,
+          "accepted": 5403,
+          "net_effect": 2538,
+          "p_value": 0.0038748070832376066
+        },
+        {
+          "threshold": 0.09,
+          "mean_loss": 0.021436906248271836,
+          "accepted": 5913,
+          "net_effect": 2931,
+          "p_value": 0.00948303969589751
+        },
+        {
+          "threshold": 0.08,
+          "mean_loss": 0.024151247990884996,
+          "accepted": 6526,
+          "net_effect": 3392,
+          "p_value": 0.023419422896020572
+        },
+        {
+          "threshold": 0.07,
+          "mean_loss": 0.026637265422686372,
+          "accepted": 7083,
+          "net_effect": 3835,
+          "p_value": 0.04656268562829103
+        },
+        {
+          "threshold": 0.06,
+          "mean_loss": 0.02939689435464317,
+          "accepted": 7762,
+          "net_effect": 4423,
+          "p_value": 0.08572820717522532
+        },
+        {
+          "threshold": 0.05,
+          "mean_loss": 0.0327216046867599,
+          "accepted": 8444,
+          "net_effect": 5033,
+          "p_value": 0.21626676254139382
+        },
+        {
+          "threshold": 0.04,
+          "mean_loss": 0.036074556813016544,
+          "accepted": 9070,
+          "net_effect": 5602,
+          "p_value": 0.35909078959570523
+        },
+        {
+          "threshold": 0.03,
+          "mean_loss": 0.03963743277420628,
+          "accepted": 9700,
+          "net_effect": 6173,
+          "p_value": 0.593544479971238
+        },
+        {
+          "threshold": 0.02,
+          "mean_loss": 0.04279667291825409,
+          "accepted": 10303,
+          "net_effect": 6726,
+          "p_value": 0.7816159005187742
+        },
+        {
+          "threshold": 0.01,
+          "mean_loss": 0.04764409535494007,
+          "accepted": 11141,
+          "net_effect": 7536,
+          "p_value": 0.9748172652787863
+        },
+        {
+          "threshold": 0.0,
+          "mean_loss": 0.05685979218909263,
+          "accepted": 12862,
+          "net_effect": 9220,
+          "p_value": 1.0
+        }
+      ]
+    },
+    "conservative": {
+      "alpha": 0.01,
+      "delta": 0.1,
+      "threshold": 0.51,
+      "permissive": 0.33,
+      "pages": 430,
+      "smallest_certifiable_alpha": 0.005340537406247292,
+      "candidates": 12787,
+      "curve": [
+        {
+          "threshold": 1.0,
+          "mean_loss": 0.0,
+          "accepted": 0,
+          "net_effect": 0,
+          "p_value": 0.013278030960076782
+        },
+        {
+          "threshold": 0.99,
+          "mean_loss": 0.0,
+          "accepted": 0,
+          "net_effect": 0,
+          "p_value": 0.013278030960076782
+        },
+        {
+          "threshold": 0.98,
+          "mean_loss": 0.0,
+          "accepted": 0,
+          "net_effect": 0,
+          "p_value": 0.013278030960076782
+        },
+        {
+          "threshold": 0.97,
+          "mean_loss": 0.0,
+          "accepted": 0,
+          "net_effect": 0,
+          "p_value": 0.013278030960076782
+        },
+        {
+          "threshold": 0.96,
+          "mean_loss": 0.0,
+          "accepted": 0,
+          "net_effect": 0,
+          "p_value": 0.013278030960076782
+        },
+        {
+          "threshold": 0.95,
+          "mean_loss": 0.0,
+          "accepted": 2,
+          "net_effect": -2,
+          "p_value": 0.013278030960076782
+        },
+        {
+          "threshold": 0.94,
+          "mean_loss": 0.0,
+          "accepted": 3,
+          "net_effect": -2,
+          "p_value": 0.013278030960076782
+        },
+        {
+          "threshold": 0.93,
+          "mean_loss": 0.0,
+          "accepted": 5,
+          "net_effect": -4,
+          "p_value": 0.013278030960076782
+        },
+        {
+          "threshold": 0.92,
+          "mean_loss": 2.241524236480807e-05,
+          "accepted": 8,
+          "net_effect": 2,
+          "p_value": 0.014219967442899065
+        },
+        {
+          "threshold": 0.91,
+          "mean_loss": 2.241524236480807e-05,
+          "accepted": 9,
+          "net_effect": 1,
+          "p_value": 0.014219967442899065
+        },
+        {
+          "threshold": 0.9,
+          "mean_loss": 2.241524236480807e-05,
+          "accepted": 9,
+          "net_effect": 1,
+          "p_value": 0.014219967442899065
+        },
+        {
+          "threshold": 0.89,
+          "mean_loss": 2.241524236480807e-05,
+          "accepted": 10,
+          "net_effect": 0,
+          "p_value": 0.014219967442899065
+        },
+        {
+          "threshold": 0.88,
+          "mean_loss": 2.241524236480807e-05,
+          "accepted": 12,
+          "net_effect": -2,
+          "p_value": 0.014219967442899065
+        },
+        {
+          "threshold": 0.87,
+          "mean_loss": 2.5938850539579035e-05,
+          "accepted": 14,
+          "net_effect": -2,
+          "p_value": 0.014350608723052431
+        },
+        {
+          "threshold": 0.86,
+          "mean_loss": 2.5938850539579035e-05,
+          "accepted": 16,
+          "net_effect": -4,
+          "p_value": 0.014350608723052431
+        },
+        {
+          "threshold": 0.85,
+          "mean_loss": 2.7175861920083737e-05,
+          "accepted": 19,
+          "net_effect": -5,
+          "p_value": 0.014396031035012724
+        },
+        {
+          "threshold": 0.84,
+          "mean_loss": 2.7175861920083737e-05,
+          "accepted": 20,
+          "net_effect": -6,
+          "p_value": 0.014396031035012724
+        },
+        {
+          "threshold": 0.83,
+          "mean_loss": 2.7175861920083737e-05,
+          "accepted": 23,
+          "net_effect": -9,
+          "p_value": 0.014396031035012724
+        },
+        {
+          "threshold": 0.82,
+          "mean_loss": 2.7175861920083737e-05,
+          "accepted": 24,
+          "net_effect": -10,
+          "p_value": 0.014396031035012724
+        },
+        {
+          "threshold": 0.81,
+          "mean_loss": 2.7175861920083737e-05,
+          "accepted": 25,
+          "net_effect": -11,
+          "p_value": 0.014396031035012724
+        },
+        {
+          "threshold": 0.8,
+          "mean_loss": 2.7175861920083737e-05,
+          "accepted": 28,
+          "net_effect": -15,
+          "p_value": 0.014396031035012724
+        },
+        {
+          "threshold": 0.79,
+          "mean_loss": 2.7175861920083737e-05,
+          "accepted": 29,
+          "net_effect": -16,
+          "p_value": 0.014396031035012724
+        },
+        {
+          "threshold": 0.78,
+          "mean_loss": 2.7175861920083737e-05,
+          "accepted": 31,
+          "net_effect": -18,
+          "p_value": 0.014396031035012724
+        },
+        {
+          "threshold": 0.77,
+          "mean_loss": 2.7175861920083737e-05,
+          "accepted": 33,
+          "net_effect": -19,
+          "p_value": 0.014396031035012724
+        },
+        {
+          "threshold": 0.76,
+          "mean_loss": 3.188036973856664e-05,
+          "accepted": 35,
+          "net_effect": -17,
+          "p_value": 0.014566998187335091
+        },
+        {
+          "threshold": 0.75,
+          "mean_loss": 3.882931813104325e-05,
+          "accepted": 40,
+          "net_effect": -16,
+          "p_value": 0.01481530201914422
+        },
+        {
+          "threshold": 0.74,
+          "mean_loss": 3.882931813104325e-05,
+          "accepted": 43,
+          "net_effect": -18,
+          "p_value": 0.01481530201914422
+        },
+        {
+          "threshold": 0.73,
+          "mean_loss": 4.313595034465221e-05,
+          "accepted": 48,
+          "net_effect": -19,
+          "p_value": 0.014967182044828263
+        },
+        {
+          "threshold": 0.72,
+          "mean_loss": 4.313595034465221e-05,
+          "accepted": 49,
+          "net_effect": -20,
+          "p_value": 0.014967182044828263
+        },
+        {
+          "threshold": 0.71,
+          "mean_loss": 4.559428162937614e-05,
+          "accepted": 56,
+          "net_effect": -23,
+          "p_value": 0.015053308578166918
+        },
+        {
+          "threshold": 0.7,
+          "mean_loss": 5.326946775263962e-05,
+          "accepted": 59,
+          "net_effect": -24,
+          "p_value": 0.015319982840359046
+        },
+        {
+          "threshold": 0.69,
+          "mean_loss": 5.326946775263962e-05,
+          "accepted": 62,
+          "net_effect": -27,
+          "p_value": 0.015319982840359046
+        },
+        {
+          "threshold": 0.68,
+          "mean_loss": 5.514645031547162e-05,
+          "accepted": 68,
+          "net_effect": -29,
+          "p_value": 0.015384757090846874
+        },
+        {
+          "threshold": 0.67,
+          "mean_loss": 5.619165543697671e-05,
+          "accepted": 71,
+          "net_effect": -30,
+          "p_value": 0.015420760939450598
+        },
+        {
+          "threshold": 0.66,
+          "mean_loss": 6.171805353348425e-05,
+          "accepted": 78,
+          "net_effect": -30,
+          "p_value": 0.015610417650146287
+        },
+        {
+          "threshold": 0.65,
+          "mean_loss": 6.171805353348425e-05,
+          "accepted": 79,
+          "net_effect": -31,
+          "p_value": 0.015610417650146287
+        },
+        {
+          "threshold": 0.64,
+          "mean_loss": 0.00011503204921402824,
+          "accepted": 90,
+          "net_effect": -26,
+          "p_value": 0.01740802172673278
+        },
+        {
+          "threshold": 0.63,
+          "mean_loss": 0.00011503204921402824,
+          "accepted": 94,
+          "net_effect": -30,
+          "p_value": 0.01740802172673278
+        },
+        {
+          "threshold": 0.62,
+          "mean_loss": 0.00011663038694279032,
+          "accepted": 102,
+          "net_effect": -32,
+          "p_value": 0.01746156205752919
+        },
+        {
+          "threshold": 0.61,
+          "mean_loss": 0.00011663038694279032,
+          "accepted": 107,
+          "net_effect": -34,
+          "p_value": 0.01746156205752919
+        },
+        {
+          "threshold": 0.6,
+          "mean_loss": 0.0001198829483348866,
+          "accepted": 112,
+          "net_effect": -36,
+          "p_value": 0.0175705150563456
+        },
+        {
+          "threshold": 0.59,
+          "mean_loss": 0.00013009496541305715,
+          "accepted": 122,
+          "net_effect": -38,
+          "p_value": 0.01791269397856471
+        },
+        {
+          "threshold": 0.58,
+          "mean_loss": 0.00014622949598308392,
+          "accepted": 128,
+          "net_effect": -37,
+          "p_value": 0.01845415579604433
+        },
+        {
+          "threshold": 0.57,
+          "mean_loss": 0.0002500236779159253,
+          "accepted": 137,
+          "net_effect": -38,
+          "p_value": 0.02200500733107663
+        },
+        {
+          "threshold": 0.56,
+          "mean_loss": 0.00028331720793353703,
+          "accepted": 145,
+          "net_effect": -36,
+          "p_value": 0.023180376000161776
+        },
+        {
+          "threshold": 0.55,
+          "mean_loss": 0.00029128617729124633,
+          "accepted": 161,
+          "net_effect": -42,
+          "p_value": 0.02346485090017873
+        },
+        {
+          "threshold": 0.54,
+          "mean_loss": 0.000297537740181969,
+          "accepted": 165,
+          "net_effect": -43,
+          "p_value": 0.023688901474768605
+        },
+        {
+          "threshold": 0.53,
+          "mean_loss": 0.0003097521743050384,
+          "accepted": 174,
+          "net_effect": -45,
+          "p_value": 0.0241289395084677
+        },
+        {
+          "threshold": 0.52,
+          "mean_loss": 0.00032084200882928583,
+          "accepted": 188,
+          "net_effect": -44,
+          "p_value": 0.02453112976105687
+        },
+        {
+          "threshold": 0.51,
+          "mean_loss": 0.00034433930634413586,
+          "accepted": 201,
+          "net_effect": -47,
+          "p_value": 0.02539191675625374
+        },
+        {
+          "threshold": 0.5,
+          "mean_loss": 0.0003875164756507198,
+          "accepted": 219,
+          "net_effect": -46,
+          "p_value": 0.027005393897959876
+        },
+        {
+          "threshold": 0.49,
+          "mean_loss": 0.00041150664419650486,
+          "accepted": 236,
+          "net_effect": -44,
+          "p_value": 0.02792034180608765
+        },
+        {
+          "threshold": 0.48,
+          "mean_loss": 0.00045408857484921376,
+          "accepted": 254,
+          "net_effect": -41,
+          "p_value": 0.029578105717284146
+        },
+        {
+          "threshold": 0.47,
+          "mean_loss": 0.0005234009229812244,
+          "accepted": 278,
+          "net_effect": -37,
+          "p_value": 0.03237248105737838
+        },
+        {
+          "threshold": 0.46,
+          "mean_loss": 0.0005598431650201789,
+          "accepted": 303,
+          "net_effect": -38,
+          "p_value": 0.033891061068405885
+        },
+        {
+          "threshold": 0.45,
+          "mean_loss": 0.0005903311587030828,
+          "accepted": 322,
+          "net_effect": -39,
+          "p_value": 0.03518839588496836
+        },
+        {
+          "threshold": 0.44,
+          "mean_loss": 0.000637309828890777,
+          "accepted": 349,
+          "net_effect": -34,
+          "p_value": 0.037236338116370296
+        },
+        {
+          "threshold": 0.43,
+          "mean_loss": 0.0006650409639310217,
+          "accepted": 373,
+          "net_effect": -34,
+          "p_value": 0.038473523019609594
+        },
+        {
+          "threshold": 0.42,
+          "mean_loss": 0.0007091145946434111,
+          "accepted": 399,
+          "net_effect": -32,
+          "p_value": 0.040483784224662006
+        },
+        {
+          "threshold": 0.41,
+          "mean_loss": 0.0007393613663515107,
+          "accepted": 421,
+          "net_effect": -28,
+          "p_value": 0.04189504875633096
+        },
+        {
+          "threshold": 0.4,
+          "mean_loss": 0.0007942850395840289,
+          "accepted": 451,
+          "net_effect": -23,
+          "p_value": 0.04452464467062855
+        },
+        {
+          "threshold": 0.39,
+          "mean_loss": 0.0008616969400177702,
+          "accepted": 493,
+          "net_effect": -27,
+          "p_value": 0.04787219651579961
+        },
+        {
+          "threshold": 0.38,
+          "mean_loss": 0.0009371975037091889,
+          "accepted": 537,
+          "net_effect": -27,
+          "p_value": 0.05178165730766384
+        },
+        {
+          "threshold": 0.37,
+          "mean_loss": 0.001064100203320774,
+          "accepted": 570,
+          "net_effect": -28,
+          "p_value": 0.05874340133322474
+        },
+        {
+          "threshold": 0.36,
+          "mean_loss": 0.001214562646083561,
+          "accepted": 606,
+          "net_effect": -17,
+          "p_value": 0.06764933884041677
+        },
+        {
+          "threshold": 0.35,
+          "mean_loss": 0.0012724610174725088,
+          "accepted": 642,
+          "net_effect": -11,
+          "p_value": 0.07126882751416591
+        },
+        {
+          "threshold": 0.34,
+          "mean_loss": 0.001340118183989148,
+          "accepted": 683,
+          "net_effect": -1,
+          "p_value": 0.07563593647558062
+        },
+        {
+          "threshold": 0.33,
+          "mean_loss": 0.0014408290777312806,
+          "accepted": 729,
+          "net_effect": 16,
+          "p_value": 0.08241401561574176
+        },
+        {
+          "threshold": 0.32,
+          "mean_loss": 0.0017123982940458128,
+          "accepted": 797,
+          "net_effect": 30,
+          "p_value": 0.10237149082736058
+        },
+        {
+          "threshold": 0.31,
+          "mean_loss": 0.0018641794682769032,
+          "accepted": 857,
+          "net_effect": 50,
+          "p_value": 0.11460722871807037
+        },
+        {
+          "threshold": 0.3,
+          "mean_loss": 0.002006684106582877,
+          "accepted": 914,
+          "net_effect": 70,
+          "p_value": 0.12680548500491287
+        },
+        {
+          "threshold": 0.29,
+          "mean_loss": 0.002163442035405186,
+          "accepted": 974,
+          "net_effect": 87,
+          "p_value": 0.14101763868940081
+        },
+        {
+          "threshold": 0.28,
+          "mean_loss": 0.0024129695552470463,
+          "accepted": 1074,
+          "net_effect": 127,
+          "p_value": 0.1653416541958848
+        },
+        {
+          "threshold": 0.27,
+          "mean_loss": 0.0027334290947744603,
+          "accepted": 1167,
+          "net_effect": 159,
+          "p_value": 0.19957383984342608
+        },
+        {
+          "threshold": 0.26,
+          "mean_loss": 0.002973714154219685,
+          "accepted": 1256,
+          "net_effect": 189,
+          "p_value": 0.22735801275894
+        },
+        {
+          "threshold": 0.25,
+          "mean_loss": 0.003245548098861589,
+          "accepted": 1351,
+          "net_effect": 212,
+          "p_value": 0.2608405319248896
+        },
+        {
+          "threshold": 0.24,
+          "mean_loss": 0.0035142792144940583,
+          "accepted": 1460,
+          "net_effect": 245,
+          "p_value": 0.29591009930549383
+        },
+        {
+          "threshold": 0.23,
+          "mean_loss": 0.003819349747368774,
+          "accepted": 1566,
+          "net_effect": 279,
+          "p_value": 0.33782846398835437
+        },
+        {
+          "threshold": 0.22,
+          "mean_loss": 0.004109236139633677,
+          "accepted": 1691,
+          "net_effect": 321,
+          "p_value": 0.37942544308019244
+        },
+        {
+          "threshold": 0.21,
+          "mean_loss": 0.004557740624700389,
+          "accepted": 1855,
+          "net_effect": 386,
+          "p_value": 0.4463548675986787
+        },
+        {
+          "threshold": 0.2,
+          "mean_loss": 0.005090364308435797,
+          "accepted": 2018,
+          "net_effect": 469,
+          "p_value": 0.5281497595019912
+        },
+        {
+          "threshold": 0.19,
+          "mean_loss": 0.005562932365192449,
+          "accepted": 2207,
+          "net_effect": 571,
+          "p_value": 0.6008794677494198
+        },
+        {
+          "threshold": 0.18,
+          "mean_loss": 0.0061216262283592,
+          "accepted": 2390,
+          "net_effect": 677,
+          "p_value": 0.6844477254230259
+        },
+        {
+          "threshold": 0.17,
+          "mean_loss": 0.006894452734568786,
+          "accepted": 2611,
+          "net_effect": 803,
+          "p_value": 0.7905452094666241
+        },
+        {
+          "threshold": 0.16,
+          "mean_loss": 0.007711482498523873,
+          "accepted": 2869,
+          "net_effect": 955,
+          "p_value": 0.883847286162568
+        },
+        {
+          "threshold": 0.15,
+          "mean_loss": 0.008689195459189005,
+          "accepted": 3145,
+          "net_effect": 1119,
+          "p_value": 0.9617088942063751
+        },
+        {
+          "threshold": 0.14,
+          "mean_loss": 0.00995528852987395,
+          "accepted": 3446,
+          "net_effect": 1310,
+          "p_value": 0.9999565216140821
+        },
+        {
+          "threshold": 0.13,
+          "mean_loss": 0.011153718026283534,
+          "accepted": 3768,
+          "net_effect": 1518,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.12,
+          "mean_loss": 0.01239387201744993,
+          "accepted": 4098,
+          "net_effect": 1736,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.11,
+          "mean_loss": 0.014002141060110294,
+          "accepted": 4518,
+          "net_effect": 2043,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.1,
+          "mean_loss": 0.016435822733921773,
+          "accepted": 5034,
+          "net_effect": 2429,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.09,
+          "mean_loss": 0.019514565592447176,
+          "accepted": 5534,
+          "net_effect": 2797,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.08,
+          "mean_loss": 0.02225395556533398,
+          "accepted": 6141,
+          "net_effect": 3254,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.07,
+          "mean_loss": 0.02490675133166184,
+          "accepted": 6754,
+          "net_effect": 3734,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.06,
+          "mean_loss": 0.02835915602244873,
+          "accepted": 7481,
+          "net_effect": 4365,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.05,
+          "mean_loss": 0.03191008404086376,
+          "accepted": 8222,
+          "net_effect": 5015,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.04,
+          "mean_loss": 0.035206763535673175,
+          "accepted": 8897,
+          "net_effect": 5624,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.03,
+          "mean_loss": 0.03902580416928722,
+          "accepted": 9581,
+          "net_effect": 6241,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.02,
+          "mean_loss": 0.04265393968970812,
+          "accepted": 10224,
+          "net_effect": 6832,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.01,
+          "mean_loss": 0.04760201543018646,
+          "accepted": 11081,
+          "net_effect": 7663,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.0,
+          "mean_loss": 0.0567441719517977,
+          "accepted": 12787,
+          "net_effect": 9337,
+          "p_value": 1.0
+        }
+      ]
+    },
+    "standard": {
+      "alpha": 0.02,
+      "delta": 0.1,
+      "threshold": 0.52,
+      "permissive": 0.2,
+      "pages": 430,
+      "smallest_certifiable_alpha": 0.005340537406247292,
+      "candidates": 12857,
+      "curve": [
+        {
+          "threshold": 1.0,
+          "mean_loss": 0.0,
+          "accepted": 0,
+          "net_effect": 0,
+          "p_value": 0.0001687378642196047
+        },
+        {
+          "threshold": 0.99,
+          "mean_loss": 0.0,
+          "accepted": 2,
+          "net_effect": -12,
+          "p_value": 0.0001687378642196047
+        },
+        {
+          "threshold": 0.98,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 8,
+          "net_effect": -17,
+          "p_value": 0.00017999910864129146
+        },
+        {
+          "threshold": 0.97,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 10,
+          "net_effect": -21,
+          "p_value": 0.00017999910864129146
+        },
+        {
+          "threshold": 0.96,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 12,
+          "net_effect": -25,
+          "p_value": 0.00017999910864129146
+        },
+        {
+          "threshold": 0.95,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 16,
+          "net_effect": -31,
+          "p_value": 0.00017999910864129146
+        },
+        {
+          "threshold": 0.94,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 19,
+          "net_effect": -33,
+          "p_value": 0.00017999910864129146
+        },
+        {
+          "threshold": 0.93,
+          "mean_loss": 1.8805240393656367e-05,
+          "accepted": 24,
+          "net_effect": -39,
+          "p_value": 0.00017999910864129146
+        },
+        {
+          "threshold": 0.92,
+          "mean_loss": 4.122048275846444e-05,
+          "accepted": 28,
+          "net_effect": -35,
+          "p_value": 0.00019172248612957016
+        },
+        {
+          "threshold": 0.91,
+          "mean_loss": 4.122048275846444e-05,
+          "accepted": 30,
+          "net_effect": -37,
+          "p_value": 0.00019172248612957016
+        },
+        {
+          "threshold": 0.9,
+          "mean_loss": 4.122048275846444e-05,
+          "accepted": 35,
+          "net_effect": -41,
+          "p_value": 0.00019172248612957016
+        },
+        {
+          "threshold": 0.89,
+          "mean_loss": 4.682429334966646e-05,
+          "accepted": 44,
+          "net_effect": -50,
+          "p_value": 0.0001945799662625773
+        },
+        {
+          "threshold": 0.88,
+          "mean_loss": 7.130409751123316e-05,
+          "accepted": 50,
+          "net_effect": -53,
+          "p_value": 0.00020694352506810834
+        },
+        {
+          "threshold": 0.87,
+          "mean_loss": 7.482770568600413e-05,
+          "accepted": 55,
+          "net_effect": -56,
+          "p_value": 0.00020871711062540535
+        },
+        {
+          "threshold": 0.86,
+          "mean_loss": 7.482770568600413e-05,
+          "accepted": 60,
+          "net_effect": -61,
+          "p_value": 0.00020871711062540535
+        },
+        {
+          "threshold": 0.85,
+          "mean_loss": 0.00010054452122807553,
+          "accepted": 65,
+          "net_effect": -60,
+          "p_value": 0.00022169116506544015
+        },
+        {
+          "threshold": 0.84,
+          "mean_loss": 0.00010054452122807553,
+          "accepted": 67,
+          "net_effect": -63,
+          "p_value": 0.00022169116506544015
+        },
+        {
+          "threshold": 0.83,
+          "mean_loss": 0.00013100268373244131,
+          "accepted": 76,
+          "net_effect": -66,
+          "p_value": 0.00023723712173370163
+        },
+        {
+          "threshold": 0.82,
+          "mean_loss": 0.00013100268373244131,
+          "accepted": 79,
+          "net_effect": -68,
+          "p_value": 0.00023723712173370163
+        },
+        {
+          "threshold": 0.81,
+          "mean_loss": 0.00013100268373244131,
+          "accepted": 85,
+          "net_effect": -73,
+          "p_value": 0.00023723712173370163
+        },
+        {
+          "threshold": 0.8,
+          "mean_loss": 0.00013100268373244131,
+          "accepted": 93,
+          "net_effect": -81,
+          "p_value": 0.00023723712173370163
+        },
+        {
+          "threshold": 0.79,
+          "mean_loss": 0.0001425727404257191,
+          "accepted": 96,
+          "net_effect": -82,
+          "p_value": 0.00024321911609472905
+        },
+        {
+          "threshold": 0.78,
+          "mean_loss": 0.0001425727404257191,
+          "accepted": 102,
+          "net_effect": -88,
+          "p_value": 0.00024321911609472905
+        },
+        {
+          "threshold": 0.77,
+          "mean_loss": 0.00015024792654898258,
+          "accepted": 107,
+          "net_effect": -89,
+          "p_value": 0.00024721472424993747
+        },
+        {
+          "threshold": 0.76,
+          "mean_loss": 0.0001549524343674655,
+          "accepted": 110,
+          "net_effect": -88,
+          "p_value": 0.0002496752567462933
+        },
+        {
+          "threshold": 0.75,
+          "mean_loss": 0.00022031457399099763,
+          "accepted": 120,
+          "net_effect": -83,
+          "p_value": 0.000284886990787579
+        },
+        {
+          "threshold": 0.74,
+          "mean_loss": 0.00022228207094137736,
+          "accepted": 124,
+          "net_effect": -84,
+          "p_value": 0.0002859794502265727
+        },
+        {
+          "threshold": 0.73,
+          "mean_loss": 0.00025106850731655304,
+          "accepted": 133,
+          "net_effect": -86,
+          "p_value": 0.0003022015478032584
+        },
+        {
+          "threshold": 0.72,
+          "mean_loss": 0.00025106850731655304,
+          "accepted": 135,
+          "net_effect": -89,
+          "p_value": 0.0003022015478032584
+        },
+        {
+          "threshold": 0.71,
+          "mean_loss": 0.000253526838601277,
+          "accepted": 142,
+          "net_effect": -92,
+          "p_value": 0.0003036081098656271
+        },
+        {
+          "threshold": 0.7,
+          "mean_loss": 0.00025538136921957744,
+          "accepted": 145,
+          "net_effect": -93,
+          "p_value": 0.000304671462361613
+        },
+        {
+          "threshold": 0.69,
+          "mean_loss": 0.00027986117338114414,
+          "accepted": 151,
+          "net_effect": -95,
+          "p_value": 0.0003188934922677147
+        },
+        {
+          "threshold": 0.68,
+          "mean_loss": 0.00029330821263725393,
+          "accepted": 159,
+          "net_effect": -96,
+          "p_value": 0.00032685643306063335
+        },
+        {
+          "threshold": 0.67,
+          "mean_loss": 0.00030202860388202254,
+          "accepted": 163,
+          "net_effect": -96,
+          "p_value": 0.00033207902998474726
+        },
+        {
+          "threshold": 0.66,
+          "mean_loss": 0.00030755500197853007,
+          "accepted": 169,
+          "net_effect": -96,
+          "p_value": 0.0003354130028985257
+        },
+        {
+          "threshold": 0.65,
+          "mean_loss": 0.00031315881256973205,
+          "accepted": 172,
+          "net_effect": -96,
+          "p_value": 0.00033881308036516
+        },
+        {
+          "threshold": 0.64,
+          "mean_loss": 0.0003612742796300465,
+          "accepted": 183,
+          "net_effect": -91,
+          "p_value": 0.0003688345177060985
+        },
+        {
+          "threshold": 0.63,
+          "mean_loss": 0.0003612742796300465,
+          "accepted": 190,
+          "net_effect": -98,
+          "p_value": 0.0003688345177060985
+        },
+        {
+          "threshold": 0.62,
+          "mean_loss": 0.0003744426740520864,
+          "accepted": 199,
+          "net_effect": -99,
+          "p_value": 0.0003773173054450951
+        },
+        {
+          "threshold": 0.61,
+          "mean_loss": 0.0003744426740520864,
+          "accepted": 206,
+          "net_effect": -103,
+          "p_value": 0.0003773173054450951
+        },
+        {
+          "threshold": 0.6,
+          "mean_loss": 0.0003776952354441826,
+          "accepted": 212,
+          "net_effect": -106,
+          "p_value": 0.0003794306613827216
+        },
+        {
+          "threshold": 0.59,
+          "mean_loss": 0.00039137826953033653,
+          "accepted": 224,
+          "net_effect": -108,
+          "p_value": 0.00038840085510596895
+        },
+        {
+          "threshold": 0.58,
+          "mean_loss": 0.00041664021886633626,
+          "accepted": 235,
+          "net_effect": -108,
+          "p_value": 0.0004053055911183441
+        },
+        {
+          "threshold": 0.57,
+          "mean_loss": 0.0005298879837070998,
+          "accepted": 245,
+          "net_effect": -108,
+          "p_value": 0.00048688624828659757
+        },
+        {
+          "threshold": 0.56,
+          "mean_loss": 0.0005631815137247115,
+          "accepted": 255,
+          "net_effect": -107,
+          "p_value": 0.0005127820691192607
+        },
+        {
+          "threshold": 0.55,
+          "mean_loss": 0.0005711504830824208,
+          "accepted": 272,
+          "net_effect": -114,
+          "p_value": 0.0005191157404453545
+        },
+        {
+          "threshold": 0.54,
+          "mean_loss": 0.0005851028641345429,
+          "accepted": 279,
+          "net_effect": -114,
+          "p_value": 0.0005303330617964801
+        },
+        {
+          "threshold": 0.53,
+          "mean_loss": 0.0006017051876827987,
+          "accepted": 289,
+          "net_effect": -115,
+          "p_value": 0.0005438957973279786
+        },
+        {
+          "threshold": 0.52,
+          "mean_loss": 0.0006093240051990627,
+          "accepted": 303,
+          "net_effect": -116,
+          "p_value": 0.0005501988367806801
+        },
+        {
+          "threshold": 0.51,
+          "mean_loss": 0.0006463368107262529,
+          "accepted": 320,
+          "net_effect": -116,
+          "p_value": 0.0005815404955819169
+        },
+        {
+          "threshold": 0.5,
+          "mean_loss": 0.0006911123177615988,
+          "accepted": 342,
+          "net_effect": -115,
+          "p_value": 0.0006210960897288364
+        },
+        {
+          "threshold": 0.49,
+          "mean_loss": 0.0007151024863073839,
+          "accepted": 360,
+          "net_effect": -113,
+          "p_value": 0.0006430512550165594
+        },
+        {
+          "threshold": 0.48,
+          "mean_loss": 0.0007764544160538315,
+          "accepted": 382,
+          "net_effect": -110,
+          "p_value": 0.0007017062844243742
+        },
+        {
+          "threshold": 0.47,
+          "mean_loss": 0.000833776091398006,
+          "accepted": 404,
+          "net_effect": -109,
+          "p_value": 0.0007598955712196818
+        },
+        {
+          "threshold": 0.46,
+          "mean_loss": 0.0008683638028186601,
+          "accepted": 427,
+          "net_effect": -111,
+          "p_value": 0.0007966559551057653
+        },
+        {
+          "threshold": 0.45,
+          "mean_loss": 0.0009158365319108094,
+          "accepted": 450,
+          "net_effect": -109,
+          "p_value": 0.000849206963656359
+        },
+        {
+          "threshold": 0.44,
+          "mean_loss": 0.0009660952886927898,
+          "accepted": 481,
+          "net_effect": -106,
+          "p_value": 0.0009075769319164219
+        },
+        {
+          "threshold": 0.43,
+          "mean_loss": 0.0009909793643821786,
+          "accepted": 507,
+          "net_effect": -108,
+          "p_value": 0.0009375511039983794
+        },
+        {
+          "threshold": 0.42,
+          "mean_loss": 0.0010397374305919451,
+          "accepted": 543,
+          "net_effect": -109,
+          "p_value": 0.0009984104108016433
+        },
+        {
+          "threshold": 0.41,
+          "mean_loss": 0.0010746582825684184,
+          "accepted": 572,
+          "net_effect": -106,
+          "p_value": 0.0010437770442330457
+        },
+        {
+          "threshold": 0.4,
+          "mean_loss": 0.001122382013400476,
+          "accepted": 607,
+          "net_effect": -106,
+          "p_value": 0.0011082556917459353
+        },
+        {
+          "threshold": 0.39,
+          "mean_loss": 0.0011975195441066564,
+          "accepted": 656,
+          "net_effect": -110,
+          "p_value": 0.0012158018169326687
+        },
+        {
+          "threshold": 0.38,
+          "mean_loss": 0.0012742729930836263,
+          "accepted": 703,
+          "net_effect": -111,
+          "p_value": 0.0013336453033284098
+        },
+        {
+          "threshold": 0.37,
+          "mean_loss": 0.0014061825286878402,
+          "accepted": 739,
+          "net_effect": -113,
+          "p_value": 0.0015563134186006736
+        },
+        {
+          "threshold": 0.36,
+          "mean_loss": 0.001503494687120974,
+          "accepted": 782,
+          "net_effect": -108,
+          "p_value": 0.0017380764169832594
+        },
+        {
+          "threshold": 0.35,
+          "mean_loss": 0.0015691888490431127,
+          "accepted": 821,
+          "net_effect": -101,
+          "p_value": 0.0018697473302584397
+        },
+        {
+          "threshold": 0.34,
+          "mean_loss": 0.001667454117667112,
+          "accepted": 869,
+          "net_effect": -88,
+          "p_value": 0.0020809743309382856
+        },
+        {
+          "threshold": 0.33,
+          "mean_loss": 0.0018058071149458425,
+          "accepted": 932,
+          "net_effect": -65,
+          "p_value": 0.002409298464704894
+        },
+        {
+          "threshold": 0.32,
+          "mean_loss": 0.0020964867414743366,
+          "accepted": 1005,
+          "net_effect": -46,
+          "p_value": 0.003230473630643349
+        },
+        {
+          "threshold": 0.31,
+          "mean_loss": 0.0028400963622221744,
+          "accepted": 1081,
+          "net_effect": -12,
+          "p_value": 0.00635030772783513
+        },
+        {
+          "threshold": 0.3,
+          "mean_loss": 0.002976774882036605,
+          "accepted": 1144,
+          "net_effect": 11,
+          "p_value": 0.007119544006636151
+        },
+        {
+          "threshold": 0.29,
+          "mean_loss": 0.003173958193926378,
+          "accepted": 1215,
+          "net_effect": 37,
+          "p_value": 0.008356676678392615
+        },
+        {
+          "threshold": 0.28,
+          "mean_loss": 0.003549109749950314,
+          "accepted": 1323,
+          "net_effect": 82,
+          "p_value": 0.011173438533869094
+        },
+        {
+          "threshold": 0.27,
+          "mean_loss": 0.003791146836264736,
+          "accepted": 1416,
+          "net_effect": 120,
+          "p_value": 0.013352979802174453
+        },
+        {
+          "threshold": 0.26,
+          "mean_loss": 0.004169841000634519,
+          "accepted": 1514,
+          "net_effect": 156,
+          "p_value": 0.017414719445761256
+        },
+        {
+          "threshold": 0.25,
+          "mean_loss": 0.004499691828047318,
+          "accepted": 1626,
+          "net_effect": 191,
+          "p_value": 0.0216818501772696
+        },
+        {
+          "threshold": 0.24,
+          "mean_loss": 0.004818278249170739,
+          "accepted": 1745,
+          "net_effect": 235,
+          "p_value": 0.026528475830086634
+        },
+        {
+          "threshold": 0.23,
+          "mean_loss": 0.005142071179008769,
+          "accepted": 1853,
+          "net_effect": 267,
+          "p_value": 0.03226326290978237
+        },
+        {
+          "threshold": 0.22,
+          "mean_loss": 0.005484158912464479,
+          "accepted": 1977,
+          "net_effect": 313,
+          "p_value": 0.03929623617843708
+        },
+        {
+          "threshold": 0.21,
+          "mean_loss": 0.006527834003440485,
+          "accepted": 2156,
+          "net_effect": 395,
+          "p_value": 0.06789271301540747
+        },
+        {
+          "threshold": 0.2,
+          "mean_loss": 0.007144600312532963,
+          "accepted": 2339,
+          "net_effect": 490,
+          "p_value": 0.09058233493434993
+        },
+        {
+          "threshold": 0.19,
+          "mean_loss": 0.007660904801089848,
+          "accepted": 2536,
+          "net_effect": 599,
+          "p_value": 0.11327201629406772
+        },
+        {
+          "threshold": 0.18,
+          "mean_loss": 0.008310186492849434,
+          "accepted": 2740,
+          "net_effect": 719,
+          "p_value": 0.14687710254814607
+        },
+        {
+          "threshold": 0.17,
+          "mean_loss": 0.009111010617624284,
+          "accepted": 2960,
+          "net_effect": 850,
+          "p_value": 0.18517210139353388
+        },
+        {
+          "threshold": 0.16,
+          "mean_loss": 0.009938215939110621,
+          "accepted": 3224,
+          "net_effect": 1017,
+          "p_value": 0.2566352693031344
+        },
+        {
+          "threshold": 0.15,
+          "mean_loss": 0.011367933224606481,
+          "accepted": 3503,
+          "net_effect": 1191,
+          "p_value": 0.3795077053554671
+        },
+        {
+          "threshold": 0.14,
+          "mean_loss": 0.012563745570172178,
+          "accepted": 3812,
+          "net_effect": 1399,
+          "p_value": 0.49757036471793825
+        },
+        {
+          "threshold": 0.13,
+          "mean_loss": 0.013854526730546381,
+          "accepted": 4146,
+          "net_effect": 1625,
+          "p_value": 0.6289380292823705
+        },
+        {
+          "threshold": 0.12,
+          "mean_loss": 0.015228918128153471,
+          "accepted": 4482,
+          "net_effect": 1861,
+          "p_value": 0.7619564178944831
+        },
+        {
+          "threshold": 0.11,
+          "mean_loss": 0.016903027105102213,
+          "accepted": 4909,
+          "net_effect": 2166,
+          "p_value": 0.8949525847887219
+        },
+        {
+          "threshold": 0.1,
+          "mean_loss": 0.01918981998033034,
+          "accepted": 5400,
+          "net_effect": 2537,
+          "p_value": 0.992729128526924
+        },
+        {
+          "threshold": 0.09,
+          "mean_loss": 0.021423841184253025,
+          "accepted": 5910,
+          "net_effect": 2930,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.08,
+          "mean_loss": 0.024133795037440998,
+          "accepted": 6522,
+          "net_effect": 3390,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.07,
+          "mean_loss": 0.026619812469242377,
+          "accepted": 7079,
+          "net_effect": 3833,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.06,
+          "mean_loss": 0.029379441401199174,
+          "accepted": 7758,
+          "net_effect": 4421,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.05,
+          "mean_loss": 0.032704151733315895,
+          "accepted": 8440,
+          "net_effect": 5031,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.04,
+          "mean_loss": 0.036057103859572545,
+          "accepted": 9066,
+          "net_effect": 5600,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.03,
+          "mean_loss": 0.03961997982076228,
+          "accepted": 9695,
+          "net_effect": 6171,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.02,
+          "mean_loss": 0.04277921996481009,
+          "accepted": 10298,
+          "net_effect": 6724,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.01,
+          "mean_loss": 0.047626642401496076,
+          "accepted": 11136,
+          "net_effect": 7534,
+          "p_value": 1.0
+        },
+        {
+          "threshold": 0.0,
+          "mean_loss": 0.05684233923564863,
+          "accepted": 12857,
+          "net_effect": 9218,
+          "p_value": 1.0
+        }
+      ]
+    }
+  },
+  "weights": [
+    {
+      "feature": "lm",
+      "weight": 0.9828112744586698
+    },
+    {
+      "feature": "lm_per_char",
+      "weight": 0.5712203869345914
+    },
+    {
+      "feature": "size",
+      "weight": 0.53213719439199
+    },
+    {
+      "feature": "detection",
+      "weight": -0.25022875006620826
+    },
+    {
+      "feature": "line_confidence",
+      "weight": -0.24691865343474942
+    },
+    {
+      "feature": "channel",
+      "weight": 0.1118286964831013
+    },
+    {
+      "feature": "digits",
+      "weight": -0.0909524323514995
+    },
+    {
+      "feature": "deletion",
+      "weight": 0.07546591398000141
+    },
+    {
+      "feature": "rule=punctuation.spacing",
+      "weight": 0.07458215662793721
+    },
+    {
+      "feature": "rule=lexical.word",
+      "weight": -0.07351357137428366
+    },
+    {
+      "feature": "rule=segmentation.merge",
+      "weight": 0.06917662638888271
+    },
+    {
+      "feature": "v01",
+      "weight": 0.06527289265040088
+    },
+    {
+      "feature": "rule=confusables.in_numbers",
+      "weight": 0.06283664614032979
+    },
+    {
+      "feature": "rule=numbers.separators",
+      "weight": -0.05499384568471779
+    },
+    {
+      "feature": "insertion",
+      "weight": 0.05314433472359298
+    },
+    {
+      "feature": "rule=segmentation.split",
+      "weight": 0.05314433472359298
+    },
+    {
+      "feature": "word_gain",
+      "weight": -0.04854550948638412
+    },
+    {
+      "feature": "word_after",
+      "weight": -0.048052286407987706
+    },
+    {
+      "feature": "rule=noise.drop_lines",
+      "weight": 0.028180628287900005
+    },
+    {
+      "feature": "word_before",
+      "weight": 0.007466693133535789
+    },
+    {
+      "feature": "engine_missing",
+      "weight": 0.0023915705406789742
+    }
+  ],
+  "bias": -2.5563101334395952
+}

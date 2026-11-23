@@ -3,7 +3,7 @@ run a registered experiment."""
 
 import argparse
 import sys
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from importlib.metadata import version
 from pathlib import Path
 
@@ -61,6 +61,16 @@ def _parser() -> argparse.ArgumentParser:
     fitting.add_argument("--max-chars", type=int, default=3_000_000, help="text read at most")
     fitting.add_argument("--order", type=int, default=5, help="the language model's order")
     fitting.add_argument("-o", "--output", type=Path, required=True, help="the pack to write")
+
+    calibrating = commands.add_parser(
+        "calibrate", help="fit a pack's acceptance model and choose each profile's threshold"
+    )
+    calibrating.add_argument("--pack", type=Path, required=True, help="the pack lectris fit wrote")
+    calibrating.add_argument("--fit", type=Path, required=True, help="pairs to fit acceptance on")
+    calibrating.add_argument(
+        "--cal", type=Path, required=True, help="pairs to choose thresholds on"
+    )
+    calibrating.add_argument("-o", "--output", type=Path, required=True, help="the pack to write")
 
     experiment = commands.add_parser("experiment", help="run a registered experiment")
     actions = experiment.add_subparsers(dest="action", required=True, metavar="ACTION")
@@ -184,6 +194,23 @@ def _fit(arguments: argparse.Namespace) -> int:
     return 0
 
 
+def _calibrate(arguments: argparse.Namespace) -> int:
+    from lectris.eval.calibrate import calibrate  # noqa: PLC0415 - only this command needs it
+    from lectris.eval.experiment import load_pairs  # noqa: PLC0415
+    from lectris.models import pack  # noqa: PLC0415
+
+    calibrated = calibrate(
+        pack.load(arguments.pack), load_pairs(arguments.fit), load_pairs(arguments.cal)
+    )
+    pack.save(calibrated, arguments.output)
+    budgets = calibrated.risk or {}
+    lines = [
+        f"{name}: alpha {b.alpha}, threshold {b.threshold}" for name, b in sorted(budgets.items())
+    ]
+    sys.stdout.write(f"{arguments.output}\n" + "\n".join(lines) + "\n")
+    return 0
+
+
 def _rules() -> int:
     for profile in PROFILES.values():
         sys.stdout.write(f"{profile.name}: {profile.description}\n")
@@ -196,16 +223,16 @@ def _rules() -> int:
 def main(argv: Sequence[str] | None = None) -> int:
     """Run the command; returns the exit status (0 done, 1 an input it cannot read, 2 usage)."""
     arguments = _parser().parse_args(argv)
+    commands: dict[str, Callable[[argparse.Namespace], int]] = {
+        "clean": _clean,
+        "eval": _eval,
+        "experiment": _experiment,
+        "fit": _fit,
+        "calibrate": _calibrate,
+        "rules": lambda _: _rules(),
+    }
     try:
-        if arguments.command == "clean":
-            return _clean(arguments)
-        if arguments.command == "eval":
-            return _eval(arguments)
-        if arguments.command == "experiment":
-            return _experiment(arguments)
-        if arguments.command == "fit":
-            return _fit(arguments)
-        return _rules()
+        return commands[arguments.command](arguments)
     except (LectrisError, OSError, ValueError) as error:
         sys.stderr.write(f"lectris: {error}\n")
         return 1

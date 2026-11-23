@@ -18,8 +18,11 @@ folder:
     {"pages": [{"page": "a1b2c3", "engine": "../../engine/a1b2c3.json",
                 "truth": "../../truth/a1b2c3.json"}]}
 
-Each system is a profile and a policy: ``parity`` (LECTRIS v0.1's decisions) or ``none`` (no
-guess accepted: the transforms only, baseline B0). Every page is read, its OCR lines on
+Each system is a profile and a policy: ``parity`` (LECTRIS v0.1's decisions), ``none`` (no
+guess accepted: the transforms only, baseline B0) or ``risk`` (the pack's acceptance model and
+the profile's risk-controlled threshold, ``lectris.eval.calibrate.risk_policy``). A system can
+name a model ``pack`` (relative to the configuration's folder): it adds evidence and the lexicon
+proposers, and ``risk`` needs one. Every page is read, its OCR lines on
 don't-care ground truth are dropped (``scoring.drop_dont_care``), and it is cleaned by each
 system and scored (``lectris.eval.scoring``). The report holds, for the uncorrected text and
 for each system: CER (normalised and raw tracks), WER, the harm rate, edit counts by label, the
@@ -43,6 +46,7 @@ from lectris.eval.scoring import PageScore, drop_dont_care, score_page
 from lectris.eval.stats import Interval, bootstrap, ratio
 from lectris.io._common import decode
 from lectris.io._json import array, load, number, obj, required, string
+from lectris.models import pack as pack_io
 from lectris.pipeline import clean
 from lectris.profiles import PROFILES
 
@@ -50,7 +54,9 @@ NONE: Final = Threshold(lambda _: 0.0, 1.0)
 """A policy that accepts no guess: every candidate's probability is 0, below the bar of 1."""
 
 POLICIES: Final[dict[str, Policy]] = {"parity": PARITY, "none": NONE}
-"""The policies a configuration can name."""
+"""The policies a configuration can name, besides ``risk`` (which needs a pack)."""
+
+_POLICY_NAMES: Final = (*POLICIES, "risk")
 
 
 @dataclass(frozen=True, slots=True)
@@ -60,6 +66,7 @@ class System:
     name: str
     profile: str
     policy: str
+    pack: Path | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -88,7 +95,7 @@ def load_config(path: Path) -> Config:
     """The configuration in the file at ``path``; ``FormatError`` names what is wrong."""
     data = obj(load(decode(path.read_bytes())), "")
     systems = tuple(
-        _system(item, f"systems[{index}]")
+        _system(item, f"systems[{index}]", path.parent)
         for index, item in array(required(data, "systems", ""), "systems")
     )
     if not systems:
@@ -130,11 +137,27 @@ def run(config: Config) -> dict[str, Any]:
     if not pairs:
         raise FormatError(f"{config.pairs}: the manifest has no pages")
     scores: dict[str, list[PageScore]] = {system.name: [] for system in config.systems}
+    from lectris.eval.calibrate import risk_policy  # noqa: PLC0415 - calibrate imports this module
+
+    packs = {s.pack: pack_io.load(s.pack) for s in config.systems if s.pack is not None}
+    policies: dict[str, Policy] = {}
+    for system in config.systems:
+        if system.policy == "risk":
+            if system.pack is None:
+                raise FormatError(f"{system.name}: the risk policy needs a pack")
+            policies[system.name] = risk_policy(packs[system.pack], system.profile)
+        else:
+            policies[system.name] = POLICIES[system.policy]
     for pair in pairs:
         truth = truth_io.read(pair.truth)
         document = drop_dont_care(io.read(pair.engine), truth, iou_threshold=config.iou)
         for system in config.systems:
-            result = clean(document, profile=system.profile, policy=POLICIES[system.policy])
+            result = clean(
+                document,
+                profile=system.profile,
+                policy=policies[system.name],
+                pack=None if system.pack is None else packs[system.pack],
+            )
             scores[system.name].append(score_page(result, truth, iou_threshold=config.iou))
     first = scores[config.systems[0].name]
     report: dict[str, Any] = {
@@ -147,7 +170,9 @@ def run(config: Config) -> dict[str, Any]:
         "seed": config.seed,
         "iou": config.iou,
         "systems": [
-            {"name": s.name, "profile": s.profile, "policy": s.policy} for s in config.systems
+            {"name": s.name, "profile": s.profile, "policy": s.policy}
+            | ({} if s.pack is None else {"pack_sha256": _sha256(s.pack)})
+            for s in config.systems
         ],
         "lines": {
             "ocr": sum(score.ocr_lines for score in first),
@@ -230,18 +255,28 @@ def markdown(report: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
-def _system(value: Any, path: str) -> System:
+def _system(value: Any, path: str, folder: Path) -> System:
     data = obj(value, path)
+    pack = data.get("pack")
     system = System(
         string(required(data, "name", path), f"{path}.name"),
         string(data.get("profile", "standard"), f"{path}.profile"),
         string(data.get("policy", "parity"), f"{path}.policy"),
+        None if pack is None else folder / string(pack, f"{path}.pack"),
     )
     if system.profile not in PROFILES:
         raise FormatError(f"{path}.profile: no profile called {system.profile!r}")
-    if system.policy not in POLICIES:
-        raise FormatError(f"{path}.policy: one of {', '.join(POLICIES)}, not {system.policy!r}")
+    if system.policy not in _POLICY_NAMES:
+        raise FormatError(
+            f"{path}.policy: one of {', '.join(_POLICY_NAMES)}, not {system.policy!r}"
+        )
+    if system.policy == "risk" and system.pack is None:
+        raise FormatError(f"{path}: the risk policy needs a pack")
     return system
+
+
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def _integer(data: dict[str, Any], key: str, default: int) -> int:

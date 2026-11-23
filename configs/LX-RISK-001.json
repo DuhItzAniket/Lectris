@@ -1,0 +1,38 @@
+{
+  "id": "LX-RISK-001",
+  "question": "Phase 7 validation on dev: do the risk-controlled profiles hold their harm budgets on unseen pages (full pipeline runs), and what do they change against B0 and the v0.1 rules? First dev evidence on H1; H1 is decided in Phase 10.",
+  "pairs": "../data/manifests/pairs/hiertext_val_glypharis_v1_dev.json",
+  "systems": [
+    {
+      "name": "B0",
+      "profile": "standard",
+      "policy": "none"
+    },
+    {
+      "name": "B1-standard",
+      "profile": "standard",
+      "policy": "parity"
+    },
+    {
+      "name": "LX-conservative",
+      "profile": "conservative",
+      "policy": "risk",
+      "pack": "../data/packs/glypharis_v1.calibrated.lectris.json.gz"
+    },
+    {
+      "name": "LX-standard",
+      "profile": "standard",
+      "policy": "risk",
+      "pack": "../data/packs/glypharis_v1.calibrated.lectris.json.gz"
+    },
+    {
+      "name": "LX-aggressive",
+      "profile": "aggressive",
+      "policy": "risk",
+      "pack": "../data/packs/glypharis_v1.calibrated.lectris.json.gz"
+    }
+  ],
+  "resamples": 1000,
+  "seed": 1337,
+  "iou": 0.5
+}
