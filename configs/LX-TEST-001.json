@@ -1,0 +1,22 @@
+{
+  "id": "LX-TEST-001",
+  "question": "Phase 13, the test (run once): on GDC 1.1 (106 photographed printed pages, GLYPHARIS glypharis_v1 output), what do the frozen systems change? H1, H2 and H3 confirmed on GDC: LX-standard against B0, B1 and B2; the engine-feature ablation; each profile's harm rate against its budget on a document set none of it was fitted or calibrated on. Code at 8a1699c, packs frozen by SHA-256 (research/experiments.md).",
+  "pairs": "../data/manifests/pairs/gdc_v1_1_glypharis_v1_test.json",
+  "systems": [
+    {"name": "B0", "profile": "standard", "policy": "none"},
+    {"name": "B1-standard", "profile": "standard", "policy": "parity"},
+    {"name": "B2-lexicon", "profile": "standard", "policy": "lexicon", "pack": "../data/packs/glypharis_v1.calibrated.lectris.json.gz"},
+    {"name": "LX-conservative", "profile": "conservative", "policy": "risk", "pack": "../data/packs/glypharis_v1.calibrated.lectris.json.gz"},
+    {"name": "LX-standard", "profile": "standard", "policy": "risk", "pack": "../data/packs/glypharis_v1.calibrated.lectris.json.gz"},
+    {"name": "LX-aggressive", "profile": "aggressive", "policy": "risk", "pack": "../data/packs/glypharis_v1.calibrated.lectris.json.gz"},
+    {"name": "LX-standard-no-engine", "profile": "standard", "policy": "risk", "pack": "../data/packs/glypharis_v1.noengine.lectris.json.gz"}
+  ],
+  "compare": [
+    ["LX-standard", "B0"],
+    ["LX-standard", "B1-standard"],
+    ["LX-standard", "LX-standard-no-engine"]
+  ],
+  "resamples": 1000,
+  "seed": 1337,
+  "iou": 0.5
+}
