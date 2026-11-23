@@ -52,3 +52,22 @@ research number come after, and do not block the joint test.
 - The guarantee's validity measured on dev (re-splits) and on GDC.
 - Zero runtime dependencies; parity with v0.1 kept or retired by a documented decision.
 - Every number in the paper regenerates from a script and a manifest.
+
+## Where it stands (2026-11-23)
+
+| | State |
+|---|---|
+| v0.2 (Phases 2–4) | built and merged |
+| v0.3 (Phases 5–8: paired data, evidence, packs, risk control, interface) | built and merged; not released |
+| Phase 9 baselines | B0, B1, B2 done; B3 (ByT5) and B4 (LLM) wait for the research environment (ADR-0004 point 3, Proposed) |
+| Phase 10 main study (dev) | H1 first evidence (ΔCER −0.03 [−0.06, +0.01], not CI-separated); H3 partly supported (0 violations in 1,000 re-splits; recall clause not met) |
+| Phase 11 ablations | H2 supported on dev for the line-level arm (LX-ABL-001); the character arm waits for GLYPHARIS `chars` |
+| Phase 12 engine transfer | waits for Tesseract on this machine |
+| Phase 13 test (GDC) | waits for the owner: the frozen configuration, and the GDC access log in GLYPHARIS |
+| Phase 15 efficiency | H6 supported (LX-EFF-001: 0.5% of GLYPHARIS's time per page) |
+
+**Decisions waiting for the owner:** approve the research environment for B3/B4 (ADR-0004);
+install Tesseract (Phase 12); decide whether GLYPHARIS exports per-character `chars`
+(ADR-0003; the H2 character arm); freeze the configuration and open the GDC test (Phase 13, which
+also writes to GLYPHARIS's test access log); release v0.3 (docs/RELEASING.md, after the PyPI
+setup).
