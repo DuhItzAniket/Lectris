@@ -36,7 +36,8 @@ So that normalisation is not credited as correction, every CER/WER is reported i
 - Each accepted edit is scored by its exact marginal effect: Δ = distance(block reference, the
   block's text at the edit's step with the edit applied) − distance(block reference, that text
   without it), in the normalised track, where a block's reference is the ground truth of its
-  matched lines (§3.3). **Fix**: Δ < 0. **Harm**: Δ > 0. **Neutral**: Δ = 0.
+  matched lines (§3.3), laid out as the system lays out its text. **Fix**: Δ < 0. **Harm**:
+  Δ > 0. **Neutral**: Δ = 0. **Layout**: any edit of a layout rule, whatever its Δ.
 - **Harm rate** (the guaranteed risk): per page, Σ Δ over harmful edits / max(1, |ground truth|).
 - **Precision**: fixes / (fixes + harms). **Recall**: characters fixed / characters in
   locally correctable errors (errors inside one token or one inter-token gap of a matched line).
@@ -48,6 +49,15 @@ So that normalisation is not credited as correction, every CER/WER is reported i
 OCR lines are matched to ground-truth lines one to one by the IoU of their boxes (greedy by IoU,
 threshold 0.5 _(tunable)_). Unmatched OCR lines are insertions, unmatched ground-truth lines are
 deletions; both count in CER but are outside any edit's window (they are not locally correctable).
+
+**Layout-neutral references.** Line-level ground truth keeps each printed line's end, line-end
+hyphens included. A block's reference is its matched ground-truth lines joined by line breaks;
+the cleaned text is compared with that reference *after* the system's own layout steps
+(`hyphenation.join`, `unwrap.join_lines`, in the profile's order, under the system's policy), and
+the uncorrected text with the reference as it is. Line-break decisions are then the same on both
+sides; layout edits are labelled *layout* and scored apart (they need reading-text ground truth).
+Where the OCR text near a line end differs from the ground truth, the two sides can decide
+differently, and that counts (R-15).
 
 **Don't care.** As in GLYPHARIS's page metrics, a ground-truth line counts only if it is legible,
 printed (not handwritten), horizontal (not vertical) and not empty; every other line is *don't
@@ -119,5 +129,6 @@ deterministic for their inputs. Run time is the only number that may differ betw
 |---|---|---|---|
 | 2026-11-14 | first version | Phase 1 | — |
 | 2026-11-23 | §3.2: an edit's Δ is its exact marginal effect on its block's distance to the block's reference, not a distance in a token window | a window needs a choice of its edges and an alignment that can be ambiguous; the block is small enough to measure exactly (Phase 4) | every edit label; no experiment had run |
+| 2026-11-23 | §3.2, §3.3: layout-neutral references; layout edits labelled *layout* and left out of fixes, harms and the harm rate | LX-DATA-001 showed correct de-hyphenations scored as harm against line-level ground truth (R-15) | every score with layout steps; only the descriptive LX-DATA-001 had run, and it is re-run as LX-DATA-002 |
 | 2026-11-23 | §3.3: don't-care ground-truth lines (illegible, handwritten, vertical, empty), and OCR lines on them dropped before cleaning | the same rule as GLYPHARIS's page metrics, so the two projects score one page alike (Phase 5) | every page score; no experiment had run |
 | 2026-11-23 | §2: the raw track folds whitespace runs to one space | line breaks and unwrapping are layout, which §3.4 scores apart (Phase 4) | raw CER; no experiment had run |

@@ -88,15 +88,43 @@ class TestScorePage:
         assert (score.chars.before, score.chars.after) == (0, 1)
         assert score.harm_rate == pytest.approx(1 / 14)
 
-    def test_unwrapping_and_transforms_are_neutral_in_the_normalised_track(self) -> None:
+    def test_transforms_are_neutral_and_unwrapping_is_layout(self) -> None:
         document = page_of(("A ﬁne survey of", box(0)), ("the river.", box(40)))
         score = score_page(
             clean(document), truth_of(("A fine survey of", box(0)), ("the river.", box(40)))
         )
-        assert {label.label for label in score.labels} == {"neutral"}
+        assert {label.label for label in score.labels} == {"neutral", "layout"}
+        assert {label.edit.rule for label in score.labels if label.label == "layout"} == {
+            "unwrap.join_lines"
+        }
         assert (score.chars.before, score.chars.after) == (0, 0)
         assert score.raw_chars.before == 2  # the ligature counts in the raw track
         assert score.raw_chars.after == 0
+
+    def test_a_correct_dehyphenation_is_layout_not_harm(self) -> None:
+        # Line-level ground truth keeps the printed line-end hyphen (R-15).
+        document = page_of(("The growers count the hives each spr-", box(0)), ("ing.", box(40)))
+        truth_page = truth_of(("The growers count the hives each spr-", box(0)), ("ing.", box(40)))
+        score = score_page(clean(document), truth_page)
+        assert clean(document).text.endswith("each spring.")
+        assert {label.edit.rule: label.label for label in score.labels} == {
+            "hyphenation.join": "layout",
+            "unwrap.join_lines": "layout",
+        }
+        assert (score.chars.before, score.chars.after, score.harm_chars) == (0, 0, 0)
+
+    def test_an_ocr_error_at_a_line_end_still_counts(self) -> None:
+        # The OCR misread the hyphen, so LECTRIS cannot rejoin the word; the reference is.
+        document = page_of(("each spr~", box(0)), ("ing.", box(40)))
+        score = score_page(clean(document), truth_of(("each spr-", box(0)), ("ing.", box(40))))
+        assert score.chars.before == 1
+        assert score.chars.after == 2  # "spr~ ing." against "spring."
+
+    def test_the_reference_follows_the_systems_policy(self) -> None:
+        document = page_of(("each spr-", box(0)), ("ing.", box(40)))
+        truth_page = truth_of(("each spr-", box(0)), ("ing.", box(40)))
+        score = score_page(clean(document, policy=NONE), truth_page)
+        assert (score.chars.before, score.chars.after) == (0, 0)  # neither side rejoins
 
     def test_unmatched_lines_are_insertions_and_deletions(self) -> None:
         document = page_of(("kept", box(0)), ("speck", box(300)))
@@ -112,7 +140,8 @@ class TestScorePage:
         result = clean("They counted 1O5\nhives.")
         score = score_page(result, truth_of(("They counted 105", None), ("hives.", None)))
         assert (score.chars.before, score.chars.after) == (1, 0)
-        assert [label.label for label in score.labels if label.label != "neutral"] == ["fix"]
+        labels = [label.label for label in score.labels if label.label != "neutral"]
+        assert labels == ["layout", "fix"]  # the unwrapping, then 1O5
 
     def test_the_none_policy_changes_only_by_transforms(self) -> None:
         document = page_of(("They counted 1O5 hives.", box(0)))
@@ -236,7 +265,7 @@ class TestExperiment:
         assert (b0["fixes"], b0["harms"]) == (0, 0)
         assert (b1["fixes"], b1["harms"], b1["precision"]) == (1, 1, 0.5)
         assert b1["by_rule"] == {
-            "confusables.in_numbers": {"fix": 1, "harm": 1, "neutral": 0, "effect": 0}
+            "confusables.in_numbers": {"fix": 1, "harm": 1, "neutral": 0, "layout": 0, "effect": 0}
         }
         assert b0["by_rule"] == {}
         assert (

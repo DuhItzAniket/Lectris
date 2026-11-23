@@ -121,11 +121,13 @@ class CleanBlock:
 
 @dataclass(frozen=True, slots=True)
 class Result:
-    """What ``clean()`` returns."""
+    """What ``clean()`` returns: the profile's name, the layout document, the cleaned blocks, and
+    the policy that decided on the candidates."""
 
     profile: str
     document: Document
     blocks: tuple[CleanBlock, ...]
+    policy: Policy = PARITY
 
     @property
     def text(self) -> str:
@@ -261,7 +263,7 @@ def clean(
             for page_index, page in enumerate(document.pages)
             for index, block in enumerate(page.blocks)
         )
-        return Result(chosen.name, document, blocks)
+        return Result(chosen.name, document, blocks, policy)
     document = source
     if chosen.arrange:
         document = replace(document, pages=tuple(arrange(page) for page in document.pages))
@@ -278,4 +280,4 @@ def clean(
         for page in document.pages
         for index, block in enumerate(page.blocks)
     )
-    return Result(chosen.name, document, blocks)
+    return Result(chosen.name, document, blocks, policy)

@@ -41,3 +41,21 @@ tested.
   Phase 10, with the owner.
 - GLYPHARIS's installed package reports `glypharis_version` "0.1.0.dev0" while its model is
   glypharis_v1; the pairs are keyed by the model, as ADR-0003 requires.
+
+## 2026-11-23 — Layout-neutral references (R-15) and LX-DATA-002
+
+- Mapping characters back through `OffsetMap` cannot separate layout from text: a de-hyphenation
+  edit moves the second half of a word up a line, so its characters come from both lines. The
+  robust fix is to build the reference the way the hypothesis is built: the block's ground-truth
+  lines, joined by line breaks, go through the system's own layout steps under its policy.
+  Line-break decisions are then neutral by construction; layout edits are labelled *layout*.
+- LX-DATA-002 (fit split, same pairs and seed): B1-standard CER 27.97% against 28.03%
+  uncorrected, ΔCER −0.06 [−0.10, −0.04] points, the first interval in this study that excludes
+  zero. 157 fixes, 18 harms (precision 89.71%), harm rate 0.013% [0.001, 0.036]; 1.74% of pages
+  made worse. By rule: `noise.drop_lines` 126 / 13 (−247 characters), `confusables.in_numbers`
+  13 / 0 (−13), `punctuation.spacing` 18 / 5 (−13). B0 and B1-conservative change nothing but
+  layout. The aggressive profile adds one fix and one harm (`confusables.in_words`).
+- What this means for the study: the v0.1 rules are precise (≈ 90%) but reach little: about
+  0.06 of the 28 CER points, against the 18.9% of errors (≈ 5.3 points) that lie inside a token
+  (LX-DATA-001 taxonomy). The method's room is the gap between those two: recall at the same
+  precision, which is what Phases 6 and 7 add.

@@ -2,15 +2,27 @@
 
 **References by block.** The OCR lines of the cleaned document are matched with the ground-truth
 lines (``matching``). Each block's reference is the text of the ground-truth lines its lines are
-matched with, in the block's own order, so a difference in reading order is not an error. A
-ground-truth line no OCR line is matched with is a deletion: its characters count as errors,
-before and after cleaning alike. Without boxes on either side, nothing can be matched, and the
-whole page is compared as one block, in the order each side gives.
+matched with, in the block's own order, one per line, so a difference in reading order is not an
+error. A ground-truth line no OCR line is matched with is a deletion: its characters count as
+errors, before and after cleaning alike. Without boxes on either side, nothing can be matched,
+and the whole page is compared as one block, in the order each side gives.
 
 **Don't care.** Ground-truth lines marked ``care: false`` (illegible, handwritten, vertical)
 do not count, as in GLYPHARIS's page metrics: ``drop_dont_care`` removes, before cleaning, every
 OCR line that is matched with no line that counts but is matched with a don't-care line, or lies
 mostly (half its area or more) inside one; ``score_page`` scores against the lines that count.
+
+**Layout-neutral references.** Line-level ground truth (HierText, GDC) transcribes each printed
+line as it stands, line-end hyphens included, while the cleaned text joins lines and rejoins
+hyphenated words. Against such a reference a correct de-hyphenation would count as a harm
+(RISK_REGISTER R-15). So the reference the cleaned text is compared with is laid out the way the
+cleaned text was: the block's reference lines, joined by line breaks, are passed through the
+same layout steps the system ran (``hyphenation.join`` and ``unwrap.join_lines``, in the
+profile's order, under the system's policy). A line-break decision is then the same on both
+sides and is neither a fix nor a harm; where the OCR text near a line end differs from the
+ground truth, the decisions can differ, and that difference counts. The uncorrected text is
+compared with the reference lines as they are. Layout edits are labelled *layout*: they are
+scored apart, on data with reading-text ground truth.
 
 **Two tracks.** ``raw`` compares texts in NFC with whitespace runs made one space (line breaks
 are layout, not text). ``normalised``, the primary track, also passes both sides through
@@ -18,10 +30,11 @@ LECTRIS's transforms (compatibility forms, invisible characters, ligatures, dash
 quotes, three-dot ellipses), so normalising is not counted as correcting.
 
 **Edit labels.** Each edit a block's rules made is labelled by its effect, in the normalised
-track, on the distance from the block's text to its reference: the distance with the edit
-applied to the text it was made on, less the distance without it. Below zero it is a *fix*,
-above zero a *harm*, otherwise *neutral*. This is the exact marginal effect of the edit where it
-was made, with no window to choose.
+track, on the distance from the block's text to its (laid-out) reference: the distance with the
+edit applied to the text it was made on, less the distance without it. Below zero it is a *fix*,
+above zero a *harm*, otherwise *neutral*; an edit of a layout rule is *layout*, whatever its
+effect. This is the exact marginal effect of the edit where it was made, with no window to
+choose.
 
 **Harm rate.** A page's harm rate is the characters its harmful edits broke (the sum of their
 effects) divided by the characters of its reference (at least 1): the risk ADR-0002 bounds.
@@ -31,17 +44,22 @@ import re
 import unicodedata
 from collections.abc import Callable, Iterable, Sequence
 from dataclasses import dataclass, replace
-from typing import Literal
+from typing import Final, Literal
 
+from lectris.decide import Policy
 from lectris.edits import Edit, apply_edits
 from lectris.eval.matching import Matching, match_lines
 from lectris.eval.truth import TruthPage
+from lectris.lexicon import Lexicon
 from lectris.metrics import char_errors, word_errors
 from lectris.model import Document, Line
-from lectris.pipeline import CleanBlock, Result
+from lectris.pipeline import CleanBlock, Result, Step
 from lectris.text import punctuation, unicode
 
-type Label = Literal["fix", "harm", "neutral"]
+type Label = Literal["fix", "harm", "neutral", "layout"]
+
+LAYOUT_RULES: Final = frozenset({"hyphenation.join", "unwrap.join_lines"})
+"""The rules that lay text out (join lines, rejoin hyphenated words): scored apart."""
 
 _SPACES = re.compile(r"\s+")
 
@@ -61,6 +79,16 @@ def normalised(text: str) -> str:
     return raw(text)
 
 
+def lay_out(
+    text: str, steps: Sequence[Step], policy: Policy, lexicon: Lexicon | None = None
+) -> str:
+    """``text`` through the layout steps among ``steps``, in their order, under ``policy``."""
+    for step in steps:
+        if step.id in LAYOUT_RULES:
+            text = step.apply(text, lexicon, policy).text
+    return text
+
+
 @dataclass(frozen=True, slots=True)
 class EditLabel:
     """One edit, located by block and step, with its effect on the distance and its label."""
@@ -72,6 +100,8 @@ class EditLabel:
 
     @property
     def label(self) -> Label:
+        if self.edit.rule in LAYOUT_RULES:
+            return "layout"
         if self.effect < 0:
             return "fix"
         return "harm" if self.effect > 0 else "neutral"
@@ -106,12 +136,12 @@ class PageScore:
     @property
     def harm_chars(self) -> int:
         """The characters the harmful edits broke."""
-        return sum(item.effect for item in self.labels if item.effect > 0)
+        return sum(item.effect for item in self.labels if item.label == "harm")
 
     @property
     def fixed_chars(self) -> int:
         """The characters the fixing edits repaired."""
-        return -sum(item.effect for item in self.labels if item.effect < 0)
+        return -sum(item.effect for item in self.labels if item.label == "fix")
 
     @property
     def harm_rate(self) -> float:
@@ -161,9 +191,28 @@ def drop_dont_care(document: Document, truth: TruthPage, *, iou_threshold: float
     return replace(document, pages=tuple(pages))
 
 
-def score_page(result: Result, truth: TruthPage, *, iou_threshold: float = 0.5) -> PageScore:
+def score_page(
+    result: Result,
+    truth: TruthPage,
+    *,
+    iou_threshold: float = 0.5,
+    lexicon: Lexicon | None = None,
+    steps: Sequence[Step] | None = None,
+) -> PageScore:
     """``result`` (one OCR page, cleaned) scored against ``truth``'s lines that count; see the
-    module's docs. Drop the OCR lines on don't-care lines first (``drop_dont_care``)."""
+    module's docs. Drop the OCR lines on don't-care lines first (``drop_dont_care``).
+
+    The reference is laid out with ``steps`` (by default, those of the built-in profile the
+    result names), under the result's policy, with ``lexicon``: pass the ones ``clean()`` used.
+    """
+    if steps is None:
+        from lectris.profiles import get  # noqa: PLC0415 - the profiles import the pipeline
+
+        steps = get(result.profile).steps
+
+    def laid(text: str) -> str:
+        return lay_out(text, steps, result.policy, lexicon)
+
     truth = truth.counted
     blocks = _blocks_with_lines(result)
     ocr_lines = [line for _, lines in blocks for line in lines]
@@ -173,21 +222,22 @@ def score_page(result: Result, truth: TruthPage, *, iou_threshold: float = 0.5) 
         threshold=iou_threshold,
     )
     if not matching.pairs and not _any_box(ocr_lines, truth):
-        return _score_whole(result, truth, len(ocr_lines))
+        return _score_whole(result, truth, len(ocr_lines), laid)
     references = _references(blocks, truth, matching)
+    laid_out = [laid(reference) for reference in references]
     missing = [truth.lines[j].text for j in matching.truth_unmatched]
     sources = [block.source for block, _ in blocks]
     cleaned = [block.text for block, _ in blocks]
     labels = tuple(
         label
-        for (block, _), reference in zip(blocks, references, strict=True)
+        for (block, _), reference in zip(blocks, laid_out, strict=True)
         for label in _labels(block, reference)
     )
     return PageScore(
         page=truth.page,
-        chars=_chars(references, sources, cleaned, missing, normalised),
-        raw_chars=_chars(references, sources, cleaned, missing, raw),
-        words=_words(references, sources, cleaned, missing),
+        chars=_chars(references, laid_out, sources, cleaned, missing, prepare=normalised),
+        raw_chars=_chars(references, laid_out, sources, cleaned, missing, prepare=raw),
+        words=_words(references, laid_out, sources, cleaned, missing),
         labels=labels,
         matched_lines=len(matching.pairs),
         ocr_lines=len(ocr_lines),
@@ -212,12 +262,13 @@ def _any_box(lines: Iterable[Line], truth: TruthPage) -> bool:
 def _references(
     blocks: Sequence[tuple[CleanBlock, tuple[Line, ...]]], truth: TruthPage, matching: Matching
 ) -> list[str]:
+    """Each block's reference: its matched ground-truth lines, one per line, in its order."""
     of = dict(matching.pairs)
     references: list[str] = []
     position = 0
     for _, lines in blocks:
         matched = [of.get(position + offset) for offset in range(len(lines))]
-        references.append(" ".join(truth.lines[j].text for j in matched if j is not None))
+        references.append("\n".join(truth.lines[j].text for j in matched if j is not None))
         position += len(lines)
     return references
 
@@ -247,11 +298,15 @@ def _distance(reference: str, text: str) -> int:
 
 def _chars(
     references: Sequence[str],
+    laid_out: Sequence[str],
     sources: Sequence[str],
     cleaned: Sequence[str],
     missing: Sequence[str],
+    *,
     prepare: Callable[[str], str],
 ) -> Counts:
+    """Character errors: the sources against the references, the cleaned texts against the
+    laid-out references, and every missing line's characters on both sides."""
     lost = sum(len(prepare(text)) for text in missing)
     reference = sum(len(prepare(text)) for text in references) + lost
     before = sum(
@@ -260,13 +315,14 @@ def _chars(
     )
     after = sum(
         char_errors(prepare(ref), prepare(hyp)).errors
-        for ref, hyp in zip(references, cleaned, strict=True)
+        for ref, hyp in zip(laid_out, cleaned, strict=True)
     )
     return Counts(reference, before + lost, after + lost)
 
 
 def _words(
     references: Sequence[str],
+    laid_out: Sequence[str],
     sources: Sequence[str],
     cleaned: Sequence[str],
     missing: Sequence[str],
@@ -279,29 +335,30 @@ def _words(
     )
     after = sum(
         word_errors(normalised(ref), normalised(hyp)).errors
-        for ref, hyp in zip(references, cleaned, strict=True)
+        for ref, hyp in zip(laid_out, cleaned, strict=True)
     )
     return Counts(reference, before + lost, after + lost)
 
 
-def _score_whole(result: Result, truth: TruthPage, ocr_lines: int) -> PageScore:
+def _score_whole(
+    result: Result, truth: TruthPage, ocr_lines: int, laid: Callable[[str], str]
+) -> PageScore:
     """Without boxes: the page as one block, in each side's own order."""
-    reference = " ".join(line.text for line in truth.lines)
+    reference = "\n".join(line.text for line in truth.lines)
+    laid_out = laid(reference)
     sources = [" ".join(block.source for block in result.blocks)]
     cleaned = [" ".join(block.text for block in result.blocks)]
     texts = [block.source for block in result.blocks]
     labels = tuple(
         label
         for index, block in enumerate(result.blocks)
-        for label in _labels(
-            block, reference, " ".join(texts[:index]), " ".join(texts[index + 1 :])
-        )
+        for label in _labels(block, laid_out, " ".join(texts[:index]), " ".join(texts[index + 1 :]))
     )
     return PageScore(
         page=truth.page,
-        chars=_chars([reference], sources, cleaned, [], normalised),
-        raw_chars=_chars([reference], sources, cleaned, [], raw),
-        words=_words([reference], sources, cleaned, []),
+        chars=_chars([reference], [laid_out], sources, cleaned, [], prepare=normalised),
+        raw_chars=_chars([reference], [laid_out], sources, cleaned, [], prepare=raw),
+        words=_words([reference], [laid_out], sources, cleaned, []),
         labels=labels,
         matched_lines=0,
         ocr_lines=ocr_lines,
