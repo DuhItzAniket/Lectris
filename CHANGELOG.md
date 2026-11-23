@@ -6,6 +6,16 @@ All notable changes to LECTRIS are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-23
+
+Risk-controlled, engine-aware correction. The rules that guess now propose candidate edits;
+with a model pack fitted on an engine's paired data (`lectris fit`, `lectris calibrate`), every
+candidate is scored from evidence (the engine's confidence, what it confuses, a character
+language model, a lexicon) and accepted only when its calibrated probability reaches a threshold
+that keeps the harm done to correct text within the profile's budget, with a stated confidence.
+Without a pack, the output is LECTRIS 0.1's, byte for byte. v0.2 was a milestone, not a release:
+its work is in this one.
+
 ### Added
 - The research plan for v2: a target architecture in which rules propose candidate edits, evidence
   (including the OCR engine's uncertainty) scores them, and a threshold that bounds the harm rate
@@ -105,5 +115,6 @@ seventeen rules in three profiles, with every edit recorded.
 - The pipeline, with the `conservative`, `standard` and `aggressive` profiles; reports (summary,
   JSON, Markdown); the `lectris` command (`clean`, `eval`, `rules`).
 
-[Unreleased]: https://github.com/DuhItzAniket/Lectris/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/DuhItzAniket/Lectris/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/DuhItzAniket/Lectris/compare/v0.1.0...v0.3.0
 [0.1.0]: https://github.com/DuhItzAniket/Lectris/releases/tag/v0.1.0
