@@ -1,0 +1,40 @@
+{
+  "manifest": "data/manifests/pairs/gdc_v1_1_glypharis_v1_test.json",
+  "track": "normalised",
+  "all": {
+    "pages": 106,
+    "reference_chars": 321559,
+    "errors": 69135,
+    "cer": 0.21499942467789737,
+    "counts": {
+      "in_token": 15874,
+      "spacing": 3455,
+      "missed_line": 31555,
+      "extra_line": 18251
+    },
+    "shares": {
+      "in_token": 0.22960873652997757,
+      "spacing": 0.049974687206190783,
+      "missed_line": 0.456425833514139,
+      "extra_line": 0.26399074274969264
+    }
+  },
+  "document_slice": {
+    "pages": 26,
+    "reference_chars": 130952,
+    "errors": 29113,
+    "cer": 0.22231810128902194,
+    "counts": {
+      "in_token": 5588,
+      "spacing": 1186,
+      "missed_line": 13061,
+      "extra_line": 9278
+    },
+    "shares": {
+      "in_token": 0.19194174423796928,
+      "spacing": 0.04073781472194552,
+      "missed_line": 0.44863119568577614,
+      "extra_line": 0.3186892453543091
+    }
+  }
+}

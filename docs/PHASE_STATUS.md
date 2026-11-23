@@ -35,8 +35,9 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 | GLYPHARIS output (JSON) on HierText validation and GlyphSynth validation pages, with the model version | Phase 5 | HierText done (glypharis_v1, Phase 5); GlyphSynth not (line images) |
 | Tesseract installed, its version, for the transfer engine | Phase 5 | **done** (5.4.0, 2026-11-23; H4 run) |
 | Target venue (journal or conference) and its page limit | Phase 16 | open |
-| PyPI: a pending publisher for `lectris` and the protected `pypi` environment (docs/RELEASING.md); the release workflow is merged (#23) | first PyPI release | open; **v0.3.0 is tagged and a draft GitHub release is ready** (2026-11-23): publish it after the setup |
-| The GDC test (Phase 13): freeze the configuration and run it once, logging the access in both projects | Phase 13 | open: the owner chose to wait (2026-11-23) |
+| PyPI: a pending publisher for `lectris` and the protected `pypi` environment (docs/RELEASING.md); the release workflow is merged (#23) | first PyPI release | **done** (2026-11-23): v0.3.0 published on PyPI by the release workflow (Trusted Publishing) |
+| The GDC test (Phase 13): freeze the configuration and run it once, logging the access in both projects | Phase 13 | **done** in LECTRIS (LX-TEST-001, re-run as LX-TEST-002 after a scoring fix; `research/test_access_log.md`); the GLYPHARIS log entry is the owner's, since LECTRIS work does not touch that repository |
+| Reproduce the calibrated pack from code: it was calibrated at the Phase 7 code, before the `lexical_rank` feature; today's `lectris calibrate` on the same inputs gives other thresholds (0.43 / 0.54 / 0.43) | Phase 16 (reproducibility) | open: record the commit to calibrate at, or recalibrate and re-run dev (the test may not be re-run for it) |
 
 ---
 
@@ -290,14 +291,14 @@ with zero loss. ADR-0008 sets budgets above that limit. The most permissive cert
 were then 0.33 / 0.2 / 0.06, where most accepted candidates are wrong; ADR-0009 uses the most
 useful certified one instead.
 
-**Validation on dev (LX-RISK-001, full runs, 433 pages)**
+**Validation on dev (LX-RISK-001, full runs, 433 pages; re-run with the scoring fix of Phase 13)**
 
 | System | CER | ΔCER (points) | Harm rate (budget) | Fix / harm | Precision |
 |---|---|---|---|---|---|
 | uncorrected | 26.17% | — | — | — | — |
-| B1-standard (v0.1) | 26.17% | +0.00 [−0.03, +0.04] | 0.078% | 60 / 51 | 54.05% |
-| LX-conservative | 26.15% | −0.01 [−0.03, +0.01] | 0.017% (1%) | 112 / 36 | 75.68% |
-| LX-standard | 26.14% | −0.03 [−0.06, +0.01] | 0.095% (2%) | 174 / 85 | 67.18% |
+| B1-standard (v0.1) | 26.16% | −0.00 [−0.03, +0.04] | 0.078% | 60 / 51 | 54.05% |
+| LX-conservative | 26.13% | −0.03 [−0.05, −0.02] | 0.017% (1%) | 112 / 36 | 75.68% |
+| LX-standard | 26.13% | −0.03 [−0.07, +0.00] | 0.095% (2%) | 174 / 85 | 67.18% |
 
 Every profile's dev harm rate is far below its budget, and precision rises from 54% (v0.1) to
 67–76%. The CER gain is small and its interval reaches zero: on this data the corrector's ceiling
@@ -356,8 +357,9 @@ owner's call (docs/RELEASING.md).
   harm rate 1.410%, 78% of pages worse.
 - **B3, ByT5-small** (LX-BASE-002; the research environment approved 2026-11-23,
   `research/baselines/byt5/`): it never beat copying on cal; on dev, every correction kept, ΔCER
-  +1.08 [+0.44, +1.88] points at a 1.231% harm rate; harm-matched to LECTRIS-standard, no clear
-  difference (−0.03 [−0.07, +0.01]). H5 not supported as stated.
+  +1.08 [+0.44, +1.88] points at a 1.231% harm rate; harm-matched to LECTRIS-standard, LECTRIS
+  lower by −0.04 [−0.08, −0.0005] points after the scoring fix of Phase 13 (−0.03 [−0.07, +0.01]
+  before). H5 not supported as stated: B3 does not lower CER at all.
 - B4 (an LLM) is not run: it would send data to a provider, which the protocol allows only for
   data whose licence permits it; HierText's terms were not checked for that.
 
@@ -385,3 +387,50 @@ owner's call (docs/RELEASING.md).
 - **H4** (LX-XFER-001): calibration transfers (ECE 0.0770 against 0.0400); the guarantee held even
   without recalibration (0 violations); recalibration keeps it (0 violations, ECE 0.0328 in-engine).
 - Not done: the reverse transfer (a Tesseract pack on GLYPHARIS output).
+
+## Phase 13 — Test evaluation
+
+**Status:** COMPLETE (2026-11-23, on `phase/13-gdc-test`; the owner asked for the run). The test
+was read twice: once as registered (LX-TEST-001), and once more as the registered re-run after a
+scoring bug its report revealed (LX-TEST-002), as the phase's exit allows.
+
+**Frozen:** LECTRIS code `8a1699c` (LX-TEST-001) and `e722231` (the fix, LX-TEST-002); the
+calibrated pack (LX-CAL-003, SHA-256 `84674369…ab147b`) and the no-engine pack
+(`794e008b…434794a`); GLYPHARIS glypharis_v1 (the clean 1.0 install, PyTorch on the CPU, 106
+pages in about 12 minutes); GDC 1.1, the frozen file whose SHA-256 GLYPHARIS's GDC manifest
+records. Pairs: `scripts/build_gdc_pairs.py`, GLYPHARIS's page-metric rule for lines that count
+(8,372 lines count; 234 lines and 455 ignore regions are don't care); manifest
+`data/manifests/pairs/gdc_v1_1_glypharis_v1_test.json`.
+
+**The bug.** LX-TEST-001 showed LX-standard's labelled edits netting −0.03 points against B0
+while its CER rose by 0.01. The layout-neutral reference (R-15) decided its own hyphen joins
+under the system's policy; under `risk`, the acceptance model scored the ground truth's
+candidates without the evidence it scores the OCR's with, and joined none, so each of LECTRIS's
+102 joins on GDC (21 on dev) counted as an error. The reference now rejoins exactly where the
+system rejoined (`lectris.eval.scoring`; a regression test). Calibration labels change for 1 of
+12,857 cal candidates; the frozen pack was kept. The dev reports were re-run (LX-DATA-002,
+LX-RISK-001, LX-ABL-001, LX-BASE-001, LX-BASE-002); LX-RISK-002 and LX-XFER-001 were not, since
+they rest on the calibration labels.
+
+**Results (LX-TEST-002, 106 GDC pages, 1,000 bootstrap resamples over pages)**
+
+| System | CER | ΔCER vs uncorrected (points) | Harm rate (budget) | Fix / harm | Precision |
+|---|---|---|---|---|---|
+| uncorrected | 21.35% | — | — | — | — |
+| B1-standard (v0.1) | 21.35% | −0.00 [−0.01, +0.00] | 0.004% | 12 / 10 | 54.55% |
+| B2-lexicon | 22.06% | +0.71 [+0.57, +0.87] | 0.730% | 324 / 2,459 | 11.64% |
+| LX-conservative | 21.32% | −0.02 [−0.04, −0.01] | 0.008% (1%) | 106 / 22 | 82.81% |
+| LX-standard | 21.33% | −0.02 [−0.04, −0.01] | 0.012% (2%) | 115 / 28 | 80.42% |
+| LX-standard-no-engine | 21.34% | −0.01 [−0.03, −0.00] | 0.012% (2%) | 89 / 23 | 79.46% |
+
+Paired: LX-standard − B1-standard −0.02 [−0.03, −0.01] points; LX-standard − no-engine −0.01
+[−0.02, −0.00], repaired +0.01 [+0.003, +0.013]. LX-aggressive equals LX-standard (ADR-0009's
+thresholds). Error taxonomy (`reports/LX-TEST-001/taxonomy.md`): 23.0% of GDC's character errors
+lie inside a token, 5.0% are spacing, 45.6% missed lines, 26.4% extra lines.
+
+**Hypotheses:** H1 holds on GDC (partly supported overall: not CI-separated on dev); H2 confirmed
+on GDC; H3's check on GDC passes for every profile (the recall gap not measured there). The
+effects are small, bounded by the share of errors inside a token.
+
+**Known issues:** the first run is kept and logged; numbers come from LX-TEST-002 only. The
+GLYPHARIS-side access log is the owner's to write.

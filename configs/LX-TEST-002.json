@@ -1,0 +1,64 @@
+{
+  "id": "LX-TEST-002",
+  "question": "LX-TEST-001 again, in full, after a scoring bug fix found in its report: under the risk policy the reference's de-hyphenation was decided again on the ground truth by the acceptance model, without the evidence it scores the OCR's candidates with, so LECTRIS's own hyphen joins were charged as errors; the reference now rejoins a word exactly where the system rejoined it (lectris.eval.scoring). Same pairs, systems, packs, comparisons and seed; the code is the fix's commit.",
+  "pairs": "../data/manifests/pairs/gdc_v1_1_glypharis_v1_test.json",
+  "systems": [
+    {
+      "name": "B0",
+      "profile": "standard",
+      "policy": "none"
+    },
+    {
+      "name": "B1-standard",
+      "profile": "standard",
+      "policy": "parity"
+    },
+    {
+      "name": "B2-lexicon",
+      "profile": "standard",
+      "policy": "lexicon",
+      "pack": "../data/packs/glypharis_v1.calibrated.lectris.json.gz"
+    },
+    {
+      "name": "LX-conservative",
+      "profile": "conservative",
+      "policy": "risk",
+      "pack": "../data/packs/glypharis_v1.calibrated.lectris.json.gz"
+    },
+    {
+      "name": "LX-standard",
+      "profile": "standard",
+      "policy": "risk",
+      "pack": "../data/packs/glypharis_v1.calibrated.lectris.json.gz"
+    },
+    {
+      "name": "LX-aggressive",
+      "profile": "aggressive",
+      "policy": "risk",
+      "pack": "../data/packs/glypharis_v1.calibrated.lectris.json.gz"
+    },
+    {
+      "name": "LX-standard-no-engine",
+      "profile": "standard",
+      "policy": "risk",
+      "pack": "../data/packs/glypharis_v1.noengine.lectris.json.gz"
+    }
+  ],
+  "compare": [
+    [
+      "LX-standard",
+      "B0"
+    ],
+    [
+      "LX-standard",
+      "B1-standard"
+    ],
+    [
+      "LX-standard",
+      "LX-standard-no-engine"
+    ]
+  ],
+  "resamples": 1000,
+  "seed": 1337,
+  "iou": 0.5
+}

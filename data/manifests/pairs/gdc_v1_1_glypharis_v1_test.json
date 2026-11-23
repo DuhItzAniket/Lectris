@@ -1,0 +1,762 @@
+{
+ "name": "gdc_v1_1_glypharis_v1_test",
+ "source": {
+  "dataset": "GDC",
+  "version": "1.1",
+  "frozen_utc": "2026-10-22T15:56:39+00:00",
+  "pages_sha256": "c4227f1ae6d0aa856c3e64a2bcf55325840343df48dc6810b104e62a6f092af5"
+ },
+ "engine": {
+  "name": "glypharis",
+  "model": "glypharis_v1"
+ },
+ "rule": "a line counts when legible, printed, horizontal, not empty and its alignment score is absent or >= 0.3; other lines and ignore regions are don't care",
+ "split": "test",
+ "lines_that_count": 8372,
+ "dont_care_lines": 234,
+ "ignore_regions": 455,
+ "pages": [
+  {
+   "page": "gdc-llama-p1",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/000.json",
+   "truth": "../../truth/gdc_v1_1/gdc-llama-p1.json",
+   "engine_sha256": "8796da34d4b88e2f936c515c8f0b5d7b2b81960d43c50a370a70e217ff75b2f5",
+   "truth_sha256": "3df0a367750ddde4a19063cb8a90bc3c106dfb8afea2870c3266d32ee8bb1278"
+  },
+  {
+   "page": "gdc-llama-p4",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/001.json",
+   "truth": "../../truth/gdc_v1_1/gdc-llama-p4.json",
+   "engine_sha256": "0e343a5908a599d90430394d65975e8cb1ba6ba689fbdcd3a6e32e87b0a7421e",
+   "truth_sha256": "04e3cddfa0273d457512a411350cd16a8aa47607bc531d31cea301e9b202f12b"
+  },
+  {
+   "page": "gdc-llama-p15",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/002.json",
+   "truth": "../../truth/gdc_v1_1/gdc-llama-p15.json",
+   "engine_sha256": "0c99c659d645d80ff8d8c0a23d1910891e85dea22c77d64af52329ac3f3a73d0",
+   "truth_sha256": "0603291c96b259f96edbb181c774fc102db5464939e2fc89ba39275e8c343671"
+  },
+  {
+   "page": "gdc-llama-p22",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/003.json",
+   "truth": "../../truth/gdc_v1_1/gdc-llama-p22.json",
+   "engine_sha256": "8cfc6519bb5dd64ca13e9b9cbf0c042dfc430d2ef9f24e2a64f902dd0d8ba739",
+   "truth_sha256": "41bdf109352f6adfba98e48d6204f9a7d6e14d12c0534ef056ba034a733de27a"
+  },
+  {
+   "page": "gdc-llama-p25",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/004.json",
+   "truth": "../../truth/gdc_v1_1/gdc-llama-p25.json",
+   "engine_sha256": "379d242ccbaa2bf2260b5b3c6d798694b6184d23742dc700343bd49d9d113f78",
+   "truth_sha256": "63a79bbe1401d463d25057fa0c3378b91648544fc32b6eabcea9348b623370a3"
+  },
+  {
+   "page": "gdc-blip2-p1",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/005.json",
+   "truth": "../../truth/gdc_v1_1/gdc-blip2-p1.json",
+   "engine_sha256": "26a83d40daf4c9e48a5e01e5dd029c79d95d1dea7b3d9ff4a9285d26640a5fef",
+   "truth_sha256": "709620eace2653131246d135353a7095cfa84222986bec07ef5b2d66166d3135"
+  },
+  {
+   "page": "gdc-blip2-p2",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/006.json",
+   "truth": "../../truth/gdc_v1_1/gdc-blip2-p2.json",
+   "engine_sha256": "7b3befd28d143a272bf297150998e4282e6196fc60a2b9c7fc7d01bf65c58338",
+   "truth_sha256": "477fd4e0d9e2f79df100296c87730921c96bf056ee835081c982bbc06971efd9"
+  },
+  {
+   "page": "gdc-blip2-p3",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/007.json",
+   "truth": "../../truth/gdc_v1_1/gdc-blip2-p3.json",
+   "engine_sha256": "e39c7a4348d5e5c62828f640e858f0ccb2f5442fdb810af97a9395dd0844d973",
+   "truth_sha256": "6f9a2b9d86289120d5b8ca70665ac15203cb11b2bc9fd178f9fdbcad3a26dd93"
+  },
+  {
+   "page": "gdc-blip2-p6",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/008.json",
+   "truth": "../../truth/gdc_v1_1/gdc-blip2-p6.json",
+   "engine_sha256": "3bf79621f4999999680db11c402f30eb159b1e34fc9b3c42d754f14e71c1036c",
+   "truth_sha256": "2801b72d971052c05373928df1cf1b4f1127e718a0750a3c030e900729ba1057"
+  },
+  {
+   "page": "gdc-blip2-p12",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/009.json",
+   "truth": "../../truth/gdc_v1_1/gdc-blip2-p12.json",
+   "engine_sha256": "7daab25e8fe1cb6b1d49c68c485f219cf10f5b44c3a3c3098b00e2255d9bf1a6",
+   "truth_sha256": "e9d2ae6ea4defc3a63e644902a53c3d1a754d6c1f47add02d9038f074f711684"
+  },
+  {
+   "page": "gdc-llava15-p1",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/010.json",
+   "truth": "../../truth/gdc_v1_1/gdc-llava15-p1.json",
+   "engine_sha256": "01e49f73ac161d41c57e2d0672cf8960be692e5163af9b21e24621203ef8b289",
+   "truth_sha256": "f802ffb355f0ace93c1b451855f35135e50358895a149f856b63467937ff2740"
+  },
+  {
+   "page": "gdc-llava15-p3",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/011.json",
+   "truth": "../../truth/gdc_v1_1/gdc-llava15-p3.json",
+   "engine_sha256": "58ceaf168a143cc8cff2a998d26384f2119689c3fabec925a9cd142ae9664356",
+   "truth_sha256": "b535b7d0ab0464fbaf303a726fb1bf9f3b9f14f3c71e2541f8b76defb23b7983"
+  },
+  {
+   "page": "gdc-llava15-p7",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/012.json",
+   "truth": "../../truth/gdc_v1_1/gdc-llava15-p7.json",
+   "engine_sha256": "23f19a8b8d496880106fb3c127c1bc88d037ee49d84c87e62ae9bec4248e9898",
+   "truth_sha256": "6d1f49ef3106dcd17dfa193faac6bd9352fc848f2eb00ba80f932fd0db084177"
+  },
+  {
+   "page": "gdc-llava15-p11",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/013.json",
+   "truth": "../../truth/gdc_v1_1/gdc-llava15-p11.json",
+   "engine_sha256": "07244cc49841b6b8f8253c12fbb1d231d952e3873b71bcb7bda2f1796f61e583",
+   "truth_sha256": "bbed55bc22c7136b7a6d405f4d59b5ecb7ab997c99d6fedbe2d5d49130e945b0"
+  },
+  {
+   "page": "gdc-llava15-p15",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/014.json",
+   "truth": "../../truth/gdc_v1_1/gdc-llava15-p15.json",
+   "engine_sha256": "8524df3df56770b994f3073442b3091fe249abe176304792c81f30687c4896ca",
+   "truth_sha256": "cb25e419b62600cf3759c4bd206ee4a1744bcf464fc9ee5a2c9c5fa08b28257b"
+  },
+  {
+   "page": "gdc-smoothquant-p1",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/015.json",
+   "truth": "../../truth/gdc_v1_1/gdc-smoothquant-p1.json",
+   "engine_sha256": "6c915a85eb20b8ca6ef433e9e8b98ee14b25900610617251728e83819a0f30c8",
+   "truth_sha256": "ee70a09f9948e3a2642d081046e110027bed7ea3a1d98216ae25b6f69976afb6"
+  },
+  {
+   "page": "gdc-smoothquant-p4",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/016.json",
+   "truth": "../../truth/gdc_v1_1/gdc-smoothquant-p4.json",
+   "engine_sha256": "d47a8afb61edf2b2a7afd850e21358731b22d78e53984465d311021eab5c39a0",
+   "truth_sha256": "bd175daac2b7c12e241db07c964ddb45bfbf9511e40360c0f022b777cdf3dd3d"
+  },
+  {
+   "page": "gdc-smoothquant-p5",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/017.json",
+   "truth": "../../truth/gdc_v1_1/gdc-smoothquant-p5.json",
+   "engine_sha256": "73df1ca0edae1215d9dedfaa674f2d733e7e00427e5c95d29dc4fcf9d8a42ece",
+   "truth_sha256": "d55535c0b9c51cdd7149a535569bc5823dd6f505c3d0af375fcae317bfe4db65"
+  },
+  {
+   "page": "gdc-smoothquant-p7",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/018.json",
+   "truth": "../../truth/gdc_v1_1/gdc-smoothquant-p7.json",
+   "engine_sha256": "60ee4f6d66e666d7ba09f2e025ff2a63e2f32d908997bcd489f7a6bcebe0de99",
+   "truth_sha256": "b4bfdb26d6f25d9be376102f7030d59eec435ee52082b3d791bcb9168334e941"
+  },
+  {
+   "page": "gdc-smoothquant-p8",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/019.json",
+   "truth": "../../truth/gdc_v1_1/gdc-smoothquant-p8.json",
+   "engine_sha256": "68f3c39bd63b13fafcdffd3fbe2c20c607779424e405c817183b0d03b48a0f3e",
+   "truth_sha256": "3af688f2d478a3765c242e6609871a8ac760cbf57b3535425808f8c83ca292fb"
+  },
+  {
+   "page": "gdc-dpo-p1",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/020.json",
+   "truth": "../../truth/gdc_v1_1/gdc-dpo-p1.json",
+   "engine_sha256": "ecf8874e2f31a209ee46138bb2148c6003193f74aaa8c7f4f086e9f8c3ba7fe5",
+   "truth_sha256": "c0743ac644556d9325e7a095dd705ab4cfd1c3bb37b8611eb6bbe2ceccb56f04"
+  },
+  {
+   "page": "gdc-dpo-p4",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/021.json",
+   "truth": "../../truth/gdc_v1_1/gdc-dpo-p4.json",
+   "engine_sha256": "aff4cc296b21a224f4a7951986c84306b5f9c45b482931491c8c44c3265566b0",
+   "truth_sha256": "a5b5315d6cf88358f1db5a9e3a860385bb9892a4ae397a3b7de7393aca56ab3d"
+  },
+  {
+   "page": "gdc-dpo-p9",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/022.json",
+   "truth": "../../truth/gdc_v1_1/gdc-dpo-p9.json",
+   "engine_sha256": "9d1f9c78abdd4142a9de941e3ffcd76989bfd56c298cba3d8f0ef15e0810bfab",
+   "truth_sha256": "0af09fa663afafc8680c9c0f6dacdb095a74176b257c51483740dbb35df144c0"
+  },
+  {
+   "page": "gdc-dpo-p22",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/023.json",
+   "truth": "../../truth/gdc_v1_1/gdc-dpo-p22.json",
+   "engine_sha256": "9e4ce26535c801246752e9e66c106fde0134681b31ca968200382649f51be269",
+   "truth_sha256": "b7616dbb47d2e60cb30309fa267f7d8f1e1ff94c5a0d77c00605a3ba4a226549"
+  },
+  {
+   "page": "gdc-dpo-p23",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/024.json",
+   "truth": "../../truth/gdc_v1_1/gdc-dpo-p23.json",
+   "engine_sha256": "3a6f8be3086a1a02096b6cfb3b21125cfc482d8f29a6dce8a1a871f02859e1c0",
+   "truth_sha256": "9edc5c347a1b2e8e6db7d00e79810a8282d49729794ae31e5ed2f8344b1ba046"
+  },
+  {
+   "page": "gdc-mamba-p1",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/025.json",
+   "truth": "../../truth/gdc_v1_1/gdc-mamba-p1.json",
+   "engine_sha256": "de8010e4b3a915efba27484c0a5129eef28f4a769ad68d42b28a1dc0b8105305",
+   "truth_sha256": "308a5f5ff7698b468e6ee5c5fc4709b380833bd4bfe8e9d473c84008359f7ced"
+  },
+  {
+   "page": "gdc-mamba-p19",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/026.json",
+   "truth": "../../truth/gdc_v1_1/gdc-mamba-p19.json",
+   "engine_sha256": "e0e93deb0c337ba36b424ef6ba00468aa98147dea2e47ed2af9bd121e957b7c1",
+   "truth_sha256": "87e8fb1abee8357a9335590f7ba040025fd61f93fc19cc57d615746e0ac0be1b"
+  },
+  {
+   "page": "gdc-mamba-p30",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/027.json",
+   "truth": "../../truth/gdc_v1_1/gdc-mamba-p30.json",
+   "engine_sha256": "27e2e95ab5bee23588c1248d84807914b73589a1751c20f62f8342c7970d8a92",
+   "truth_sha256": "e18c1088dc78c9d9e57c7bde6dc7813aebc2aa18a3da829b6e89bf986f4a801a"
+  },
+  {
+   "page": "gdc-mamba-p32",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/028.json",
+   "truth": "../../truth/gdc_v1_1/gdc-mamba-p32.json",
+   "engine_sha256": "6735475033c99cd1b248922c1602ab792e3608f192b60853b98ec2fc0ff11ae3",
+   "truth_sha256": "ebdd637cbef586ea6a44d1629933ec29e33bb0e194e6a0aae175d10ecda023a4"
+  },
+  {
+   "page": "gdc-mamba-p33",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/029.json",
+   "truth": "../../truth/gdc_v1_1/gdc-mamba-p33.json",
+   "engine_sha256": "38034abd40d51f95a871ee5df7b634b872909c9758855f1493a0c3c698cf8102",
+   "truth_sha256": "1eef877e576ee0495fb572115b099d851364926029366c6a31958f545d1a7925"
+  },
+  {
+   "page": "gdc-mistral7b-p1",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/030.json",
+   "truth": "../../truth/gdc_v1_1/gdc-mistral7b-p1.json",
+   "engine_sha256": "2d6ed1a301dd24e0ced02b1e4b08f3c4e7219cdc0c316e714bf358c6c2b656dd",
+   "truth_sha256": "75dee8128b63136af07e7be88bbb8ee59b21562ff7a3310d14de472266bc618d"
+  },
+  {
+   "page": "gdc-mistral7b-p2",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/031.json",
+   "truth": "../../truth/gdc_v1_1/gdc-mistral7b-p2.json",
+   "engine_sha256": "14d79e69c0c57c0ea1ecdf2257815291aae08c8786e543c7255d12a75813fd1a",
+   "truth_sha256": "5bcf84959907895ae76ab3e02d6195df9eb641ee1e0f258ec42fe426679b900e"
+  },
+  {
+   "page": "gdc-mistral7b-p4",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/032.json",
+   "truth": "../../truth/gdc_v1_1/gdc-mistral7b-p4.json",
+   "engine_sha256": "2ec9c2d01443549aa9b4bae0b410a757c8e567b5e641442a1b5c7eb65862be11",
+   "truth_sha256": "207f1d678e76a8b87dd52300a1a41da692e595dadcda45fe7d3e0e2df0ebd600"
+  },
+  {
+   "page": "gdc-mistral7b-p9",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/033.json",
+   "truth": "../../truth/gdc_v1_1/gdc-mistral7b-p9.json",
+   "engine_sha256": "e5e4b0511b8978a442a59c2f53a0f66b92521aa70f48521d3721048bf910900e",
+   "truth_sha256": "7523b8250a950ad3c77938fa314b0cf0566b99e3800aa1ba441d5e2cc250ea06"
+  },
+  {
+   "page": "gdc-cot-p1",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/034.json",
+   "truth": "../../truth/gdc_v1_1/gdc-cot-p1.json",
+   "engine_sha256": "26a3e15ddc3f803ab01c07be896c621a11a40b47d7d6c6662024171f97a149ed",
+   "truth_sha256": "dd99de9e38b4b62d040522d4bb2f766c50806fb2a989c1a767742fd9e08db36b"
+  },
+  {
+   "page": "gdc-cot-p16",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/035.json",
+   "truth": "../../truth/gdc_v1_1/gdc-cot-p16.json",
+   "engine_sha256": "1620eabb4f88ffec75b42bb6f3d9b0499324c6dc310b62cd0307ff920ce22e46",
+   "truth_sha256": "511afbcf884ce27af07e22a3c04a05d4c5ba3bc8c8f96fa479c99c89f617712d"
+  },
+  {
+   "page": "gdc-cot-p20",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/036.json",
+   "truth": "../../truth/gdc_v1_1/gdc-cot-p20.json",
+   "engine_sha256": "079e94b4f45480ab069b8be72e413dbe74e75c233dd2cfb6ec44280d9257f624",
+   "truth_sha256": "5cca5a853e3824c575db94640313ac7a119a7db28ec7fca366096db09be6f919"
+  },
+  {
+   "page": "gdc-cot-p41",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/037.json",
+   "truth": "../../truth/gdc_v1_1/gdc-cot-p41.json",
+   "engine_sha256": "eaf10455d16444a38b7bb5e02aca9628fb181444465cf828aada115f20c8623d",
+   "truth_sha256": "16f3873d8c2580b809fcff92c21b2f986a680ddc37e8590917c26c015f00792d"
+  },
+  {
+   "page": "gdc-cot-p43",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/038.json",
+   "truth": "../../truth/gdc_v1_1/gdc-cot-p43.json",
+   "engine_sha256": "a947303bae7de306406044827081a493ffc62f1e8ee9c22c43b98d1d2090e6cd",
+   "truth_sha256": "f1a9f97042e9c2a406d9e61029b4d5befc8f4897b8667e13f08ac709b5e7f2a5"
+  },
+  {
+   "page": "gdc-qlora-p1",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/039.json",
+   "truth": "../../truth/gdc_v1_1/gdc-qlora-p1.json",
+   "engine_sha256": "a44a674a8ca1e3bbb9635879426b3679547dcedeb040293b815ac4b59d9fc02b",
+   "truth_sha256": "e2ca15146c78c37232148e2ad62607cb6167452d136c4eb5793d175673cc2530"
+  },
+  {
+   "page": "gdc-qlora-p14",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/040.json",
+   "truth": "../../truth/gdc_v1_1/gdc-qlora-p14.json",
+   "engine_sha256": "8c2fe220827a82cd6a28772671bea293e8087995651980132896c73383a190a1",
+   "truth_sha256": "68b0aff0ef5ef39a6de15f29c7b8455f3b14e5118a8d60d29f97493de9170d79"
+  },
+  {
+   "page": "gdc-qlora-p19",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/041.json",
+   "truth": "../../truth/gdc_v1_1/gdc-qlora-p19.json",
+   "engine_sha256": "3cf02fd1221ea592d0fd417ad11259c4eab3bc77349fe996e484d0e9e3ae8fbd",
+   "truth_sha256": "f5cd4fabe46763d75dcdd9a058f79e6bc6b47a1756abbbb26091e1582b591ccf"
+  },
+  {
+   "page": "gdc-qlora-p23",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/042.json",
+   "truth": "../../truth/gdc_v1_1/gdc-qlora-p23.json",
+   "engine_sha256": "b17bf5b6f4e6af1cae7dd89c14e31cc35eef4f0e94bf670f92216dc0cb90485f",
+   "truth_sha256": "381daee5af278341333c829ddd26736d4704833f9d9e410aa9b83022119464dc"
+  },
+  {
+   "page": "gdc-qlora-p26",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/043.json",
+   "truth": "../../truth/gdc_v1_1/gdc-qlora-p26.json",
+   "engine_sha256": "ecda918a89f519b944266b19e2fef7eb3a09a2460626124f2ab16c6e42f449d2",
+   "truth_sha256": "89a415b3b481acb30c1462707399b1c88ba17bee0eff3455215687c0cd032a85"
+  },
+  {
+   "page": "gdc-nasa_tm-p2",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/044.json",
+   "truth": "../../truth/gdc_v1_1/gdc-nasa_tm-p2.json",
+   "engine_sha256": "33a942a8b7bc35da092b2683433bf1eda0c5a8f6358a9dbf91060ef4696a4ed3",
+   "truth_sha256": "550e583535f4119dd82724f3c94f4ec5ff26a32d6c2c8417c9bd66b23812f07e"
+  },
+  {
+   "page": "gdc-nasa_tm-p5",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/045.json",
+   "truth": "../../truth/gdc_v1_1/gdc-nasa_tm-p5.json",
+   "engine_sha256": "27e729c18d2f059ec2e037b1e0b12ad1ec1877175fb6e8192dbd31461e48456d",
+   "truth_sha256": "1350e2a88ad646d066fd59d5a216fab9a5775c2dbdd6777d3b4a2cc716f17556"
+  },
+  {
+   "page": "gdc-nasa_tm-p7",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/046.json",
+   "truth": "../../truth/gdc_v1_1/gdc-nasa_tm-p7.json",
+   "engine_sha256": "0d5de2fbef35bdba2b023a053b8fbe3ef656c7193281dd0b06afbc8258a4625e",
+   "truth_sha256": "9957b993debc175abc131b8a0b1a578be3f6ce1bbb413752c7e56d47c5de7649"
+  },
+  {
+   "page": "gdc-nasa_tm-p8",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/047.json",
+   "truth": "../../truth/gdc_v1_1/gdc-nasa_tm-p8.json",
+   "engine_sha256": "30ab70f85360556d54e2396ba37e359299d3627a1d8d1b7032a3aadbd2c8a6fe",
+   "truth_sha256": "0784e22db552f4d7b664fbdb35f06cb36c721b1e531481c78e89c763749a6e96"
+  },
+  {
+   "page": "gdc-nasa_tm-p10",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/048.json",
+   "truth": "../../truth/gdc_v1_1/gdc-nasa_tm-p10.json",
+   "engine_sha256": "72a79a24a2b6bba6dd3d22186ed2ec6b90148c8143ebadcb38cbff11290fc414",
+   "truth_sha256": "4d62d3a4f2e607688bacd93fe73fa622a7015a8678ce8fa5533a8238fd9c6a46"
+  },
+  {
+   "page": "gdc-nasa_tm-p21",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/049.json",
+   "truth": "../../truth/gdc_v1_1/gdc-nasa_tm-p21.json",
+   "engine_sha256": "74ac4eb7d14a7b0a77fe4ce808283ca4349030776ce7903a6668c4d12bc07f77",
+   "truth_sha256": "8caf3d47bfe5cc7ee1c0f7e852351d9edfd785baa14423881cf5bcd5c0ea1632"
+  },
+  {
+   "page": "gdc-census_income-p6",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/050.json",
+   "truth": "../../truth/gdc_v1_1/gdc-census_income-p6.json",
+   "engine_sha256": "5f5116eeb2cf1f7802ebe08ea7e5598596d29376d49e2048f735fc344c83b00d",
+   "truth_sha256": "11bcd2f88cf72bda93662bee393b08e7843db6ec85f3ed5c7fa0fee74aa9ffd1"
+  },
+  {
+   "page": "gdc-census_income-p10",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/051.json",
+   "truth": "../../truth/gdc_v1_1/gdc-census_income-p10.json",
+   "engine_sha256": "2d372362c85e54a858f62752adff3f09b8f0ceb41d0446b220efa8efcd4bd055",
+   "truth_sha256": "fa3017e527393f343be306fb7a9e71cbdcbc6920ee93893443ece61c92ee64ee"
+  },
+  {
+   "page": "gdc-census_income-p38",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/052.json",
+   "truth": "../../truth/gdc_v1_1/gdc-census_income-p38.json",
+   "engine_sha256": "f5a1e827b8180439c5d07a1b7274b2f0b37650b57c00a93820a47422589f18cc",
+   "truth_sha256": "b64c49b4bb717ef2cf88bbfa974aad5fd39a3006806a872de800b0f5539e8e54"
+  },
+  {
+   "page": "gdc-census_income-p40",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/053.json",
+   "truth": "../../truth/gdc_v1_1/gdc-census_income-p40.json",
+   "engine_sha256": "65d9895bfdc8093ba765814fbef15c09d0b604bab59a0d8a7cfca4c37eb12950",
+   "truth_sha256": "d9145926a07b554967f6912c919764eca2f1657aaac35e8f19c3a668efef3f4d"
+  },
+  {
+   "page": "gdc-census_income-p49",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/054.json",
+   "truth": "../../truth/gdc_v1_1/gdc-census_income-p49.json",
+   "engine_sha256": "e910875c4e4d8706a0d5b18b1a10eecf9b155d23beb87d275648a64682d62cbf",
+   "truth_sha256": "59bb02b3a720f9cb8e25d62c315e78086ffaa8344af7bcd5005657c26ec911bc"
+  },
+  {
+   "page": "gdc-census_income-p55",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/055.json",
+   "truth": "../../truth/gdc_v1_1/gdc-census_income-p55.json",
+   "engine_sha256": "e12f5ddd0c0f6041a4027ff8f5ded8f7dfccab9675ecc323e8f6014ab395857b",
+   "truth_sha256": "fdb83c1cd42d8916c7c9bed551f75f1349616decb2d97f8f430cb734500adae6"
+  },
+  {
+   "page": "gdc-frb_fsr-p14",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/056.json",
+   "truth": "../../truth/gdc_v1_1/gdc-frb_fsr-p14.json",
+   "engine_sha256": "c64b30e20762c00802a7718919f693a18690020ec2a735b6b4303327d04bae3a",
+   "truth_sha256": "0ea4cbbf536442fff48ebe751d3da36f306ab7f1f5ea020418930e6a11a33eff"
+  },
+  {
+   "page": "gdc-frb_fsr-p25",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/057.json",
+   "truth": "../../truth/gdc_v1_1/gdc-frb_fsr-p25.json",
+   "engine_sha256": "495278a702f14db88181db0203bff937a90136907cb5c198cea2952470c1e84d",
+   "truth_sha256": "f17d830d1956dd3a758724ff72e8ef6da9d49cd0bc00feadea70580ba3b230fe"
+  },
+  {
+   "page": "gdc-frb_fsr-p26",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/058.json",
+   "truth": "../../truth/gdc_v1_1/gdc-frb_fsr-p26.json",
+   "engine_sha256": "fa627e1bd2f1fe0100812414690e667e5620c9cd92fce91345b3278d53f3d3fa",
+   "truth_sha256": "7799354e87b8f6760bc92259680f196bd2ce89deb9720843c5b8a0bb6e3436de"
+  },
+  {
+   "page": "gdc-frb_fsr-p31",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/059.json",
+   "truth": "../../truth/gdc_v1_1/gdc-frb_fsr-p31.json",
+   "engine_sha256": "1d9ddfd0f0ac5a9e7c8934cd018cd6eb1c8309ad3eeaf3a92a1ba7e32970c6c8",
+   "truth_sha256": "dbbc0bac99fd6eb6580c4b4d04ed73611b2d1559c9f4cbf57ea07fbaa22a2d03"
+  },
+  {
+   "page": "gdc-frb_fsr-p34",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/060.json",
+   "truth": "../../truth/gdc_v1_1/gdc-frb_fsr-p34.json",
+   "engine_sha256": "f668ef8a4df25243a34ec0ef5724fb1100d1fda5cb98765afa3ec6692e3412b1",
+   "truth_sha256": "1b2dbf91cf748fcf18252b16f745b3cc1d245193c9f9721ac4fc32cf2494ee17"
+  },
+  {
+   "page": "gdc-frb_fsr-p49",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/061.json",
+   "truth": "../../truth/gdc_v1_1/gdc-frb_fsr-p49.json",
+   "engine_sha256": "611e91f3bd4b5b2508a46467eda2d9783ab2509d85ba79c86f60f2f5bfdfaabd",
+   "truth_sha256": "c558625015032a633b6f8650c2d7cc1bcb1999d4a102a1db42ce9c34e9603cae"
+  },
+  {
+   "page": "gdc-calculus_made_easy-p1",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/062.json",
+   "truth": "../../truth/gdc_v1_1/gdc-calculus_made_easy-p1.json",
+   "engine_sha256": "1053f6d7ee9110c4ddee400c2a34a177c63147e20f054c0a9e8071e65cec9767",
+   "truth_sha256": "ed460bff5470a792bac6953e39160757ee2b27a84e72155bcdd78525958704a9"
+  },
+  {
+   "page": "gdc-calculus_made_easy-p9",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/063.json",
+   "truth": "../../truth/gdc_v1_1/gdc-calculus_made_easy-p9.json",
+   "engine_sha256": "b89cd4ad2c0056a8ea13b8f7f66859c95b81fa4bbebb8d0230b597ed078d091b",
+   "truth_sha256": "9760c13ee663dfb6009b71cbd8b791201689fcd27c123ff9197982004fc5d36b"
+  },
+  {
+   "page": "gdc-calculus_made_easy-p28",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/064.json",
+   "truth": "../../truth/gdc_v1_1/gdc-calculus_made_easy-p28.json",
+   "engine_sha256": "43e64ba7696bfca01b15400718f78fae6b0d14c510f4bdba3cb55c6f31a471d5",
+   "truth_sha256": "04c0952f5ce3ab9811f0f301c398830ef30b025b2552e26d7bc037f047f1dbfc"
+  },
+  {
+   "page": "gdc-calculus_made_easy-p70",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/065.json",
+   "truth": "../../truth/gdc_v1_1/gdc-calculus_made_easy-p70.json",
+   "engine_sha256": "d75e2bce222d6deb196505ce2274b265e7684f9555a91c7b7d9155002fc7ece8",
+   "truth_sha256": "2782c8295818d2f6c241c348980d24493dad6ad7d5e8b0e835e8e9f2b40a411e"
+  },
+  {
+   "page": "gdc-calculus_made_easy-p259",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/066.json",
+   "truth": "../../truth/gdc_v1_1/gdc-calculus_made_easy-p259.json",
+   "engine_sha256": "5ca82a45c0d361b076aa061f206c68138921bf28eac9d64db32bb287cc0113c5",
+   "truth_sha256": "2b1e648426437ed51fde3afb2a7d33fbd5875c2e07e7be1a8f19100fce6596d5"
+  },
+  {
+   "page": "gdc-hilbert_geometry-p5",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/067.json",
+   "truth": "../../truth/gdc_v1_1/gdc-hilbert_geometry-p5.json",
+   "engine_sha256": "71a712d66c1a7ad512841aa190d069060aa07be7c51ff5e929aa440f09aff2a7",
+   "truth_sha256": "e44ffca74e4e13cfc645661adcd007fcd970fa3c331a8f18ca87b41e83b636ac"
+  },
+  {
+   "page": "gdc-hilbert_geometry-p6",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/068.json",
+   "truth": "../../truth/gdc_v1_1/gdc-hilbert_geometry-p6.json",
+   "engine_sha256": "a7753e5f4e7bbbb5ec6713e3c772fc11ab7a2824bc1739abfb75bbf78607095a",
+   "truth_sha256": "7393823efaab0449452075e8569fc8e23a4ad1fd14c0951bfc31823e361fdc30"
+  },
+  {
+   "page": "gdc-hilbert_geometry-p51",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/069.json",
+   "truth": "../../truth/gdc_v1_1/gdc-hilbert_geometry-p51.json",
+   "engine_sha256": "622781d71fe2847b1960004934e7a117ba9931a9a07b9cce12571db3c7705558",
+   "truth_sha256": "638f9049d877d45fbd79a7be5ea578edc4a9707083c50254d700aae7a2642635"
+  },
+  {
+   "page": "gdc-hilbert_geometry-p72",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/070.json",
+   "truth": "../../truth/gdc_v1_1/gdc-hilbert_geometry-p72.json",
+   "engine_sha256": "b9d7e45f89b9525ecf01d7216606a20fbbe3823b6285c3f71e98bc7510d0828d",
+   "truth_sha256": "c8e024e815ffabbbff511ebac5bd773c0cd7db335e936061d4e4dfcb93a4e667"
+  },
+  {
+   "page": "gdc-hilbert_geometry-p87",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/071.json",
+   "truth": "../../truth/gdc_v1_1/gdc-hilbert_geometry-p87.json",
+   "engine_sha256": "243e54bc7da2452e05d00a4f50ae5eb685b2bd47538ab54a4de94b562e9f46d7",
+   "truth_sha256": "d18113831393e9077951aa418699d8b5d01f3eeaf349bf702ea412563fa5a13b"
+  },
+  {
+   "page": "gdc-science_hypothesis-p13",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/072.json",
+   "truth": "../../truth/gdc_v1_1/gdc-science_hypothesis-p13.json",
+   "engine_sha256": "20c07c0d7c656ea0c98e3a078c34e5b9b1b512f4b11b46e1998b9475a34f8b3e",
+   "truth_sha256": "29e3cfcfa33019293ec93ac6a4e43fc2edb31f87fd4f87c472fbece73bcfdca2"
+  },
+  {
+   "page": "gdc-science_hypothesis-p100",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/073.json",
+   "truth": "../../truth/gdc_v1_1/gdc-science_hypothesis-p100.json",
+   "engine_sha256": "11aa70fd72e4935574981c75c8b0290350869715c989e3c764d390a496c1c0cc",
+   "truth_sha256": "ac81e163f9f6afb9e289cb42551b7483b37847a4a85f9b070b5fed419b9b5160"
+  },
+  {
+   "page": "gdc-science_hypothesis-p101",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/074.json",
+   "truth": "../../truth/gdc_v1_1/gdc-science_hypothesis-p101.json",
+   "engine_sha256": "6119d0a10c87e0252bc1e1100ec27e39e1b5a4d004323181edace78b185c30be",
+   "truth_sha256": "17b33f0a0c5af74cef70c2a07795f5d7522de80c67c5a81724236ad44259df30"
+  },
+  {
+   "page": "gdc-science_hypothesis-p104",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/075.json",
+   "truth": "../../truth/gdc_v1_1/gdc-science_hypothesis-p104.json",
+   "engine_sha256": "0b13971df67d7b02429eb3ea2d5a76167d11320354841630772b29d8c6a6ae4c",
+   "truth_sha256": "00848f21924a8c05d14ffe4fdf7638d888b575cdecfbe916da971483660ffd22"
+  },
+  {
+   "page": "gdc-science_hypothesis-p284",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/076.json",
+   "truth": "../../truth/gdc_v1_1/gdc-science_hypothesis-p284.json",
+   "engine_sha256": "921d68e033dafe37c834cfe7bdc22a6a76a1d7d4ea53b448f1cdc41304284692",
+   "truth_sha256": "0178f6fd90e5e2566eeea1f3593574414691bcbcd7aebbe83a133191985adfdf"
+  },
+  {
+   "page": "gdc-whitehead_maths-p4",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/077.json",
+   "truth": "../../truth/gdc_v1_1/gdc-whitehead_maths-p4.json",
+   "engine_sha256": "a1106fb66db0a23229736f5f35e8dd96cc62791d909bf1622f210a2b1dc3d235",
+   "truth_sha256": "d8d63c5499186488ee924f6e5ba93b856b6d62a88750451316f963046d6ced2f"
+  },
+  {
+   "page": "gdc-whitehead_maths-p6",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/078.json",
+   "truth": "../../truth/gdc_v1_1/gdc-whitehead_maths-p6.json",
+   "engine_sha256": "14d850e60f40a54e1a43a2f1f0faa0b7a4864d54eb7e647a9ad9107dafff8fc8",
+   "truth_sha256": "6c14998efb4784b9b794cecfa0dc507e561e08fa20fe39bec07d97f1e3c013ba"
+  },
+  {
+   "page": "gdc-whitehead_maths-p7",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/079.json",
+   "truth": "../../truth/gdc_v1_1/gdc-whitehead_maths-p7.json",
+   "engine_sha256": "1da92aac281a5301a20322cfbd9f7f2c6e0e31cf3d56b9caf37aa91b30a387dd",
+   "truth_sha256": "124d47d1732d7b9d22cb678f62f48a9ee8ce8c7d99c27cd83dcc2a11b44a7bbd"
+  },
+  {
+   "page": "gdc-whitehead_maths-p105",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/080.json",
+   "truth": "../../truth/gdc_v1_1/gdc-whitehead_maths-p105.json",
+   "engine_sha256": "49d5250913ca964c4bc25707ab75b47c20e91abd1882507ebd21856d679c1063",
+   "truth_sha256": "410b4fe692c50788dffd19960a88d2b7f788cf4856efc53e566800ad4fe87c54"
+  },
+  {
+   "page": "gdc-whitehead_maths-p193",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/081.json",
+   "truth": "../../truth/gdc_v1_1/gdc-whitehead_maths-p193.json",
+   "engine_sha256": "8c96e1e751e5cb9941d00f0f0974de6ff09fc0e8add7ffb8698d3e3620f0a7de",
+   "truth_sha256": "029cfaaa446963fd1453a6a79d87c38517e2811cf27868468bdcdd08938f21c5"
+  },
+  {
+   "page": "gdc-hefferon_linalg-p22",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/082.json",
+   "truth": "../../truth/gdc_v1_1/gdc-hefferon_linalg-p22.json",
+   "engine_sha256": "c223da8933e2e98df0befd4bfc8e5d3295c74284ec797d16f7f62348b7f6d75d",
+   "truth_sha256": "b042a247be3944682ad61a1b2d288709e4cdf2769642e260c2f0b70d24fdbf31"
+  },
+  {
+   "page": "gdc-hefferon_linalg-p69",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/083.json",
+   "truth": "../../truth/gdc_v1_1/gdc-hefferon_linalg-p69.json",
+   "engine_sha256": "d7a8ac5676b344207e086cb9251e13b289cb9d8d658d88dda095efed60b25e09",
+   "truth_sha256": "bdbc1962dfc4f8e27e88d28178c27bf5b16e4edf2679e6a425df423871b7a92e"
+  },
+  {
+   "page": "gdc-hefferon_linalg-p85",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/084.json",
+   "truth": "../../truth/gdc_v1_1/gdc-hefferon_linalg-p85.json",
+   "engine_sha256": "efd1397f73b03a474e80e4213d7f4e8740e56bd96dcac5e93ae80dc598c5d547",
+   "truth_sha256": "5e2a30ac6e66c0da40e95b956866830e440484ecdc77473e5885ba77e6824113"
+  },
+  {
+   "page": "gdc-hefferon_linalg-p338",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/085.json",
+   "truth": "../../truth/gdc_v1_1/gdc-hefferon_linalg-p338.json",
+   "engine_sha256": "39f4bedfd7e1c9311375c8c82948471da92d94abfbbf49934428096c747b1291",
+   "truth_sha256": "5293b98b8b9d834f4add4b8c8631b1833877bd50990e3012f50ae9d233405660"
+  },
+  {
+   "page": "gdc-hefferon_linalg-p498",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/086.json",
+   "truth": "../../truth/gdc_v1_1/gdc-hefferon_linalg-p498.json",
+   "engine_sha256": "d7b78d67f3adb27f5ee1b425ee25b91af163ac209d5be50e0597244a67d78df7",
+   "truth_sha256": "e0ff63dfc23d242d0b722c8f5718bdce792345f72fddb4570df6186e43c83cc0"
+  },
+  {
+   "page": "gdc-hefferon_linalg-p516",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/087.json",
+   "truth": "../../truth/gdc_v1_1/gdc-hefferon_linalg-p516.json",
+   "engine_sha256": "ff0406c171cbbcbf7c962e674eaad876316cfc135771ca64a478a2aef0492dd2",
+   "truth_sha256": "95183d01255b3f76315b5621269e29510b3a129ae60bad31a34dac367e890573"
+  },
+  {
+   "page": "gdc-mit_mcs-p95",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/088.json",
+   "truth": "../../truth/gdc_v1_1/gdc-mit_mcs-p95.json",
+   "engine_sha256": "f0b930be8656368fab24660ff62dab5f51ec50de9764e1e7d7523699208a0d48",
+   "truth_sha256": "f0098f81e208472c9fc9e2ffef031300e44cbe15f922bc1da896701572f2d437"
+  },
+  {
+   "page": "gdc-mit_mcs-p186",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/089.json",
+   "truth": "../../truth/gdc_v1_1/gdc-mit_mcs-p186.json",
+   "engine_sha256": "00aed37c0640bfd5a0e2d7e5bbb5c933efcdeefc11369fc4d754e6f896f42fcd",
+   "truth_sha256": "ad02a01c6395b4bf80991e583d768074f76152d7a1a78a1b37d35c7a182830f7"
+  },
+  {
+   "page": "gdc-mit_mcs-p483",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/090.json",
+   "truth": "../../truth/gdc_v1_1/gdc-mit_mcs-p483.json",
+   "engine_sha256": "e11fd7faaef019c834ad034a04f2698bd8ce649b7d14eddaba26d1d251d6f33e",
+   "truth_sha256": "0b29def622dd354f961373d59ff004bf23b9aee866f0a240f8789138f7fe04bf"
+  },
+  {
+   "page": "gdc-mit_mcs-p656",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/091.json",
+   "truth": "../../truth/gdc_v1_1/gdc-mit_mcs-p656.json",
+   "engine_sha256": "d79b666226f90d1861cd4f7ca4e250afa12109254df885c79873c234702aeac4",
+   "truth_sha256": "4868f65b25de9d93896325f62a8e206587e11d3b5c38743af80c5751ac231fae"
+  },
+  {
+   "page": "gdc-mit_mcs-p676",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/092.json",
+   "truth": "../../truth/gdc_v1_1/gdc-mit_mcs-p676.json",
+   "engine_sha256": "bfa03b927692cc47dc37a5a31a15b8a747091eb6140707a5091fe3050d467120",
+   "truth_sha256": "cebe4b8aa304ae0da79665c1b531f0b643f0fcf7f424d8e7d9b987c0a541e8cb"
+  },
+  {
+   "page": "gdc-mit_mcs-p814",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/093.json",
+   "truth": "../../truth/gdc_v1_1/gdc-mit_mcs-p814.json",
+   "engine_sha256": "7c2b46f98f4f7c62ea0987916eca2153b20c84f8adebfefdad5fad0c940a90a8",
+   "truth_sha256": "2ca30825050abd3c7379ebe9d95618cb664fdaea41c84f5c8f372833d84a8119"
+  },
+  {
+   "page": "gdc-irs_1040-p1",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/094.json",
+   "truth": "../../truth/gdc_v1_1/gdc-irs_1040-p1.json",
+   "engine_sha256": "241d1f66a409dabc2d2b68ae35900e1e2c3c6175e04b0c3a03da78666fa7c5f6",
+   "truth_sha256": "6ed838fe6debd62ceae6c4f7c83d3b2ca358cdafb52245e5ed7f5b92eaaff8fd"
+  },
+  {
+   "page": "gdc-irs_1040-p2",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/095.json",
+   "truth": "../../truth/gdc_v1_1/gdc-irs_1040-p2.json",
+   "engine_sha256": "8585c4a55161ecd50d70104e7f95b1a4b3d9b1b09107b5f8bdd2631ea1d1673f",
+   "truth_sha256": "fa29b964294bacaafd81b64e943cb2336487620416778a01c9d54b4971971c76"
+  },
+  {
+   "page": "gdc-irs_w9-p1",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/096.json",
+   "truth": "../../truth/gdc_v1_1/gdc-irs_w9-p1.json",
+   "engine_sha256": "758e02d014d3ac593bc3af81390573a2a2ff6fc09151ded69735b8ef6e3995b9",
+   "truth_sha256": "d3135a13fadb2db5700f76788431188bebd4b0095347b6bb7492e3fa82583823"
+  },
+  {
+   "page": "gdc-irs_w9-p2",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/097.json",
+   "truth": "../../truth/gdc_v1_1/gdc-irs_w9-p2.json",
+   "engine_sha256": "3d2b00dcd4c9dc7d1271d0886b42d6e4e4c0d8228908231335662b515b445739",
+   "truth_sha256": "bb3034b56abb443108002d47a88ae0adb9c304218d71943c91ad3e8bd4ce178a"
+  },
+  {
+   "page": "gdc-irs_w9-p4",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/098.json",
+   "truth": "../../truth/gdc_v1_1/gdc-irs_w9-p4.json",
+   "engine_sha256": "237be9d882daac3b0e0b2ff1834b1c4b67e423d111226cbebc05e63c1ae968a7",
+   "truth_sha256": "4e3622d92d45d33fb0c670450a98118ddb255279505769d2c1af036374c6127b"
+  },
+  {
+   "page": "gdc-irs_w9-p5",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/099.json",
+   "truth": "../../truth/gdc_v1_1/gdc-irs_w9-p5.json",
+   "engine_sha256": "4827f9b5b962bf448102d1e6353eced00d3d85ddd43c63b5a66737544c502cf3",
+   "truth_sha256": "8118280fdffcc61ada629dc543b1b1ea4c68a2904a114b0fa8a64ad91a4ddc75"
+  },
+  {
+   "page": "gdc-irs_1040_instructions-p28",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/100.json",
+   "truth": "../../truth/gdc_v1_1/gdc-irs_1040_instructions-p28.json",
+   "engine_sha256": "9f4758cf81c6fff039cf59e0ad0806f3d3c0bdfbf70f904f709ff4202f92160f",
+   "truth_sha256": "c4f84272329bbc690ed312785b1adea14e2997c64c23601eb96b16b53fbf1940"
+  },
+  {
+   "page": "gdc-irs_1040_instructions-p41",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/101.json",
+   "truth": "../../truth/gdc_v1_1/gdc-irs_1040_instructions-p41.json",
+   "engine_sha256": "78ca702dd6c1bce2f6ec51f5a17a33099eef661c05b90ca3e64a1ecffc46c480",
+   "truth_sha256": "be511ffe09badf636d4ae996560ac80d99ac9c088af4018edf9b030d72ab3181"
+  },
+  {
+   "page": "gdc-irs_1040_instructions-p45",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/102.json",
+   "truth": "../../truth/gdc_v1_1/gdc-irs_1040_instructions-p45.json",
+   "engine_sha256": "c8c7b678ff289977f9290df5179b31b197ff615e40259ad6ffeff6945a60fd87",
+   "truth_sha256": "cfce9b5fa2cdc0d5d591d72217e5ff2c9a3806872fd674ab34b3318b5cdc28ce"
+  },
+  {
+   "page": "gdc-irs_1040_instructions-p57",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/103.json",
+   "truth": "../../truth/gdc_v1_1/gdc-irs_1040_instructions-p57.json",
+   "engine_sha256": "3b94d1ed0b3a8dcec8115f04a1ce43835aa2f9288d361338a29ebb12a7250a09",
+   "truth_sha256": "47590ddc2f561a477c04e70b0ee70da373799af415bf30de8a57aa513c5f5df2"
+  },
+  {
+   "page": "gdc-irs_1040_instructions-p106",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/104.json",
+   "truth": "../../truth/gdc_v1_1/gdc-irs_1040_instructions-p106.json",
+   "engine_sha256": "3fa6e9904053b35b86d5cfe00467aed39082ddd33f628d18ba1aa6a67e01c799",
+   "truth_sha256": "57575176df0c8335ab589e2ad007d821b3b68c3d51038dc8ae7ee26a6bc0bb04"
+  },
+  {
+   "page": "gdc-irs_1040_instructions-p108",
+   "engine": "../../engine/gdc_v1_1/glypharis_v1/105.json",
+   "truth": "../../truth/gdc_v1_1/gdc-irs_1040_instructions-p108.json",
+   "engine_sha256": "da8d8ce892fdb0e87a4375005a002091cc2bf59895752cee2438b0993e36f719",
+   "truth_sha256": "f63f44c5abcaee03ede6dec66376d69d02b40203b08050662b65cf4884249b6e"
+  }
+ ]
+}

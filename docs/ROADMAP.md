@@ -58,16 +58,14 @@ research number come after, and do not block the joint test.
 | | State |
 |---|---|
 | v0.2 (Phases 2–4) | built and merged |
-| v0.3 (Phases 5–8: paired data, evidence, packs, risk control, interface) | tagged v0.3.0; draft release, waiting for the owner to publish it (after the PyPI setup) |
-| Phase 9 baselines | B0, B1, B2 done; B3 (ByT5) and B4 (LLM) wait for the research environment (ADR-0004 point 3, Proposed) |
-| Phase 10 main study (dev) | H1 first evidence (ΔCER −0.03 [−0.06, +0.01], not CI-separated); H3 partly supported (0 violations in 1,000 re-splits; recall clause not met) |
-| Phase 11 ablations | H2 supported on dev for the line-level arm (LX-ABL-001); the character arm waits for GLYPHARIS `chars` |
-| Phase 12 engine transfer | waits for Tesseract on this machine |
-| Phase 13 test (GDC) | waits for the owner: the frozen configuration, and the GDC access log in GLYPHARIS |
+| v0.3 (Phases 5–8: paired data, evidence, packs, risk control, interface) | released: v0.3.0 on GitHub and PyPI |
+| Phase 9 baselines | B0, B1, B2, B3 (ByT5-small; H5 not supported as stated) done; B4 (an LLM) not run |
+| Phase 10 main study (dev) | H1 not CI-separated on dev (ΔCER −0.03 [−0.07, +0.00]); H3 partly supported (0 violations in 1,000 re-splits; recall clause not met) |
+| Phase 11 ablations | H2 supported on dev and confirmed on GDC for the line-level arm; the character arm waits for GLYPHARIS `chars` |
+| Phase 12 engine transfer | H4 decided part by part on Tesseract 5.4 (LX-XFER-001) |
+| Phase 13 test (GDC) | **done** (LX-TEST-002, after a scoring fix found in LX-TEST-001): LX-standard ΔCER −0.02 [−0.04, −0.01] points at a 0.012% harm rate, below B1; H1 and H2 hold on GDC |
 | Phase 15 efficiency | H6 supported (LX-EFF-001: 0.5% of GLYPHARIS's time per page) |
 
-**Decisions waiting for the owner:** approve the research environment for B3/B4 (ADR-0004);
-install Tesseract (Phase 12); decide whether GLYPHARIS exports per-character `chars`
-(ADR-0003; the H2 character arm); freeze the configuration and open the GDC test (Phase 13, which
-also writes to GLYPHARIS's test access log); release v0.3 (docs/RELEASING.md, after the PyPI
-setup).
+**Decisions waiting for the owner:** decide whether GLYPHARIS exports per-character `chars`
+(ADR-0003; the H2 character arm); add the GDC reads to GLYPHARIS's test access log; the target
+venue (Phase 16).

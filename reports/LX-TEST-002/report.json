@@ -1,0 +1,619 @@
+{
+  "id": "LX-TEST-002",
+  "question": "LX-TEST-001 again, in full, after a scoring bug fix found in its report: under the risk policy the reference's de-hyphenation was decided again on the ground truth by the acceptance model, without the evidence it scores the OCR's candidates with, so LECTRIS's own hyphen joins were charged as errors; the reference now rejoins a word exactly where the system rejoined it (lectris.eval.scoring). Same pairs, systems, packs, comparisons and seed; the code is the fix's commit.",
+  "lectris_version": "0.3.0",
+  "pages": 106,
+  "manifest_sha256": "9292a679fbc9c83f8b209b958bd4f12f89b43b89d84121b28c225a66513a6447",
+  "resamples": 1000,
+  "seed": 1337,
+  "iou": 0.5,
+  "systems": [
+    {
+      "name": "B0",
+      "profile": "standard",
+      "policy": "none"
+    },
+    {
+      "name": "B1-standard",
+      "profile": "standard",
+      "policy": "parity"
+    },
+    {
+      "name": "B2-lexicon",
+      "profile": "standard",
+      "policy": "lexicon",
+      "pack_sha256": "84674369200da3e3b8ab54caea5bdb5921390907af08b597a6aef57234ab147b"
+    },
+    {
+      "name": "LX-conservative",
+      "profile": "conservative",
+      "policy": "risk",
+      "pack_sha256": "84674369200da3e3b8ab54caea5bdb5921390907af08b597a6aef57234ab147b"
+    },
+    {
+      "name": "LX-standard",
+      "profile": "standard",
+      "policy": "risk",
+      "pack_sha256": "84674369200da3e3b8ab54caea5bdb5921390907af08b597a6aef57234ab147b"
+    },
+    {
+      "name": "LX-aggressive",
+      "profile": "aggressive",
+      "policy": "risk",
+      "pack_sha256": "84674369200da3e3b8ab54caea5bdb5921390907af08b597a6aef57234ab147b"
+    },
+    {
+      "name": "LX-standard-no-engine",
+      "profile": "standard",
+      "policy": "risk",
+      "pack_sha256": "794e008bac538d980aae4b55967a5bd5e027b749a8dfab7b6508a4750434794a"
+    }
+  ],
+  "lines": {
+    "ocr": 9038,
+    "truth": 8372,
+    "matched": 7045
+  },
+  "uncorrected": {
+    "cer": {
+      "estimate": 0.21349239248921437,
+      "low": 0.141436441911108,
+      "high": 0.29784172661870506
+    },
+    "cer_raw": {
+      "estimate": 0.21490650432711053,
+      "low": 0.14294839851105173,
+      "high": 0.2992048056894945
+    },
+    "wer": {
+      "estimate": 0.31459449960460417,
+      "low": 0.23352509957093107,
+      "high": 0.40490704053642185
+    }
+  },
+  "results": {
+    "B0": {
+      "cer": {
+        "estimate": 0.21348932184913946,
+        "low": 0.141433096836563,
+        "high": 0.2978359712230216
+      },
+      "cer_raw": {
+        "estimate": 0.21490343436576134,
+        "low": 0.1429450540630027,
+        "high": 0.2991990517509235
+      },
+      "wer": {
+        "estimate": 0.3146999384939812,
+        "low": 0.2335800021244202,
+        "high": 0.4049747705645298
+      },
+      "cer_change": {
+        "estimate": -3.0706400749236176e-06,
+        "low": -2.350293639811624e-05,
+        "high": 1.749959896752366e-05
+      },
+      "harm_rate": {
+        "estimate": 0.0,
+        "low": 0.0,
+        "high": 0.0
+      },
+      "fixes": 0,
+      "harms": 0,
+      "neutral": 0,
+      "layout": 5090,
+      "fixed_chars": 0,
+      "harm_chars": 0,
+      "precision": null,
+      "pages_worse": 0.04716981132075472,
+      "by_rule": {
+        "unwrap.join_lines": {
+          "fix": 0,
+          "harm": 0,
+          "neutral": 0,
+          "layout": 5090,
+          "effect": -350
+        }
+      }
+    },
+    "B1-standard": {
+      "cer": {
+        "estimate": 0.2134831805689896,
+        "low": 0.141439786985653,
+        "high": 0.29783021582733815
+      },
+      "cer_raw": {
+        "estimate": 0.21489729444306296,
+        "low": 0.14295174295910074,
+        "high": 0.29919329781235254
+      },
+      "wer": {
+        "estimate": 0.31448906071522714,
+        "low": 0.23352689161916226,
+        "high": 0.404602255409936
+      },
+      "cer_change": {
+        "estimate": -9.211920224770854e-06,
+        "low": -5.980843358722013e-05,
+        "high": 3.886385989877459e-05
+      },
+      "harm_rate": {
+        "estimate": 3.63669337614168e-05,
+        "low": 1.0657652027096303e-05,
+        "high": 7.141837697419555e-05
+      },
+      "fixes": 12,
+      "harms": 10,
+      "neutral": 7,
+      "layout": 5419,
+      "fixed_chars": 12,
+      "harm_chars": 11,
+      "precision": 0.5454545454545454,
+      "pages_worse": 0.11320754716981132,
+      "by_rule": {
+        "confusables.in_numbers": {
+          "fix": 4,
+          "harm": 0,
+          "neutral": 1,
+          "layout": 0,
+          "effect": -4
+        },
+        "hyphenation.join": {
+          "fix": 0,
+          "harm": 0,
+          "neutral": 0,
+          "layout": 329,
+          "effect": -651
+        },
+        "noise.drop_lines": {
+          "fix": 1,
+          "harm": 2,
+          "neutral": 0,
+          "layout": 0,
+          "effect": 2
+        },
+        "numbers.separators": {
+          "fix": 3,
+          "harm": 0,
+          "neutral": 0,
+          "layout": 0,
+          "effect": -3
+        },
+        "punctuation.spacing": {
+          "fix": 4,
+          "harm": 8,
+          "neutral": 6,
+          "layout": 0,
+          "effect": 4
+        },
+        "unwrap.join_lines": {
+          "fix": 0,
+          "harm": 0,
+          "neutral": 0,
+          "layout": 5090,
+          "effect": -24
+        }
+      }
+    },
+    "B2-lexicon": {
+      "cer": {
+        "estimate": 0.22061320682296226,
+        "low": 0.14966867036631912,
+        "high": 0.30402014388489207
+      },
+      "cer_raw": {
+        "estimate": 0.22202574469587427,
+        "low": 0.15117908515968068,
+        "high": 0.30538165874541123
+      },
+      "wer": {
+        "estimate": 0.3512169405148932,
+        "low": 0.2736277414491331,
+        "high": 0.4357370392988595
+      },
+      "cer_change": {
+        "estimate": 0.00712081433374787,
+        "low": 0.005716652375035729,
+        "high": 0.008704737472825923
+      },
+      "harm_rate": {
+        "estimate": 0.007304271598692243,
+        "low": 0.0061867301994841944,
+        "high": 0.008410032754960892
+      },
+      "fixes": 324,
+      "harms": 2459,
+      "neutral": 463,
+      "layout": 5090,
+      "fixed_chars": 325,
+      "harm_chars": 2650,
+      "precision": 0.11642112827883579,
+      "pages_worse": 0.8584905660377359,
+      "by_rule": {
+        "lexical.word": {
+          "fix": 324,
+          "harm": 2459,
+          "neutral": 463,
+          "layout": 0,
+          "effect": 2325
+        },
+        "unwrap.join_lines": {
+          "fix": 0,
+          "harm": 0,
+          "neutral": 0,
+          "layout": 5090,
+          "effect": -350
+        }
+      }
+    },
+    "LX-conservative": {
+      "cer": {
+        "estimate": 0.21324981192329542,
+        "low": 0.141192251469324,
+        "high": 0.2976287769784173
+      },
+      "cer_raw": {
+        "estimate": 0.21466397738052478,
+        "low": 0.14270425380347354,
+        "high": 0.29899190996236924
+      },
+      "wer": {
+        "estimate": 0.31294262367103065,
+        "low": 0.23184505895266083,
+        "high": 0.4029479359264571
+      },
+      "cer_change": {
+        "estimate": -0.00024258056591896582,
+        "low": -0.00035174221342347897,
+        "high": -0.00014956858810368843
+      },
+      "harm_rate": {
+        "estimate": 8.260192235259261e-05,
+        "low": 3.498164433224242e-05,
+        "high": 0.00014013201335570842
+      },
+      "fixes": 106,
+      "harms": 22,
+      "neutral": 37,
+      "layout": 104,
+      "fixed_chars": 106,
+      "harm_chars": 28,
+      "precision": 0.828125,
+      "pages_worse": 0.08490566037735849,
+      "by_rule": {
+        "hyphenation.join": {
+          "fix": 0,
+          "harm": 0,
+          "neutral": 0,
+          "layout": 104,
+          "effect": -203
+        },
+        "lexical.word": {
+          "fix": 95,
+          "harm": 22,
+          "neutral": 36,
+          "layout": 0,
+          "effect": -67
+        },
+        "segmentation.merge": {
+          "fix": 11,
+          "harm": 0,
+          "neutral": 1,
+          "layout": 0,
+          "effect": -11
+        }
+      }
+    },
+    "LX-standard": {
+      "cer": {
+        "estimate": 0.21325595320344526,
+        "low": 0.14118890639477902,
+        "high": 0.2976345323741007
+      },
+      "cer_raw": {
+        "estimate": 0.21467011730322316,
+        "low": 0.14270090935542454,
+        "high": 0.2989976639009402
+      },
+      "wer": {
+        "estimate": 0.3128371847816536,
+        "low": 0.23177424494565024,
+        "high": 0.4028788166784745
+      },
+      "cer_change": {
+        "estimate": -0.00023643928576911856,
+        "low": -0.0003525083938879931,
+        "high": -0.0001311577052170958
+      },
+      "harm_rate": {
+        "estimate": 0.00011952166633407534,
+        "low": 6.289902826154319e-05,
+        "high": 0.00018897318886255303
+      },
+      "fixes": 115,
+      "harms": 28,
+      "neutral": 42,
+      "layout": 5192,
+      "fixed_chars": 115,
+      "harm_chars": 39,
+      "precision": 0.8041958041958042,
+      "pages_worse": 0.1320754716981132,
+      "by_rule": {
+        "confusables.in_numbers": {
+          "fix": 1,
+          "harm": 0,
+          "neutral": 1,
+          "layout": 0,
+          "effect": -1
+        },
+        "hyphenation.join": {
+          "fix": 0,
+          "harm": 0,
+          "neutral": 0,
+          "layout": 102,
+          "effect": -199
+        },
+        "lexical.word": {
+          "fix": 99,
+          "harm": 21,
+          "neutral": 33,
+          "layout": 0,
+          "effect": -68
+        },
+        "noise.drop_lines": {
+          "fix": 1,
+          "harm": 2,
+          "neutral": 0,
+          "layout": 0,
+          "effect": 2
+        },
+        "punctuation.spacing": {
+          "fix": 3,
+          "harm": 5,
+          "neutral": 6,
+          "layout": 0,
+          "effect": 2
+        },
+        "segmentation.merge": {
+          "fix": 11,
+          "harm": 0,
+          "neutral": 2,
+          "layout": 0,
+          "effect": -11
+        },
+        "unwrap.join_lines": {
+          "fix": 0,
+          "harm": 0,
+          "neutral": 0,
+          "layout": 5090,
+          "effect": -250
+        }
+      }
+    },
+    "LX-aggressive": {
+      "cer": {
+        "estimate": 0.21325595320344526,
+        "low": 0.14118890639477902,
+        "high": 0.2976345323741007
+      },
+      "cer_raw": {
+        "estimate": 0.21467011730322316,
+        "low": 0.14270090935542454,
+        "high": 0.2989976639009402
+      },
+      "wer": {
+        "estimate": 0.3128371847816536,
+        "low": 0.23177424494565024,
+        "high": 0.4028788166784745
+      },
+      "cer_change": {
+        "estimate": -0.00023643928576911856,
+        "low": -0.0003525083938879931,
+        "high": -0.0001311577052170958
+      },
+      "harm_rate": {
+        "estimate": 0.00011952166633407534,
+        "low": 6.289902826154319e-05,
+        "high": 0.00018897318886255303
+      },
+      "fixes": 115,
+      "harms": 28,
+      "neutral": 42,
+      "layout": 5192,
+      "fixed_chars": 115,
+      "harm_chars": 39,
+      "precision": 0.8041958041958042,
+      "pages_worse": 0.1320754716981132,
+      "by_rule": {
+        "confusables.in_numbers": {
+          "fix": 1,
+          "harm": 0,
+          "neutral": 1,
+          "layout": 0,
+          "effect": -1
+        },
+        "hyphenation.join": {
+          "fix": 0,
+          "harm": 0,
+          "neutral": 0,
+          "layout": 102,
+          "effect": -199
+        },
+        "lexical.word": {
+          "fix": 99,
+          "harm": 21,
+          "neutral": 33,
+          "layout": 0,
+          "effect": -68
+        },
+        "noise.drop_lines": {
+          "fix": 1,
+          "harm": 2,
+          "neutral": 0,
+          "layout": 0,
+          "effect": 2
+        },
+        "punctuation.spacing": {
+          "fix": 3,
+          "harm": 5,
+          "neutral": 6,
+          "layout": 0,
+          "effect": 2
+        },
+        "segmentation.merge": {
+          "fix": 11,
+          "harm": 0,
+          "neutral": 2,
+          "layout": 0,
+          "effect": -11
+        },
+        "unwrap.join_lines": {
+          "fix": 0,
+          "harm": 0,
+          "neutral": 0,
+          "layout": 5090,
+          "effect": -250
+        }
+      }
+    },
+    "LX-standard-no-engine": {
+      "cer": {
+        "estimate": 0.21335421368584281,
+        "low": 0.1413126741529435,
+        "high": 0.2977294964028777
+      },
+      "cer_raw": {
+        "estimate": 0.21476835606639713,
+        "low": 0.14282465393323812,
+        "high": 0.2990926038873609
+      },
+      "wer": {
+        "estimate": 0.31324136719093226,
+        "low": 0.2321283149807032,
+        "high": 0.4034663302863265
+      },
+      "cer_change": {
+        "estimate": -0.0001381788033715628,
+        "low": -0.0002621511636768225,
+        "high": -1.2043912103529469e-05
+      },
+      "harm_rate": {
+        "estimate": 0.00012348088775749743,
+        "low": 4.833320972880413e-05,
+        "high": 0.00021225991913442608
+      },
+      "fixes": 89,
+      "harms": 23,
+      "neutral": 19,
+      "layout": 5152,
+      "fixed_chars": 89,
+      "harm_chars": 46,
+      "precision": 0.7946428571428571,
+      "pages_worse": 0.11320754716981132,
+      "by_rule": {
+        "hyphenation.join": {
+          "fix": 0,
+          "harm": 0,
+          "neutral": 0,
+          "layout": 62,
+          "effect": -123
+        },
+        "lexical.word": {
+          "fix": 72,
+          "harm": 15,
+          "neutral": 12,
+          "layout": 0,
+          "effect": -35
+        },
+        "noise.drop_lines": {
+          "fix": 1,
+          "harm": 2,
+          "neutral": 0,
+          "layout": 0,
+          "effect": 2
+        },
+        "punctuation.spacing": {
+          "fix": 4,
+          "harm": 6,
+          "neutral": 5,
+          "layout": 0,
+          "effect": 2
+        },
+        "segmentation.merge": {
+          "fix": 11,
+          "harm": 0,
+          "neutral": 2,
+          "layout": 0,
+          "effect": -11
+        },
+        "segmentation.split": {
+          "fix": 1,
+          "harm": 0,
+          "neutral": 0,
+          "layout": 0,
+          "effect": -1
+        },
+        "unwrap.join_lines": {
+          "fix": 0,
+          "harm": 0,
+          "neutral": 0,
+          "layout": 5090,
+          "effect": -288
+        }
+      }
+    }
+  },
+  "comparisons": {
+    "LX-standard vs B0": {
+      "cer": {
+        "estimate": -0.00023336864569419496,
+        "low": -0.0003423977010440073,
+        "high": -0.0001381475667189953
+      },
+      "fixed": {
+        "estimate": 0.00035312360861621607,
+        "low": 0.00026666429631736605,
+        "high": 0.00045053781086363024
+      },
+      "harmed": {
+        "estimate": 0.0001197549629220211,
+        "low": 6.86976180662245e-05,
+        "high": 0.00017905102954341988
+      }
+    },
+    "LX-standard vs B1-standard": {
+      "cer": {
+        "estimate": -0.00022722736554434773,
+        "low": -0.00033953180988643874,
+        "high": -0.00013413856215384798
+      },
+      "fixed": {
+        "estimate": 0.00031627592771713264,
+        "low": 0.00023054395912517915,
+        "high": 0.0004153159606759894
+      },
+      "harmed": {
+        "estimate": 8.59779220978613e-05,
+        "low": 3.9377830281551485e-05,
+        "high": 0.00013736039115006622
+      }
+    },
+    "LX-standard vs LX-standard-no-engine": {
+      "cer": {
+        "estimate": -9.826048239755576e-05,
+        "low": -0.00018245184353672076,
+        "high": -2.2283484118242534e-05
+      },
+      "fixed": {
+        "estimate": 7.983664194801406e-05,
+        "low": 3.43235682781582e-05,
+        "high": 0.00013052669111654442
+      },
+      "harmed": {
+        "estimate": -2.1494480524465326e-05,
+        "low": -0.00010332367966012587,
+        "high": 4.286851613693429e-05
+      }
+    }
+  }
+}

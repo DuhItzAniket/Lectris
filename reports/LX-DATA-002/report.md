@@ -3,16 +3,16 @@
 LX-DATA-001 again, with layout-neutral references (R-15): the reference is laid out by the system's own layout steps, so de-hyphenation and unwrapping are scored apart. Same pairs, systems and seed. Descriptive: no hypothesis is tested on it.
 
 - Pages: 861; lines: 30901 OCR, 37322 ground truth, 26317 matched (IoU >= 0.5)
-- LECTRIS 0.1.0; manifest sha256 `cff59396f452f740b524b319b57526f69aae228681072a4c89c57f0714ff1dd0`
+- LECTRIS 0.3.0; manifest sha256 `cff59396f452f740b524b319b57526f69aae228681072a4c89c57f0714ff1dd0`
 - Bootstrap: 1000 resamples over pages, seed 1337, 95%
 
 | System | CER (norm.) | CER (raw) | WER | ΔCER vs uncorrected | Harm rate | Fix / harm / neutral / layout | Precision | Pages worse |
 |---|---|---|---|---|---|---|---|---|
 | uncorrected | 28.03% [24.67, 32.66] | 28.04% [24.68, 32.66] | 44.40% [40.59, 49.49] | — | — | — | — | — |
 | B0 | 28.03% [24.67, 32.66] | 28.04% [24.68, 32.66] | 44.42% [40.61, 49.49] | -0.00 [-0.00, +0.00] | 0.000% [0.000, 0.000] | 0 / 0 / 0 / 8547 | — | 0.58% |
-| B1-conservative | 28.04% [24.67, 32.66] | 28.04% [24.68, 32.66] | 44.42% [40.61, 49.50] | +0.00 [-0.00, +0.00] | 0.000% [0.000, 0.000] | 0 / 0 / 0 / 131 | — | 0.81% |
-| B1-standard | 27.97% [24.61, 32.60] | 27.98% [24.62, 32.60] | 44.25% [40.46, 49.32] | -0.06 [-0.10, -0.04] | 0.013% [0.001, 0.036] | 157 / 18 / 25 / 8649 | 89.71% | 1.74% |
-| B1-aggressive | 27.97% [24.61, 32.59] | 27.98% [24.62, 32.60] | 44.25% [40.46, 49.32] | -0.06 [-0.10, -0.04] | 0.013% [0.001, 0.036] | 158 / 19 / 36 / 8649 | 89.27% | 1.86% |
+| B1-conservative | 28.03% [24.67, 32.66] | 28.04% [24.68, 32.66] | 44.41% [40.60, 49.49] | -0.00 [-0.00, +0.00] | 0.000% [0.000, 0.000] | 0 / 0 / 0 / 131 | — | 0.23% |
+| B1-standard | 27.97% [24.61, 32.59] | 27.98% [24.62, 32.60] | 44.25% [40.46, 49.32] | -0.06 [-0.10, -0.04] | 0.013% [0.001, 0.036] | 157 / 18 / 25 / 8649 | 89.71% | 1.51% |
+| B1-aggressive | 27.97% [24.61, 32.59] | 27.98% [24.62, 32.60] | 44.25% [40.46, 49.32] | -0.06 [-0.10, -0.04] | 0.013% [0.001, 0.036] | 158 / 19 / 36 / 8649 | 89.27% | 1.63% |
 
 Intervals are 95% paired-bootstrap percentile intervals over pages. ΔCER is the system's normalised CER minus the uncorrected text's, in points. The harm rate is the characters broken by harmful edits per reference character (ADR-0002). Layout edits (de-hyphenation, unwrapping) are counted apart: the reference is laid out the same way (lectris.eval.scoring, R-15).
 

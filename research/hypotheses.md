@@ -19,10 +19,15 @@ stated.
 - **Test:** Phase 10 (LX-MAIN-*); confirmed once on GDC in Phase 13.
 - **Success criterion:** ΔCER vs B0 CI-separated below zero; dev harm rate ≤ α; ΔCER vs B1 ≤ 0
   (CI-separated, or no clear difference with lower harm).
-- **Status:** testing. First dev evidence (LX-RISK-001, Phase 7, full runs on 433 dev
-  pages): LX-standard ΔCER vs uncorrected −0.03 [−0.06, +0.01] points, not CI-separated
-  from zero; harm rate 0.095% (α = 0.02 under ADR-0008); B1-standard +0.00 [−0.03, +0.04].
-  The CER criterion is not met on this evidence; the decision waits for Phase 10.
+- **Status:** partly supported: every criterion holds on the test set, the CER criterion
+  not on dev. **GDC** (LX-TEST-002, Phase 13, 106 pages, standard budget α = 0.02 as ADR-0008
+  sets it, not 0.005): LX-standard ΔCER vs B0 −0.02 [−0.03, −0.01] points (CER 21.35% →
+  21.33%), harm rate 0.012% ≤ α, ΔCER vs B1-standard −0.02 [−0.03, −0.01]; precision 80.42%.
+  The effect is small: in-token errors are 23% of GDC's character errors, missed and extra
+  lines 72% (`reports/LX-TEST-001/taxonomy.md`). LX-TEST-001, the first run, is invalid for
+  LECTRIS's rows (a scoring bug, fixed before LX-TEST-002). **Dev** (LX-RISK-001 re-run, 433
+  pages): ΔCER −0.03 [−0.07, +0.00], not CI-separated; harm rate 0.095%; B1-standard −0.00
+  [−0.03, +0.04].
 
 ### H2 — Engine uncertainty raises recall at the same budget (RQ2)
 
@@ -36,8 +41,10 @@ stated.
   α = 0.02 as ADR-0008 sets it, not 0.005): with the engine's line confidence and detection score,
   the same method repairs +0.03 points of the reference's characters more [+0.02, +0.04] and
   lowers CER by 0.02 points more [−0.03, −0.01], paired over 433 pages (174 fixes against 115,
-  precision 67.18% against 60.85%). The character-level arm waits for glyphs. To confirm on GDC
-  (Phase 13).
+  precision 67.18% against 60.85%; unchanged by the scoring fix of LX-TEST-002). The
+  character-level arm waits for glyphs. **Confirmed on GDC** (LX-TEST-002): repaired +0.01
+  points [+0.003, +0.013], CER −0.01 [−0.02, −0.00] with the engine features, paired over 106
+  pages (115 fixes against 89).
 
 ### H3 — The guarantee holds in distribution (RQ3)
 
@@ -53,7 +60,10 @@ stated.
   was 0.002. **Recall cost:** 72.8% (standard), 80.1% (conservative), 76.6% (aggressive)
   relative to the oracle, not under 25%: the threshold is chosen by net CER effect
   (ADR-0009, adopted after this hypothesis was written), the oracle by recall alone, and
-  the recall it adds is mostly wrong edits (LX-BASE-001). To confirm on GDC (Phase 13).
+  the recall it adds is mostly wrong edits (LX-BASE-001). **On GDC** (LX-TEST-002, one test
+  set, so a check, not a frequency): harm rates 0.008% (conservative), 0.012% (standard),
+  0.012% (aggressive) against budgets of 1%, 2% and 5%, on a document set none of the pack was
+  fitted or calibrated on. The recall gap was not measured on GDC.
 
 ### H4 — Calibration transfers across engines, the guarantee does not (RQ4)
 
@@ -84,8 +94,9 @@ stated.
   the copy CER) and, keeping every correction, **raises** CER by 1.08 points [+0.44, +1.88]: the
   first clause fails. Its harm rate is 1.231% against LECTRIS's 0.060%: the second holds. At
   matched harm (B3 keeping a correction only if its mean byte log probability is at least
-  −0.005), LECTRIS minus B3 is −0.03 [−0.07, +0.01] points: no clear difference, so the third is
-  inconclusive. Limitations: a laptop budget (4 epochs, 37 minutes on an RTX 4050) and scene text,
+  −0.005), LECTRIS minus B3 is −0.04 [−0.08, −0.0005] points (after the scoring fix of
+  LX-TEST-002; −0.03 [−0.07, +0.01] before): LECTRIS lowers CER more, just CI-separated, so the
+  third holds, narrowly. Limitations: a laptop budget (4 epochs, 37 minutes on an RTX 4050) and scene text,
   where most errors are not local.
 
 ### H6 — Correction is cheap next to recognition (RQ6)

@@ -9,13 +9,15 @@ from hypothesis import strategies as st
 from lectris import clean
 from lectris.cli import main
 from lectris.decide import Threshold
+from lectris.edits import Candidate
 from lectris.errors import FormatError
 from lectris.eval import experiment, truth
 from lectris.eval.matching import iou, match_lines
-from lectris.eval.scoring import normalised, raw, score_page
+from lectris.eval.scoring import _reference_joins, lay_out, normalised, raw, score_page
 from lectris.eval.stats import bootstrap, ratio
 from lectris.eval.truth import TruthLine, TruthPage
 from lectris.model import Block, Box, Document, Line, Page
+from lectris.profiles import get
 
 NONE = experiment.NONE
 
@@ -125,6 +127,33 @@ class TestScorePage:
         truth_page = truth_of(("each spr-", box(0)), ("ing.", box(40)))
         score = score_page(clean(document, policy=NONE), truth_page)
         assert (score.chars.before, score.chars.after) == (0, 0)  # neither side rejoins
+
+    def test_the_reference_is_rejoined_where_the_system_rejoined(self) -> None:
+        # A policy that decides on the OCR text and the ground truth differently (as the risk
+        # policy does: the pack scores only the OCR's candidates) must not lay the reference out
+        # differently: the join the system made is carried over, so only the misread counts.
+        def score(candidate: Candidate) -> float:
+            return 1.0 if "0" in candidate.after else 0.0
+
+        document = page_of(("the infor-", box(0)), ("mati0n is", box(40)))
+        truth_page = truth_of(("the infor-", box(0)), ("mation is", box(40)))
+        result = clean(document, policy=Threshold(score, 0.5))
+        assert result.blocks[0].text == "the informati0n is"
+        found = score_page(result, truth_page)
+        assert (found.chars.before, found.chars.after) == (1, 1)
+
+    def test_a_join_carries_over_only_between_matched_neighbours(self) -> None:
+        assert _reference_joins(frozenset({0, 2}), (0, 1, 2, 3)) == {0, 2}
+        assert _reference_joins(frozenset({0, 2}), (0, 2, 3)) == {1}  # line 1 has no truth
+        assert _reference_joins(frozenset({1}), (0, 2)) == frozenset()
+
+    def test_lay_out_joins_at_the_given_junctions_only(self) -> None:
+        steps = get("conservative").steps
+        text = "the infor-\nmation and the exam-\nple"
+        assert lay_out(text, steps, NONE, joins=frozenset({1})) == (
+            "the infor-\nmation and the\nexample"
+        )
+        assert lay_out(text, steps, NONE) == text  # no joins given: the policy decides
 
     def test_unmatched_lines_are_insertions_and_deletions(self) -> None:
         document = page_of(("kept", box(0)), ("speck", box(300)))
