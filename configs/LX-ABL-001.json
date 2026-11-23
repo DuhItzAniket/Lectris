@@ -1,0 +1,28 @@
+{
+  "id": "LX-ABL-001",
+  "question": "H2: at the same harm budget (standard, alpha 0.02), does the acceptance model with the engine's line confidence and detection score repair more than the same model fitted without them? Both packs calibrated the same way on fit and cal; full runs on dev; paired comparison over pages.",
+  "pairs": "../data/manifests/pairs/hiertext_val_glypharis_v1_dev.json",
+  "systems": [
+    {
+      "name": "LX-standard",
+      "profile": "standard",
+      "policy": "risk",
+      "pack": "../data/packs/glypharis_v1.calibrated.lectris.json.gz"
+    },
+    {
+      "name": "LX-standard-no-engine",
+      "profile": "standard",
+      "policy": "risk",
+      "pack": "../data/packs/glypharis_v1.noengine.lectris.json.gz"
+    }
+  ],
+  "compare": [
+    [
+      "LX-standard",
+      "LX-standard-no-engine"
+    ]
+  ],
+  "resamples": 1000,
+  "seed": 1337,
+  "iou": 0.5
+}

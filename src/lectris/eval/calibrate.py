@@ -121,11 +121,19 @@ def calibrate(
     delta: float = DELTA,
     steps: int = 100,
     l2: float = 1.0,
+    exclude: Sequence[str] = (),
 ) -> ModelPack:
-    """``pack`` with its acceptance model, risk budgets and calibration (module documentation)."""
+    """``pack`` with its acceptance model, risk budgets and calibration (module documentation).
+
+    ``exclude`` names features the acceptance model is fitted without (an ablation: the model
+    then never sees them, whatever candidates carry)."""
     training = page_candidates(fit, pack, "standard")
+    left_out = set(exclude)
     examples = [
-        (dict(item.candidate.features), 1 if item.fixes else 0)
+        (
+            {k: v for k, v in item.candidate.features if k not in left_out},
+            1 if item.fixes else 0,
+        )
         for page in training
         for item in page.candidates
     ]
@@ -138,6 +146,7 @@ def calibrate(
         "cal_pages": len(cal),
         "l2": l2,
         "grid_steps": steps,
+        "excluded_features": sorted(left_out),
     }
     for profile, alpha in sorted(budgets.items()):
         pages = page_candidates(cal, pack, profile)

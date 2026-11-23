@@ -60,6 +60,11 @@ All notable changes to LECTRIS are documented here. The format follows
   `Result.flags()` (declined but likely corrections, for review). The JSON report holds the
   guarantee, every decision with its probability and evidence, and the flags; the Markdown report
   states the guarantee and lists the flags.
+- `lexical.word` candidates carry `lexical_rank` (0 for the most frequent word); experiments
+  can run baseline B2, a lexicon corrector (`policy: "lexicon"`).
+- `lectris calibrate --exclude FEATURE` fits the acceptance model without a feature (ablations);
+  an experiment's `compare` lists pairs of systems whose paired differences (CER, characters
+  repaired, characters broken) the report gives with bootstrap intervals.
 
 ### Changed
 - GLYPHARIS output is now detected as `glypharis` instead of `json`. Its words, boxes and

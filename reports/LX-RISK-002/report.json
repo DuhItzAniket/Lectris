@@ -1,0 +1,51 @@
+{
+  "id": "LX-RISK-002",
+  "seed": 1337,
+  "profiles": {
+    "aggressive": {
+      "alpha": 0.05,
+      "delta": 0.1,
+      "resplits": 1000,
+      "no_threshold": 0,
+      "violations": 0,
+      "violation_share": 0.0,
+      "binomial_upper_95": 0.003826898586390522,
+      "test_loss_mean": 0.0010461325944724432,
+      "test_loss_max": 0.0020243656719043644,
+      "threshold_mean": 0.46291000000000004,
+      "recall_gap_mean": 0.7658691235440506,
+      "pages": 863,
+      "calibration_pages": 430
+    },
+    "conservative": {
+      "alpha": 0.01,
+      "delta": 0.1,
+      "resplits": 1000,
+      "no_threshold": 0,
+      "violations": 0,
+      "violation_share": 0.0,
+      "binomial_upper_95": 0.003826898586390522,
+      "test_loss_mean": 0.00043062937576855383,
+      "test_loss_max": 0.0012210496593574763,
+      "threshold_mean": 0.474,
+      "recall_gap_mean": 0.8014948826009562,
+      "pages": 863,
+      "calibration_pages": 430
+    },
+    "standard": {
+      "alpha": 0.02,
+      "delta": 0.1,
+      "resplits": 1000,
+      "no_threshold": 0,
+      "violations": 0,
+      "violation_share": 0.0,
+      "binomial_upper_95": 0.003826898586390522,
+      "test_loss_mean": 0.0010461325944724432,
+      "test_loss_max": 0.0020243656719043644,
+      "threshold_mean": 0.46291000000000004,
+      "recall_gap_mean": 0.7284444272583114,
+      "pages": 863,
+      "calibration_pages": 430
+    }
+  }
+}

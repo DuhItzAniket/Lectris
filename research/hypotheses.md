@@ -32,7 +32,12 @@ stated.
 - **Test:** Phase 11 (LX-ABL-*).
 - **Success criterion:** recall difference CI-separated above zero at α = 0.005; reported apart for
   the line-level and the character-level arms.
-- **Status:** open.
+- **Status:** supported on dev for the line-level arm (LX-ABL-001, 2026-11-23, standard budget
+  α = 0.02 as ADR-0008 sets it, not 0.005): with the engine's line confidence and detection score,
+  the same method repairs +0.03 points of the reference's characters more [+0.02, +0.04] and
+  lowers CER by 0.02 points more [−0.03, −0.01], paired over 433 pages (174 fixes against 115,
+  precision 67.18% against 60.85%). The character-level arm waits for glyphs. To confirm on GDC
+  (Phase 13).
 
 ### H3 — The guarantee holds in distribution (RQ3)
 
@@ -42,7 +47,13 @@ stated.
 - **Test:** Phase 10 (LX-RISK-*).
 - **Success criterion:** violation share ≤ δ (its binomial upper bound reported); recall gap
   measured.
-- **Status:** open.
+- **Status:** partly supported on dev (LX-RISK-002, 2026-11-23; losses estimated from
+  marginal effects; budgets as ADR-0008 sets them). **Validity:** 0 violations in 1,000
+  re-splits for every profile (95% upper bound 0.004 ≤ δ = 0.1); the largest test loss
+  was 0.002. **Recall cost:** 72.8% (standard), 80.1% (conservative), 76.6% (aggressive)
+  relative to the oracle, not under 25%: the threshold is chosen by net CER effect
+  (ADR-0009, adopted after this hypothesis was written), the oracle by recall alone, and
+  the recall it adds is mostly wrong edits (LX-BASE-001). To confirm on GDC (Phase 13).
 
 ### H4 — Calibration transfers across engines, the guarantee does not (RQ4)
 

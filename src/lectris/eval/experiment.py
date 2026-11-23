@@ -19,7 +19,8 @@ folder:
                 "truth": "../../truth/a1b2c3.json"}]}
 
 Each system is a profile and a policy: ``parity`` (LECTRIS v0.1's decisions), ``none`` (no
-guess accepted: the transforms only, baseline B0) or ``risk`` (the pack's acceptance model and
+guess accepted: the transforms only, baseline B0), ``lexicon`` (baseline B2, a lexicon
+corrector, ``LEXICON``) or ``risk`` (the pack's acceptance model and
 the profile's risk-controlled threshold, ``lectris.eval.calibrate.risk_policy``). A system can
 name a model ``pack`` (relative to the configuration's folder): it adds evidence and the lexicon
 proposers, and ``risk`` needs one. Every page is read, its OCR lines on
@@ -53,7 +54,14 @@ from lectris.profiles import PROFILES
 NONE: Final = Threshold(lambda _: 0.0, 1.0)
 """A policy that accepts no guess: every candidate's probability is 0, below the bar of 1."""
 
-POLICIES: Final[dict[str, Policy]] = {"parity": PARITY, "none": NONE}
+LEXICON: Final = Threshold(
+    lambda c: 1.0 if c.rule == "lexical.word" and c.feature("lexical_rank", 9.0) == 0 else 0.0, 1.0
+)
+"""Baseline B2, a lexicon corrector: every token not in the lexicon becomes the lexicon's most
+frequent word one edit away (``lexical.word``'s first candidate); no other guess is accepted.
+It needs a pack, for the word list."""
+
+POLICIES: Final[dict[str, Policy]] = {"parity": PARITY, "none": NONE, "lexicon": LEXICON}
 """The policies a configuration can name, besides ``risk`` (which needs a pack)."""
 
 _POLICY_NAMES: Final = (*POLICIES, "risk")
@@ -80,6 +88,7 @@ class Config:
     resamples: int = 1000
     seed: int = 1337
     iou: float = 0.5
+    compare: tuple[tuple[str, str], ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -111,6 +120,7 @@ def load_config(path: Path) -> Config:
         resamples=_integer(data, "resamples", 1000),
         seed=_integer(data, "seed", 1337),
         iou=number(data.get("iou", 0.5), "iou"),
+        compare=_comparisons(data.get("compare", []), names),
     )
 
 
@@ -181,6 +191,9 @@ def run(config: Config) -> dict[str, Any]:
         },
         "uncorrected": _uncorrected(first, config),
         "results": {name: _summary(pages, config) for name, pages in scores.items()},
+        "comparisons": {
+            f"{a} vs {b}": _comparison(scores[a], scores[b], config) for a, b in config.compare
+        },
     }
     return report
 
@@ -234,6 +247,25 @@ def markdown(report: dict[str, Any]) -> str:
         "(de-hyphenation, unwrapping) are counted apart: the reference is laid out the same way "
         "(lectris.eval.scoring, R-15).",
         "",
+    ]
+    if report.get("comparisons"):
+        lines += [
+            "## Paired comparisons",
+            "",
+            "| A vs B | CER difference (points) | Repaired, per reference character | Broken |",
+            "|---|---|---|---|",
+        ]
+        lines.extend(
+            f"| {name} | {_points(c['cer'])} | {_points(c['fixed'])} | {_points(c['harmed'])} |"
+            for name, c in report["comparisons"].items()
+        )
+        lines += [
+            "",
+            "Each is A minus B, paired over pages, with its 95% bootstrap interval, in points of "
+            "the reference's characters.",
+            "",
+        ]
+    lines += [
         "## Edits by rule",
         "",
         "| System | Rule | Fix | Harm | Neutral | Layout | Net effect (characters) |",
@@ -253,6 +285,41 @@ def markdown(report: dict[str, Any]) -> str:
         "",
     ]
     return "\n".join(lines)
+
+
+def _comparisons(value: Any, names: Sequence[str]) -> tuple[tuple[str, str], ...]:
+    found = []
+    for index, item in array(value, "compare"):
+        pair = array(item, f"compare[{index}]")
+        if len(pair) != 2:  # noqa: PLR2004 - a pair
+            raise FormatError(f"compare[{index}]: a comparison names two systems")
+        a, b = (string(name, f"compare[{index}][{i}]") for i, name in pair)
+        for name in (a, b):
+            if name not in names:
+                raise FormatError(f"compare[{index}]: no system called {name!r}")
+        found.append((a, b))
+    return tuple(found)
+
+
+def _comparison(
+    first: Sequence[PageScore], second: Sequence[PageScore], config: Config
+) -> dict[str, Any]:
+    """Paired differences between two systems on the same pages: CER (normalised, points of
+    the reference), characters repaired and characters broken, per reference character."""
+    pairs = list(zip(first, second, strict=True))
+
+    def difference(key: Callable[[PageScore], int]) -> Callable[[Sequence[Any]], float]:
+        return lambda s: ratio([key(a) - key(b) for a, b in s], [a.chars.reference for a, _ in s])
+
+    def interval(statistic: Callable[[Sequence[Any]], float]) -> dict[str, float]:
+        found = bootstrap(pairs, statistic, resamples=config.resamples, seed=config.seed)
+        return {"estimate": found.estimate, "low": found.low, "high": found.high}
+
+    return {
+        "cer": interval(difference(lambda p: p.chars.after)),
+        "fixed": interval(difference(lambda p: p.fixed_chars)),
+        "harmed": interval(difference(lambda p: p.harm_chars)),
+    }
 
 
 def _system(value: Any, path: str, folder: Path) -> System:

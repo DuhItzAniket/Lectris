@@ -279,6 +279,19 @@ class TestExperiment:
         assert "| B1 |" in markdown
         assert "They counted" not in markdown + json.dumps(report)  # aggregates only
 
+    def test_paired_comparisons(self, config: Path, tmp_path: Path) -> None:
+        data = json.loads(config.read_text(encoding="utf-8")) | {"compare": [["B1", "B0"]]}
+        config.write_text(json.dumps(data), encoding="utf-8")
+        report = experiment.run(experiment.load_config(config))
+        comparison = report["comparisons"]["B1 vs B0"]
+        assert comparison["fixed"]["estimate"] > 0  # B1 repaired 1O5, B0 nothing
+        assert comparison["harmed"]["estimate"] > 0  # and broke the real 1O5
+        assert "## Paired comparisons" in experiment.markdown(report)
+        bad = data | {"compare": [["B1", "nobody"]]}
+        config.write_text(json.dumps(bad), encoding="utf-8")
+        with pytest.raises(FormatError, match="no system called 'nobody'"):
+            experiment.load_config(config)
+
     def test_the_report_is_the_same_on_every_run(self, config: Path) -> None:
         first = experiment.run(experiment.load_config(config))
         assert experiment.run(experiment.load_config(config)) == first
