@@ -345,7 +345,9 @@ person should look at.
 
 ## 12. Model packs and fitting (`lectris.models`)
 
-[v2, Phase 6] A model pack is a versioned JSON (gzip) file:
+[v2, Phase 6 — built: `lectris.models.pack`, `charlm`, `channel`; `lectris fit`] A model
+pack is a versioned JSON (gzip) file, the same bytes for the same inputs (format
+`lectris-pack-1`; the acceptance and risk sections come in Phase 7):
 
 ```
 manifest      pack version, LECTRIS version, engine (name, version, model), fit data hashes, seed

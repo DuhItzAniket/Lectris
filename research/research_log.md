@@ -59,3 +59,14 @@ tested.
   0.06 of the 28 CER points, against the 18.9% of errors (≈ 5.3 points) that lie inside a token
   (LX-DATA-001 taxonomy). The method's room is the gap between those two: recall at the same
   precision, which is what Phases 6 and 7 add.
+
+## 2026-11-23 — LX-FIT-001: the evidence models
+
+- The character model (order 5, modified Kneser-Ney, pruned) has a dev perplexity of 12.48 per
+  character on HierText ground truth: scene text (signs, labels, numbers) is far less predictable
+  than book prose, so the language evidence will be weaker here than on documents.
+- The channel model beats a uniform-cost model by 0.26 nats per character [0.21, 0.33] on dev:
+  GLYPHARIS's errors are far from uniform. They are mostly **deletions** (spaces, full stops,
+  single letters), then inserted spaces and full stops, rather than the substitutions (`rn`/`m`,
+  `0`/`O`) that classic OCR correction targets. Proposers for missing characters and spaces
+  (Phase 6, part 2) matter more for this engine than confusion tables.

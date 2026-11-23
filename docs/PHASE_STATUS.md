@@ -10,8 +10,8 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 | 2 | Engine-aware input and the GLYPHARIS contract | **COMPLETE** (#18, #19, #20; no phase tag) | — |
 | 3 | Candidate core with v0.1 parity | **COMPLETE** (#21; no phase tag) | — |
 | 4 | Evaluation harness | **COMPLETE** (#22; no phase tag) | — |
-| 5 | Paired data | **COMPLETE** (in review) | — |
-| 6 | Evidence models and model packs | not started | — |
+| 5 | Paired data | **COMPLETE** (#24, R-15 fix #25; no phase tag) | — |
+| 6 | Evidence models and model packs | **IN PROGRESS** (part 1 of 2 in review) | — |
 | 7 | Acceptance model and risk control | not started | — |
 | 8 | Explanations, flags and the v0.3 interface | not started | — |
 | 9 | Baselines | not started | — |
@@ -204,3 +204,34 @@ rule, see the report. 50.4% of errors are missed lines and 28.1% extra lines.
 - Tesseract outputs (the transfer engine) are not built: Tesseract is not installed here.
 
 **Results (tests):** `uv run pytest`: 1,522 passed (2026-11-23).
+
+---
+
+## Phase 6 — Evidence models and model packs
+
+**Status:** IN PROGRESS (opened 2026-11-23). Two pull requests: (1) the models, the pack and
+`lectris fit` (`phase/06-evidence-models`); (2) the evidence features and the new proposers.
+
+**Part 1, implemented**
+- `lectris.models.charlm`: a character n-gram model, interpolated modified Kneser-Ney, with
+  pruning of the highest order's singletons; a property test checks that it is a distribution.
+- `lectris.models.channel`: the engine's confusions over substrings of up to two characters,
+  from aligned line pairs; the uniform-cost baseline.
+- `lectris.models.pack`: fit, save (deterministic gzip JSON), load, `matches`; `PackError`.
+- `lectris.eval.lines.matched_lines`; `Lexicon.counts`; `lectris fit`;
+  `scripts/evaluate_pack.py`.
+
+**Exit criteria (part 1; LX-FIT-001, registered before it ran)**
+
+| Criterion | Result | Evidence |
+|---|---|---|
+| Language model perplexity on dev text reported | 12.478 per character [11.559, 13.464] | `reports/LX-FIT-001/report.md` |
+| Channel log-likelihood on dev pairs better than uniform-cost Levenshtein | +0.2596 nats per intended character [0.2110, 0.3281] | same |
+| Fit deterministic for its inputs | a second fit is the same file | same |
+| The pack round-trips | pass | `tests/test_models.py` |
+
+**Results (measured):** the pack fits in 10 s from the fit split's 26,317 line pairs and the first
+3,000,000 characters of PG-19 train books (7 books in name order): 346,294 n-grams (order 5),
+18,499 words, 973,373 bytes. GLYPHARIS's most frequent confusions are deletions: a space (1,123),
+a full stop (373), single letters (`i` 310, `e` 289); then inserted spaces (619) and full stops
+(342).
