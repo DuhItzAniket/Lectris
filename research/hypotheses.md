@@ -62,7 +62,15 @@ stated.
   calibration on the new engine restores validity.
 - **Test:** Phase 12 (LX-XFER-*).
 - **Success criterion:** each of the three parts decided separately.
-- **Status:** open.
+- **Status:** decided on dev, part by part (LX-XFER-001, 2026-11-23, standard profile, 1,000
+  re-splits each). **Calibration transfers: supported** (narrowly): the GLYPHARIS acceptance model's
+  ECE on Tesseract 5.4 candidates is 0.0770, against 0.0400 on GLYPHARIS's own (×1.93, within 2×).
+  **The guarantee breaks without recalibration: not supported**: 0 violations in 1,000 re-splits
+  with the GLYPHARIS thresholds kept (largest test loss 0.00011 against α = 0.02), because the
+  budgets are loose (ADR-0008) and LECTRIS accepts little on Tesseract's output. **Recalibration
+  restores validity: supported**: 0 violations with thresholds certified on Tesseract calibration
+  parts (LX-XFER-001c) and with a pack fitted and calibrated on Tesseract (LX-XFER-001d, ECE
+  0.0328).
 
 ### H5 — Against neural correction at matched harm (RQ1)
 
@@ -70,7 +78,15 @@ stated.
   higher harm rate; at matched harm, LECTRIS lowers CER at least as much.
 - **Test:** Phase 10 (LX-BASE-*, LX-MAIN-*), if B3 is approved (ADR-0004).
 - **Success criterion:** each part CI-separated; "inconclusive" if B3 cannot be harm-matched.
-- **Status:** open.
+- **Status:** not supported as stated (LX-BASE-002, 2026-11-23, 433 dev pages; against
+  LECTRIS-standard, whose output equals aggressive's under ADR-0009's thresholds). ByT5-small
+  fine-tuned on the 26,317 fit line pairs never beat copying its input on cal (best CER 0.0817,
+  the copy CER) and, keeping every correction, **raises** CER by 1.08 points [+0.44, +1.88]: the
+  first clause fails. Its harm rate is 1.231% against LECTRIS's 0.060%: the second holds. At
+  matched harm (B3 keeping a correction only if its mean byte log probability is at least
+  −0.005), LECTRIS minus B3 is −0.03 [−0.07, +0.01] points: no clear difference, so the third is
+  inconclusive. Limitations: a laptop budget (4 epochs, 37 minutes on an RTX 4050) and scene text,
+  where most errors are not local.
 
 ### H6 — Correction is cheap next to recognition (RQ6)
 

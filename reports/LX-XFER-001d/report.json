@@ -1,0 +1,66 @@
+{
+  "id": "LX-XFER-001d",
+  "seed": 1337,
+  "fixed": false,
+  "pack_engine": "tesseract tesseract_5.4",
+  "pairs": [
+    "hiertext_val_tesseract_5.4_cal.json",
+    "hiertext_val_tesseract_5.4_dev.json"
+  ],
+  "profiles": {
+    "aggressive": {
+      "alpha": 0.05,
+      "delta": 0.1,
+      "resplits": 1000,
+      "no_threshold": 0,
+      "violations": 0,
+      "violation_share": 0.0,
+      "binomial_upper_95": 0.003826898586390522,
+      "test_loss_mean": 7.798123740425043e-05,
+      "test_loss_max": 0.0003060232665100493,
+      "threshold_mean": 0.54771,
+      "recall_gap_mean": 0.6404320212402,
+      "pages": 863,
+      "calibration_pages": 430,
+      "ece": 0.03315787336448493,
+      "brier": 0.09521639445344866,
+      "candidates": 10499
+    },
+    "conservative": {
+      "alpha": 0.01,
+      "delta": 0.1,
+      "resplits": 1000,
+      "no_threshold": 0,
+      "violations": 0,
+      "violation_share": 0.0,
+      "binomial_upper_95": 0.003826898586390522,
+      "test_loss_mean": 1.8189683550748445e-05,
+      "test_loss_max": 0.0002358101534912994,
+      "threshold_mean": 0.75275,
+      "recall_gap_mean": 0.988315506832436,
+      "pages": 863,
+      "calibration_pages": 430,
+      "ece": 0.030830757568876932,
+      "brier": 0.09601929898968196,
+      "candidates": 10127
+    },
+    "standard": {
+      "alpha": 0.02,
+      "delta": 0.1,
+      "resplits": 1000,
+      "no_threshold": 0,
+      "violations": 0,
+      "violation_share": 0.0,
+      "binomial_upper_95": 0.003826898586390522,
+      "test_loss_mean": 7.745590466262164e-05,
+      "test_loss_max": 0.0003028639384359441,
+      "threshold_mean": 0.54812,
+      "recall_gap_mean": 0.6403043714813458,
+      "pages": 863,
+      "calibration_pages": 430,
+      "ece": 0.0328453957626923,
+      "brier": 0.09501019325137049,
+      "candidates": 10496
+    }
+  }
+}

@@ -146,3 +146,33 @@ tested.
   median 1.59 s per page to recognise it. The ratio is 0.5% per page (median), 0.9% at the 95th
   percentile. The pack is 0.98 MB. H6 is supported with room to spare: the evidence, the
   proposers and the decision cost nothing a user would notice.
+
+## 2026-11-23 — H4: the pack on another engine (LX-XFER-001)
+
+- Tesseract 5.4 (eng, UB Mannheim build) read the 1,724 HierText validation pages in about three
+  minutes with four processes. On this scene-text data it matches far fewer ground-truth lines than
+  GLYPHARIS: 4,465 line pairs on the fit split, against 26,317.
+- The GLYPHARIS acceptance model is still reasonably calibrated on Tesseract's candidates (ECE
+  0.077 against 0.040 in-engine), although Tesseract writes no line confidence or detection score
+  (`engine_missing` is 1 everywhere), so the features the model leans on most are absent.
+- The guarantee did not break, against H4's expectation: with the GLYPHARIS thresholds kept, no
+  re-split's test harm came near the budget. Loose budgets (ADR-0008) protect a transferred pack;
+  they would not protect a policy accepting more. A Tesseract-fitted pack is calibrated better
+  (ECE 0.033) and certifies a threshold of 0.55 for the standard profile.
+
+## 2026-11-23 — B3 and H5: a neural corrector on the same data (LX-BASE-002)
+
+- ByT5-small fine-tuned on the fit split's line pairs (Adafactor, 4 epochs, 37 minutes on the
+  RTX 4050) learned to copy and no more: its best cal CER, after the first epoch, equals the CER
+  of copying the input (0.0817), and later epochs are worse (0.0957, 0.1044, 0.0850). Most of a
+  matched line's errors are lost characters it cannot see (LX-FIT-001's confusions), and a
+  reader model has no image.
+- Keeping every correction, B3 **raises** dev CER by 1.08 points [+0.44, +1.88] at a harm rate of
+  1.231%, 20 times LECTRIS-standard's (0.060%), and worsens 18% of pages. Thresholding its own
+  confidence brings its harm down, and its gain with it: at LECTRIS's harm it changes almost
+  nothing (+0.00 points), and the CER difference is not separated from zero.
+- With B2 (LX-BASE-001), the picture for the paper is consistent: correctors that accept their
+  own best guess (a lexicon's, or a seq2seq model's) damage this kind of text; LECTRIS's
+  calibrated, budgeted acceptance does not, and its small gain is what is left when only safe
+  corrections are kept. A stronger B3 (ByT5-base, more epochs, document-domain training text)
+  would be a fairer neural baseline, within the GPU's limits.

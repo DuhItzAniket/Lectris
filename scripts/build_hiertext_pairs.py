@@ -7,7 +7,8 @@ HierText validation ground truth it
    ``--truth-dir/<image_id>.json``. A line counts (``care``) when it is legible, not handwritten,
    not vertical and not empty, as GLYPHARIS's page metrics define it; every other line is don't
    care. A line's box is the box around its quadrilateral;
-2. checks that the engine's output for the page, ``--engine-dir/<image_id>.json``, exists;
+2. checks that the engine's output for the page, ``--engine-dir/<image_id><suffix>`` (``.json``
+   by default, ``.hocr`` for Tesseract), exists;
 3. assigns the page to a split, **fit** 50%, **cal** 25%, **dev** 25%, by page, stratified by
    the document slice (pages with at least 100 lines that count, GLYPHARIS Phase 12's proxy for
    document pages): within each stratum, pages are ordered by SHA-256 of ``salt + image_id`` and
@@ -108,13 +109,15 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--name", required=True, help="the manifests' name")
     parser.add_argument("--engine", required=True, help="the engine's name")
     parser.add_argument("--model", required=True, help="the engine's model version")
+    parser.add_argument("--suffix", default=".json", help="the engine output files' suffix")
     parser.add_argument("--salt", default=SALT)
     arguments = parser.parse_args(argv)
 
     with gzip.open(arguments.gt, "rt", encoding="utf-8") as handle:
         data = json.load(handle)
     pages = [page_of(record) for record in data["annotations"]]
-    missing = [p.page for p in pages if not (arguments.engine_dir / f"{p.page}.json").is_file()]
+    suffix = arguments.suffix
+    missing = [p.page for p in pages if not (arguments.engine_dir / f"{p.page}{suffix}").is_file()]
     if missing:
         sys.stderr.write(f"{len(missing)} pages have no engine output, e.g. {missing[:3]}\n")
         return 1
@@ -138,7 +141,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         chosen = sorted((p for p in pages if split[p.page] == name), key=lambda p: p.page)
         entries = []
         for page in chosen:
-            engine_file = arguments.engine_dir / f"{page.page}.json"
+            engine_file = arguments.engine_dir / f"{page.page}{suffix}"
             truth_file = arguments.truth_dir / f"{page.page}.json"
             entries.append(
                 {
