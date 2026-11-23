@@ -146,3 +146,16 @@ tested.
   median 1.59 s per page to recognise it. The ratio is 0.5% per page (median), 0.9% at the 95th
   percentile. The pack is 0.98 MB. H6 is supported with room to spare: the evidence, the
   proposers and the decision cost nothing a user would notice.
+
+## 2026-11-23 — H4: the pack on another engine (LX-XFER-001)
+
+- Tesseract 5.4 (eng, UB Mannheim build) read the 1,724 HierText validation pages in about three
+  minutes with four processes. On this scene-text data it matches far fewer ground-truth lines than
+  GLYPHARIS: 4,465 line pairs on the fit split, against 26,317.
+- The GLYPHARIS acceptance model is still reasonably calibrated on Tesseract's candidates (ECE
+  0.077 against 0.040 in-engine), although Tesseract writes no line confidence or detection score
+  (`engine_missing` is 1 everywhere), so the features the model leans on most are absent.
+- The guarantee did not break, against H4's expectation: with the GLYPHARIS thresholds kept, no
+  re-split's test harm came near the budget. Loose budgets (ADR-0008) protect a transferred pack;
+  they would not protect a policy accepting more. A Tesseract-fitted pack is calibrated better
+  (ECE 0.033) and certifies a threshold of 0.55 for the standard profile.

@@ -17,7 +17,7 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 | 9 | Baselines | **IN PROGRESS** (B0, B1, B2 done; B3/B4 need the research environment) | — |
 | 10 | Main study (dev) | **IN PROGRESS** (H3 tested: LX-RISK-002) | — |
 | 11 | Ablations | not started | — |
-| 12 | Engine transfer | not started | — |
+| 12 | Engine transfer | **IN PROGRESS** (H4 decided on dev: LX-XFER-001) | — |
 | 13 | Test evaluation | not started | — |
 | 14 | Error analysis | not started | — |
 | 15 | Efficiency | **IN PROGRESS** (H6 measured: LX-EFF-001) | — |
@@ -369,3 +369,13 @@ owner's call (docs/RELEASING.md).
 - **H6** (LX-EFF-001, 433 dev pages, this machine): LECTRIS-standard with the calibrated pack,
   median 0.0078 s per page (95th percentile 0.0223); GLYPHARIS, from its own log, 1.590 s; median
   per-page ratio 0.0050. Supported. Memory and the neural baselines' times are still to measure.
+
+## Phase 12 — Engine transfer (in progress)
+
+- Tesseract 5.4.0 (UB Mannheim build, `eng`) installed with the owner's approval; its hOCR for the
+  1,724 HierText validation pages in `data/engine/hiertext_val/tesseract_5.4/`; pairs built with
+  the same splits (`scripts/build_hiertext_pairs.py --suffix .hocr`); a Tesseract pack fitted and
+  calibrated (thresholds 0.98 / 0.66 / 0.66).
+- **H4** (LX-XFER-001): calibration transfers (ECE 0.0770 against 0.0400); the guarantee held even
+  without recalibration (0 violations); recalibration keeps it (0 violations, ECE 0.0328 in-engine).
+- Not done: the reverse transfer (a Tesseract pack on GLYPHARIS output).

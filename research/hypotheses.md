@@ -62,7 +62,15 @@ stated.
   calibration on the new engine restores validity.
 - **Test:** Phase 12 (LX-XFER-*).
 - **Success criterion:** each of the three parts decided separately.
-- **Status:** testing (LX-XFER-001, registered 2026-11-23).
+- **Status:** decided on dev, part by part (LX-XFER-001, 2026-11-23, standard profile, 1,000
+  re-splits each). **Calibration transfers: supported** (narrowly): the GLYPHARIS acceptance model's
+  ECE on Tesseract 5.4 candidates is 0.0770, against 0.0400 on GLYPHARIS's own (×1.93, within 2×).
+  **The guarantee breaks without recalibration: not supported**: 0 violations in 1,000 re-splits
+  with the GLYPHARIS thresholds kept (largest test loss 0.00011 against α = 0.02), because the
+  budgets are loose (ADR-0008) and LECTRIS accepts little on Tesseract's output. **Recalibration
+  restores validity: supported**: 0 violations with thresholds certified on Tesseract calibration
+  parts (LX-XFER-001c) and with a pack fitted and calibrated on Tesseract (LX-XFER-001d, ECE
+  0.0328).
 
 ### H5 — Against neural correction at matched harm (RQ1)
 
