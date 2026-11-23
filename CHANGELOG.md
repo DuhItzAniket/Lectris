@@ -37,6 +37,10 @@ All notable changes to LECTRIS are documented here. The format follows
   vertical), and OCR lines on such lines are left out of the scoring, as GLYPHARIS's page metrics
   do (`lectris.eval.scoring.drop_dont_care`). An experiment's report breaks each system's
   edits down by rule.
+- Layout-neutral scoring: a page's reference is laid out by the system's own layout steps
+  (de-hyphenation, unwrapping), so a correct de-hyphenation against line-level ground truth is
+  not counted as a harm; layout edits are labelled `layout` and counted apart. `Result` keeps the
+  `policy` that cleaned it.
 
 ### Changed
 - GLYPHARIS output is now detected as `glypharis` instead of `json`. Its words, boxes and

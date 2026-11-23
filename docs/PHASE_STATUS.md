@@ -194,9 +194,10 @@ WER 44.40% [40.59, 49.49]. B1-standard ΔCER −0.00 [−0.04, +0.03] points, ha
 rule, see the report. 50.4% of errors are missed lines and 28.1% extra lines.
 
 **Known issues**
-- R-15 (new): de-hyphenation and unwrapping score as harm against HierText's line-level ground
-  truth (`hyphenation.join` 3 fixes / 123 harms). The scoring needs a layout-neutral track before
-  any hypothesis is tested (research log, 2026-11-23).
+- R-15: de-hyphenation and unwrapping scored as harm against HierText's line-level ground
+  truth (`hyphenation.join` 3 fixes / 123 harms). Mitigated the same day by layout-neutral
+  references (protocol §3.3); LX-DATA-002 re-runs the audit: B1-standard ΔCER −0.06
+  [−0.10, −0.04] points, precision 89.71%, harm rate 0.013%.
 - The GLYPHARIS install reports `glypharis_version` "0.1.0.dev0" for the glypharis_v1 model.
 - The GLYPHARIS run on GlyphSynth validation (ADR-0005's auxiliary set) is not done: its
   validation data is line images, not pages, and needs the recognizer alone.

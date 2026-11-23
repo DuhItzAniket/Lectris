@@ -1,0 +1,30 @@
+{
+  "id": "LX-DATA-002",
+  "question": "LX-DATA-001 again, with layout-neutral references (R-15): the reference is laid out by the system's own layout steps, so de-hyphenation and unwrapping are scored apart. Same pairs, systems and seed. Descriptive: no hypothesis is tested on it.",
+  "pairs": "../data/manifests/pairs/hiertext_val_glypharis_v1_fit.json",
+  "systems": [
+    {
+      "name": "B0",
+      "profile": "standard",
+      "policy": "none"
+    },
+    {
+      "name": "B1-conservative",
+      "profile": "conservative",
+      "policy": "parity"
+    },
+    {
+      "name": "B1-standard",
+      "profile": "standard",
+      "policy": "parity"
+    },
+    {
+      "name": "B1-aggressive",
+      "profile": "aggressive",
+      "policy": "parity"
+    }
+  ],
+  "resamples": 1000,
+  "seed": 1337,
+  "iou": 0.5
+}

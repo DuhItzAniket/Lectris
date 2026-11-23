@@ -184,7 +184,7 @@ def markdown(report: dict[str, Any]) -> str:
         f"- Bootstrap: {report['resamples']} resamples over pages, seed {report['seed']}, 95%",
         "",
         "| System | CER (norm.) | CER (raw) | WER | ΔCER vs uncorrected | Harm rate | Fix / harm / "
-        "neutral | Precision | Pages worse |",
+        "neutral / layout | Precision | Pages worse |",
         "|---|---|---|---|---|---|---|---|---|",
     ]
     base = report["uncorrected"]
@@ -197,30 +197,34 @@ def markdown(report: dict[str, Any]) -> str:
             f"| {name} | {_pct(result['cer'])} | {_pct(result['cer_raw'])} | "
             f"{_pct(result['wer'])} | {_points(result['cer_change'])} | "
             f"{_pct(result['harm_rate'], digits=3)} | "
-            f"{result['fixes']} / {result['harms']} / {result['neutral']} | "
+            f"{result['fixes']} / {result['harms']} / {result['neutral']} / "
+            f"{result['layout']} | "
             f"{_pct(result['precision'])} | {_pct(result['pages_worse'])} |"
         )
     lines += [
         "",
         "Intervals are 95% paired-bootstrap percentile intervals over pages. ΔCER is the "
         "system's normalised CER minus the uncorrected text's, in points. The harm rate is the "
-        "characters broken by harmful edits per reference character (ADR-0002).",
+        "characters broken by harmful edits per reference character (ADR-0002). Layout edits "
+        "(de-hyphenation, unwrapping) are counted apart: the reference is laid out the same way "
+        "(lectris.eval.scoring, R-15).",
         "",
         "## Edits by rule",
         "",
-        "| System | Rule | Fix | Harm | Neutral | Net effect (characters) |",
-        "|---|---|---|---|---|---|",
+        "| System | Rule | Fix | Harm | Neutral | Layout | Net effect (characters) |",
+        "|---|---|---|---|---|---|---|",
     ]
     for name, result in report["results"].items():
         for rule, counts in result["by_rule"].items():
             lines.append(
                 f"| {name} | `{rule}` | {counts['fix']} | {counts['harm']} | "
-                f"{counts['neutral']} | {counts['effect']:+d} |"
+                f"{counts['neutral']} | {counts['layout']} | {counts['effect']:+d} |"
             )
     lines += [
         "",
         "The net effect is the sum of the edits' effects on the distance to the reference: "
-        "below zero the rule repaired more than it broke.",
+        "below zero the rule repaired more than it broke. For a layout rule it is measured against "
+        "a reference laid out by the same rule, so it shows agreement, not accuracy.",
         "",
     ]
     return "\n".join(lines)
@@ -304,6 +308,7 @@ def _summary(pages: Sequence[PageScore], config: Config) -> dict[str, Any]:
         "fixes": fixes,
         "harms": harms,
         "neutral": sum(page.count("neutral") for page in pages),
+        "layout": sum(page.count("layout") for page in pages),
         "fixed_chars": sum(page.fixed_chars for page in pages),
         "harm_chars": sum(page.harm_chars for page in pages),
         "precision": fixes / (fixes + harms) if fixes + harms else None,
@@ -319,7 +324,7 @@ def _by_rule(pages: Sequence[PageScore]) -> dict[str, dict[str, int]]:
     for page in pages:
         for item in page.labels:
             counts = found.setdefault(
-                item.edit.rule, {"fix": 0, "harm": 0, "neutral": 0, "effect": 0}
+                item.edit.rule, {"fix": 0, "harm": 0, "neutral": 0, "layout": 0, "effect": 0}
             )
             counts[item.label] += 1
             counts["effect"] += item.effect

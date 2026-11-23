@@ -378,7 +378,8 @@ alignment; CER and WER; confusion counts.
   one block. Layout is scored separately (protocol §3.4, later).
 - **Edit scoring** (`scoring`): each edit is labelled *fix*, *harm* or *neutral* by its exact
   marginal effect, in the normalised track, on the distance from its block's text (at the step
-  it was made) to the block's reference. Page CER and WER in the raw and normalised tracks; the
+  it was made) to the block's reference. The reference is laid out by the system's own layout
+  steps, so line-break decisions are neutral, and layout edits are labelled *layout* (R-15). Page CER and WER in the raw and normalised tracks; the
   harm rate.
 - **Statistics** (`stats`): seeded paired bootstrap over pages (1,000 resamples, 95% percentile
   interval).
