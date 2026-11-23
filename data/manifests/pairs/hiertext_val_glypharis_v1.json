@@ -1,0 +1,37 @@
+{
+ "name": "hiertext_val_glypharis_v1",
+ "source": {
+  "dataset": "HierText",
+  "split": "validation",
+  "info": {
+   "date": "2022-03-16",
+   "version": "v1.0"
+  }
+ },
+ "engine": {
+  "name": "glypharis",
+  "model": "glypharis_v1"
+ },
+ "salt": "lectris-v1",
+ "rule": "fit 50%, cal 25%, dev 25%, by page, stratified by the document slice (>= 100 lines that count), ordered by sha256(salt + image_id)",
+ "splits": {
+  "fit": {
+   "pages": 861,
+   "document_slice_pages": 52,
+   "lines_that_count": 37322,
+   "dont_care_lines": 15428
+  },
+  "cal": {
+   "pages": 430,
+   "document_slice_pages": 26,
+   "lines_that_count": 19220,
+   "dont_care_lines": 6990
+  },
+  "dev": {
+   "pages": 433,
+   "document_slice_pages": 27,
+   "lines_that_count": 18239,
+   "dont_care_lines": 6940
+  }
+ }
+}

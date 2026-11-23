@@ -235,6 +235,10 @@ class TestExperiment:
         b0, b1 = report["results"]["B0"], report["results"]["B1"]
         assert (b0["fixes"], b0["harms"]) == (0, 0)
         assert (b1["fixes"], b1["harms"], b1["precision"]) == (1, 1, 0.5)
+        assert b1["by_rule"] == {
+            "confusables.in_numbers": {"fix": 1, "harm": 1, "neutral": 0, "effect": 0}
+        }
+        assert b0["by_rule"] == {}
         assert (
             b1["cer"]["estimate"]
             == b0["cer"]["estimate"]

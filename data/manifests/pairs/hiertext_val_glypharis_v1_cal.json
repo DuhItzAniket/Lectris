@@ -1,0 +1,3460 @@
+{
+ "name": "hiertext_val_glypharis_v1",
+ "source": {
+  "dataset": "HierText",
+  "split": "validation",
+  "info": {
+   "date": "2022-03-16",
+   "version": "v1.0"
+  }
+ },
+ "engine": {
+  "name": "glypharis",
+  "model": "glypharis_v1"
+ },
+ "salt": "lectris-v1",
+ "rule": "fit 50%, cal 25%, dev 25%, by page, stratified by the document slice (>= 100 lines that count), ordered by sha256(salt + image_id)",
+ "split": "cal",
+ "pages": [
+  {
+   "page": "028cbc01a0170f5a",
+   "engine": "../../engine/hiertext_val/glypharis_v1/028cbc01a0170f5a.json",
+   "truth": "../../truth/hiertext_val/028cbc01a0170f5a.json",
+   "engine_sha256": "901a738b40da1b17595d50f6ddb8323f9947123747532c07672880dde2232ca1",
+   "truth_sha256": "3ecd7971faa1ec56cc7b050fff6c9ffeb0606e57f475195ba37df8c62166e2b9",
+   "document_slice": false
+  },
+  {
+   "page": "043c36874f69f0ae",
+   "engine": "../../engine/hiertext_val/glypharis_v1/043c36874f69f0ae.json",
+   "truth": "../../truth/hiertext_val/043c36874f69f0ae.json",
+   "engine_sha256": "88d592abc08badce3743523a60b2c25c231d52fd7206a649b17823319e3c78af",
+   "truth_sha256": "59e6f399781a607eeb7f34037643271c9d03fb333972ff912a283ed6a9e141c3",
+   "document_slice": false
+  },
+  {
+   "page": "046e05f524d46d86",
+   "engine": "../../engine/hiertext_val/glypharis_v1/046e05f524d46d86.json",
+   "truth": "../../truth/hiertext_val/046e05f524d46d86.json",
+   "engine_sha256": "45aa9f70938cbb484fa44bddd37258aa1a8d11cae758a78b1f034cd2537bbcd6",
+   "truth_sha256": "09b24245a043be5ae0888b487c3d8b028be6bf6ebd1725aac15584441ac7cdaf",
+   "document_slice": false
+  },
+  {
+   "page": "04f9cd384b8aa388",
+   "engine": "../../engine/hiertext_val/glypharis_v1/04f9cd384b8aa388.json",
+   "truth": "../../truth/hiertext_val/04f9cd384b8aa388.json",
+   "engine_sha256": "0b228802579591d623580281be92727f4cde71c7e1bff420d0bcf6387e67dc1e",
+   "truth_sha256": "a7eb1d050635feabe4773134fb21c955182c423325c8cdaaf4711b962701ed3b",
+   "document_slice": false
+  },
+  {
+   "page": "0558ce6ed7f4e6d1",
+   "engine": "../../engine/hiertext_val/glypharis_v1/0558ce6ed7f4e6d1.json",
+   "truth": "../../truth/hiertext_val/0558ce6ed7f4e6d1.json",
+   "engine_sha256": "67e513841d139fb285730ac8dd5b10ea2bcc5fa7d22e6b799dd91c16bc9ee7f7",
+   "truth_sha256": "229df3ce09976ca2197aafb6421f441c1b49bebf67846214440a4d59cbf9725e",
+   "document_slice": false
+  },
+  {
+   "page": "0569d065055bafb6",
+   "engine": "../../engine/hiertext_val/glypharis_v1/0569d065055bafb6.json",
+   "truth": "../../truth/hiertext_val/0569d065055bafb6.json",
+   "engine_sha256": "9cd49eebefc243506784ca08502fd04dca74d8769d6d0518af746f4be28b4e54",
+   "truth_sha256": "a6805e4f143ce605c70253922f4b4a850998b4756be02d79d032d50646037f2c",
+   "document_slice": false
+  },
+  {
+   "page": "05ba0bfd03748680",
+   "engine": "../../engine/hiertext_val/glypharis_v1/05ba0bfd03748680.json",
+   "truth": "../../truth/hiertext_val/05ba0bfd03748680.json",
+   "engine_sha256": "7fc2da3ad5f016506c0e94f3b14f2d9fdc78bfa0faac88ef901719c1a5e71c10",
+   "truth_sha256": "0fd0978f47a41a9aa3d8040ed316fc36ed22c0cd80386f95239cb75244c89c54",
+   "document_slice": false
+  },
+  {
+   "page": "07f328166c0ebbf7",
+   "engine": "../../engine/hiertext_val/glypharis_v1/07f328166c0ebbf7.json",
+   "truth": "../../truth/hiertext_val/07f328166c0ebbf7.json",
+   "engine_sha256": "350f56fc721efd1e1a31cf11380889320bbaee1fbbc2b4b9023f1b939cb0c672",
+   "truth_sha256": "f6cd3940f38f74c061d2786f4dbb4266fbed612ac90529294734dc11b47bf729",
+   "document_slice": false
+  },
+  {
+   "page": "07fee9c6a2bc3f31",
+   "engine": "../../engine/hiertext_val/glypharis_v1/07fee9c6a2bc3f31.json",
+   "truth": "../../truth/hiertext_val/07fee9c6a2bc3f31.json",
+   "engine_sha256": "fb75e9d95813d600902aee6a11dca23df3fbbabf6c9c99fd341332dcd12ed5d7",
+   "truth_sha256": "a3cdc632caa9151ceee917d3ad9969f066a1d8eb51ad2677fae4e3e1f8fd6e85",
+   "document_slice": false
+  },
+  {
+   "page": "08e481cfddb5ab42",
+   "engine": "../../engine/hiertext_val/glypharis_v1/08e481cfddb5ab42.json",
+   "truth": "../../truth/hiertext_val/08e481cfddb5ab42.json",
+   "engine_sha256": "26cfd93dc13f0ea90b1f40a34ffad9de1c43784cdae0c6d34b20023a29437143",
+   "truth_sha256": "272b033a4994b15759ce76d3dc44bfb6e2048be337e52dbb79f3b2ea6492711b",
+   "document_slice": true
+  },
+  {
+   "page": "0a3bc2f21ec1a7fc",
+   "engine": "../../engine/hiertext_val/glypharis_v1/0a3bc2f21ec1a7fc.json",
+   "truth": "../../truth/hiertext_val/0a3bc2f21ec1a7fc.json",
+   "engine_sha256": "8e3a949914dbd15f8f5240b63781a955a45353f6dd596592c5adc7a4c8f29142",
+   "truth_sha256": "0d41d1e562e171973ba3b25aa7b12dff27f1a82d0c7cec6979ba45935ae3272f",
+   "document_slice": false
+  },
+  {
+   "page": "0a735d885f2b36d2",
+   "engine": "../../engine/hiertext_val/glypharis_v1/0a735d885f2b36d2.json",
+   "truth": "../../truth/hiertext_val/0a735d885f2b36d2.json",
+   "engine_sha256": "0fe5149688a178b6b1eae2fd62bcc0ccf407f11197bc698f32fbf2d9deeed200",
+   "truth_sha256": "411411e7a7596ac9932c5447827112f44e98bad5a6eeba20dc15ee5edf2f1391",
+   "document_slice": false
+  },
+  {
+   "page": "0ae116c3ada0d021",
+   "engine": "../../engine/hiertext_val/glypharis_v1/0ae116c3ada0d021.json",
+   "truth": "../../truth/hiertext_val/0ae116c3ada0d021.json",
+   "engine_sha256": "abc8906734ed3a446d659351ef491c5b638ec40e54e39fda50cf99c71e7f74d0",
+   "truth_sha256": "eaffdfd4e55e9314c2c368e749d702a527fc22c79ea029ecefa9b8e9ca5225f4",
+   "document_slice": false
+  },
+  {
+   "page": "0ae42092c023f2e3",
+   "engine": "../../engine/hiertext_val/glypharis_v1/0ae42092c023f2e3.json",
+   "truth": "../../truth/hiertext_val/0ae42092c023f2e3.json",
+   "engine_sha256": "047e19f122d103876a41ed278a0830df6fb7426e4ff89fcad082dd0bfacf8624",
+   "truth_sha256": "c5624a9a0d9c7dc6b7914c58661bee35600176586b9585336fc322dac5966088",
+   "document_slice": false
+  },
+  {
+   "page": "0b4912b998fea4fb",
+   "engine": "../../engine/hiertext_val/glypharis_v1/0b4912b998fea4fb.json",
+   "truth": "../../truth/hiertext_val/0b4912b998fea4fb.json",
+   "engine_sha256": "c7bc0c1adf9f9f0727cb010d200b14ef0e1be0a90461ef0c82f4318601624e46",
+   "truth_sha256": "c46347c87061c16594e48fb7f52465ac15c87166d4b5c08b568499ba4328c8d6",
+   "document_slice": false
+  },
+  {
+   "page": "0b6bbefb124d174c",
+   "engine": "../../engine/hiertext_val/glypharis_v1/0b6bbefb124d174c.json",
+   "truth": "../../truth/hiertext_val/0b6bbefb124d174c.json",
+   "engine_sha256": "160b9c6849b8ef7988ced8de50a49da2eb90cd625c999c7ae8fed2ba2f4bd7cc",
+   "truth_sha256": "d40604f639b3aca718c56b28e17bd502c788a29fdcd7dbd8f08b075827942116",
+   "document_slice": false
+  },
+  {
+   "page": "0e01b00e2f7d55c9",
+   "engine": "../../engine/hiertext_val/glypharis_v1/0e01b00e2f7d55c9.json",
+   "truth": "../../truth/hiertext_val/0e01b00e2f7d55c9.json",
+   "engine_sha256": "70fd9172fceaf3c430001cc31b208c5a272f15d2deec60b27592541e5ed2f855",
+   "truth_sha256": "ffa3b65ff4cfcb37c96830e113818fe39d75cf9e3e73a18212e5af2ff0f79914",
+   "document_slice": false
+  },
+  {
+   "page": "1177e2fd519784db",
+   "engine": "../../engine/hiertext_val/glypharis_v1/1177e2fd519784db.json",
+   "truth": "../../truth/hiertext_val/1177e2fd519784db.json",
+   "engine_sha256": "2d685b4bed561307000a5d367a12c3be9c71369453aad9aff7ebd75ad92f5425",
+   "truth_sha256": "e99bacc42c47f54264c58f395452c7544dbb9df1081f5b90dcdbf2d5a20f23d2",
+   "document_slice": false
+  },
+  {
+   "page": "11fa98c12e693430",
+   "engine": "../../engine/hiertext_val/glypharis_v1/11fa98c12e693430.json",
+   "truth": "../../truth/hiertext_val/11fa98c12e693430.json",
+   "engine_sha256": "05fa3a25633a1fd243b7f24b6c0939f628612315a1bc8d6988ff54e8eebb43c9",
+   "truth_sha256": "9d2c27074e224b68f9b3f9790269e1f768a330b95cb67497bb877d7b74541cd9",
+   "document_slice": false
+  },
+  {
+   "page": "122bba4b08520b1b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/122bba4b08520b1b.json",
+   "truth": "../../truth/hiertext_val/122bba4b08520b1b.json",
+   "engine_sha256": "f9d5ed72696fcc288a0ddf31534e7210ed47af388df04a7e9d7c0b6ac2bd6257",
+   "truth_sha256": "8825297e82df615f6b3beba36101e75c12e1abc5fd7256c348dd226d13a10fa6",
+   "document_slice": false
+  },
+  {
+   "page": "1287bbaf6242f8df",
+   "engine": "../../engine/hiertext_val/glypharis_v1/1287bbaf6242f8df.json",
+   "truth": "../../truth/hiertext_val/1287bbaf6242f8df.json",
+   "engine_sha256": "8bdba3b286364b6d0420eeacaed62ad11d0e47a8e992b9ba28526a8f1cc44b4d",
+   "truth_sha256": "dadf9be32b8b24e2ec0f50fda17e13bb32d91ce2280992a3aad614ab0b5a3f75",
+   "document_slice": false
+  },
+  {
+   "page": "13b15f0c465adc2a",
+   "engine": "../../engine/hiertext_val/glypharis_v1/13b15f0c465adc2a.json",
+   "truth": "../../truth/hiertext_val/13b15f0c465adc2a.json",
+   "engine_sha256": "da22cc8caa08aade85c94d012370f72a4e8cb0d5b7056997006d2de8a0145bdb",
+   "truth_sha256": "f40da840fcffb701f81af3bddacebebc780042b0c1c9023ec1be1f2acd0e5023",
+   "document_slice": false
+  },
+  {
+   "page": "141c2ff280973553",
+   "engine": "../../engine/hiertext_val/glypharis_v1/141c2ff280973553.json",
+   "truth": "../../truth/hiertext_val/141c2ff280973553.json",
+   "engine_sha256": "935f8664b8144d1645f78152da078cdc98ce3b7cb556f16a82cdc76ed5f633f7",
+   "truth_sha256": "cd1d33713c51333eeb3a6bfcbd592ce188308dfde33ff10f7ad5574f78165c9c",
+   "document_slice": true
+  },
+  {
+   "page": "150b181780ed1fe1",
+   "engine": "../../engine/hiertext_val/glypharis_v1/150b181780ed1fe1.json",
+   "truth": "../../truth/hiertext_val/150b181780ed1fe1.json",
+   "engine_sha256": "26a314e9675fdf1322db6c18a8c9b0165cd69e10d66afadaae4a6b36129b33d7",
+   "truth_sha256": "e8b30932fe6900418ae77027871a18cc4b465123b285c33157e60c89f3803448",
+   "document_slice": false
+  },
+  {
+   "page": "15201bcbc27bf045",
+   "engine": "../../engine/hiertext_val/glypharis_v1/15201bcbc27bf045.json",
+   "truth": "../../truth/hiertext_val/15201bcbc27bf045.json",
+   "engine_sha256": "e00b90dcf79bc68054f3ad1356b622d50657bd4d5123c7e323cc13b280c333e8",
+   "truth_sha256": "98bfa1f90bb4bb1ca00434f5d480f774730d763cbc8cacc376eda311088f5f24",
+   "document_slice": false
+  },
+  {
+   "page": "16b074011021765f",
+   "engine": "../../engine/hiertext_val/glypharis_v1/16b074011021765f.json",
+   "truth": "../../truth/hiertext_val/16b074011021765f.json",
+   "engine_sha256": "17dc66527b2e5e36155a4510ffc9cf01b5baa4a7199d6efefaa333d6a5e56d3e",
+   "truth_sha256": "20c967ae3a4632f44fa8ee7f3b91b6a86b0aa150f57647568208c23b5a077ec8",
+   "document_slice": false
+  },
+  {
+   "page": "16f097c5d6407f7d",
+   "engine": "../../engine/hiertext_val/glypharis_v1/16f097c5d6407f7d.json",
+   "truth": "../../truth/hiertext_val/16f097c5d6407f7d.json",
+   "engine_sha256": "4b8f38a4f74749e92f2d9606ef87afb07e58db5c5195b287a4af08e5873ac74c",
+   "truth_sha256": "9734ab0732123982945020d55286de2f24c21e19d55d84580ee997e2f84efff0",
+   "document_slice": false
+  },
+  {
+   "page": "17ccd3ac7bd661ef",
+   "engine": "../../engine/hiertext_val/glypharis_v1/17ccd3ac7bd661ef.json",
+   "truth": "../../truth/hiertext_val/17ccd3ac7bd661ef.json",
+   "engine_sha256": "c9e9d81bf530aad53e07258ffebdbbfcdf38946eefc0a4ce4b86c25ab9a01f17",
+   "truth_sha256": "28188d697b0847958d235a7a5589f000b00c6f2edae129d9ac73472bdae7cb38",
+   "document_slice": false
+  },
+  {
+   "page": "184a4fa1dbd30187",
+   "engine": "../../engine/hiertext_val/glypharis_v1/184a4fa1dbd30187.json",
+   "truth": "../../truth/hiertext_val/184a4fa1dbd30187.json",
+   "engine_sha256": "ae5c5883587baff5d2f50b2c7e63094de8a7888ed4cb5871eee952e4aa490bc1",
+   "truth_sha256": "2fa8ef6783fc6a5dba4bc4ed4f55c59289c67396358d985cc81209cce1769414",
+   "document_slice": true
+  },
+  {
+   "page": "18fe89db4699eced",
+   "engine": "../../engine/hiertext_val/glypharis_v1/18fe89db4699eced.json",
+   "truth": "../../truth/hiertext_val/18fe89db4699eced.json",
+   "engine_sha256": "6b02b675f153ff83c24fa0ce617410a02f71bc45db4e9e0c965c26a774db96b1",
+   "truth_sha256": "493eb7a99175ba7e9575d545bded28a92ebd0f365621d0c6e33cf933f69ed26e",
+   "document_slice": false
+  },
+  {
+   "page": "19f35832ded88c36",
+   "engine": "../../engine/hiertext_val/glypharis_v1/19f35832ded88c36.json",
+   "truth": "../../truth/hiertext_val/19f35832ded88c36.json",
+   "engine_sha256": "ca9eebcee86fb9a4e2922e11dbce9308f6753d64e3670d20e0b57c662feace66",
+   "truth_sha256": "c45ea1f633f6c3fe8024675c71334d7e30564a407c0a3c1443c577efb2a7d1d0",
+   "document_slice": false
+  },
+  {
+   "page": "1aca8755dad9ea20",
+   "engine": "../../engine/hiertext_val/glypharis_v1/1aca8755dad9ea20.json",
+   "truth": "../../truth/hiertext_val/1aca8755dad9ea20.json",
+   "engine_sha256": "eeb70739ef9ba68686bc7ef522ccf77cf95e767b98c6921f05fcd4dc8098973c",
+   "truth_sha256": "57a7ef9cf0b5d0506d95adffba774eeee16fa87366fdb5759f50586a38e8110d",
+   "document_slice": false
+  },
+  {
+   "page": "1b28c6b52c4ce879",
+   "engine": "../../engine/hiertext_val/glypharis_v1/1b28c6b52c4ce879.json",
+   "truth": "../../truth/hiertext_val/1b28c6b52c4ce879.json",
+   "engine_sha256": "43642c9196b30fb13ca62e2f3fb34fcd837c2294d43dd6bc95dcf3a396ff8c0c",
+   "truth_sha256": "13739abb32180bdb4c3191ccdffb4b4325a160865f98c708743aad72ad8f55b6",
+   "document_slice": false
+  },
+  {
+   "page": "1ca473e1dbc417ca",
+   "engine": "../../engine/hiertext_val/glypharis_v1/1ca473e1dbc417ca.json",
+   "truth": "../../truth/hiertext_val/1ca473e1dbc417ca.json",
+   "engine_sha256": "1ac65cae7362f4aa18fb64e12eea703ca24e994e401cb7a718340af042b13d9b",
+   "truth_sha256": "197e55969e7514b5c2a350251232fd80aecb6882a232e7d4ad711cd1232f1e59",
+   "document_slice": false
+  },
+  {
+   "page": "1e419dd031950099",
+   "engine": "../../engine/hiertext_val/glypharis_v1/1e419dd031950099.json",
+   "truth": "../../truth/hiertext_val/1e419dd031950099.json",
+   "engine_sha256": "fd2fe188c65f1ee3d72a4d184954cb9da5cdbeda71fd6130b5d57044d63ddf2f",
+   "truth_sha256": "8e932612ec1fa2ca2a972097e1b8723fbcf5950a020e9b0c35eb3d65ace00a6c",
+   "document_slice": false
+  },
+  {
+   "page": "1e97eaba490d9fea",
+   "engine": "../../engine/hiertext_val/glypharis_v1/1e97eaba490d9fea.json",
+   "truth": "../../truth/hiertext_val/1e97eaba490d9fea.json",
+   "engine_sha256": "eb117216420bc78d8813717ae9e97f6556ef5d2a1f7835e54ae356cfd922ed14",
+   "truth_sha256": "4f6d742817aa6ccc8ab7a09c26a5ad26c602768d07b594370cc736288cc77f72",
+   "document_slice": false
+  },
+  {
+   "page": "1ee0b97b28893ea9",
+   "engine": "../../engine/hiertext_val/glypharis_v1/1ee0b97b28893ea9.json",
+   "truth": "../../truth/hiertext_val/1ee0b97b28893ea9.json",
+   "engine_sha256": "2e2f9638449a518812237f360a745efb3e669117e344ba0e00040d246236cd24",
+   "truth_sha256": "f900701d71774ce8c9d9f806db86dcf8721e624648dd5c78a2d6678ca2972ddd",
+   "document_slice": false
+  },
+  {
+   "page": "1f255548177b105c",
+   "engine": "../../engine/hiertext_val/glypharis_v1/1f255548177b105c.json",
+   "truth": "../../truth/hiertext_val/1f255548177b105c.json",
+   "engine_sha256": "c8a076addf861df36d368cdd175c9f71bd4ae19c56b934362fc5f3503269e977",
+   "truth_sha256": "58c9ed6f2d47dd52e4dc8ec37b0da2ba0a0bda3c1717df4d170f58201672b9e6",
+   "document_slice": false
+  },
+  {
+   "page": "200abe02001a4c74",
+   "engine": "../../engine/hiertext_val/glypharis_v1/200abe02001a4c74.json",
+   "truth": "../../truth/hiertext_val/200abe02001a4c74.json",
+   "engine_sha256": "5150dd55b9c29d442b758a5b1e130eb96b8c260f3d1c518ad71d1cb62f52d86c",
+   "truth_sha256": "33b74d05f7bb052500e01ac145e6698e328a562f8b77f836942e208b073e72f0",
+   "document_slice": false
+  },
+  {
+   "page": "200e91600f19e1af",
+   "engine": "../../engine/hiertext_val/glypharis_v1/200e91600f19e1af.json",
+   "truth": "../../truth/hiertext_val/200e91600f19e1af.json",
+   "engine_sha256": "41c42b7de6c21556762962ea3707c01a556b13cabddead6c773225c2ef253f73",
+   "truth_sha256": "0a3e63b6091fd1c843a728c59b76a22bfed1f720d4a0d2d9d3cbe55a4a42444d",
+   "document_slice": false
+  },
+  {
+   "page": "20e0da3a6f5e38e6",
+   "engine": "../../engine/hiertext_val/glypharis_v1/20e0da3a6f5e38e6.json",
+   "truth": "../../truth/hiertext_val/20e0da3a6f5e38e6.json",
+   "engine_sha256": "b67dff4516aa44b43dd563f6c75d2d410e8ba1b3cf4bebe802d818b43853c14c",
+   "truth_sha256": "5bf60dc0e9bef6e0c1708b565c1c6c7a01810553e2006665a8f692686ce0bbd7",
+   "document_slice": true
+  },
+  {
+   "page": "21702a85f487b03d",
+   "engine": "../../engine/hiertext_val/glypharis_v1/21702a85f487b03d.json",
+   "truth": "../../truth/hiertext_val/21702a85f487b03d.json",
+   "engine_sha256": "6d766a5a7858dc408cfeaf6b08ffef6183b685b4e56f8d94d8931d647d0646b7",
+   "truth_sha256": "132e61c2d46ea4359bfd9e3aaa4f1dcb8398d09ad84c5602152d81a9182d6f85",
+   "document_slice": false
+  },
+  {
+   "page": "22e080ad19d6344d",
+   "engine": "../../engine/hiertext_val/glypharis_v1/22e080ad19d6344d.json",
+   "truth": "../../truth/hiertext_val/22e080ad19d6344d.json",
+   "engine_sha256": "f799f8e29a8b3088fb541249ab90ea9649a3de0e3e108c05b43937bd251475aa",
+   "truth_sha256": "c4741c9c6ce43a171a29b9358f9c6442b26fc5f944f0c98500c059ae8b9144b2",
+   "document_slice": true
+  },
+  {
+   "page": "232b94a00c332ea4",
+   "engine": "../../engine/hiertext_val/glypharis_v1/232b94a00c332ea4.json",
+   "truth": "../../truth/hiertext_val/232b94a00c332ea4.json",
+   "engine_sha256": "c8c282eb69f27361d2942f78ba3df89012e6763b89e92468f741578dae96d9bf",
+   "truth_sha256": "e290b4bf5894fcd3dfcfc24165e765a5eb213002d40448ad146705fb5acdac2a",
+   "document_slice": false
+  },
+  {
+   "page": "251684319eeb8d66",
+   "engine": "../../engine/hiertext_val/glypharis_v1/251684319eeb8d66.json",
+   "truth": "../../truth/hiertext_val/251684319eeb8d66.json",
+   "engine_sha256": "c8c7a2044d9e2e5d9816d7714335ddaaf2a5472ba2010f23c6d7ceecbc3f5fb8",
+   "truth_sha256": "edd88149095ca5543b3671ef9bbb807c7901644358457d9558830c49090bd263",
+   "document_slice": false
+  },
+  {
+   "page": "2587ed7ceab6057c",
+   "engine": "../../engine/hiertext_val/glypharis_v1/2587ed7ceab6057c.json",
+   "truth": "../../truth/hiertext_val/2587ed7ceab6057c.json",
+   "engine_sha256": "ca41e7ddd1e6c0c63701fa87075e0912c458694fa72eb692b5db0fe6d162175e",
+   "truth_sha256": "1ead98725f907252d8545d0191ecd6be9a6643a9b421689bb0d04f5a48ed205e",
+   "document_slice": false
+  },
+  {
+   "page": "26cecb6e5b984c20",
+   "engine": "../../engine/hiertext_val/glypharis_v1/26cecb6e5b984c20.json",
+   "truth": "../../truth/hiertext_val/26cecb6e5b984c20.json",
+   "engine_sha256": "356eb118c41ef929e97ebf53ff570107c0dff9d2773d1642be78ba1378c41786",
+   "truth_sha256": "d5cecc203b8eb2e56622beb26ec384c8b705f78d0dd81b67f77b06cf3a501830",
+   "document_slice": false
+  },
+  {
+   "page": "26d497bc6d25d4b3",
+   "engine": "../../engine/hiertext_val/glypharis_v1/26d497bc6d25d4b3.json",
+   "truth": "../../truth/hiertext_val/26d497bc6d25d4b3.json",
+   "engine_sha256": "dc69d5a1eeabd0e10566d01e29ebad805ef4fe99e869b80a0e84c1203ee27ff1",
+   "truth_sha256": "59baa02bb7b6ffe3bdd7b2951afbd413e466b11b218a999730a99f225105a7ce",
+   "document_slice": false
+  },
+  {
+   "page": "27dbbff1acd56a80",
+   "engine": "../../engine/hiertext_val/glypharis_v1/27dbbff1acd56a80.json",
+   "truth": "../../truth/hiertext_val/27dbbff1acd56a80.json",
+   "engine_sha256": "422acc3b4f68a9a8d06116ecf0c4a562e0b9021b371e9e318c347942ccd2a659",
+   "truth_sha256": "308f094fcb707a17581441eaae4d32e18dd330382d58e9c8d01ba549943c4311",
+   "document_slice": false
+  },
+  {
+   "page": "2993d8238f37ff50",
+   "engine": "../../engine/hiertext_val/glypharis_v1/2993d8238f37ff50.json",
+   "truth": "../../truth/hiertext_val/2993d8238f37ff50.json",
+   "engine_sha256": "b1e5b92aa0eb13983314b65727a7178f5bfcaafc86d5fe87bd5f15b73a518fcd",
+   "truth_sha256": "f37748dde83a81bd984162ed092e80cb6925c8a8a7a94b79bc5243e6d8ffaeb6",
+   "document_slice": false
+  },
+  {
+   "page": "299f43d706dc5864",
+   "engine": "../../engine/hiertext_val/glypharis_v1/299f43d706dc5864.json",
+   "truth": "../../truth/hiertext_val/299f43d706dc5864.json",
+   "engine_sha256": "8b9f24a0e4e35e4fc5928be78178e81d0839b04ac794bd9222cd521b3dbb7c0e",
+   "truth_sha256": "fad7894d29a1d4447fbb741c08bbe78221822955d0e5b5f28c2b2cf21f1d2266",
+   "document_slice": false
+  },
+  {
+   "page": "29ea735aeaf98845",
+   "engine": "../../engine/hiertext_val/glypharis_v1/29ea735aeaf98845.json",
+   "truth": "../../truth/hiertext_val/29ea735aeaf98845.json",
+   "engine_sha256": "6002c0d9e40e74c4b369f7fbd0237e18e028aa2ad06ecb41816645e57fbec344",
+   "truth_sha256": "229d85426899789d79fd29df2c689fb59d50638916d04021d7c2111bd22f4997",
+   "document_slice": false
+  },
+  {
+   "page": "2a8b8861dfb1fce0",
+   "engine": "../../engine/hiertext_val/glypharis_v1/2a8b8861dfb1fce0.json",
+   "truth": "../../truth/hiertext_val/2a8b8861dfb1fce0.json",
+   "engine_sha256": "a68be9af8fbec2ac1db79f069dfc7bf1eb85a0def3f23e9dc85770c848c29b63",
+   "truth_sha256": "e4a3988c8470fe336887421de1699cb55b9acf5c25a08e3d062be01f0a42dba1",
+   "document_slice": false
+  },
+  {
+   "page": "2bc8e237402a4cb2",
+   "engine": "../../engine/hiertext_val/glypharis_v1/2bc8e237402a4cb2.json",
+   "truth": "../../truth/hiertext_val/2bc8e237402a4cb2.json",
+   "engine_sha256": "5cd776593c4bd2c33b3dcc68001313956537d373438c4abaeb74d689ac33f9ca",
+   "truth_sha256": "b1583732492965b4fd2925c338bfb76a27aeadf730495e87720193ddfc9e6412",
+   "document_slice": false
+  },
+  {
+   "page": "2c31f643264a740d",
+   "engine": "../../engine/hiertext_val/glypharis_v1/2c31f643264a740d.json",
+   "truth": "../../truth/hiertext_val/2c31f643264a740d.json",
+   "engine_sha256": "1f7b97162ecbc97c23d3607f846c51226398fec5e881d59fccc62f8acccffd8c",
+   "truth_sha256": "57a86097a7f01da36e9eead216abcd0cc13ecfdd67a7ceeaa3c10db6192d5f93",
+   "document_slice": false
+  },
+  {
+   "page": "2cdf51503d1104a6",
+   "engine": "../../engine/hiertext_val/glypharis_v1/2cdf51503d1104a6.json",
+   "truth": "../../truth/hiertext_val/2cdf51503d1104a6.json",
+   "engine_sha256": "f38d8b6bc2662cf2dc64218321f541134de920669c5f027268e12ee8aae430fb",
+   "truth_sha256": "d6b8b8cad48a6cefecb0ad26827b8335fa70aeff5501aef5dc055effb52dc5b5",
+   "document_slice": false
+  },
+  {
+   "page": "2d883a084e974a9a",
+   "engine": "../../engine/hiertext_val/glypharis_v1/2d883a084e974a9a.json",
+   "truth": "../../truth/hiertext_val/2d883a084e974a9a.json",
+   "engine_sha256": "236dc1e676e667067462dce682261b14983d1a5805d3dc7e8f56f3c9b8627507",
+   "truth_sha256": "2d35773cbbb1dce0a31e9f2d8cf49930c15065003a02f7b6fe49a71ecaddd127",
+   "document_slice": false
+  },
+  {
+   "page": "2de61622cacc6f70",
+   "engine": "../../engine/hiertext_val/glypharis_v1/2de61622cacc6f70.json",
+   "truth": "../../truth/hiertext_val/2de61622cacc6f70.json",
+   "engine_sha256": "d4ba7d58cb647bdb85fcfa74939a8097df776c25edab7aa145625d33d97d9d61",
+   "truth_sha256": "c02572a359bc433d39d95556dd8eaf5ff39d39cd728b08a8237eb78ce807d243",
+   "document_slice": false
+  },
+  {
+   "page": "2dfbbe4db4d6bedb",
+   "engine": "../../engine/hiertext_val/glypharis_v1/2dfbbe4db4d6bedb.json",
+   "truth": "../../truth/hiertext_val/2dfbbe4db4d6bedb.json",
+   "engine_sha256": "14262a54b8b17b6312393a3b4f476fb28070fcd39791f063ac9806a70ce1ee1b",
+   "truth_sha256": "e2f95be8df4a508379166d1a7c4ed5c2f749fe14d315e24d16fc4549f46f903e",
+   "document_slice": false
+  },
+  {
+   "page": "2f844c9e460502be",
+   "engine": "../../engine/hiertext_val/glypharis_v1/2f844c9e460502be.json",
+   "truth": "../../truth/hiertext_val/2f844c9e460502be.json",
+   "engine_sha256": "d2a9171703b3b940ce848816e8f9adf3f47a8674edb1d8588c7348811c65086d",
+   "truth_sha256": "639fcda64028831d4cbec0009ea3e0e815e3808abeed119b0325f0218e1319c1",
+   "document_slice": false
+  },
+  {
+   "page": "2fbbb0d6fc4558ca",
+   "engine": "../../engine/hiertext_val/glypharis_v1/2fbbb0d6fc4558ca.json",
+   "truth": "../../truth/hiertext_val/2fbbb0d6fc4558ca.json",
+   "engine_sha256": "6e704ade33f2de400845dd21e2b96fc7c26d8f54bff2c6451d1968dad3151bae",
+   "truth_sha256": "b4912dd10da04789b097533db2090cd18c6810adb6e1c37ab088828ef6204097",
+   "document_slice": false
+  },
+  {
+   "page": "30af6b2c756b779d",
+   "engine": "../../engine/hiertext_val/glypharis_v1/30af6b2c756b779d.json",
+   "truth": "../../truth/hiertext_val/30af6b2c756b779d.json",
+   "engine_sha256": "be931c8b515b31e6e8d56f18acc0f39f91fc87f2081e789073b88933b9b6d2eb",
+   "truth_sha256": "a40b6b49d49a993ba6d5f81f9e6a64e77773ff39707d13341029388a0b8ea738",
+   "document_slice": false
+  },
+  {
+   "page": "30b495fdd52ede50",
+   "engine": "../../engine/hiertext_val/glypharis_v1/30b495fdd52ede50.json",
+   "truth": "../../truth/hiertext_val/30b495fdd52ede50.json",
+   "engine_sha256": "a160f37e42f308fd53d09b3a3bfdd469ba3f8a664cb7c225629b5d0cff295888",
+   "truth_sha256": "f981f97937745417fc8bacbddce07c362f6ae79b5e339e3e158011486e7b471c",
+   "document_slice": false
+  },
+  {
+   "page": "31179bcae9b24764",
+   "engine": "../../engine/hiertext_val/glypharis_v1/31179bcae9b24764.json",
+   "truth": "../../truth/hiertext_val/31179bcae9b24764.json",
+   "engine_sha256": "de4d61375efb4a2cde3502990f3279d21118b4f7c842393aee7da9119fe5d17f",
+   "truth_sha256": "2dc16e8df3c075a308210906889da128f1f31f1e5e9681a336bcc3953606f584",
+   "document_slice": false
+  },
+  {
+   "page": "311dcdd4c1674d3f",
+   "engine": "../../engine/hiertext_val/glypharis_v1/311dcdd4c1674d3f.json",
+   "truth": "../../truth/hiertext_val/311dcdd4c1674d3f.json",
+   "engine_sha256": "49632c1eb620581dbfacd3bf10c6b087325573806d9912134f1e433291d518a3",
+   "truth_sha256": "535629af806bd3dcb48c56f6ea2d3a3259cbf0a42bfbc2a988dc83323179a8b1",
+   "document_slice": false
+  },
+  {
+   "page": "31288e756d94714c",
+   "engine": "../../engine/hiertext_val/glypharis_v1/31288e756d94714c.json",
+   "truth": "../../truth/hiertext_val/31288e756d94714c.json",
+   "engine_sha256": "457496d43808ee830a73eab7b793d79fadc910ba347e9e813450665deb764f71",
+   "truth_sha256": "06ff2712fea8c936f84f45841b7baacce4d4ad474c698b31d89ada13babaf2cf",
+   "document_slice": false
+  },
+  {
+   "page": "312e159cadc95211",
+   "engine": "../../engine/hiertext_val/glypharis_v1/312e159cadc95211.json",
+   "truth": "../../truth/hiertext_val/312e159cadc95211.json",
+   "engine_sha256": "6b0a03e087a2c5d18ac102d867dc9f948c61989d0aebf9c8a2a41d6b39b311e9",
+   "truth_sha256": "e0670e673384a1b0995fcc0298ee5db6f6649cdfc2a7401ac9fc46db6636e3ae",
+   "document_slice": false
+  },
+  {
+   "page": "31cda85e8b8b31cd",
+   "engine": "../../engine/hiertext_val/glypharis_v1/31cda85e8b8b31cd.json",
+   "truth": "../../truth/hiertext_val/31cda85e8b8b31cd.json",
+   "engine_sha256": "d19c952000f79ce7d606db8f56a355caeca2c6c3e22e49551f4de0d53f216c91",
+   "truth_sha256": "62e479637ace42dad770fd4e14efe0228eff27b25f031ceb0fa457504582bc66",
+   "document_slice": false
+  },
+  {
+   "page": "322f5bc2e50cfdc8",
+   "engine": "../../engine/hiertext_val/glypharis_v1/322f5bc2e50cfdc8.json",
+   "truth": "../../truth/hiertext_val/322f5bc2e50cfdc8.json",
+   "engine_sha256": "356a09674d9605315e7e67215c53fc2fee7b57331c0c807276bc088705a078dd",
+   "truth_sha256": "31241ed10c258a433c688e5ae4e6870dc7d9bb727b409c3305c9e3c5805f5577",
+   "document_slice": false
+  },
+  {
+   "page": "332ced9bdb333c85",
+   "engine": "../../engine/hiertext_val/glypharis_v1/332ced9bdb333c85.json",
+   "truth": "../../truth/hiertext_val/332ced9bdb333c85.json",
+   "engine_sha256": "a50a8d2edccf412db5d1ca6fa6157d5e7b802464381737c4c5685042cd644c6a",
+   "truth_sha256": "18cfd2c9e20dd820f9bd020734e6a0d26734b65b089b5b2a82fc7f294ea8578e",
+   "document_slice": false
+  },
+  {
+   "page": "3351b77e71b4e993",
+   "engine": "../../engine/hiertext_val/glypharis_v1/3351b77e71b4e993.json",
+   "truth": "../../truth/hiertext_val/3351b77e71b4e993.json",
+   "engine_sha256": "d685c34471349e3ad21043d0dcc34db5e7a7be9281efce30dc1e880ea1e2d7bf",
+   "truth_sha256": "78a09364272bf2b93ef9a59d1c8f965175b0b5a265dff884508f5c5488e56089",
+   "document_slice": false
+  },
+  {
+   "page": "3476aa167cec84aa",
+   "engine": "../../engine/hiertext_val/glypharis_v1/3476aa167cec84aa.json",
+   "truth": "../../truth/hiertext_val/3476aa167cec84aa.json",
+   "engine_sha256": "816903d0648e8d0d0e0279357711f208e05396b0b64c0d8baba0518f022f6d6c",
+   "truth_sha256": "ce089e41e00f6d725c6781d61762bb167eaf5c97b40adf7e31b12e20cda0278b",
+   "document_slice": false
+  },
+  {
+   "page": "34c6013674ead4ed",
+   "engine": "../../engine/hiertext_val/glypharis_v1/34c6013674ead4ed.json",
+   "truth": "../../truth/hiertext_val/34c6013674ead4ed.json",
+   "engine_sha256": "b54d1b6cff516361fdd5369178c3dfb6ba934059e187b0769dfe55940f83bc96",
+   "truth_sha256": "3a697a22403f272a3240033433f0a5280443712e51755894ae0ee556bed40d06",
+   "document_slice": false
+  },
+  {
+   "page": "3522be03ec0a8127",
+   "engine": "../../engine/hiertext_val/glypharis_v1/3522be03ec0a8127.json",
+   "truth": "../../truth/hiertext_val/3522be03ec0a8127.json",
+   "engine_sha256": "4f8d615caab36924417f0c68e048da5a5593e004c7b6da77c3065517e66d1601",
+   "truth_sha256": "c9dea8103430af2c38be7d026dadc3bced06bf727a1235541ea72ec46b0fbc1a",
+   "document_slice": false
+  },
+  {
+   "page": "355e362b556d4ff0",
+   "engine": "../../engine/hiertext_val/glypharis_v1/355e362b556d4ff0.json",
+   "truth": "../../truth/hiertext_val/355e362b556d4ff0.json",
+   "engine_sha256": "80c00db245127b2684bca6b29b9797ab9bc491c6bba72d8df26c01b330eac8f4",
+   "truth_sha256": "d9d09df424a68f211c9cb068e8dd306fd97713613e64438c81704b912489758c",
+   "document_slice": false
+  },
+  {
+   "page": "36221cfeb86f7b10",
+   "engine": "../../engine/hiertext_val/glypharis_v1/36221cfeb86f7b10.json",
+   "truth": "../../truth/hiertext_val/36221cfeb86f7b10.json",
+   "engine_sha256": "ca40adb14a718dfad7b6185f6833bb7294861fcb7e89353c5db36a4905bd7b9a",
+   "truth_sha256": "fb2e3944c73a616b71e243f2f4fee94c4b21f5bc537614b3e2aa0f17ec4ff1c2",
+   "document_slice": false
+  },
+  {
+   "page": "3640e3f9bd0dc197",
+   "engine": "../../engine/hiertext_val/glypharis_v1/3640e3f9bd0dc197.json",
+   "truth": "../../truth/hiertext_val/3640e3f9bd0dc197.json",
+   "engine_sha256": "40664b6ac77472cbeee866a698feeb993a1def3dbe280c1ec2d032990915f688",
+   "truth_sha256": "390d0ee7e6f7e0cb18a8353f0dcf391178d7d35108b2a3441651847892503cee",
+   "document_slice": false
+  },
+  {
+   "page": "36605964721fbed6",
+   "engine": "../../engine/hiertext_val/glypharis_v1/36605964721fbed6.json",
+   "truth": "../../truth/hiertext_val/36605964721fbed6.json",
+   "engine_sha256": "96b62452d89f7e4595d1b545658f61296554279df8c4d138bc03f1a8bd333e3a",
+   "truth_sha256": "7b7bd92c0f92fb710079e38fdca3c6f6b81939a5cd42e071b13fb3c7c8ee0874",
+   "document_slice": false
+  },
+  {
+   "page": "36c288ea5b94486c",
+   "engine": "../../engine/hiertext_val/glypharis_v1/36c288ea5b94486c.json",
+   "truth": "../../truth/hiertext_val/36c288ea5b94486c.json",
+   "engine_sha256": "b7a84035c525a86c0544066ffa42c1c42004da0adbb63348c53a0cd73243ae11",
+   "truth_sha256": "084c20cf3cd8fad8597761f70e64b8a3798fc677c108e87be78d5fa66dd917e7",
+   "document_slice": false
+  },
+  {
+   "page": "37142fa204cb4777",
+   "engine": "../../engine/hiertext_val/glypharis_v1/37142fa204cb4777.json",
+   "truth": "../../truth/hiertext_val/37142fa204cb4777.json",
+   "engine_sha256": "ba69827e4e5c371f0fcd50feb7dce20930c2deabfbf5bb438075a81264a7947d",
+   "truth_sha256": "84a506f9decac6da67ae698f3275dcea4e3e1bfbba05fccf49060e22493fa4c3",
+   "document_slice": false
+  },
+  {
+   "page": "371b43cb4a39d5d2",
+   "engine": "../../engine/hiertext_val/glypharis_v1/371b43cb4a39d5d2.json",
+   "truth": "../../truth/hiertext_val/371b43cb4a39d5d2.json",
+   "engine_sha256": "dfa5ccba3edfcd169ca082a9539f8f9a5ce3ed9d60e015643e009c76e2cb7449",
+   "truth_sha256": "3736a9e61b5ede901d4df7fca800f177ab125a84612369385b247cbfa1f1b30e",
+   "document_slice": false
+  },
+  {
+   "page": "3795554e0b6dba00",
+   "engine": "../../engine/hiertext_val/glypharis_v1/3795554e0b6dba00.json",
+   "truth": "../../truth/hiertext_val/3795554e0b6dba00.json",
+   "engine_sha256": "7439d0db73603002f5ec485d18a57324e7a76638bab632052e030281a887b9b7",
+   "truth_sha256": "53bb9402eb68158d063dea8d8a10db929d17a62319a02d607aeb5402d0e2077a",
+   "document_slice": false
+  },
+  {
+   "page": "384581d62afd9319",
+   "engine": "../../engine/hiertext_val/glypharis_v1/384581d62afd9319.json",
+   "truth": "../../truth/hiertext_val/384581d62afd9319.json",
+   "engine_sha256": "322b59fb5d91fed69a52d38943efee933a6ba9ce059be27ba950f0e62981679d",
+   "truth_sha256": "318dbd89f55faf3a41fce1d9a69ee14bd3b03f8741acf0082bb1341c4ed344ff",
+   "document_slice": false
+  },
+  {
+   "page": "385dbb2bdeb03817",
+   "engine": "../../engine/hiertext_val/glypharis_v1/385dbb2bdeb03817.json",
+   "truth": "../../truth/hiertext_val/385dbb2bdeb03817.json",
+   "engine_sha256": "d611482917e60ec5db7f12edcb078f1324bdeab9c131443fb907ffaf18a9cf8e",
+   "truth_sha256": "954f7f33b118353ecbf342a2a60bc28874856f598a9eefccfefe25c453db97de",
+   "document_slice": false
+  },
+  {
+   "page": "38b9387bf8718119",
+   "engine": "../../engine/hiertext_val/glypharis_v1/38b9387bf8718119.json",
+   "truth": "../../truth/hiertext_val/38b9387bf8718119.json",
+   "engine_sha256": "28b5db33746acbe424ce03ce9782e004be0b117d61fb23a2ff6a13b1c30806a3",
+   "truth_sha256": "027a3300d2bf300613d9d8422d18ea5bec0c0af3da906bf330dfb15eccddb495",
+   "document_slice": false
+  },
+  {
+   "page": "39b2aad3aad757e8",
+   "engine": "../../engine/hiertext_val/glypharis_v1/39b2aad3aad757e8.json",
+   "truth": "../../truth/hiertext_val/39b2aad3aad757e8.json",
+   "engine_sha256": "93db8b53f73f8eb1a538e74ff1c8b36212b6c418055ba0381820ee2da12edace",
+   "truth_sha256": "24d8b54a791f6eb6dfccad82ac5fcce9c35586ead5e14e0b058360dbe4bbfdfa",
+   "document_slice": false
+  },
+  {
+   "page": "3a163496b2c3e4a7",
+   "engine": "../../engine/hiertext_val/glypharis_v1/3a163496b2c3e4a7.json",
+   "truth": "../../truth/hiertext_val/3a163496b2c3e4a7.json",
+   "engine_sha256": "e025be6b775831142f6983ba119d4059e302268e27a0218bbeea3c37e612c3cf",
+   "truth_sha256": "f5ee90cfc57a7e9e2ecf0968ddbd9ed3ad31e43ee895b103f2062448c530245d",
+   "document_slice": false
+  },
+  {
+   "page": "3a7caa6122f867ec",
+   "engine": "../../engine/hiertext_val/glypharis_v1/3a7caa6122f867ec.json",
+   "truth": "../../truth/hiertext_val/3a7caa6122f867ec.json",
+   "engine_sha256": "f66b7ffba4bb3682e516f8a907050bad053c28f1a1925624d8916556cf049a67",
+   "truth_sha256": "dc8ec8b8bbf1c3cb222c04e3c50880fd56ce765aaacd918e2b023b29f3c6a812",
+   "document_slice": false
+  },
+  {
+   "page": "3b4941effbcef564",
+   "engine": "../../engine/hiertext_val/glypharis_v1/3b4941effbcef564.json",
+   "truth": "../../truth/hiertext_val/3b4941effbcef564.json",
+   "engine_sha256": "7ac1aaa3503119b7ea488460312f8a900bb02c556e0114543cf20828e38db92f",
+   "truth_sha256": "05885d48cdfa2614c262e17deb7c6a12a15b6eec129d5bbbdbfc0f4216ee7cee",
+   "document_slice": false
+  },
+  {
+   "page": "3b57c7b5ea8522c2",
+   "engine": "../../engine/hiertext_val/glypharis_v1/3b57c7b5ea8522c2.json",
+   "truth": "../../truth/hiertext_val/3b57c7b5ea8522c2.json",
+   "engine_sha256": "e079726378c65fcb969511707cbd470b0cc38234d51cec70444692c1e6b30d0c",
+   "truth_sha256": "c4ef11fe2973204108fe56114ef8ec21a983f91c808b2af83c5d0969170dfb26",
+   "document_slice": false
+  },
+  {
+   "page": "3b95fb37e8bb7a98",
+   "engine": "../../engine/hiertext_val/glypharis_v1/3b95fb37e8bb7a98.json",
+   "truth": "../../truth/hiertext_val/3b95fb37e8bb7a98.json",
+   "engine_sha256": "bd1b8b63b26393ba5597ed665d469abfc2ab4580293032397d037a594f59050f",
+   "truth_sha256": "14af670641cbadeaad0b9cb27feab3bf26a3c75c8885abb458a86be2de5c1e84",
+   "document_slice": false
+  },
+  {
+   "page": "3bbf37fcce852be7",
+   "engine": "../../engine/hiertext_val/glypharis_v1/3bbf37fcce852be7.json",
+   "truth": "../../truth/hiertext_val/3bbf37fcce852be7.json",
+   "engine_sha256": "b068c91c0569ce95c30adb759ce415de09fbb8895c0ac1ed693b109a843a5beb",
+   "truth_sha256": "b226a4ca616bb6a0a189550af83b14d0046ecb09a7addc36137973d80beaeeb6",
+   "document_slice": false
+  },
+  {
+   "page": "3c027cacb77e35cd",
+   "engine": "../../engine/hiertext_val/glypharis_v1/3c027cacb77e35cd.json",
+   "truth": "../../truth/hiertext_val/3c027cacb77e35cd.json",
+   "engine_sha256": "0749f211b9b63e2d610ccd0cfc786b3ec25c8f0c2ae4ffa9c4f3477911442684",
+   "truth_sha256": "e1356725662716d3934eeac9f27642ab9ce954a80ee072dea3b8db0e11ff34f7",
+   "document_slice": false
+  },
+  {
+   "page": "3c5876032c521546",
+   "engine": "../../engine/hiertext_val/glypharis_v1/3c5876032c521546.json",
+   "truth": "../../truth/hiertext_val/3c5876032c521546.json",
+   "engine_sha256": "6315982c40c5059372aa66869c6318d0cb051f677ddf3d37d0ead70dbccd6ff6",
+   "truth_sha256": "8249401161b38e6fbd05b4643d56bd42f04868409e407779d739039c8f7f5b79",
+   "document_slice": false
+  },
+  {
+   "page": "3cba28cdd5f6a9aa",
+   "engine": "../../engine/hiertext_val/glypharis_v1/3cba28cdd5f6a9aa.json",
+   "truth": "../../truth/hiertext_val/3cba28cdd5f6a9aa.json",
+   "engine_sha256": "20cb093f3652a80f52485f3cb988f41ef48027ee230542b72ddb8f09a62f15e0",
+   "truth_sha256": "0b28b7e8b89db2ed42a37a734048ab7541cdcde8f5d8c632f2b82c5ff1c88cde",
+   "document_slice": false
+  },
+  {
+   "page": "3d874195d3c70081",
+   "engine": "../../engine/hiertext_val/glypharis_v1/3d874195d3c70081.json",
+   "truth": "../../truth/hiertext_val/3d874195d3c70081.json",
+   "engine_sha256": "f67b5676120ed13b593d63c13d5a65e06fcf1169dbd6dcbdb1b4e65188028d64",
+   "truth_sha256": "c19dae25fd01c45d6288c617a2707d285536031547afe6087491d2d376c5af0c",
+   "document_slice": false
+  },
+  {
+   "page": "3df65e15a3af9645",
+   "engine": "../../engine/hiertext_val/glypharis_v1/3df65e15a3af9645.json",
+   "truth": "../../truth/hiertext_val/3df65e15a3af9645.json",
+   "engine_sha256": "55a6527679af523e3176784fbba54b94cd9f4f4cddad3d7ade30dc5a06bc8e1a",
+   "truth_sha256": "b891ec5dcc20c530ee2e28538972b8258c5fe58598c3bae6c07daf9407ddb3f3",
+   "document_slice": false
+  },
+  {
+   "page": "3ebed15e17006b35",
+   "engine": "../../engine/hiertext_val/glypharis_v1/3ebed15e17006b35.json",
+   "truth": "../../truth/hiertext_val/3ebed15e17006b35.json",
+   "engine_sha256": "c353748ca3a4258688383c5de04473623b672de12cccf47a77a1d7e2ec094451",
+   "truth_sha256": "b1bd80433a9633f312e9d2907669965239a0b5f995c43fb150935c25c2021302",
+   "document_slice": false
+  },
+  {
+   "page": "3ec01b023cecfdcc",
+   "engine": "../../engine/hiertext_val/glypharis_v1/3ec01b023cecfdcc.json",
+   "truth": "../../truth/hiertext_val/3ec01b023cecfdcc.json",
+   "engine_sha256": "13d7139da6af2379f2b868b7971414fbd343f17415410ea13f00de0e3ab4d882",
+   "truth_sha256": "156e3e717614eb6bc607cc2abfea26d14c577bd5c75534351f70b82b8da00275",
+   "document_slice": false
+  },
+  {
+   "page": "413507eba76320da",
+   "engine": "../../engine/hiertext_val/glypharis_v1/413507eba76320da.json",
+   "truth": "../../truth/hiertext_val/413507eba76320da.json",
+   "engine_sha256": "b8f15d263be171065d1bcbc7d47bbe4334d25689131fa667c9ac144d20973131",
+   "truth_sha256": "27e7235323ede59275797a0d6358e4508a2d50b250355d7c41c6b7bfc72cfd30",
+   "document_slice": false
+  },
+  {
+   "page": "41ec68d29b5f5db0",
+   "engine": "../../engine/hiertext_val/glypharis_v1/41ec68d29b5f5db0.json",
+   "truth": "../../truth/hiertext_val/41ec68d29b5f5db0.json",
+   "engine_sha256": "ec8e9f174ba599be71cf0cd4b64469e472880715926b771e5cc7905c8ff85e82",
+   "truth_sha256": "b18d74b316375e4c822058b213121c8890ae9f7c4ef99fd8e0f607326257490a",
+   "document_slice": false
+  },
+  {
+   "page": "4214e1b8e7e6923e",
+   "engine": "../../engine/hiertext_val/glypharis_v1/4214e1b8e7e6923e.json",
+   "truth": "../../truth/hiertext_val/4214e1b8e7e6923e.json",
+   "engine_sha256": "29504415b43da46367d099d514ec8e4dfe718502c57d55851296a380d44738b0",
+   "truth_sha256": "e100ac20722f6722259adfb327934f44735876d2ceaaa97534f799c1cfd382bd",
+   "document_slice": false
+  },
+  {
+   "page": "422d2664bb31538e",
+   "engine": "../../engine/hiertext_val/glypharis_v1/422d2664bb31538e.json",
+   "truth": "../../truth/hiertext_val/422d2664bb31538e.json",
+   "engine_sha256": "2d791a84ab9af53da7fae5e401448ab20190f0a6b233156265b8c54d60eaea52",
+   "truth_sha256": "781f0bbb5690020b15b1dabdfc42da1a7e3b15584d2cc490f17647dcb8d34c41",
+   "document_slice": false
+  },
+  {
+   "page": "42c506d52e8f4589",
+   "engine": "../../engine/hiertext_val/glypharis_v1/42c506d52e8f4589.json",
+   "truth": "../../truth/hiertext_val/42c506d52e8f4589.json",
+   "engine_sha256": "1710f99f58215892455b69153b16594410faf217c3de0c85c4f43fd86dda23f4",
+   "truth_sha256": "5707d7ce41acb119e362a82fe1a7ad947e6a7544c283a9949b0bbce851c71f46",
+   "document_slice": false
+  },
+  {
+   "page": "439f5a9a9178e4e4",
+   "engine": "../../engine/hiertext_val/glypharis_v1/439f5a9a9178e4e4.json",
+   "truth": "../../truth/hiertext_val/439f5a9a9178e4e4.json",
+   "engine_sha256": "94b5b33533e8ee0804f33018a0fb9752702d9c9d151d0d39b132375c67ffdf11",
+   "truth_sha256": "4c0104401ce79c202ec8144ad2f44c740bb0a6ee3afca676517cd75d8b0a4236",
+   "document_slice": false
+  },
+  {
+   "page": "44119400907fd42e",
+   "engine": "../../engine/hiertext_val/glypharis_v1/44119400907fd42e.json",
+   "truth": "../../truth/hiertext_val/44119400907fd42e.json",
+   "engine_sha256": "79f0bf599fc692e77aa141328c3369d72a160e1e7c1bdb6a4974c80325994933",
+   "truth_sha256": "20bf211731a96149d8af1ac8e20cae849ea0a9a561850d753a1a88f699a4b13c",
+   "document_slice": false
+  },
+  {
+   "page": "443f47a55cea3560",
+   "engine": "../../engine/hiertext_val/glypharis_v1/443f47a55cea3560.json",
+   "truth": "../../truth/hiertext_val/443f47a55cea3560.json",
+   "engine_sha256": "d562e2be303b0b8ec332cdead0ef9ce830bba2865a89bc9cfdfca72cff92c031",
+   "truth_sha256": "eea1e0d44438ecf47db987f16a96f118f85e53901f1bc9af911f9707e42688e2",
+   "document_slice": false
+  },
+  {
+   "page": "454e274408faab03",
+   "engine": "../../engine/hiertext_val/glypharis_v1/454e274408faab03.json",
+   "truth": "../../truth/hiertext_val/454e274408faab03.json",
+   "engine_sha256": "2b245190f911718216e3fe97eca452c3e1f8a1a55d8bc6e36339e2a4aca6372e",
+   "truth_sha256": "b968b70f88240d79e4e980e83058a390fe6ca9e23d733065f8bcf090499a7a7d",
+   "document_slice": false
+  },
+  {
+   "page": "45877aaa12c9ef83",
+   "engine": "../../engine/hiertext_val/glypharis_v1/45877aaa12c9ef83.json",
+   "truth": "../../truth/hiertext_val/45877aaa12c9ef83.json",
+   "engine_sha256": "dd803934860108c0e0d1c7acc6a6582e0c95f8faaeea85c1c1008eae6da28e13",
+   "truth_sha256": "b5fc43cfde931a068411e3766d8baf66ddde747e3355ed093207f6728d23402d",
+   "document_slice": false
+  },
+  {
+   "page": "466c6ce044b8bd46",
+   "engine": "../../engine/hiertext_val/glypharis_v1/466c6ce044b8bd46.json",
+   "truth": "../../truth/hiertext_val/466c6ce044b8bd46.json",
+   "engine_sha256": "5f5b74c5b28e8c2aabfe229a2d383cbbf444c06690ad6f8d711a4184e85e3d2a",
+   "truth_sha256": "cf62a7fe57393cdba985301f581c91635a625322d95aa3f3edd7b4b5654db522",
+   "document_slice": false
+  },
+  {
+   "page": "46dffeb084dadcaf",
+   "engine": "../../engine/hiertext_val/glypharis_v1/46dffeb084dadcaf.json",
+   "truth": "../../truth/hiertext_val/46dffeb084dadcaf.json",
+   "engine_sha256": "fef17b8a71c5b85337c5ae6390f069ce78203f8f5fb7030e179953b1ff0fd67a",
+   "truth_sha256": "67409d0b58bca748ded610a3d36f21239f1327c051b762bdefce0941d2b54d01",
+   "document_slice": false
+  },
+  {
+   "page": "472ba818f32e1dc9",
+   "engine": "../../engine/hiertext_val/glypharis_v1/472ba818f32e1dc9.json",
+   "truth": "../../truth/hiertext_val/472ba818f32e1dc9.json",
+   "engine_sha256": "df7fc01783527141539cf867738d895d39bf9b9986b3eed803b3b5fdfc36a02f",
+   "truth_sha256": "e570514a65a34b05e70d528c8a9e7656f0229369aba010e08894514e84651b1b",
+   "document_slice": false
+  },
+  {
+   "page": "47e6028bf29f44ba",
+   "engine": "../../engine/hiertext_val/glypharis_v1/47e6028bf29f44ba.json",
+   "truth": "../../truth/hiertext_val/47e6028bf29f44ba.json",
+   "engine_sha256": "4a235e31ad8c2e8ddcb2a9f93de44ae402deaa299885b437159ec89a95ada3c7",
+   "truth_sha256": "6df1dc0a4caef75db3ba74b3edb59aca1dd75494209349c769a50fc41306cc26",
+   "document_slice": false
+  },
+  {
+   "page": "487b970046215d5b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/487b970046215d5b.json",
+   "truth": "../../truth/hiertext_val/487b970046215d5b.json",
+   "engine_sha256": "00f2ca79510f3654c2be708b749d2b8afc0923cbbd97107cd3055a609f30d9f5",
+   "truth_sha256": "f1e1449db8bb590d77f2902a1219bd2829d7057c04342ea01b5bdd94e99ea69d",
+   "document_slice": false
+  },
+  {
+   "page": "48904c0fff1c7fcb",
+   "engine": "../../engine/hiertext_val/glypharis_v1/48904c0fff1c7fcb.json",
+   "truth": "../../truth/hiertext_val/48904c0fff1c7fcb.json",
+   "engine_sha256": "572e103150a978254051130114d00fd1eafba75030764c0b3541e86f7b6ab198",
+   "truth_sha256": "a357407534324942e077565a4e6a32967be9f114af3e6b7279883550ca2c7bc1",
+   "document_slice": false
+  },
+  {
+   "page": "48d90adb477e404e",
+   "engine": "../../engine/hiertext_val/glypharis_v1/48d90adb477e404e.json",
+   "truth": "../../truth/hiertext_val/48d90adb477e404e.json",
+   "engine_sha256": "e2f9ddf3bc07c6b21a9ce1d6106ddcf109f571af94b5608cfdd79eda1852e74b",
+   "truth_sha256": "53ea035c81f93a0110e807af5bbc13e02ae54f163c31cf5837a93ab49c9246da",
+   "document_slice": false
+  },
+  {
+   "page": "493c354bcf782376",
+   "engine": "../../engine/hiertext_val/glypharis_v1/493c354bcf782376.json",
+   "truth": "../../truth/hiertext_val/493c354bcf782376.json",
+   "engine_sha256": "94ebb4d5bb9743d5dea6e17815365450bfd42a499c0650e4a18463f983c1d726",
+   "truth_sha256": "9eac796a629c7b48e9d72437db45734eca325d29c276bdbcfe0c60e05207e5cb",
+   "document_slice": false
+  },
+  {
+   "page": "4976c8479dc54b42",
+   "engine": "../../engine/hiertext_val/glypharis_v1/4976c8479dc54b42.json",
+   "truth": "../../truth/hiertext_val/4976c8479dc54b42.json",
+   "engine_sha256": "56b5b89bfeec326c684352f52b350312797aa394197db7d7c12b72358cd89d72",
+   "truth_sha256": "d6d5d4c19508f2b7a068d05cc7f53fa5a6923e458f7c275acd42fb6ffd73eb1e",
+   "document_slice": false
+  },
+  {
+   "page": "4ac8e14fb0756bfa",
+   "engine": "../../engine/hiertext_val/glypharis_v1/4ac8e14fb0756bfa.json",
+   "truth": "../../truth/hiertext_val/4ac8e14fb0756bfa.json",
+   "engine_sha256": "779a0e72b842edef9c22782563e26c27ce57c8aa7fae0bb60aeb78047e9c7754",
+   "truth_sha256": "87dca8db76e034f58d5295217090e0bfbfdb40518ad38ef09c2877654e8df797",
+   "document_slice": false
+  },
+  {
+   "page": "4b123246001fe611",
+   "engine": "../../engine/hiertext_val/glypharis_v1/4b123246001fe611.json",
+   "truth": "../../truth/hiertext_val/4b123246001fe611.json",
+   "engine_sha256": "2a79e19f176dba193b7c6317e4be5a8c8194492c374c9fc8904ee1b755e7aab5",
+   "truth_sha256": "b7c1bdce7caf68ef64ac251a55f3470e8be36c5c869d8f37b9a1448f1d0b3819",
+   "document_slice": false
+  },
+  {
+   "page": "4b820628cf90c17f",
+   "engine": "../../engine/hiertext_val/glypharis_v1/4b820628cf90c17f.json",
+   "truth": "../../truth/hiertext_val/4b820628cf90c17f.json",
+   "engine_sha256": "c6bfe05442359a35b66805421237dbcc82a1ed91004de7bb2067dfa3da1b5c2f",
+   "truth_sha256": "28364ec84c5403b80134a94b2772cca7fa9a05bd716499c5605bcf85bd81776f",
+   "document_slice": false
+  },
+  {
+   "page": "4c220f64ae574947",
+   "engine": "../../engine/hiertext_val/glypharis_v1/4c220f64ae574947.json",
+   "truth": "../../truth/hiertext_val/4c220f64ae574947.json",
+   "engine_sha256": "8a763ff23e1dd9c30c63d4d2b61e714f4fac9345d9f2f6168035e25423965ac7",
+   "truth_sha256": "0d92ee4767b4d2d234e4ee1810690b7be147a5eb095148fa02e726359d8a6ac1",
+   "document_slice": false
+  },
+  {
+   "page": "4cea4fea0d9813ba",
+   "engine": "../../engine/hiertext_val/glypharis_v1/4cea4fea0d9813ba.json",
+   "truth": "../../truth/hiertext_val/4cea4fea0d9813ba.json",
+   "engine_sha256": "e25c552051d3feab2f5f2d22e145c526ca34c8f088ad4faecca261abad58e5ef",
+   "truth_sha256": "98d263816884c9a91a908c7a53c7b21bf877d1e289258f3361412a7054c67ef9",
+   "document_slice": false
+  },
+  {
+   "page": "4d4fd986142cb50f",
+   "engine": "../../engine/hiertext_val/glypharis_v1/4d4fd986142cb50f.json",
+   "truth": "../../truth/hiertext_val/4d4fd986142cb50f.json",
+   "engine_sha256": "5174378d54b77609afc99ed94b12df5125f7f5b574ae7b205c1e1ede02c78f0b",
+   "truth_sha256": "c22cf826d40ae02d83dd9433b5c1678aab53f452f9eefeaff4bd66745338378f",
+   "document_slice": false
+  },
+  {
+   "page": "4e09c5653e9d7836",
+   "engine": "../../engine/hiertext_val/glypharis_v1/4e09c5653e9d7836.json",
+   "truth": "../../truth/hiertext_val/4e09c5653e9d7836.json",
+   "engine_sha256": "4a5a3311a9618a3b11dee34a17498be77e9b865ad85468a5f181eb48cddf50b3",
+   "truth_sha256": "c2ef28252825e43fbf9c33728237c876143f3e8a74d90a1e663aceb5f4769cca",
+   "document_slice": false
+  },
+  {
+   "page": "4e44f6d9fe158bce",
+   "engine": "../../engine/hiertext_val/glypharis_v1/4e44f6d9fe158bce.json",
+   "truth": "../../truth/hiertext_val/4e44f6d9fe158bce.json",
+   "engine_sha256": "f18ea9bb3d7d68ac4e338653d7ae7c2afbe724ff85b1eca90174514c467f3f19",
+   "truth_sha256": "91da22a294fc0556ce691e2356168103adf40c7eee673ee3799ffcb0f0d018f3",
+   "document_slice": false
+  },
+  {
+   "page": "4f04a86194b5d994",
+   "engine": "../../engine/hiertext_val/glypharis_v1/4f04a86194b5d994.json",
+   "truth": "../../truth/hiertext_val/4f04a86194b5d994.json",
+   "engine_sha256": "444a91fd91ce9ef53fd76485f1553837a11d000eabefa0d81b30f6d7c942dc8d",
+   "truth_sha256": "1963973d32620d92c4932740f2ecea59e9e3715e8b50c4e19d35cd21b51ce07f",
+   "document_slice": false
+  },
+  {
+   "page": "4f19b2e23fc9641f",
+   "engine": "../../engine/hiertext_val/glypharis_v1/4f19b2e23fc9641f.json",
+   "truth": "../../truth/hiertext_val/4f19b2e23fc9641f.json",
+   "engine_sha256": "5c9ac249bf711743c8da9ca79295c3c079213a816c326d7c07687e035ec77be0",
+   "truth_sha256": "6b57aa98b2eba335d99214ce93333506d500e3f95300153aa2f1443c31285361",
+   "document_slice": false
+  },
+  {
+   "page": "5068ea7d16e8af53",
+   "engine": "../../engine/hiertext_val/glypharis_v1/5068ea7d16e8af53.json",
+   "truth": "../../truth/hiertext_val/5068ea7d16e8af53.json",
+   "engine_sha256": "08f84f8db3c21172aaf193e505b05e490e1e74225596328dca894ff5e46a434e",
+   "truth_sha256": "bc113f6c6ef0ecfa8aae2103bd8d1a9f466d01c5c780999c421eab0a072cccd1",
+   "document_slice": false
+  },
+  {
+   "page": "50da3226a706abcb",
+   "engine": "../../engine/hiertext_val/glypharis_v1/50da3226a706abcb.json",
+   "truth": "../../truth/hiertext_val/50da3226a706abcb.json",
+   "engine_sha256": "b76adc7be8ee3c087c302e5a8c2a5711403f6634cfca2e19eb605130b8751853",
+   "truth_sha256": "a317d0dbe8b851a0286a6c0737d83056db59dfd2b9fdbc04f415b802df9d1432",
+   "document_slice": false
+  },
+  {
+   "page": "519eb18a7f813a68",
+   "engine": "../../engine/hiertext_val/glypharis_v1/519eb18a7f813a68.json",
+   "truth": "../../truth/hiertext_val/519eb18a7f813a68.json",
+   "engine_sha256": "8f8b45e2190f396aa12716021c97cb8b5817738007d894ad7d8c22d4f6a0791e",
+   "truth_sha256": "8ba3b6a5e625965c270f2278e295e89bc266a960fcf3d16c13162f059fca5da7",
+   "document_slice": false
+  },
+  {
+   "page": "51f3e873931faae9",
+   "engine": "../../engine/hiertext_val/glypharis_v1/51f3e873931faae9.json",
+   "truth": "../../truth/hiertext_val/51f3e873931faae9.json",
+   "engine_sha256": "fa699cdec8324daea39fa434d632958fce7046cfb095dd0118ab3e2642e4235c",
+   "truth_sha256": "fa71735d19791eb535dc7d97608694d619dfefbb08e22f14cd12f1d3d9a19a0d",
+   "document_slice": false
+  },
+  {
+   "page": "52582260dcdb3e38",
+   "engine": "../../engine/hiertext_val/glypharis_v1/52582260dcdb3e38.json",
+   "truth": "../../truth/hiertext_val/52582260dcdb3e38.json",
+   "engine_sha256": "317941293e58e5a9bfce8d4daec613584cc5516b9e317e8a57b6d4d536f052bc",
+   "truth_sha256": "5992d98e4fc3d7a580872cb060db8e0d63980b9fd1125421d1c99aadd9e32623",
+   "document_slice": false
+  },
+  {
+   "page": "537379049fbd93cb",
+   "engine": "../../engine/hiertext_val/glypharis_v1/537379049fbd93cb.json",
+   "truth": "../../truth/hiertext_val/537379049fbd93cb.json",
+   "engine_sha256": "718a1cd778699c819c0a7e3346ed5d8a347cdcb75e6b7c5e6c2975176e464642",
+   "truth_sha256": "ba95d72b561df1b53477ba3dbe057757b42690a16ab01c08238aa3738e2d9f06",
+   "document_slice": false
+  },
+  {
+   "page": "540bb8230f3cb04e",
+   "engine": "../../engine/hiertext_val/glypharis_v1/540bb8230f3cb04e.json",
+   "truth": "../../truth/hiertext_val/540bb8230f3cb04e.json",
+   "engine_sha256": "1a72ae3187aa29dbd81c3c7b6fa8fd682cde8e4fa5613e74b13e9c32421a954c",
+   "truth_sha256": "cf9b77b73c0dc3ac93601aaf7a89d2a8d9185db22b7d4aef4c5c55d13b180647",
+   "document_slice": false
+  },
+  {
+   "page": "54b0c751287e7f8a",
+   "engine": "../../engine/hiertext_val/glypharis_v1/54b0c751287e7f8a.json",
+   "truth": "../../truth/hiertext_val/54b0c751287e7f8a.json",
+   "engine_sha256": "38b222a5591053ab9efb2c5b9fc3db3a16d0d5b71ac090785fa95dac245825c1",
+   "truth_sha256": "aef76a248d220982b77abd6516a010bd7fa1021db0152cec4c309fff6c3cdc3e",
+   "document_slice": false
+  },
+  {
+   "page": "553563b85efbcfd7",
+   "engine": "../../engine/hiertext_val/glypharis_v1/553563b85efbcfd7.json",
+   "truth": "../../truth/hiertext_val/553563b85efbcfd7.json",
+   "engine_sha256": "ee4dc344d0bf6eca1db26ab5e8e8fa6e281e6121198cb095b878d1c91c62ddea",
+   "truth_sha256": "e950c696c0c320e1ce0a94b5f1582173e55b5f7495526c688bf6da64dd3318ce",
+   "document_slice": false
+  },
+  {
+   "page": "55eb050f7b1fffdf",
+   "engine": "../../engine/hiertext_val/glypharis_v1/55eb050f7b1fffdf.json",
+   "truth": "../../truth/hiertext_val/55eb050f7b1fffdf.json",
+   "engine_sha256": "f25a5b9b68fea846fcf96825b622ea044c82434e16619372c0bca979a29e4f15",
+   "truth_sha256": "2ad23af6493969a4305483d11e2d330cd7b41aeff0af19eb4f8b6f9b21fca955",
+   "document_slice": false
+  },
+  {
+   "page": "55eb99953f191aa3",
+   "engine": "../../engine/hiertext_val/glypharis_v1/55eb99953f191aa3.json",
+   "truth": "../../truth/hiertext_val/55eb99953f191aa3.json",
+   "engine_sha256": "6833f3bede4d63d345596c6cda8a57cbe7cee51dc6401ff69a9b716fe74c9934",
+   "truth_sha256": "c9168aa6b72131c570c79c307217d255ee1e56181a7388a1c740340a0e609ae5",
+   "document_slice": false
+  },
+  {
+   "page": "58142fd71d2e1ed9",
+   "engine": "../../engine/hiertext_val/glypharis_v1/58142fd71d2e1ed9.json",
+   "truth": "../../truth/hiertext_val/58142fd71d2e1ed9.json",
+   "engine_sha256": "4aabbce05a2cdcbbd8a248c7e503a2ad20eb7dad7643c5d08fa4c15d8de3e815",
+   "truth_sha256": "f0d0ca3159228977b48e083d61e4636e593631f979c266c718ef01865b17b0e1",
+   "document_slice": false
+  },
+  {
+   "page": "584eda70fc6b1a5b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/584eda70fc6b1a5b.json",
+   "truth": "../../truth/hiertext_val/584eda70fc6b1a5b.json",
+   "engine_sha256": "de0a92a54b454c34df075eba8898d39bb5f62b7bd6669a1771bffac09ead9b73",
+   "truth_sha256": "0c23d60ead45d4bf35801ae26d5d1f07defa168573855c0317ed8fb465ee34c9",
+   "document_slice": false
+  },
+  {
+   "page": "5cb8310e78a08d32",
+   "engine": "../../engine/hiertext_val/glypharis_v1/5cb8310e78a08d32.json",
+   "truth": "../../truth/hiertext_val/5cb8310e78a08d32.json",
+   "engine_sha256": "5887ba44018857392a54b2ce7457cf67e4625837c2cdfd749882d3da5ec9da9f",
+   "truth_sha256": "125c757a87fc4b04a6123af901cfb45017d2acb6afd914514011de8bcde76eb6",
+   "document_slice": false
+  },
+  {
+   "page": "5cdc8dbdb49e6abf",
+   "engine": "../../engine/hiertext_val/glypharis_v1/5cdc8dbdb49e6abf.json",
+   "truth": "../../truth/hiertext_val/5cdc8dbdb49e6abf.json",
+   "engine_sha256": "65f536beb53515e8dec2b65c2ca3d4eb43f158b60633b053d289358760156c3b",
+   "truth_sha256": "c9225027feab26980278040e3064d922b3debd98d87a173540ffb6047353bf15",
+   "document_slice": false
+  },
+  {
+   "page": "5ce5022b9bf5447b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/5ce5022b9bf5447b.json",
+   "truth": "../../truth/hiertext_val/5ce5022b9bf5447b.json",
+   "engine_sha256": "32cd6b89acccac8f0e8c45f02d3cdc8f14cf6a73e8c9e6b53a8931a31fedba92",
+   "truth_sha256": "2d0f56c3ca139fc1f9bf63ba4e3a7f044a921b73fb6a52e7be20886bdea84b65",
+   "document_slice": false
+  },
+  {
+   "page": "5d230e8323565f17",
+   "engine": "../../engine/hiertext_val/glypharis_v1/5d230e8323565f17.json",
+   "truth": "../../truth/hiertext_val/5d230e8323565f17.json",
+   "engine_sha256": "27b804ef45175e975fbd7b127455103ed5d4424a37a7ba8f70dfdee17cf419aa",
+   "truth_sha256": "21a631be750ffc99bc78faec2a4c8c33f5f997a77b944018b36ca259209d5108",
+   "document_slice": false
+  },
+  {
+   "page": "5e3a0b410a59c9fc",
+   "engine": "../../engine/hiertext_val/glypharis_v1/5e3a0b410a59c9fc.json",
+   "truth": "../../truth/hiertext_val/5e3a0b410a59c9fc.json",
+   "engine_sha256": "48445377d2b2a2d077e8b6d1e32d4062e44a02c5074d778e68f32e9805d85fe3",
+   "truth_sha256": "abdb8477acfa77ea63fe352b05df97f64bb8f0a5b1a32cdf58fa64b961381a72",
+   "document_slice": false
+  },
+  {
+   "page": "5e40701b102fd17b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/5e40701b102fd17b.json",
+   "truth": "../../truth/hiertext_val/5e40701b102fd17b.json",
+   "engine_sha256": "89730c3dcbe5f4427745f5605c711685518521edc5b0cf863cdee976ade3de2b",
+   "truth_sha256": "a07d066b5b44316822ccfe289a9a9aa84f01d0e6efafcae45920b9966f063166",
+   "document_slice": false
+  },
+  {
+   "page": "5f22a35e8c131e02",
+   "engine": "../../engine/hiertext_val/glypharis_v1/5f22a35e8c131e02.json",
+   "truth": "../../truth/hiertext_val/5f22a35e8c131e02.json",
+   "engine_sha256": "a5b0aa0a2f726b1e8bfa26179d16ea35fd28bc17f13a32002fa4d60e430d40d5",
+   "truth_sha256": "0519ce4c1b578642fe0a022a5e86eff8af944bbf788eae75cecf52ab6f195396",
+   "document_slice": false
+  },
+  {
+   "page": "60bfca3d0323a49d",
+   "engine": "../../engine/hiertext_val/glypharis_v1/60bfca3d0323a49d.json",
+   "truth": "../../truth/hiertext_val/60bfca3d0323a49d.json",
+   "engine_sha256": "86d8dbca3dc3289684cfd56f0bf02ee33df945df0a56d4719bbbc4e6ca1afb45",
+   "truth_sha256": "5cc69d87946947c0916552a80a42154602f71086f90c6a14560bd4543995a357",
+   "document_slice": false
+  },
+  {
+   "page": "60c077c46cc9e0a0",
+   "engine": "../../engine/hiertext_val/glypharis_v1/60c077c46cc9e0a0.json",
+   "truth": "../../truth/hiertext_val/60c077c46cc9e0a0.json",
+   "engine_sha256": "f407f03eeb430dfed7291a6cb7780c298855fd253a54267bbbc420c2ef8f9966",
+   "truth_sha256": "445cab5afa974771aad4478785bcae38e4169e96e05eed6702d1f5aa21b7e35d",
+   "document_slice": false
+  },
+  {
+   "page": "611072ec17a82276",
+   "engine": "../../engine/hiertext_val/glypharis_v1/611072ec17a82276.json",
+   "truth": "../../truth/hiertext_val/611072ec17a82276.json",
+   "engine_sha256": "d34cb7d3c3bf4c7681e4f7ba27ffc42d37014cc5b4d8231365255abedef0d30d",
+   "truth_sha256": "b9ee276a6680b246f329c811f8dd883b5c37bdc713fe9a3f83ebc603ba691b11",
+   "document_slice": false
+  },
+  {
+   "page": "61e1c8a2c8ec4cc9",
+   "engine": "../../engine/hiertext_val/glypharis_v1/61e1c8a2c8ec4cc9.json",
+   "truth": "../../truth/hiertext_val/61e1c8a2c8ec4cc9.json",
+   "engine_sha256": "a5a992e5c4657b98168421cd7ac584b8a2c93af8bfcb1291d799eb972beb2f32",
+   "truth_sha256": "dd388a312f94060147f80101be823efd28e44ea061502553073ec90e6234f4c7",
+   "document_slice": false
+  },
+  {
+   "page": "6303c212430101fe",
+   "engine": "../../engine/hiertext_val/glypharis_v1/6303c212430101fe.json",
+   "truth": "../../truth/hiertext_val/6303c212430101fe.json",
+   "engine_sha256": "e4ba3556edfc87145e8d188681e3094adb78c66ad5fce144f277270eedd0c40f",
+   "truth_sha256": "b960349d1a2a533ed2fa32ec118168f7bd7e925acb94bacfffdd0dae388dbd4a",
+   "document_slice": false
+  },
+  {
+   "page": "63564dbe29aa1c54",
+   "engine": "../../engine/hiertext_val/glypharis_v1/63564dbe29aa1c54.json",
+   "truth": "../../truth/hiertext_val/63564dbe29aa1c54.json",
+   "engine_sha256": "4be993354763a8614077f2d92441f7ffe6643de218ee7db4f3d61f8e9e0a7b65",
+   "truth_sha256": "37ad18ed4279e65df5b9502fd23cef4b37f06194222ee447154722712435a076",
+   "document_slice": false
+  },
+  {
+   "page": "6392b31a77a761d4",
+   "engine": "../../engine/hiertext_val/glypharis_v1/6392b31a77a761d4.json",
+   "truth": "../../truth/hiertext_val/6392b31a77a761d4.json",
+   "engine_sha256": "9a2aafab1ab2aed58b3e70ac50c39ec432cc52e7a802428942eb841f5dfd20f1",
+   "truth_sha256": "d282a962b8062f4b3b68994bfecba60ff70c3d8f4ea93198d932bee59483b6d9",
+   "document_slice": false
+  },
+  {
+   "page": "63b0efc70ec90120",
+   "engine": "../../engine/hiertext_val/glypharis_v1/63b0efc70ec90120.json",
+   "truth": "../../truth/hiertext_val/63b0efc70ec90120.json",
+   "engine_sha256": "6387e697e9608f19aba1ebfdaf6b6361b8cda348f7ab0341032bce652d8a92d0",
+   "truth_sha256": "38808da0d3028b7042e46618a94d065528e78a874537d3392106482d7c8e164f",
+   "document_slice": false
+  },
+  {
+   "page": "63d7f0aa55b677fe",
+   "engine": "../../engine/hiertext_val/glypharis_v1/63d7f0aa55b677fe.json",
+   "truth": "../../truth/hiertext_val/63d7f0aa55b677fe.json",
+   "engine_sha256": "3a5de93aec5e64c2eaeabfce8fd0adafe84992a54f80d39a6f35bb241574dc04",
+   "truth_sha256": "62bb804556249203de805cd6266947dfce11ab42deacff5b260ff87145859ec2",
+   "document_slice": true
+  },
+  {
+   "page": "6471fe3137c6ae5a",
+   "engine": "../../engine/hiertext_val/glypharis_v1/6471fe3137c6ae5a.json",
+   "truth": "../../truth/hiertext_val/6471fe3137c6ae5a.json",
+   "engine_sha256": "c0a96a4b807c4047f458956458b524ad2bd5d031535fe00f2352273acd4b5f2d",
+   "truth_sha256": "79c1a4f1e31360b8fd3a3eddd7082dff9b7c4da816089cb5fbe13fe9710d04db",
+   "document_slice": false
+  },
+  {
+   "page": "651773db24f6b50b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/651773db24f6b50b.json",
+   "truth": "../../truth/hiertext_val/651773db24f6b50b.json",
+   "engine_sha256": "874476bfcc440fb90efffb558d149e6cb7068dfd306aa9b9139aecf8e5dc5571",
+   "truth_sha256": "e7f91a9af34614fe7128562644addb134ae6b9a5ad59a2a07130454a7c6fb78e",
+   "document_slice": false
+  },
+  {
+   "page": "655810010bb20118",
+   "engine": "../../engine/hiertext_val/glypharis_v1/655810010bb20118.json",
+   "truth": "../../truth/hiertext_val/655810010bb20118.json",
+   "engine_sha256": "c06c332cca1e73cebe9f7face5a197b4feb3ace34707eb19f76c1e1d02d39353",
+   "truth_sha256": "07d9c9c5d1cb9f951fbfa84fe5cd548343a72fad89dee40f20191264cca379da",
+   "document_slice": false
+  },
+  {
+   "page": "664ef6162599a235",
+   "engine": "../../engine/hiertext_val/glypharis_v1/664ef6162599a235.json",
+   "truth": "../../truth/hiertext_val/664ef6162599a235.json",
+   "engine_sha256": "a5286797367897895b617be1623293a97e9038398d0e4acd76f319a7e5f573ea",
+   "truth_sha256": "f8c06123624fc4a4c2a15ab48248e188c3d274e0209b3efcefc28467ba517ad3",
+   "document_slice": false
+  },
+  {
+   "page": "66ea94155fa50de1",
+   "engine": "../../engine/hiertext_val/glypharis_v1/66ea94155fa50de1.json",
+   "truth": "../../truth/hiertext_val/66ea94155fa50de1.json",
+   "engine_sha256": "fe1f29a824776f05d20598965e53413ba1573661beaa5cabc0c87fc4fe2c2716",
+   "truth_sha256": "f8727972b97641a56738ba1fa802cc17b1ded5c3b1a07fd4d92dd678a9d83ea6",
+   "document_slice": true
+  },
+  {
+   "page": "671f19273e3c34ac",
+   "engine": "../../engine/hiertext_val/glypharis_v1/671f19273e3c34ac.json",
+   "truth": "../../truth/hiertext_val/671f19273e3c34ac.json",
+   "engine_sha256": "da9a03e3911f81635222f3f4e08acdd63c2836ffbd9dd800d6cb0e3248e5ff8e",
+   "truth_sha256": "f9afdc082994ea7ba35cdf42dcad7ca5996c43bf6160ee6db40912a850b009e5",
+   "document_slice": false
+  },
+  {
+   "page": "673aa85a040eed0b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/673aa85a040eed0b.json",
+   "truth": "../../truth/hiertext_val/673aa85a040eed0b.json",
+   "engine_sha256": "c002212d4ce503b1a955e2ff6135a9a05cc1263e87a086fe1f9701591da07cb6",
+   "truth_sha256": "d5e6ec9543c17ffd13f8674e27020cb2add4c0619532fb51e3e4b51f5cb15cd0",
+   "document_slice": false
+  },
+  {
+   "page": "67e367b45f5bc324",
+   "engine": "../../engine/hiertext_val/glypharis_v1/67e367b45f5bc324.json",
+   "truth": "../../truth/hiertext_val/67e367b45f5bc324.json",
+   "engine_sha256": "f6126f8dbec89b6903799610867a45f08b03e1fff9574bb9a1774ea0299ebc3d",
+   "truth_sha256": "2862b9ad96b0e116211f657c2b4c01b8b8a7d8686d92c1257c7b525ee4ec0eaa",
+   "document_slice": false
+  },
+  {
+   "page": "682fe99e83bd216a",
+   "engine": "../../engine/hiertext_val/glypharis_v1/682fe99e83bd216a.json",
+   "truth": "../../truth/hiertext_val/682fe99e83bd216a.json",
+   "engine_sha256": "e7936da16144518abb3fcfe5120e2e50d515f5f93f5ceb3e88d6f09c67150e13",
+   "truth_sha256": "344759e6f0088a0d5afa6102278dc675faa27c274efb0aab506c6b07addd1dc4",
+   "document_slice": false
+  },
+  {
+   "page": "68a9d0e11334bb88",
+   "engine": "../../engine/hiertext_val/glypharis_v1/68a9d0e11334bb88.json",
+   "truth": "../../truth/hiertext_val/68a9d0e11334bb88.json",
+   "engine_sha256": "8bf7a3a5922506a2ec05e726630fd1ca2ee95c9c81e3b08fad407f123a16d49d",
+   "truth_sha256": "e9a16195e8f9a20061f790da9b6851fc39d1d7ed0e3364039ba5a9f91e419476",
+   "document_slice": false
+  },
+  {
+   "page": "68adadcfab80ff61",
+   "engine": "../../engine/hiertext_val/glypharis_v1/68adadcfab80ff61.json",
+   "truth": "../../truth/hiertext_val/68adadcfab80ff61.json",
+   "engine_sha256": "cc65502567658817a7f6b7732fa4e26915aadb0db961c90a811a9a4cd6f7e6e7",
+   "truth_sha256": "a902071e303fc6b615c46618c1a9f7256a85bebef112aadd024ba1f06b2d485f",
+   "document_slice": false
+  },
+  {
+   "page": "68e6f07a6d9352f8",
+   "engine": "../../engine/hiertext_val/glypharis_v1/68e6f07a6d9352f8.json",
+   "truth": "../../truth/hiertext_val/68e6f07a6d9352f8.json",
+   "engine_sha256": "342094c3df7a57c5aa84e1a1d6fa27b87565a3e7a82d9d152bfbfeb6924552a7",
+   "truth_sha256": "385f1453c1ca6a89b597bc17552a0dd8cf2eaed1615cd06078eaaa7c55c473bc",
+   "document_slice": false
+  },
+  {
+   "page": "68f1f0e3d15201b2",
+   "engine": "../../engine/hiertext_val/glypharis_v1/68f1f0e3d15201b2.json",
+   "truth": "../../truth/hiertext_val/68f1f0e3d15201b2.json",
+   "engine_sha256": "3884a40bf8058168a2f0e61c3706dc5c2b609db7ea020437fe05d9e9ed4cfdc5",
+   "truth_sha256": "bd119f4c0657f9178ae6cbec16d1ae261bcbc69e18b122e154c63400506e3f87",
+   "document_slice": false
+  },
+  {
+   "page": "6a45c292e1c487dc",
+   "engine": "../../engine/hiertext_val/glypharis_v1/6a45c292e1c487dc.json",
+   "truth": "../../truth/hiertext_val/6a45c292e1c487dc.json",
+   "engine_sha256": "94ee9aa3f988af82e03cdbb0f0365966f9f5079fcc9a3ba738d51d2450b70e7c",
+   "truth_sha256": "953ad403151639954424e5c59e1015bda95fc8d56acd05e46688f2b6c585b788",
+   "document_slice": false
+  },
+  {
+   "page": "6ce43e8cd38bff59",
+   "engine": "../../engine/hiertext_val/glypharis_v1/6ce43e8cd38bff59.json",
+   "truth": "../../truth/hiertext_val/6ce43e8cd38bff59.json",
+   "engine_sha256": "7d7d89f90c8de3cdbdc7fb10f6abd7b44c2c1af35c73f935110cbe539a695299",
+   "truth_sha256": "d2bfe24ae1b24fa221c02b4616f97405dd9eec74e8e3bddc5f3a68dba11670ec",
+   "document_slice": false
+  },
+  {
+   "page": "6dfaa89605793db7",
+   "engine": "../../engine/hiertext_val/glypharis_v1/6dfaa89605793db7.json",
+   "truth": "../../truth/hiertext_val/6dfaa89605793db7.json",
+   "engine_sha256": "c8015f9da885bed24b04a0ec1046f2fa11ffcc442d0f085d0dd191966115b520",
+   "truth_sha256": "f6ada14b76e2ca9df964029d9f0206f96adf52a3a522ad9a40e7dec039eb8140",
+   "document_slice": false
+  },
+  {
+   "page": "6e36a0865a3b090d",
+   "engine": "../../engine/hiertext_val/glypharis_v1/6e36a0865a3b090d.json",
+   "truth": "../../truth/hiertext_val/6e36a0865a3b090d.json",
+   "engine_sha256": "b05e41b3040ff8ee1dcd3b22010c833707613801fa3eda812fd579e59584cf6b",
+   "truth_sha256": "24879e37a2faf61183aa56b7498dae475a7e53cc5e224a6f3a160a4ea760cd2f",
+   "document_slice": false
+  },
+  {
+   "page": "6e952597159f2573",
+   "engine": "../../engine/hiertext_val/glypharis_v1/6e952597159f2573.json",
+   "truth": "../../truth/hiertext_val/6e952597159f2573.json",
+   "engine_sha256": "f3d251f97a3500ea01907f40cae3fa58609a80ff9f5e0d68ff5965f38816f579",
+   "truth_sha256": "45b2cabc6bc7e105a8fb3c083b9943c38f53cb13824a0a4f54d5a063635467c9",
+   "document_slice": false
+  },
+  {
+   "page": "6ec87520196aa64e",
+   "engine": "../../engine/hiertext_val/glypharis_v1/6ec87520196aa64e.json",
+   "truth": "../../truth/hiertext_val/6ec87520196aa64e.json",
+   "engine_sha256": "3229367615695c53c2c11bf9051eaaa89cacdfc2c843dbf4c5fc8d0b37338ace",
+   "truth_sha256": "eb35ce0f9dc9a4000c3dbfa2bec20391cbab0cad0b4d63f800461a0df0bce0ac",
+   "document_slice": false
+  },
+  {
+   "page": "6f3f3a7f99f4e82b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/6f3f3a7f99f4e82b.json",
+   "truth": "../../truth/hiertext_val/6f3f3a7f99f4e82b.json",
+   "engine_sha256": "d48c6dbcc2253bedb02f3ed1980bef59289f1b8756c6b6de3ebe0de01ca459ce",
+   "truth_sha256": "8068e3f262ce14adcf62d5d75ffde5171915074ef1429152775778d3088b1265",
+   "document_slice": true
+  },
+  {
+   "page": "6fd9a4672d5ca85d",
+   "engine": "../../engine/hiertext_val/glypharis_v1/6fd9a4672d5ca85d.json",
+   "truth": "../../truth/hiertext_val/6fd9a4672d5ca85d.json",
+   "engine_sha256": "d1d0b453a4c22efa6808fddc063397647992947d1df4e9d57e0e4b4f953a6e2c",
+   "truth_sha256": "a4b5bba425dcaacfa6d55eb86f553abc1ead7a0a6498da7399802cd05ac99aef",
+   "document_slice": true
+  },
+  {
+   "page": "6fe531f0d9fa17d2",
+   "engine": "../../engine/hiertext_val/glypharis_v1/6fe531f0d9fa17d2.json",
+   "truth": "../../truth/hiertext_val/6fe531f0d9fa17d2.json",
+   "engine_sha256": "cb6b711b5f7277d429f0d4d76e278a75904201de4bb4a50cca3d4fcce6b643b6",
+   "truth_sha256": "314797ea028bf6f4abd5aae9cdd9c6a6cef3f9f02ed15c62ab1a007fc515eb13",
+   "document_slice": false
+  },
+  {
+   "page": "71df3af7f3ce77fb",
+   "engine": "../../engine/hiertext_val/glypharis_v1/71df3af7f3ce77fb.json",
+   "truth": "../../truth/hiertext_val/71df3af7f3ce77fb.json",
+   "engine_sha256": "91f285cea142ee0fe0c9dcfb89d2938e512703c72a5f0ad16a60856109748795",
+   "truth_sha256": "e855cd342511b50648d5a9f74e3eeaa4cbb6059cebb9a9b8925e1517ea88a0fb",
+   "document_slice": false
+  },
+  {
+   "page": "7238e7acffa4862b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/7238e7acffa4862b.json",
+   "truth": "../../truth/hiertext_val/7238e7acffa4862b.json",
+   "engine_sha256": "8ae36fd18f7eeab92749349737776b9a862a78cfc6e9190d37d20c49946208f1",
+   "truth_sha256": "385e37554ea40eaa66db013c0373dc0a6a83c8e327004a802fac4247ce819215",
+   "document_slice": false
+  },
+  {
+   "page": "73c4c581414b06fb",
+   "engine": "../../engine/hiertext_val/glypharis_v1/73c4c581414b06fb.json",
+   "truth": "../../truth/hiertext_val/73c4c581414b06fb.json",
+   "engine_sha256": "5609a4886b955ccd77922a167697f3fab532d066e451fa2a527ae17e1110607a",
+   "truth_sha256": "76721e17cae75eb8c7a66f093640e7d7ec725038489f570efeb7fd105a53899e",
+   "document_slice": false
+  },
+  {
+   "page": "74778271305fac25",
+   "engine": "../../engine/hiertext_val/glypharis_v1/74778271305fac25.json",
+   "truth": "../../truth/hiertext_val/74778271305fac25.json",
+   "engine_sha256": "5b82a367e43bc333a693998fb1586441f876cf45d737c6ec42d2d1318f4527e2",
+   "truth_sha256": "2de955bc0e2ab9937d8000ce54d98f5e2e6727c210360537b79c146f3cf2a43d",
+   "document_slice": false
+  },
+  {
+   "page": "747fbbe18c3ae28b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/747fbbe18c3ae28b.json",
+   "truth": "../../truth/hiertext_val/747fbbe18c3ae28b.json",
+   "engine_sha256": "3cac3682d0a6565c51135f0837c0f90e8738d3b4cfe8b56824b89233f084cf1c",
+   "truth_sha256": "02125b92ffe24134ff9e36407aebf6e0aec48298b25367ae5fbc2721e184e924",
+   "document_slice": false
+  },
+  {
+   "page": "7494e4d2d054f483",
+   "engine": "../../engine/hiertext_val/glypharis_v1/7494e4d2d054f483.json",
+   "truth": "../../truth/hiertext_val/7494e4d2d054f483.json",
+   "engine_sha256": "94cb97a86f09a7b06f29c0edacf09202de478d1b97f90886e15e558bc0f22266",
+   "truth_sha256": "94232c427ff26029908da3fffa1f29275624ff2b3dcf7617fcc127b6a9c6a217",
+   "document_slice": false
+  },
+  {
+   "page": "75450a277743f68f",
+   "engine": "../../engine/hiertext_val/glypharis_v1/75450a277743f68f.json",
+   "truth": "../../truth/hiertext_val/75450a277743f68f.json",
+   "engine_sha256": "c2b78b26cfde7ef9b9371f36eb5d4c517fabe9422762423855d2946993fa8fe5",
+   "truth_sha256": "583a431bd44fbf24445c8172cb66eb77f470d69713393fcf4f072b9cf5394c92",
+   "document_slice": false
+  },
+  {
+   "page": "754e6021acc3fff0",
+   "engine": "../../engine/hiertext_val/glypharis_v1/754e6021acc3fff0.json",
+   "truth": "../../truth/hiertext_val/754e6021acc3fff0.json",
+   "engine_sha256": "2d55574571e01bba43ad588363863ba830f1e1431a17edccd0bcc9ba0053b2fd",
+   "truth_sha256": "66f99b23755442c08f50af013ac9276ddd8d0c26bf61b67ac205753768c3b6c9",
+   "document_slice": false
+  },
+  {
+   "page": "755525a0555db9bd",
+   "engine": "../../engine/hiertext_val/glypharis_v1/755525a0555db9bd.json",
+   "truth": "../../truth/hiertext_val/755525a0555db9bd.json",
+   "engine_sha256": "e9100f15ac0febabc33d03bf1f0eee33531772fd08eb4372732759d7cc228eda",
+   "truth_sha256": "ebfbb8e1ac7259e78e5fb9c6f3f2f8f8564f7ab9fd5f37b0a0e55d32887b8ed6",
+   "document_slice": false
+  },
+  {
+   "page": "757baf85b84deee3",
+   "engine": "../../engine/hiertext_val/glypharis_v1/757baf85b84deee3.json",
+   "truth": "../../truth/hiertext_val/757baf85b84deee3.json",
+   "engine_sha256": "68c78fc1b19488b6b0ee7cce8f3c5c8a5c6cb405e90fa5c26d7b7a5c39e91a79",
+   "truth_sha256": "447d45eb9c2fdd2540ae3d64d591d9376cf8dde15192e3254c25cb0f75893436",
+   "document_slice": false
+  },
+  {
+   "page": "7666e68c893699da",
+   "engine": "../../engine/hiertext_val/glypharis_v1/7666e68c893699da.json",
+   "truth": "../../truth/hiertext_val/7666e68c893699da.json",
+   "engine_sha256": "6ffc82fb56574e7cf62be7d92403d5afaa2c0e6d51f4a6cf0a55252330f6ae7b",
+   "truth_sha256": "ddc61dfead186199a8ff6bdcc0060f07944167d5ce0ff9183544aea506a948fb",
+   "document_slice": false
+  },
+  {
+   "page": "76863547a40aad4d",
+   "engine": "../../engine/hiertext_val/glypharis_v1/76863547a40aad4d.json",
+   "truth": "../../truth/hiertext_val/76863547a40aad4d.json",
+   "engine_sha256": "d91e62bb5f5ee951273d02fb38b0776588150bccf3b3ba1451804d5ecbe2f5d7",
+   "truth_sha256": "f86f4086302693d5cde5cb42b8e84345449cc93d1918f686622bb9b988a8fb46",
+   "document_slice": false
+  },
+  {
+   "page": "773068576ad46677",
+   "engine": "../../engine/hiertext_val/glypharis_v1/773068576ad46677.json",
+   "truth": "../../truth/hiertext_val/773068576ad46677.json",
+   "engine_sha256": "59354172c1792e538f0ab975b71525396a52f460723fbcc43b32a0b44694b38f",
+   "truth_sha256": "a422849f84fae6c780fbc857ebd31096ae0305dd90a135f52d6fe79c396eefe2",
+   "document_slice": false
+  },
+  {
+   "page": "77ddaec516b4c5cd",
+   "engine": "../../engine/hiertext_val/glypharis_v1/77ddaec516b4c5cd.json",
+   "truth": "../../truth/hiertext_val/77ddaec516b4c5cd.json",
+   "engine_sha256": "cce17bea9179ada8720b9e4f10747e5a2f258dd0ebd241e495116cc1081a41ee",
+   "truth_sha256": "43e2f4ea4682dbc4810ab0c4f9844767a652aaa6e631d6d534ac34207cc2b4a7",
+   "document_slice": false
+  },
+  {
+   "page": "78d66800391efee9",
+   "engine": "../../engine/hiertext_val/glypharis_v1/78d66800391efee9.json",
+   "truth": "../../truth/hiertext_val/78d66800391efee9.json",
+   "engine_sha256": "a0f1965923fe5473204807a1ab6dd6c0d3b0036e3b0482825f80bffcdf6acfd8",
+   "truth_sha256": "396d1eb5a6082426dbf9427b8753a009b6962ac4ba7ab7c9aed8bf548d468541",
+   "document_slice": false
+  },
+  {
+   "page": "798d8fcc43a19044",
+   "engine": "../../engine/hiertext_val/glypharis_v1/798d8fcc43a19044.json",
+   "truth": "../../truth/hiertext_val/798d8fcc43a19044.json",
+   "engine_sha256": "f3c5049f08463daee726234b4b5b076ca8ec9562278e89cbf990572673098476",
+   "truth_sha256": "11c8435957440f7d4ce1eb7f8ccf7acddc79ceafcce599c3f3bbdcdf6c6f2e0c",
+   "document_slice": false
+  },
+  {
+   "page": "79940d135dfa8869",
+   "engine": "../../engine/hiertext_val/glypharis_v1/79940d135dfa8869.json",
+   "truth": "../../truth/hiertext_val/79940d135dfa8869.json",
+   "engine_sha256": "6009088d7ae1cadcc709c5a24dc27d2e5107fab6c032fda6704204e0988896b1",
+   "truth_sha256": "ace1e24ddf1be73cc72a5283f92b665abf72d170e418874fa7e0d0038fff0586",
+   "document_slice": false
+  },
+  {
+   "page": "79d0891f8bea64c7",
+   "engine": "../../engine/hiertext_val/glypharis_v1/79d0891f8bea64c7.json",
+   "truth": "../../truth/hiertext_val/79d0891f8bea64c7.json",
+   "engine_sha256": "da66655cc43348857fd30069042d2af05cbcb1eae5756aee473df47e0543af84",
+   "truth_sha256": "7fbd167be55456c00cde940826d11ca9f566045bb3d9f9186d7ad1c94022b754",
+   "document_slice": false
+  },
+  {
+   "page": "7a7895ff9f6355f1",
+   "engine": "../../engine/hiertext_val/glypharis_v1/7a7895ff9f6355f1.json",
+   "truth": "../../truth/hiertext_val/7a7895ff9f6355f1.json",
+   "engine_sha256": "de44c0c334d3126ca04bc5860b44579348e7140befe270d6e6e0eb15a64a8c8f",
+   "truth_sha256": "57a94fc8e6df0a139fcd09371995c9094d02255da95f5e2d6ca2b7134bc64709",
+   "document_slice": false
+  },
+  {
+   "page": "7b5260c602c2842b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/7b5260c602c2842b.json",
+   "truth": "../../truth/hiertext_val/7b5260c602c2842b.json",
+   "engine_sha256": "f6a8baffbde60b87d5a358b8a44a8efe2fdcebe7f76c7f9b99687c5fc005f3ef",
+   "truth_sha256": "79b066945439d92bed79653a890ef684738b1a10f7ea72ab2efc13cf719023e4",
+   "document_slice": false
+  },
+  {
+   "page": "7b7942bfcf83bc17",
+   "engine": "../../engine/hiertext_val/glypharis_v1/7b7942bfcf83bc17.json",
+   "truth": "../../truth/hiertext_val/7b7942bfcf83bc17.json",
+   "engine_sha256": "909f2e33fcde873c81d9f9278b1f75c81fc2bc11352bfebac89835c75f548b5a",
+   "truth_sha256": "843779843218f396e10ef2bdd26cfcc713044af71f81238b7286d832a280fa4f",
+   "document_slice": false
+  },
+  {
+   "page": "7bfb5064c9e18411",
+   "engine": "../../engine/hiertext_val/glypharis_v1/7bfb5064c9e18411.json",
+   "truth": "../../truth/hiertext_val/7bfb5064c9e18411.json",
+   "engine_sha256": "51f39a03f6ffeb3482e5053f01dd708ec9e3ae95dc4f4829e971a3ecd13a3958",
+   "truth_sha256": "061cc1df647d60268f833362cc86999c3475802f9cb6414eec85729d183201be",
+   "document_slice": false
+  },
+  {
+   "page": "7c637a823c8ad13b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/7c637a823c8ad13b.json",
+   "truth": "../../truth/hiertext_val/7c637a823c8ad13b.json",
+   "engine_sha256": "2e9dbba2a418d894f341ce4cb7b31b11e514858e1e3974fa7fe15ef92ac94749",
+   "truth_sha256": "4bbddbf2ed39207b9dfee0f294a433ad55f70eb94c615c85fb69772661fc23d6",
+   "document_slice": false
+  },
+  {
+   "page": "7d9138e29dd9b711",
+   "engine": "../../engine/hiertext_val/glypharis_v1/7d9138e29dd9b711.json",
+   "truth": "../../truth/hiertext_val/7d9138e29dd9b711.json",
+   "engine_sha256": "04e0e0107e09535a0ef099816738666db53982ff07b019fd05db260110c51cdf",
+   "truth_sha256": "28a8674f9a1a6c5e55a176d32fe9e12987397499ead79d5def87fb8a1c31b622",
+   "document_slice": false
+  },
+  {
+   "page": "7db487e8d5d02d25",
+   "engine": "../../engine/hiertext_val/glypharis_v1/7db487e8d5d02d25.json",
+   "truth": "../../truth/hiertext_val/7db487e8d5d02d25.json",
+   "engine_sha256": "c1dbaf083522ffb4de71f5849b0af4c10b50e4602da5e0c2cddeb5e0478a9ca5",
+   "truth_sha256": "3b6e8dfd7f71e92b02234d1ede0864e55a373e9b018ae17f0136b229a85e379f",
+   "document_slice": true
+  },
+  {
+   "page": "7e42b6deffe9f0ad",
+   "engine": "../../engine/hiertext_val/glypharis_v1/7e42b6deffe9f0ad.json",
+   "truth": "../../truth/hiertext_val/7e42b6deffe9f0ad.json",
+   "engine_sha256": "9b8bdfbcbcf850389ea42aac53092fb02eea5556521dfa79c95c94db30d5ed2b",
+   "truth_sha256": "40064599a078cbd80cc92e838bf7870ae1309a98bc6f7c3b9db15dacb318698f",
+   "document_slice": false
+  },
+  {
+   "page": "7ea8e3a75c4e0a6a",
+   "engine": "../../engine/hiertext_val/glypharis_v1/7ea8e3a75c4e0a6a.json",
+   "truth": "../../truth/hiertext_val/7ea8e3a75c4e0a6a.json",
+   "engine_sha256": "67af414bd3ecf846ada59f9f2a5cca3559d73abc7d4132cf94e67f74a77c9564",
+   "truth_sha256": "dc420322cdc7555d84c1b8436952e5d8cd08630acf45b9128a4c42511c71f348",
+   "document_slice": false
+  },
+  {
+   "page": "7ec1795e7d951dc6",
+   "engine": "../../engine/hiertext_val/glypharis_v1/7ec1795e7d951dc6.json",
+   "truth": "../../truth/hiertext_val/7ec1795e7d951dc6.json",
+   "engine_sha256": "7d1507064c1363ddfd3b60736a8684530025c78274e8130bb03ab6fdc24bab11",
+   "truth_sha256": "7bca46dee64c76f47f5e09b405905f723481eec2e96be038ffca64908c2a6da0",
+   "document_slice": false
+  },
+  {
+   "page": "7f1e2a3d2ed68266",
+   "engine": "../../engine/hiertext_val/glypharis_v1/7f1e2a3d2ed68266.json",
+   "truth": "../../truth/hiertext_val/7f1e2a3d2ed68266.json",
+   "engine_sha256": "4421c63ce05f598f18050d19690893b0eda4aeb3a032f95ced51e63558836584",
+   "truth_sha256": "7790e6e45932cfa342025eef1a3c982efab439be42a2f8c73e3c3d86f7a33e06",
+   "document_slice": false
+  },
+  {
+   "page": "7fa85603d2538876",
+   "engine": "../../engine/hiertext_val/glypharis_v1/7fa85603d2538876.json",
+   "truth": "../../truth/hiertext_val/7fa85603d2538876.json",
+   "engine_sha256": "fc61200df6dff8448c268b7f6a12930c53d45cafaa1afbf25191ab074eed47e8",
+   "truth_sha256": "faf0dc64fb86b5f05385e7466ee6c571d17a045e128f9bc0bb5f807f672d73b2",
+   "document_slice": true
+  },
+  {
+   "page": "80282bbb359b80a0",
+   "engine": "../../engine/hiertext_val/glypharis_v1/80282bbb359b80a0.json",
+   "truth": "../../truth/hiertext_val/80282bbb359b80a0.json",
+   "engine_sha256": "27f203472aa9ab8bec0e189faa54a13bd4ab18b240881b96d580c24df0f0b8ff",
+   "truth_sha256": "c5cade80a4e6697d7cda31fb6bab2d7cccc3e255ad9aa22d67d1874701c57af8",
+   "document_slice": false
+  },
+  {
+   "page": "8055e02328ea5602",
+   "engine": "../../engine/hiertext_val/glypharis_v1/8055e02328ea5602.json",
+   "truth": "../../truth/hiertext_val/8055e02328ea5602.json",
+   "engine_sha256": "1bdb7385d08e5c5ba59426b98d563ac96f3d2d7726208eeffd86652abeebdec4",
+   "truth_sha256": "04e63288fbefd259a188756dc1cbcb72ed8fd5be682b78132d89bd27b6736bb2",
+   "document_slice": false
+  },
+  {
+   "page": "806817d1c16713e6",
+   "engine": "../../engine/hiertext_val/glypharis_v1/806817d1c16713e6.json",
+   "truth": "../../truth/hiertext_val/806817d1c16713e6.json",
+   "engine_sha256": "b8fbe704df4c13aabf28c5391711c58d1dc1e2b58dd7cc6ee1cd9cd49ae23363",
+   "truth_sha256": "65d9319f0ab2186fe41dd90dbdf733c99ca85fc9ed083b89a16707876e152250",
+   "document_slice": false
+  },
+  {
+   "page": "80fa605c794b5a1b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/80fa605c794b5a1b.json",
+   "truth": "../../truth/hiertext_val/80fa605c794b5a1b.json",
+   "engine_sha256": "32aad6b269bf925da9f39f7550787765090ac2446f17445d72caa5877b1fbeb5",
+   "truth_sha256": "64674c0c5813af40ed08575d552781a45b268556c45bd6a27c8c21b836afdd13",
+   "document_slice": false
+  },
+  {
+   "page": "817077cc99102688",
+   "engine": "../../engine/hiertext_val/glypharis_v1/817077cc99102688.json",
+   "truth": "../../truth/hiertext_val/817077cc99102688.json",
+   "engine_sha256": "3542600a5bb563cff35a7d8cd4e1756144fa92712de341dce7c9f9a2bb41d3a2",
+   "truth_sha256": "59224c2db9cef859fb4507070ed371fece027e0ef53090bd7d34ebd34f74ee93",
+   "document_slice": false
+  },
+  {
+   "page": "81cffaf0db128b54",
+   "engine": "../../engine/hiertext_val/glypharis_v1/81cffaf0db128b54.json",
+   "truth": "../../truth/hiertext_val/81cffaf0db128b54.json",
+   "engine_sha256": "80ab10bdae6c3f0b7ffa91928a1b4d32589ccc29efdc19c452affa4cdba291c6",
+   "truth_sha256": "662a8609e5dcd752ca342adc18783c907b71702c5723783ce4ed067636ea7627",
+   "document_slice": false
+  },
+  {
+   "page": "8228913ff0bce190",
+   "engine": "../../engine/hiertext_val/glypharis_v1/8228913ff0bce190.json",
+   "truth": "../../truth/hiertext_val/8228913ff0bce190.json",
+   "engine_sha256": "26c4071a4c34c4771e5a415f79ccc8c2994de17b7f6e1a1eeb9c71c17ab08cd7",
+   "truth_sha256": "b2b7adc8eeb44d09778e68a45acd566bc5c6808512d641883841fdb439da4010",
+   "document_slice": false
+  },
+  {
+   "page": "82325235ce5d3931",
+   "engine": "../../engine/hiertext_val/glypharis_v1/82325235ce5d3931.json",
+   "truth": "../../truth/hiertext_val/82325235ce5d3931.json",
+   "engine_sha256": "8f4f7ce08ca626e4fce9f8a0d08ab091031813228b553241e30a7e49d2f36f2a",
+   "truth_sha256": "8b7968d680ffb78c84bb01a6ec8de9aa5a1e5fe3daa04ec1799e21e914425d5b",
+   "document_slice": false
+  },
+  {
+   "page": "8260334a15ff4ca4",
+   "engine": "../../engine/hiertext_val/glypharis_v1/8260334a15ff4ca4.json",
+   "truth": "../../truth/hiertext_val/8260334a15ff4ca4.json",
+   "engine_sha256": "6b5151f2e5094dd72eba4a16c7ff77cc5d308424475461c889b6f6643e0b5a55",
+   "truth_sha256": "4c43892f2ccc683d8a57a62c7117c9c434bf3133fbf204cca6c8323093f40a52",
+   "document_slice": false
+  },
+  {
+   "page": "83285ce122bc46d2",
+   "engine": "../../engine/hiertext_val/glypharis_v1/83285ce122bc46d2.json",
+   "truth": "../../truth/hiertext_val/83285ce122bc46d2.json",
+   "engine_sha256": "b89c3ec5506d65dc8dd63f3f9475bba0b92f84c0c5336844a896796751442ba8",
+   "truth_sha256": "235ad81521f2bbbc93b403013074ee590e64dfaf252ec3791899d63effb340a1",
+   "document_slice": false
+  },
+  {
+   "page": "83ad91d81777cce5",
+   "engine": "../../engine/hiertext_val/glypharis_v1/83ad91d81777cce5.json",
+   "truth": "../../truth/hiertext_val/83ad91d81777cce5.json",
+   "engine_sha256": "fc3f055a15f8e3b24e47df8b1fe291290be16f7a3d91e7f1c74bfdeb87c9f5d1",
+   "truth_sha256": "0ca7ae31fd4742a76464f1f2a9b34d56d59b10a5cd7af8a4cf782c5be6ba068d",
+   "document_slice": false
+  },
+  {
+   "page": "84c12fe8624e4b6b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/84c12fe8624e4b6b.json",
+   "truth": "../../truth/hiertext_val/84c12fe8624e4b6b.json",
+   "engine_sha256": "86a0cd2a7b4aa2589ae0a4ffaeeeff1a2fb5b20266d3d19362b1edd02e6a423a",
+   "truth_sha256": "20ef0cdf3d3dc38ecea1dc147e3e96b35d2edf92205797adb4e4e5655cb505ab",
+   "document_slice": false
+  },
+  {
+   "page": "84e49b8e140f61c2",
+   "engine": "../../engine/hiertext_val/glypharis_v1/84e49b8e140f61c2.json",
+   "truth": "../../truth/hiertext_val/84e49b8e140f61c2.json",
+   "engine_sha256": "635b7494772c6ce45d79076b3b8be01204be2652e0e3e3487ddd90a9270f476c",
+   "truth_sha256": "c914dc23ab51eee7fed2c357f3fbf1c14890e012665bd697a0f2262c9c239c91",
+   "document_slice": false
+  },
+  {
+   "page": "858236d2b0247ef3",
+   "engine": "../../engine/hiertext_val/glypharis_v1/858236d2b0247ef3.json",
+   "truth": "../../truth/hiertext_val/858236d2b0247ef3.json",
+   "engine_sha256": "3618caf335143d48486d20400ace429ff70bfd5d00717794a22a18a113c4b3b2",
+   "truth_sha256": "01ae2869a18b39394181662170b4583229aa96daf79f572ee482da0d866f5646",
+   "document_slice": false
+  },
+  {
+   "page": "85b03a9775a1fbde",
+   "engine": "../../engine/hiertext_val/glypharis_v1/85b03a9775a1fbde.json",
+   "truth": "../../truth/hiertext_val/85b03a9775a1fbde.json",
+   "engine_sha256": "3b477d1a135e88c8df29c212fb8fe4d4c97afba7e07c2abc1448847bd422ee4d",
+   "truth_sha256": "4d6048e10cd5bfce89f07b19f870b0754463d78a3db09f5f91e0b0905b50a2db",
+   "document_slice": false
+  },
+  {
+   "page": "8644a7a299acb439",
+   "engine": "../../engine/hiertext_val/glypharis_v1/8644a7a299acb439.json",
+   "truth": "../../truth/hiertext_val/8644a7a299acb439.json",
+   "engine_sha256": "f5a3171656910e09fd1e2fdb07a8ef5e07448575966d6b13ed132561b9449dcf",
+   "truth_sha256": "4ea43fd83a81d567b9e3fb464a6ec791b44283ef996b60f9249369f4a6db532c",
+   "document_slice": false
+  },
+  {
+   "page": "86760f63da399e07",
+   "engine": "../../engine/hiertext_val/glypharis_v1/86760f63da399e07.json",
+   "truth": "../../truth/hiertext_val/86760f63da399e07.json",
+   "engine_sha256": "160e660286b2178919ce9c3717d366a70f18db3e28ae9c990bb59800b3725a1f",
+   "truth_sha256": "46280ba4a4fa3e2a79589fd769f0f939733b1b65d635644d591557ece0779243",
+   "document_slice": false
+  },
+  {
+   "page": "86dcf1f1b71f5e62",
+   "engine": "../../engine/hiertext_val/glypharis_v1/86dcf1f1b71f5e62.json",
+   "truth": "../../truth/hiertext_val/86dcf1f1b71f5e62.json",
+   "engine_sha256": "a7c801a1941e9e92bda0e04dfc342ff2c23b6b3be2a457dd2443ba2474c42592",
+   "truth_sha256": "f8c6ac03fb3280fdb9375e7522111eccaeafeb6978e9c470db2390def78c8bbf",
+   "document_slice": false
+  },
+  {
+   "page": "88fc0fcb3a60f69e",
+   "engine": "../../engine/hiertext_val/glypharis_v1/88fc0fcb3a60f69e.json",
+   "truth": "../../truth/hiertext_val/88fc0fcb3a60f69e.json",
+   "engine_sha256": "dd671808dff7031c5d76bcf2f315574fbdc305b394ce3a06a40d08a5a91e85df",
+   "truth_sha256": "60cd9e80a7c57ec95a669a6f6fc93697f15de7ae5fcf930947f57d8aeaac0b39",
+   "document_slice": false
+  },
+  {
+   "page": "893d9abd60abca2f",
+   "engine": "../../engine/hiertext_val/glypharis_v1/893d9abd60abca2f.json",
+   "truth": "../../truth/hiertext_val/893d9abd60abca2f.json",
+   "engine_sha256": "694e967f3c13732b2b975dc70bcfa267d6064d3e55e3a4d8d90fbbcaa36b26b2",
+   "truth_sha256": "e2ae6a2295682e4d2d8ed4cd1c43c9e7b8ddf290a61ab05ef57c7b2afb20e31c",
+   "document_slice": false
+  },
+  {
+   "page": "8945b438ca69c53d",
+   "engine": "../../engine/hiertext_val/glypharis_v1/8945b438ca69c53d.json",
+   "truth": "../../truth/hiertext_val/8945b438ca69c53d.json",
+   "engine_sha256": "9345a9b79940047f77288b6ead2ceb8e6d328c233356d145a88e160afa23f693",
+   "truth_sha256": "7d90c2c2c0856c1c2be01eb6d9135beb53703917688eba491b085a3c3836d5c5",
+   "document_slice": false
+  },
+  {
+   "page": "897b8facf96a9d46",
+   "engine": "../../engine/hiertext_val/glypharis_v1/897b8facf96a9d46.json",
+   "truth": "../../truth/hiertext_val/897b8facf96a9d46.json",
+   "engine_sha256": "fd7e74ec6de00defdd7eb9c3b1466fd146b8828e61436364cfaf2e466912d970",
+   "truth_sha256": "2c01f731605f2b928de22e0f151da9880ff0c0dbfd907af4e4540407eec0e857",
+   "document_slice": false
+  },
+  {
+   "page": "89800050bb375bfa",
+   "engine": "../../engine/hiertext_val/glypharis_v1/89800050bb375bfa.json",
+   "truth": "../../truth/hiertext_val/89800050bb375bfa.json",
+   "engine_sha256": "60bab4c6ab90d680f0eabf29fcf37494e7c824436a915df0a380e5b9ade0de78",
+   "truth_sha256": "b2ab1f085adefc785cac1e36304340007d377306e8d33a80016319708eaf6472",
+   "document_slice": false
+  },
+  {
+   "page": "8a70c13b47b77bbb",
+   "engine": "../../engine/hiertext_val/glypharis_v1/8a70c13b47b77bbb.json",
+   "truth": "../../truth/hiertext_val/8a70c13b47b77bbb.json",
+   "engine_sha256": "7c8d190c9e303228afc37dfb2fd6b0e0df65d52b7d47a598fc1c909c0b197fba",
+   "truth_sha256": "83d350f2d033bde4e2265785af8805cd7eeddc3a7390186c4d25770061ee6fd7",
+   "document_slice": false
+  },
+  {
+   "page": "8b25b7f33f759ca8",
+   "engine": "../../engine/hiertext_val/glypharis_v1/8b25b7f33f759ca8.json",
+   "truth": "../../truth/hiertext_val/8b25b7f33f759ca8.json",
+   "engine_sha256": "36547f0feaae0a69b6d6b17f55fbb45b73ee5f3b141df12ea74be13f0308dd95",
+   "truth_sha256": "3003ae69855c082c744a486c884a93b0941a092919538ddba92690faa17df557",
+   "document_slice": false
+  },
+  {
+   "page": "8b33545a008176bc",
+   "engine": "../../engine/hiertext_val/glypharis_v1/8b33545a008176bc.json",
+   "truth": "../../truth/hiertext_val/8b33545a008176bc.json",
+   "engine_sha256": "3f3194c47599f608b35c9dcef3cbe207ced6c3cde6d85fe267a8ed2d6e509e67",
+   "truth_sha256": "7832cc3f4d497f835f44c99479d92aa22b95afb2a5ffab159033290c4b44d1b9",
+   "document_slice": false
+  },
+  {
+   "page": "8be7188afb5c8a37",
+   "engine": "../../engine/hiertext_val/glypharis_v1/8be7188afb5c8a37.json",
+   "truth": "../../truth/hiertext_val/8be7188afb5c8a37.json",
+   "engine_sha256": "da5396aa323ab557fe3cb3b64eb9e349112f1a09bdc18e72425bb27662f2e2d8",
+   "truth_sha256": "7591970f961018377e69ad64171520be0ffe13918c1674d73fb109e6d66a573e",
+   "document_slice": false
+  },
+  {
+   "page": "8bef560adb926251",
+   "engine": "../../engine/hiertext_val/glypharis_v1/8bef560adb926251.json",
+   "truth": "../../truth/hiertext_val/8bef560adb926251.json",
+   "engine_sha256": "6fb94fc7014372e58d1e9aaf2880d1aedd9c4e82f8c04b7e261ef9f8efb26a3d",
+   "truth_sha256": "846cf3021e2621ddbf5967662cfb36df308a38ed5496bcf91fd9768ce7adb5af",
+   "document_slice": false
+  },
+  {
+   "page": "8cddab2cac8a9f5a",
+   "engine": "../../engine/hiertext_val/glypharis_v1/8cddab2cac8a9f5a.json",
+   "truth": "../../truth/hiertext_val/8cddab2cac8a9f5a.json",
+   "engine_sha256": "00f4ef8fa2fd6fc685961d2dc55e904e4841a843a0bb66086df1635c6995e74c",
+   "truth_sha256": "6a581b778d42c41a2ad3aa548355879b92d95462450a4182861a567914a662c4",
+   "document_slice": false
+  },
+  {
+   "page": "8d077835903119a2",
+   "engine": "../../engine/hiertext_val/glypharis_v1/8d077835903119a2.json",
+   "truth": "../../truth/hiertext_val/8d077835903119a2.json",
+   "engine_sha256": "ae5e672d096a10992bf976b510ad40d1dc8e81640e0db5689e05d239605cf889",
+   "truth_sha256": "7c1a02f10d9ba14a5fa85d6bf8454ce7fea05a1af2031ffc7f352715e4686676",
+   "document_slice": true
+  },
+  {
+   "page": "8d7f69a59688c5f6",
+   "engine": "../../engine/hiertext_val/glypharis_v1/8d7f69a59688c5f6.json",
+   "truth": "../../truth/hiertext_val/8d7f69a59688c5f6.json",
+   "engine_sha256": "950054ddc96bfb53806fc23af722f2b1f100d35e0296013f066c0ca8203adac7",
+   "truth_sha256": "0bd9526a8501a71c8e6b9139a612b88b5071cc0b40ac1747061a0d549df14397",
+   "document_slice": false
+  },
+  {
+   "page": "8dc9ebd49398cf85",
+   "engine": "../../engine/hiertext_val/glypharis_v1/8dc9ebd49398cf85.json",
+   "truth": "../../truth/hiertext_val/8dc9ebd49398cf85.json",
+   "engine_sha256": "a8aa824b67bb6cba20d6b683773f0c04f1907dd96acb0d9e356f43f3bcf23236",
+   "truth_sha256": "50cfd333525562f69a6b33387703761902e90f6c623c6b36637787f2ceb37084",
+   "document_slice": false
+  },
+  {
+   "page": "8f77f5c5545f69ef",
+   "engine": "../../engine/hiertext_val/glypharis_v1/8f77f5c5545f69ef.json",
+   "truth": "../../truth/hiertext_val/8f77f5c5545f69ef.json",
+   "engine_sha256": "35e78f18f4913a91cba5e3d27db80361a003c63d6dbb9d80ed638398ab295308",
+   "truth_sha256": "6a3c83281035057d75fd29afa8d541945b90686bbcbb9c37570cb6313d2241f2",
+   "document_slice": false
+  },
+  {
+   "page": "901093a0b0c8ec27",
+   "engine": "../../engine/hiertext_val/glypharis_v1/901093a0b0c8ec27.json",
+   "truth": "../../truth/hiertext_val/901093a0b0c8ec27.json",
+   "engine_sha256": "40ef6780031acc6d608fccdf36c6dc8a9e2ff330f42c2a3e4f1ca29279f8850d",
+   "truth_sha256": "511d996be6d29ca131a11ddb0cc03d772278beb0ad0ca4ad34f160c1c728ca8f",
+   "document_slice": false
+  },
+  {
+   "page": "92c04cd59aea58b3",
+   "engine": "../../engine/hiertext_val/glypharis_v1/92c04cd59aea58b3.json",
+   "truth": "../../truth/hiertext_val/92c04cd59aea58b3.json",
+   "engine_sha256": "5286c6b09d4e2f304441afe916163c833b6c0b1814f6523b0103af22a785671e",
+   "truth_sha256": "252ebb0ffd1beaecc6c19776ec1a503fac8eda88ced8cd570f08b7f8fb3fcafe",
+   "document_slice": false
+  },
+  {
+   "page": "95e2c030e19ed661",
+   "engine": "../../engine/hiertext_val/glypharis_v1/95e2c030e19ed661.json",
+   "truth": "../../truth/hiertext_val/95e2c030e19ed661.json",
+   "engine_sha256": "c2673ad999d2a7b917d38bdcd08d0e1c757ee9168fdf06be7d26c4dc734c7c96",
+   "truth_sha256": "b0493a8196a2d4dc84c0a45c1c644d08244d027d84e4127fea627201d3d7e6c1",
+   "document_slice": false
+  },
+  {
+   "page": "96281225aff95e63",
+   "engine": "../../engine/hiertext_val/glypharis_v1/96281225aff95e63.json",
+   "truth": "../../truth/hiertext_val/96281225aff95e63.json",
+   "engine_sha256": "4c6ad702f78f53fefbbc3c4428275074435b863de88fb72fbb0308ef73dae401",
+   "truth_sha256": "0bd8399b2ad0846890654930bff073fab1b100c5da08c95cb53397540604a9ac",
+   "document_slice": false
+  },
+  {
+   "page": "96fb2a4a66702374",
+   "engine": "../../engine/hiertext_val/glypharis_v1/96fb2a4a66702374.json",
+   "truth": "../../truth/hiertext_val/96fb2a4a66702374.json",
+   "engine_sha256": "cd65467ca41a68c596f0a5764b509d5db8a1dcea97cc3020a24d579d7d67373d",
+   "truth_sha256": "0878ec9d730a4bcef46e0eb0e19e13ac7819c76df1cc654b970d524eee1964d0",
+   "document_slice": false
+  },
+  {
+   "page": "975414ca1e6b155c",
+   "engine": "../../engine/hiertext_val/glypharis_v1/975414ca1e6b155c.json",
+   "truth": "../../truth/hiertext_val/975414ca1e6b155c.json",
+   "engine_sha256": "30b19cd4a132b3c6fdf5b9de11f8c6dcdc11aab3e394a50ae162a7bf575ff950",
+   "truth_sha256": "fae1dc4be5ba9d80f66c3101af39b48f3efe57a6bbd9858dcc3801c1960f8a95",
+   "document_slice": true
+  },
+  {
+   "page": "97762fb6d485eefd",
+   "engine": "../../engine/hiertext_val/glypharis_v1/97762fb6d485eefd.json",
+   "truth": "../../truth/hiertext_val/97762fb6d485eefd.json",
+   "engine_sha256": "afd57cb1d4ee52ce5c4e14ba11bd72e08e135094807b3b5d656467c6f1404e46",
+   "truth_sha256": "34673b5072a6e28e14d3f8da550ba2b8b564d2f0b0944b7013eef36285ebfca3",
+   "document_slice": false
+  },
+  {
+   "page": "97e8bfbbb4a370d5",
+   "engine": "../../engine/hiertext_val/glypharis_v1/97e8bfbbb4a370d5.json",
+   "truth": "../../truth/hiertext_val/97e8bfbbb4a370d5.json",
+   "engine_sha256": "35b5b2e3b1e53fb684577a71df6c7f9748ac097cef5c2c9794d2ab7daab8881a",
+   "truth_sha256": "e6912671ee64c1ec0938c38e4916c465ef1c4a10808bf96c3254193cdead6d5a",
+   "document_slice": false
+  },
+  {
+   "page": "983a43804c520cc0",
+   "engine": "../../engine/hiertext_val/glypharis_v1/983a43804c520cc0.json",
+   "truth": "../../truth/hiertext_val/983a43804c520cc0.json",
+   "engine_sha256": "4acaf7aef72b743851aa76eba4db47a9ca5608d4b5ef98b05069d9afae525c8b",
+   "truth_sha256": "ba8ed3a5e888a57229bfab7e5b767a6e05cced88a008d41ca32998bd7672dc10",
+   "document_slice": false
+  },
+  {
+   "page": "98f9b9c9d041df7d",
+   "engine": "../../engine/hiertext_val/glypharis_v1/98f9b9c9d041df7d.json",
+   "truth": "../../truth/hiertext_val/98f9b9c9d041df7d.json",
+   "engine_sha256": "71062e0f408e63d2a0e35d8fe91742c4608b8fd71ae528f0dd94a872d4393fee",
+   "truth_sha256": "b899cfacfcc6ac0679ab1880daeffd5a3ae74f117ceb5d3d8afc5b9a7d53d10c",
+   "document_slice": false
+  },
+  {
+   "page": "994f27d236d93a0b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/994f27d236d93a0b.json",
+   "truth": "../../truth/hiertext_val/994f27d236d93a0b.json",
+   "engine_sha256": "b21e26522bf86f78e6a1ddb8466398dae74f59fbfb9aefd555956c6c22db232d",
+   "truth_sha256": "b7414d39858c960762d3b8ebcba2a6a06ab493fc87efb2514cd84821932e75b3",
+   "document_slice": false
+  },
+  {
+   "page": "995f2ab706b68006",
+   "engine": "../../engine/hiertext_val/glypharis_v1/995f2ab706b68006.json",
+   "truth": "../../truth/hiertext_val/995f2ab706b68006.json",
+   "engine_sha256": "f3ec04b9b22003db745d8ecc00f871cc964debf1fa229d3718db34fd83a93c2a",
+   "truth_sha256": "db7ae235787f7a79c195a9195b2d337318f777553d15618e3fe39733d859df33",
+   "document_slice": false
+  },
+  {
+   "page": "9a53fe9785842b45",
+   "engine": "../../engine/hiertext_val/glypharis_v1/9a53fe9785842b45.json",
+   "truth": "../../truth/hiertext_val/9a53fe9785842b45.json",
+   "engine_sha256": "22bacc96ff9468cbae5ed3466732a4b28bd39ac858709f895036fd8385445f92",
+   "truth_sha256": "add0d0f848d27ab431cda2bb6d045c11216ab4786d9d95591b196a161b0c8565",
+   "document_slice": false
+  },
+  {
+   "page": "9aea2908fbe20915",
+   "engine": "../../engine/hiertext_val/glypharis_v1/9aea2908fbe20915.json",
+   "truth": "../../truth/hiertext_val/9aea2908fbe20915.json",
+   "engine_sha256": "34fb1dc4af6793eb46031bebeacc32af4be004a6ea7d316dd27e74d4bcf57e74",
+   "truth_sha256": "067fe3dcfef603df8d427676351f097b15bc96103d2fe395f5567fe357dc6fed",
+   "document_slice": false
+  },
+  {
+   "page": "9c2ed4bea36fec9f",
+   "engine": "../../engine/hiertext_val/glypharis_v1/9c2ed4bea36fec9f.json",
+   "truth": "../../truth/hiertext_val/9c2ed4bea36fec9f.json",
+   "engine_sha256": "dfed1ea7544e8d12ed624cf954e1d48e79a699743dfbb3ccc09f9e3263c08e27",
+   "truth_sha256": "555e0574acea2ced879ee9fb70048317582806bc4333db7f276ab172b1c7fd2a",
+   "document_slice": false
+  },
+  {
+   "page": "9c86c84c962ad905",
+   "engine": "../../engine/hiertext_val/glypharis_v1/9c86c84c962ad905.json",
+   "truth": "../../truth/hiertext_val/9c86c84c962ad905.json",
+   "engine_sha256": "3921dc82296fcc836bbf0e2b56e6240e1b8b1d53822ad62ec6035d6f26fdad50",
+   "truth_sha256": "37f79f9ddbf9d77b0e2f5f9719e8c27f93d2fddcb687c30e223b6089b306ec13",
+   "document_slice": false
+  },
+  {
+   "page": "9de7a0e253c85480",
+   "engine": "../../engine/hiertext_val/glypharis_v1/9de7a0e253c85480.json",
+   "truth": "../../truth/hiertext_val/9de7a0e253c85480.json",
+   "engine_sha256": "12e1a00367489731536950a70f91acee9d57e308432d6dc04dee619672f7ab9b",
+   "truth_sha256": "43bcd590423410c3b90694856ca1a61582cb470a65f4084f4fda435496f91dee",
+   "document_slice": false
+  },
+  {
+   "page": "a03e16b58763f87d",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a03e16b58763f87d.json",
+   "truth": "../../truth/hiertext_val/a03e16b58763f87d.json",
+   "engine_sha256": "f3fd164f762aea69626de3c41ac22d28d801845d24adaec68b166d76a4834b72",
+   "truth_sha256": "f29e4026e1e7486374ca1066a70bf30579144e5ff04cd5ff0485f65aa9e39546",
+   "document_slice": false
+  },
+  {
+   "page": "a0865294f4dedd6c",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a0865294f4dedd6c.json",
+   "truth": "../../truth/hiertext_val/a0865294f4dedd6c.json",
+   "engine_sha256": "bf009ba80e933f9b14aba1d6c5e595b863db53441de68c96c09a1f4e96b01302",
+   "truth_sha256": "6ff50b171d5f68c595e9886677c7939f332c0dbc1314c6e8717a2cc41757222a",
+   "document_slice": false
+  },
+  {
+   "page": "a1fc3a481c270b9f",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a1fc3a481c270b9f.json",
+   "truth": "../../truth/hiertext_val/a1fc3a481c270b9f.json",
+   "engine_sha256": "767abff1847458d837f91a08716d05f3dc555ae7ea60cd8d6c3ac256bc1e312e",
+   "truth_sha256": "d1ab3e04f52f2e90938f4ddb50f561911b79255c67d65c8ce413f36664c19864",
+   "document_slice": false
+  },
+  {
+   "page": "a2364c31de73114d",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a2364c31de73114d.json",
+   "truth": "../../truth/hiertext_val/a2364c31de73114d.json",
+   "engine_sha256": "b9946780770c336fe9d7421ef30231aff6dc03ce833297ad931be1aee462e7cc",
+   "truth_sha256": "f7b3143dc12537e3026622d2e307d5367fe259d7282ac76be3462d94ee391808",
+   "document_slice": false
+  },
+  {
+   "page": "a24d6a2c03c7e3f0",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a24d6a2c03c7e3f0.json",
+   "truth": "../../truth/hiertext_val/a24d6a2c03c7e3f0.json",
+   "engine_sha256": "dc04b7cc125d0c5db618603c35cd6abefc53cb122dbd6b51f6499e78e245d154",
+   "truth_sha256": "72d027ca8b7347a53422f11b5f22f50d814c21f8b65c3de43fea161580fe73a3",
+   "document_slice": false
+  },
+  {
+   "page": "a267ea2d01f40988",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a267ea2d01f40988.json",
+   "truth": "../../truth/hiertext_val/a267ea2d01f40988.json",
+   "engine_sha256": "227c8a03b1f64831964c8c519fec96b5280927897ffa26ea39126ffc378670af",
+   "truth_sha256": "243332328d80cf3c111f516ba121ace985d69df692e93a3c30529cbbafffadaf",
+   "document_slice": false
+  },
+  {
+   "page": "a3248b7e5f52a0cd",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a3248b7e5f52a0cd.json",
+   "truth": "../../truth/hiertext_val/a3248b7e5f52a0cd.json",
+   "engine_sha256": "47f834a9599979d4c4002b9f18327e5a4f3c54566e066a7799d9ef181933b749",
+   "truth_sha256": "896f9c711ca6476a18de0d4984317feafcc92a71d04911d8bb50f46aee9c4ad1",
+   "document_slice": false
+  },
+  {
+   "page": "a34e7fbe0fa62901",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a34e7fbe0fa62901.json",
+   "truth": "../../truth/hiertext_val/a34e7fbe0fa62901.json",
+   "engine_sha256": "46a4abca1d41654708d4b13fe3e3462b6e63e96f5089cda5d5610ecfc746791f",
+   "truth_sha256": "6992ca6d2d3c0716e9e561cd1bb2623dc063717e4dba11cabf4aeff4f632cad1",
+   "document_slice": false
+  },
+  {
+   "page": "a352e82bdead6f0a",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a352e82bdead6f0a.json",
+   "truth": "../../truth/hiertext_val/a352e82bdead6f0a.json",
+   "engine_sha256": "691cc42f402e72eaf925062165cb082d570ceb4cb15c466f9aead3f46bc2efab",
+   "truth_sha256": "9eab8f6baef9ad91e48112068d1aa083a6e6b7d2e69dc5665f4f462b352b123a",
+   "document_slice": false
+  },
+  {
+   "page": "a48e04120467fc41",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a48e04120467fc41.json",
+   "truth": "../../truth/hiertext_val/a48e04120467fc41.json",
+   "engine_sha256": "0be8272d501401d42b58d7b03d17209c4c02d7df362aa2096e719e15dec4ff65",
+   "truth_sha256": "a9a2e1603aec1f8fa7c49e0d8e7f734c7a8e502aa9d92f5146ba28492c866b57",
+   "document_slice": false
+  },
+  {
+   "page": "a4cae0b1e6dbe4d5",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a4cae0b1e6dbe4d5.json",
+   "truth": "../../truth/hiertext_val/a4cae0b1e6dbe4d5.json",
+   "engine_sha256": "5e8935648f3d38add4ee5780a3cd01e378a8731a63ea0d941e99fe0ca011088e",
+   "truth_sha256": "b2ef00ebc9f1589f016f21a6d9a8694fb90b9989c1b5f3b1daef889648d97c79",
+   "document_slice": false
+  },
+  {
+   "page": "a4e2a75d729799a9",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a4e2a75d729799a9.json",
+   "truth": "../../truth/hiertext_val/a4e2a75d729799a9.json",
+   "engine_sha256": "173af2f25ad67ad77068856c8e3cde48edbf2f3becef00437b33c00ecacf9aab",
+   "truth_sha256": "aed4f6396de35ceeb9d78c550d3d8c154e0dc3ef2416f5c8122d80e62d983888",
+   "document_slice": true
+  },
+  {
+   "page": "a50189bc24a094d1",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a50189bc24a094d1.json",
+   "truth": "../../truth/hiertext_val/a50189bc24a094d1.json",
+   "engine_sha256": "1114bac5c893405ef380110005c86d7fe2b05b93eb5b0be89090ba6f1e6a57ea",
+   "truth_sha256": "b25d111da1f658ef035b95a02a832f7a8b572a6488fd20359a4ad177697db79c",
+   "document_slice": false
+  },
+  {
+   "page": "a62d91779d385e1f",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a62d91779d385e1f.json",
+   "truth": "../../truth/hiertext_val/a62d91779d385e1f.json",
+   "engine_sha256": "c3e062f297aabde0746e8ea1aa6872ed7374a09135c89b0a47a5671fa522061a",
+   "truth_sha256": "cf804734eff838beda992d15291228f4e7a23f15a90631c899b8336a54f34341",
+   "document_slice": false
+  },
+  {
+   "page": "a70c2664cc03e480",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a70c2664cc03e480.json",
+   "truth": "../../truth/hiertext_val/a70c2664cc03e480.json",
+   "engine_sha256": "e7fe2f166672d1d8bbc1cfd979b2d7a6f1a209f8ab03206fa5cb99ea546b3a90",
+   "truth_sha256": "3b43fbf6917b67935f779329c81ef8608b602c16bf2270315610d38427b3af3d",
+   "document_slice": false
+  },
+  {
+   "page": "a824c1b47bda9af0",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a824c1b47bda9af0.json",
+   "truth": "../../truth/hiertext_val/a824c1b47bda9af0.json",
+   "engine_sha256": "991f81333e805eda552639581d31e5835910dfbc18fe25daea1535e269b56998",
+   "truth_sha256": "6099657f1528d7b1dda45103b6d262bfa207fd80b72beeca61911e5ae533ea2b",
+   "document_slice": false
+  },
+  {
+   "page": "a82bbbc4d0d37edf",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a82bbbc4d0d37edf.json",
+   "truth": "../../truth/hiertext_val/a82bbbc4d0d37edf.json",
+   "engine_sha256": "41f6cb10b4498a686ef722613e488e6271582092ced23f280be4654e39eea964",
+   "truth_sha256": "8ac9b429f00458801bb016f2b3ac07a2b22938ef4bb90d4e6fe3e9eeca7e4aee",
+   "document_slice": true
+  },
+  {
+   "page": "a93c8fe0e15346d6",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a93c8fe0e15346d6.json",
+   "truth": "../../truth/hiertext_val/a93c8fe0e15346d6.json",
+   "engine_sha256": "f7d00ece21aa8acdf6a6a65ea172286ef279d7f1ace11f822b5e056752f7a846",
+   "truth_sha256": "290b0267e424885d4269cbc1c8f0c24b915b33fa1976d7c8e448adb61ab03d96",
+   "document_slice": false
+  },
+  {
+   "page": "a961114244d6a6d5",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a961114244d6a6d5.json",
+   "truth": "../../truth/hiertext_val/a961114244d6a6d5.json",
+   "engine_sha256": "32f1802ff114e6a6ce9661b3e76a2c85676985018214be620db7f6c5a5c31b0d",
+   "truth_sha256": "8e66165374ee4e3199af4b9856fc3f4d8b69a1a606eed7144ccbf16847c951d3",
+   "document_slice": false
+  },
+  {
+   "page": "a99120ea174ddd7b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a99120ea174ddd7b.json",
+   "truth": "../../truth/hiertext_val/a99120ea174ddd7b.json",
+   "engine_sha256": "aec0d9437921e2ecfe869663ec6f732f6643f921d3479d8834138b0346f80deb",
+   "truth_sha256": "4bfaa695641497aefbf86876fa6cf5e859946a0c22e254288e6de2afa11a41dd",
+   "document_slice": false
+  },
+  {
+   "page": "a9bd3875c8957ee7",
+   "engine": "../../engine/hiertext_val/glypharis_v1/a9bd3875c8957ee7.json",
+   "truth": "../../truth/hiertext_val/a9bd3875c8957ee7.json",
+   "engine_sha256": "aa82318559e87be799c03d8a97a0dca1307b44904bf0d5ac865cae75766ab5cc",
+   "truth_sha256": "d4e446822ec8bdaa10de7cf4d934835cf1d175c548dd9784e9734a2631229d6d",
+   "document_slice": false
+  },
+  {
+   "page": "aa0a45c109d380df",
+   "engine": "../../engine/hiertext_val/glypharis_v1/aa0a45c109d380df.json",
+   "truth": "../../truth/hiertext_val/aa0a45c109d380df.json",
+   "engine_sha256": "8728515be7f4d8f97461778a15c8bd37e647566701b788e2827300d4ab26dd52",
+   "truth_sha256": "3657bc1f6a3735e44e286dde80e7afb7b0da61798e8c83ced662dac51276b82b",
+   "document_slice": false
+  },
+  {
+   "page": "aa10b33a40a01c67",
+   "engine": "../../engine/hiertext_val/glypharis_v1/aa10b33a40a01c67.json",
+   "truth": "../../truth/hiertext_val/aa10b33a40a01c67.json",
+   "engine_sha256": "e505cfd4710ac56a383f5988f75f05216c81f6afc86f7ea158367c9e4e319c1c",
+   "truth_sha256": "d233d829978adb44c9fcfcd701b9baece53a835c78ac4a1f79dc659dfa520564",
+   "document_slice": true
+  },
+  {
+   "page": "ab1b97c8e766fa46",
+   "engine": "../../engine/hiertext_val/glypharis_v1/ab1b97c8e766fa46.json",
+   "truth": "../../truth/hiertext_val/ab1b97c8e766fa46.json",
+   "engine_sha256": "faccab8146f11f29938cf190451ec5ebdb58ecf9b0691d4f6b57c219851253df",
+   "truth_sha256": "6a444e6335f983d76d01bc7ff8e25c43177cbffecef12131774ea18a1162fe58",
+   "document_slice": false
+  },
+  {
+   "page": "ac17b71aadcb2db8",
+   "engine": "../../engine/hiertext_val/glypharis_v1/ac17b71aadcb2db8.json",
+   "truth": "../../truth/hiertext_val/ac17b71aadcb2db8.json",
+   "engine_sha256": "bc9c1853fae96f1d522ed523b0fafc2a209d324c3a5b44340253e1ad71e5882b",
+   "truth_sha256": "5ea46e165646e4c4eed62b0359518a4e15b27729036fb49f70006713b101d7e9",
+   "document_slice": false
+  },
+  {
+   "page": "acabbd653090bf28",
+   "engine": "../../engine/hiertext_val/glypharis_v1/acabbd653090bf28.json",
+   "truth": "../../truth/hiertext_val/acabbd653090bf28.json",
+   "engine_sha256": "efbb3fe16323c97c272d2c68b20ab777ab6012c1637ecf7ca1cc2604c71e94fd",
+   "truth_sha256": "483958612dce9c7f6c43e934752955adc5ab11ba084f87b3128818de998036c7",
+   "document_slice": false
+  },
+  {
+   "page": "ad97d6e339ce0012",
+   "engine": "../../engine/hiertext_val/glypharis_v1/ad97d6e339ce0012.json",
+   "truth": "../../truth/hiertext_val/ad97d6e339ce0012.json",
+   "engine_sha256": "572a50de4a2b984b5f73c7449c2c89ce80af160c8a45dafca65b3801f3993908",
+   "truth_sha256": "a503a3e52e46a9454fcea219b69c5d572f3984fd997f868df5c77337a3fdcd17",
+   "document_slice": false
+  },
+  {
+   "page": "aecd9ca749cd4471",
+   "engine": "../../engine/hiertext_val/glypharis_v1/aecd9ca749cd4471.json",
+   "truth": "../../truth/hiertext_val/aecd9ca749cd4471.json",
+   "engine_sha256": "4de466a616fca3d63ba651abf45dffd129ba3dbe68c42fdce9b3f8d52b12d9a4",
+   "truth_sha256": "13ba0e759ab584d89dbe8cbac161439cf67b9d7b2b95812a11362222e7f18788",
+   "document_slice": false
+  },
+  {
+   "page": "af2ddc65295391cf",
+   "engine": "../../engine/hiertext_val/glypharis_v1/af2ddc65295391cf.json",
+   "truth": "../../truth/hiertext_val/af2ddc65295391cf.json",
+   "engine_sha256": "92d2f7d8f2eaa7f5b058278caa7e45959574f37a2591d2d280ddfaf8b70f2bbb",
+   "truth_sha256": "d71428de95f1c8b9012f19dfc4432249ae500e00c854a8b65c1087f080656c99",
+   "document_slice": false
+  },
+  {
+   "page": "af476ad416e8e8cc",
+   "engine": "../../engine/hiertext_val/glypharis_v1/af476ad416e8e8cc.json",
+   "truth": "../../truth/hiertext_val/af476ad416e8e8cc.json",
+   "engine_sha256": "e8aac3f1fbeafd845e9e69a1a551dad688576d267dcf4a28337743b9ace9f3ad",
+   "truth_sha256": "45af292ca9743dfe1f361b9a2ab29d4a6ed4001427ef8d069906735c4d580208",
+   "document_slice": true
+  },
+  {
+   "page": "b01ef0c4f0b639f0",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b01ef0c4f0b639f0.json",
+   "truth": "../../truth/hiertext_val/b01ef0c4f0b639f0.json",
+   "engine_sha256": "9451d1f9076a349373f12b3eeef58d7aa4e2edbfb61025f6f0506d6e1cfd659f",
+   "truth_sha256": "dc9fc1ef53493e8ec90c9b46b02bef387d7b8518763145162d8075e80440faf8",
+   "document_slice": false
+  },
+  {
+   "page": "b041d855cd129c74",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b041d855cd129c74.json",
+   "truth": "../../truth/hiertext_val/b041d855cd129c74.json",
+   "engine_sha256": "d13a0355350d4a2cfae22412524aa34dd81cdf640bcea43f5a83dac13ad28bf4",
+   "truth_sha256": "9113ba226d09685c8da620e0b67a006581a1d6739668a8e529d0ff79b5466af4",
+   "document_slice": false
+  },
+  {
+   "page": "b043bb62b0cbc3f1",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b043bb62b0cbc3f1.json",
+   "truth": "../../truth/hiertext_val/b043bb62b0cbc3f1.json",
+   "engine_sha256": "1db2a6cff47181d114c6057acf7fb7bca8be89c9746d8779a1f8ecdb97d71dcf",
+   "truth_sha256": "931b72f0bb3c832616495b1c7917979cc3b071d89bf82a02c8df3282e4c75cd0",
+   "document_slice": false
+  },
+  {
+   "page": "b0f915a1d85cd33b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b0f915a1d85cd33b.json",
+   "truth": "../../truth/hiertext_val/b0f915a1d85cd33b.json",
+   "engine_sha256": "7d812863651946d13f9f02a8e7f2b5b88c092b63ce2c6ca2fb1b8ccc32454893",
+   "truth_sha256": "03b54811b369f5e03cac49a32914da4cdbcf3dc4a806d505c2ad067a3a777aa4",
+   "document_slice": false
+  },
+  {
+   "page": "b293a6583acac1ef",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b293a6583acac1ef.json",
+   "truth": "../../truth/hiertext_val/b293a6583acac1ef.json",
+   "engine_sha256": "c9e737bd45619315c8cfdbe3a2f343a2afbb1f136789ed3a404f17f2c3e104eb",
+   "truth_sha256": "5aa7e6089759cdbc4093560625f00e5c3174e0e00f55d89ba3cc77f61fcaa8cc",
+   "document_slice": false
+  },
+  {
+   "page": "b32ddfd4467dec68",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b32ddfd4467dec68.json",
+   "truth": "../../truth/hiertext_val/b32ddfd4467dec68.json",
+   "engine_sha256": "a4fb5e4e9caf53ba7bfea68df214399ef8929d39bdeedb2de517f1b0e5c212cd",
+   "truth_sha256": "0a2e4d4def4d63aaa733ca0903d3071977edaf32e3322d09f9f362e6e9793d17",
+   "document_slice": false
+  },
+  {
+   "page": "b35065e15af8a57c",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b35065e15af8a57c.json",
+   "truth": "../../truth/hiertext_val/b35065e15af8a57c.json",
+   "engine_sha256": "5138e9ea5b1dddecc4c9211a320cc807aa5a3fcea964b98adfaec1a917826b74",
+   "truth_sha256": "356e57e03524e2dceaaf0eedac5a964c1e3c034e987294bf4807507685cbcf2b",
+   "document_slice": false
+  },
+  {
+   "page": "b3d5c647ffa9d78b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b3d5c647ffa9d78b.json",
+   "truth": "../../truth/hiertext_val/b3d5c647ffa9d78b.json",
+   "engine_sha256": "84982ccdda8751dbfbc775ac725d4cf7dae5d5e4efa832cd3176f739ff0500d1",
+   "truth_sha256": "892a6b25caac9d6d186ce7eb0f12255b646ad5f20836618e6d02b8d8b4b57596",
+   "document_slice": false
+  },
+  {
+   "page": "b3db4ec4fac25baa",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b3db4ec4fac25baa.json",
+   "truth": "../../truth/hiertext_val/b3db4ec4fac25baa.json",
+   "engine_sha256": "2c02313545a95a9ddfba1c1b6d52a0cdaf22b59c05817144320eb604e6e5eb4e",
+   "truth_sha256": "8d17b8e201453f005f32752592ee86649a40ea8b2ab918e792caf3a2c366b394",
+   "document_slice": false
+  },
+  {
+   "page": "b44e590d6ccae0ac",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b44e590d6ccae0ac.json",
+   "truth": "../../truth/hiertext_val/b44e590d6ccae0ac.json",
+   "engine_sha256": "ef48064d748eae569d8770ef0fb4bf743f900132555e6372b4318259a58167b8",
+   "truth_sha256": "fbbe840abcd9b473752ad556f8241175162c3a31b918d7a261fd47a1d73ec9e5",
+   "document_slice": false
+  },
+  {
+   "page": "b461e26bf5258272",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b461e26bf5258272.json",
+   "truth": "../../truth/hiertext_val/b461e26bf5258272.json",
+   "engine_sha256": "680d10a6e6765234eff4edb2c8c94e75bc3a147a6f5ab11ff2148e54bb7bdfde",
+   "truth_sha256": "3cd2f3e1e41d913d0de035c30e25d651298eb49ac069d4c2f4b6f56282e19b4d",
+   "document_slice": false
+  },
+  {
+   "page": "b541f4989bb12ced",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b541f4989bb12ced.json",
+   "truth": "../../truth/hiertext_val/b541f4989bb12ced.json",
+   "engine_sha256": "0f14ac129ea3b973777e10a2ee4e0c41e52e1d467816f918d9fdc60be4400d72",
+   "truth_sha256": "c7f9067785945b3eadb4ae65fbac84bd50fbb4f93fe368bda6cead0934b1ce64",
+   "document_slice": false
+  },
+  {
+   "page": "b56641eb8b189d5f",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b56641eb8b189d5f.json",
+   "truth": "../../truth/hiertext_val/b56641eb8b189d5f.json",
+   "engine_sha256": "802f7852bf376f917290c04457d1e467193c0c480fad99decff592594a13caec",
+   "truth_sha256": "d3b49b8cc346f3f987de996fdb8e4dcefc2aa457e7e5928f069772c548b4eccf",
+   "document_slice": false
+  },
+  {
+   "page": "b5f5328791706e65",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b5f5328791706e65.json",
+   "truth": "../../truth/hiertext_val/b5f5328791706e65.json",
+   "engine_sha256": "a2757a59a9c405482986841f33b1d6cd9fffda3ae36247b5991ae6a48f147e7c",
+   "truth_sha256": "47252e14fd51916e95f4eb1ad1e53c5c210360a5d0631af06f2f8e98168138a4",
+   "document_slice": false
+  },
+  {
+   "page": "b7b28a7fd18cab75",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b7b28a7fd18cab75.json",
+   "truth": "../../truth/hiertext_val/b7b28a7fd18cab75.json",
+   "engine_sha256": "5845b3ae7fae002dfbdcdfbbd3fcc41d55fa37f4603ca6aff5d1998df5d77b52",
+   "truth_sha256": "b1bd5382eb89b68b5332d6a79972619b2f4c68ac8a88a909b8ae673c511c2d50",
+   "document_slice": false
+  },
+  {
+   "page": "b7c7ccf2e0c2514f",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b7c7ccf2e0c2514f.json",
+   "truth": "../../truth/hiertext_val/b7c7ccf2e0c2514f.json",
+   "engine_sha256": "f7f5e01a04c405c1fdf5425b6b0b4a84448bf5e05536ed7a7695080f19b607de",
+   "truth_sha256": "4187e7e166244ecc690e76a1a7fd14d25228b9d68197a12fe2b210b5ff5af796",
+   "document_slice": false
+  },
+  {
+   "page": "b8e31ac35e052d2e",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b8e31ac35e052d2e.json",
+   "truth": "../../truth/hiertext_val/b8e31ac35e052d2e.json",
+   "engine_sha256": "df93cb137c20be4b1b907b7342685cf1e781303d3647f876023c0e80b6707dfb",
+   "truth_sha256": "a6554a8b7e0aacf416f9e680a7c8499be2143498e3f1d383a354f0d89736b7bb",
+   "document_slice": false
+  },
+  {
+   "page": "b94f89964fd5664f",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b94f89964fd5664f.json",
+   "truth": "../../truth/hiertext_val/b94f89964fd5664f.json",
+   "engine_sha256": "5247bb4aa911edbd8951619a8455cbddd4c377fcf6a79613981666c262dc7c90",
+   "truth_sha256": "fa2e75cc74088c630a1987e2bc979ff9d72bf138255eff2d0c2d343ef4a815f9",
+   "document_slice": false
+  },
+  {
+   "page": "b98e26644ed6c48d",
+   "engine": "../../engine/hiertext_val/glypharis_v1/b98e26644ed6c48d.json",
+   "truth": "../../truth/hiertext_val/b98e26644ed6c48d.json",
+   "engine_sha256": "97e29e26138945e042bd2c3e589e05b1e569309b2d2d83a7dee1544d3bdbfee7",
+   "truth_sha256": "6097482d3616ea327b65d13e5d14843ab6744348442257a5cb4655b61644c70b",
+   "document_slice": false
+  },
+  {
+   "page": "ba5c0190fefe90ee",
+   "engine": "../../engine/hiertext_val/glypharis_v1/ba5c0190fefe90ee.json",
+   "truth": "../../truth/hiertext_val/ba5c0190fefe90ee.json",
+   "engine_sha256": "e492e03d7de5cefb0be9422e585d2d14bf6560b6cb258f2b83e751f90c17e41d",
+   "truth_sha256": "cae1633458b334ac6f35c436f73e610faf8d05988f19e504b38a11ae0c6ed168",
+   "document_slice": false
+  },
+  {
+   "page": "bad0a36c851e3773",
+   "engine": "../../engine/hiertext_val/glypharis_v1/bad0a36c851e3773.json",
+   "truth": "../../truth/hiertext_val/bad0a36c851e3773.json",
+   "engine_sha256": "816cf6889ab3181638283cfdffda2bd5af994f4020021b199cab3593051359c6",
+   "truth_sha256": "4d0d7e79cfa5e50f0a60e9253b6eae08e219c0c0bc5bc4aa116fcd2a5df73b88",
+   "document_slice": false
+  },
+  {
+   "page": "bae8ffcbc44b4928",
+   "engine": "../../engine/hiertext_val/glypharis_v1/bae8ffcbc44b4928.json",
+   "truth": "../../truth/hiertext_val/bae8ffcbc44b4928.json",
+   "engine_sha256": "2322fdeb8a9ae0d2aa6742e8d09ec2218f367e46483a3ec8a1a6d58cebe0b1fd",
+   "truth_sha256": "dd1a4c2261dccf39243a2c9712b3f5491216f920a1768fddc7dc8310c6e2618e",
+   "document_slice": false
+  },
+  {
+   "page": "bbef531e807a55da",
+   "engine": "../../engine/hiertext_val/glypharis_v1/bbef531e807a55da.json",
+   "truth": "../../truth/hiertext_val/bbef531e807a55da.json",
+   "engine_sha256": "49b69e67a2ac518afcf392b3fc33ea422c1d516c2f2796d137151b0f15934579",
+   "truth_sha256": "f9ea70965eadf2f844e58f997491b67b8c8974df3814b9ad10281af0590c7afa",
+   "document_slice": false
+  },
+  {
+   "page": "bd0e85a04497264a",
+   "engine": "../../engine/hiertext_val/glypharis_v1/bd0e85a04497264a.json",
+   "truth": "../../truth/hiertext_val/bd0e85a04497264a.json",
+   "engine_sha256": "6e014429a973e1d6c6a1c45479abb92174775826c4a50f3d5ef4f370df70d052",
+   "truth_sha256": "df3698d8e786bc9b331709b82f7ec03b6bf6eea0a78d3f7b23319a4566ab1022",
+   "document_slice": false
+  },
+  {
+   "page": "bd4e862dd315f852",
+   "engine": "../../engine/hiertext_val/glypharis_v1/bd4e862dd315f852.json",
+   "truth": "../../truth/hiertext_val/bd4e862dd315f852.json",
+   "engine_sha256": "08974e2e07bda662e59af24947e9b779be9e465e2fa84050d043feb187d758cd",
+   "truth_sha256": "9cfd3a5ec56a1dd48fbd5f6fa8ca415886d33d018d69eec8cc5a1c4068394898",
+   "document_slice": false
+  },
+  {
+   "page": "bde6ff0880d3ae42",
+   "engine": "../../engine/hiertext_val/glypharis_v1/bde6ff0880d3ae42.json",
+   "truth": "../../truth/hiertext_val/bde6ff0880d3ae42.json",
+   "engine_sha256": "61b06b9d117f2be4dc0377858eccc194b2f0c8562e7dd45f93b407a79e093859",
+   "truth_sha256": "2e709e0e80a83b669dba0dc8775c7f920591431a11e45e26030cb4dea9ae2d2d",
+   "document_slice": false
+  },
+  {
+   "page": "be6aa7668d308319",
+   "engine": "../../engine/hiertext_val/glypharis_v1/be6aa7668d308319.json",
+   "truth": "../../truth/hiertext_val/be6aa7668d308319.json",
+   "engine_sha256": "508eab277560567bca8c55e68fd394f3e5306939ad8d4596b04e165f7c6e8bc8",
+   "truth_sha256": "3a7a32019d9a4679f7c94b80d22d42cf6fc126a76cd4f0a5cad90882bbb82fca",
+   "document_slice": false
+  },
+  {
+   "page": "bec8b95d10c1da3a",
+   "engine": "../../engine/hiertext_val/glypharis_v1/bec8b95d10c1da3a.json",
+   "truth": "../../truth/hiertext_val/bec8b95d10c1da3a.json",
+   "engine_sha256": "4298e8af9818b9e8c205662ad8aeda6e9bd3180cdebfdca079225956d687f9f5",
+   "truth_sha256": "dc36e9bddc80a56601d0e9abe082c6e0e95031466eb0126c5f35d0e6ec5f8eb8",
+   "document_slice": false
+  },
+  {
+   "page": "bee6f1cfc244716e",
+   "engine": "../../engine/hiertext_val/glypharis_v1/bee6f1cfc244716e.json",
+   "truth": "../../truth/hiertext_val/bee6f1cfc244716e.json",
+   "engine_sha256": "61d9a72b61dd4f00a59195dfe2673592b7142b1ceb0ec2b42c0b7eeadbde2163",
+   "truth_sha256": "ef3373e1d5c6a692b862e2f0158260edc03fbac6c64fb0abf65301f9a1c4ff38",
+   "document_slice": false
+  },
+  {
+   "page": "bf264e83b996725d",
+   "engine": "../../engine/hiertext_val/glypharis_v1/bf264e83b996725d.json",
+   "truth": "../../truth/hiertext_val/bf264e83b996725d.json",
+   "engine_sha256": "a715c2d0e97beb224f490c8813f0b97c267b5013860fd55a33fefe7efb8db990",
+   "truth_sha256": "3732a5519492b831cb6b1ebb80c0176c7512b5824d7ebd805f77b30515ad473c",
+   "document_slice": false
+  },
+  {
+   "page": "bf3b2130bc4196ec",
+   "engine": "../../engine/hiertext_val/glypharis_v1/bf3b2130bc4196ec.json",
+   "truth": "../../truth/hiertext_val/bf3b2130bc4196ec.json",
+   "engine_sha256": "a2799b0731d7798b866075d3e0787322e2400d640648f07ff19854b75dec1ace",
+   "truth_sha256": "e2d33cbd6b2cbf48da5b3b5d7c33e491c16e3d98fb36e4021a04c9d7391fd92a",
+   "document_slice": false
+  },
+  {
+   "page": "bf8298d158b0ec2c",
+   "engine": "../../engine/hiertext_val/glypharis_v1/bf8298d158b0ec2c.json",
+   "truth": "../../truth/hiertext_val/bf8298d158b0ec2c.json",
+   "engine_sha256": "6d346b40484cf86862ed546086399f04cb57b5dd4e396c9a56f3ba47846a80bf",
+   "truth_sha256": "b75a50ffc2c6e80a9394ed974f428f3e5bb3d867b1f6ee4320a2cc24f11ccb67",
+   "document_slice": false
+  },
+  {
+   "page": "bfb800b8c2d01cb1",
+   "engine": "../../engine/hiertext_val/glypharis_v1/bfb800b8c2d01cb1.json",
+   "truth": "../../truth/hiertext_val/bfb800b8c2d01cb1.json",
+   "engine_sha256": "370ff0c3e8445ac5efa8c9e22b3371559711165f9f00efaa750542d207af0ea2",
+   "truth_sha256": "0ef6b7c158fdc90564e52242bb73459ced8e9a1f0d697e39b3d763db46bd90e6",
+   "document_slice": false
+  },
+  {
+   "page": "bfea3dc3167e51c2",
+   "engine": "../../engine/hiertext_val/glypharis_v1/bfea3dc3167e51c2.json",
+   "truth": "../../truth/hiertext_val/bfea3dc3167e51c2.json",
+   "engine_sha256": "f313f5eb8b2d0d4e792acbe005ed9b9ce6d60d1686a0c0210e7c4ca2302e5f95",
+   "truth_sha256": "a78438c46c5896bcda49b6e8d9d8f7348c2f4108339c01a2a5b908d8f666fa52",
+   "document_slice": true
+  },
+  {
+   "page": "c00455713bb72880",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c00455713bb72880.json",
+   "truth": "../../truth/hiertext_val/c00455713bb72880.json",
+   "engine_sha256": "f7ce103075a9309d96c0664d26a1a3dff22e4356146f51e48540269c321142f6",
+   "truth_sha256": "870fb208dfde58a923492dacd7cbf923253a1157d2ead75a2a16a6f3fd987a19",
+   "document_slice": false
+  },
+  {
+   "page": "c0a12127b089ab12",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c0a12127b089ab12.json",
+   "truth": "../../truth/hiertext_val/c0a12127b089ab12.json",
+   "engine_sha256": "9a77b4e61695483e3ee4387b9a2ae174d00c32ac9b2ff80d896a183cc094ec7b",
+   "truth_sha256": "bcd1b39e0f2968ea3310280df536ef57e0b4cd129bb4ec35a07cc0c9d8fee452",
+   "document_slice": false
+  },
+  {
+   "page": "c1480937ecea9947",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c1480937ecea9947.json",
+   "truth": "../../truth/hiertext_val/c1480937ecea9947.json",
+   "engine_sha256": "06945f3b5e6e965eddf3ed355838d60eb6d8994feb4df128460f118641836149",
+   "truth_sha256": "ed5112ca0eaa93f205983926e9509f715be89176579aa073004ae5fb4c976dc4",
+   "document_slice": false
+  },
+  {
+   "page": "c237f9cec8e311b0",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c237f9cec8e311b0.json",
+   "truth": "../../truth/hiertext_val/c237f9cec8e311b0.json",
+   "engine_sha256": "8db3ecf6355c4fee6bc3c14df3b6aea71eabe1d3bbf4f7a187140280218084e7",
+   "truth_sha256": "f8c16e4c9309a9d27d87759390eb60ff2808a2e273d0f746b8f8b8b09c605a84",
+   "document_slice": false
+  },
+  {
+   "page": "c35a587802dd49b8",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c35a587802dd49b8.json",
+   "truth": "../../truth/hiertext_val/c35a587802dd49b8.json",
+   "engine_sha256": "9427daed85680cf71d8665493107d113f57d44587fe23d768bd6373f34dcf349",
+   "truth_sha256": "c34df27b97ed4e2e75729f9e6ae799a1e8ca65516ac639fefcb657620cb414b9",
+   "document_slice": false
+  },
+  {
+   "page": "c42b5ade830351cd",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c42b5ade830351cd.json",
+   "truth": "../../truth/hiertext_val/c42b5ade830351cd.json",
+   "engine_sha256": "157f1f4de4b72acb36f8374d9d59f99748ae0505abcfe7971f1cf3d825aa55c3",
+   "truth_sha256": "c6227d07d2e7d57be2901c9f2758c409cc44f5ba92a90db8b29dcc117dd069bd",
+   "document_slice": false
+  },
+  {
+   "page": "c443cde5ac1b2217",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c443cde5ac1b2217.json",
+   "truth": "../../truth/hiertext_val/c443cde5ac1b2217.json",
+   "engine_sha256": "1136da95565d48e51113191b95cba2502113badf4256cb73d5d99f10f10c5eb1",
+   "truth_sha256": "ee0c9fbfc770b6e7df1eb58ad87d2ce02eb9fdc721c4aab5274cc9eb31a2c5fa",
+   "document_slice": false
+  },
+  {
+   "page": "c4d1c6c6217cf4f0",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c4d1c6c6217cf4f0.json",
+   "truth": "../../truth/hiertext_val/c4d1c6c6217cf4f0.json",
+   "engine_sha256": "0ac466df9a59131679a34f5fca524e0d5ec9ddb6d750916651d85affa2a844f4",
+   "truth_sha256": "b9f69bad9a740ea7bffbdd35b1c55c6937fc8ac36c4c8604f28d70ad02a70d1e",
+   "document_slice": false
+  },
+  {
+   "page": "c4e5700442be90e4",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c4e5700442be90e4.json",
+   "truth": "../../truth/hiertext_val/c4e5700442be90e4.json",
+   "engine_sha256": "8cb21cc8242bcd5bb7a99ea98426089399486b9ff83ec94290ef09ac596f8967",
+   "truth_sha256": "5de27b752c8cab5799e3162d7a704c393bdd593925f68d0c02eb7826b7487869",
+   "document_slice": false
+  },
+  {
+   "page": "c50691445d143804",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c50691445d143804.json",
+   "truth": "../../truth/hiertext_val/c50691445d143804.json",
+   "engine_sha256": "c9b8c7fe98a0a7daf7f705c95a7b3b2e7565646fd8f8f57f604f1af96b354067",
+   "truth_sha256": "ab3ce115488a34e156c0fefc87f777dee5c33d52496782215287757aea37e383",
+   "document_slice": false
+  },
+  {
+   "page": "c51c89367a983490",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c51c89367a983490.json",
+   "truth": "../../truth/hiertext_val/c51c89367a983490.json",
+   "engine_sha256": "540e7c1ddf23cb67553d601edc3c074dcfe2de101b1c9ff4221ca67d68ffb74e",
+   "truth_sha256": "59a9ef570504c2338b1c4c14fd50f247d690c68d1129d8dbf2725a88f509a649",
+   "document_slice": false
+  },
+  {
+   "page": "c5a13b93b0ad8994",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c5a13b93b0ad8994.json",
+   "truth": "../../truth/hiertext_val/c5a13b93b0ad8994.json",
+   "engine_sha256": "58255fd38a155c736dfc233ec4f4f3c6d831456f5e89f81dd09879cc00cc95d1",
+   "truth_sha256": "4fa87962db4ef008c2a93d5d2b39aadb04a989f74a20368ed50e486c28999bf2",
+   "document_slice": false
+  },
+  {
+   "page": "c624328101a5c91b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c624328101a5c91b.json",
+   "truth": "../../truth/hiertext_val/c624328101a5c91b.json",
+   "engine_sha256": "4d28491a633fd7524558592e348bfbb4a93b49760b434e4c3ee825b2039391dd",
+   "truth_sha256": "6071ef887aeabe931041fbf6c682551a5f2eabb322ccff08cbc69fcea3679b0a",
+   "document_slice": false
+  },
+  {
+   "page": "c640cdeb564fe9eb",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c640cdeb564fe9eb.json",
+   "truth": "../../truth/hiertext_val/c640cdeb564fe9eb.json",
+   "engine_sha256": "ae0cb2924437b31ba715009acdd07e14720a9055baa003acd2d26980514ffb93",
+   "truth_sha256": "967f0e16fa8d7cf9ada08ce8219adefcc51c667819a4ce3121640712b192e670",
+   "document_slice": true
+  },
+  {
+   "page": "c6706d06947cc8db",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c6706d06947cc8db.json",
+   "truth": "../../truth/hiertext_val/c6706d06947cc8db.json",
+   "engine_sha256": "6862bb9f6a5a288cfe78c2402979681f3ede715e82b4668c99376a4a9b9ca1e0",
+   "truth_sha256": "c1df9f33e0332c2cb8c5f57312303b4e5acba18c36ace58e75e78594e3903358",
+   "document_slice": false
+  },
+  {
+   "page": "c6d872d9d43bc935",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c6d872d9d43bc935.json",
+   "truth": "../../truth/hiertext_val/c6d872d9d43bc935.json",
+   "engine_sha256": "eaf8db423085c9f286a2bdb58eb1f8899dfb68e9703daafaec44c3ca559d48d0",
+   "truth_sha256": "5062d910fd29a823085757d49f0384541f6813b2dc081f81ef7aa26f333cfb2d",
+   "document_slice": false
+  },
+  {
+   "page": "c7a272a72e9afbf1",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c7a272a72e9afbf1.json",
+   "truth": "../../truth/hiertext_val/c7a272a72e9afbf1.json",
+   "engine_sha256": "3a7639c74c8a5a9587bb429edc2c6f072204d0b411d4164e8ebb4be55cda344a",
+   "truth_sha256": "1af914eba52d286e5df8badd2d64c3e39d2548867c07247a5ae5fa8773a31ca9",
+   "document_slice": true
+  },
+  {
+   "page": "c7b5ecbab4dd6b73",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c7b5ecbab4dd6b73.json",
+   "truth": "../../truth/hiertext_val/c7b5ecbab4dd6b73.json",
+   "engine_sha256": "44eab67ff50afca5376f4c46796069f363816a37b916b407165859815da14bf9",
+   "truth_sha256": "0b35994ea3f36905149f642cd7f1db77077aae4600ee917f57b93b051ec44a2d",
+   "document_slice": false
+  },
+  {
+   "page": "c917b5a9ca321696",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c917b5a9ca321696.json",
+   "truth": "../../truth/hiertext_val/c917b5a9ca321696.json",
+   "engine_sha256": "2ab80543deab6af51f4461f642749263558c8ed9943e068c6ba28ffe03b1b786",
+   "truth_sha256": "2be4e273920145ed666f0c0b01904ebe31f547f534d9c2e930520dddc9cc09d6",
+   "document_slice": false
+  },
+  {
+   "page": "c98d44b068fe03a4",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c98d44b068fe03a4.json",
+   "truth": "../../truth/hiertext_val/c98d44b068fe03a4.json",
+   "engine_sha256": "4bc86fd831ec46f75a7e8e8e1569ae3ef99ea7d764a5826a137c0a708e89df40",
+   "truth_sha256": "629789dbf75ed1724133413a6e651a95f4b275e8974da2a67f86fa14620c9a24",
+   "document_slice": false
+  },
+  {
+   "page": "c9acbdf174ee3769",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c9acbdf174ee3769.json",
+   "truth": "../../truth/hiertext_val/c9acbdf174ee3769.json",
+   "engine_sha256": "528dcced7f1a82a20993def7e93593e4f47fb99b827fbaffd2e0e47b605df96e",
+   "truth_sha256": "a8d3cfd88266e3737bc78c1acf1e8f6b2a5a3c30969c5c33243437cd56cad228",
+   "document_slice": false
+  },
+  {
+   "page": "c9ecf7b1e970a65a",
+   "engine": "../../engine/hiertext_val/glypharis_v1/c9ecf7b1e970a65a.json",
+   "truth": "../../truth/hiertext_val/c9ecf7b1e970a65a.json",
+   "engine_sha256": "9e820b4426beb321ac5ad8a828142f3c31eed179dc65ee09044c6d5a791a3a03",
+   "truth_sha256": "c081c3e42b42257cb07b752138cdb42b2b06482e85d3561cdc392b29dc32a272",
+   "document_slice": false
+  },
+  {
+   "page": "ca30019d9ac5f4aa",
+   "engine": "../../engine/hiertext_val/glypharis_v1/ca30019d9ac5f4aa.json",
+   "truth": "../../truth/hiertext_val/ca30019d9ac5f4aa.json",
+   "engine_sha256": "88bea6b9c04f13f459b1a93d0b50037d58dd0b8190c12a070fa7f6564176c926",
+   "truth_sha256": "3709d43e6254d6ccda4c31357151ca4ac3191ce65a03ea7228f2477f1d70f6b6",
+   "document_slice": false
+  },
+  {
+   "page": "ca3637d633fb2b80",
+   "engine": "../../engine/hiertext_val/glypharis_v1/ca3637d633fb2b80.json",
+   "truth": "../../truth/hiertext_val/ca3637d633fb2b80.json",
+   "engine_sha256": "df25b6aa1847a2d4953a162a10df38f9e5159012ffcb5c6814bae7214b52dfa1",
+   "truth_sha256": "6879a6b6ee23fe34e4314e6228d332c52c9322272e320fd94d266a9839b8afd6",
+   "document_slice": false
+  },
+  {
+   "page": "cc7423ec2a7adb30",
+   "engine": "../../engine/hiertext_val/glypharis_v1/cc7423ec2a7adb30.json",
+   "truth": "../../truth/hiertext_val/cc7423ec2a7adb30.json",
+   "engine_sha256": "e846ca0b40f177d0a563b6a3c199a878bc8f5cddd84b38a923cac16b971b0746",
+   "truth_sha256": "540e57711934cdeb20856feabc508a5a325b807fe3b7aff847ca38af00591c6d",
+   "document_slice": true
+  },
+  {
+   "page": "cd092c3002fd4141",
+   "engine": "../../engine/hiertext_val/glypharis_v1/cd092c3002fd4141.json",
+   "truth": "../../truth/hiertext_val/cd092c3002fd4141.json",
+   "engine_sha256": "1d2b98d47604fc510e59d02261a30942c4c116a888fc71d92cbbf399a405a241",
+   "truth_sha256": "1de9c72e9a6e5193700acb2333f405a3f6f71bc1404a13462b6bee930ff97acc",
+   "document_slice": false
+  },
+  {
+   "page": "cd250ea59a12f03c",
+   "engine": "../../engine/hiertext_val/glypharis_v1/cd250ea59a12f03c.json",
+   "truth": "../../truth/hiertext_val/cd250ea59a12f03c.json",
+   "engine_sha256": "c30f394258bb0be939eb133fc2397c52d8555212c28f1ceedf8168a817086ed8",
+   "truth_sha256": "5bb504f45120715e62685688285030d3a051e9eb0fdbee7d8d057ec3a6d5d220",
+   "document_slice": false
+  },
+  {
+   "page": "ce352d145c529219",
+   "engine": "../../engine/hiertext_val/glypharis_v1/ce352d145c529219.json",
+   "truth": "../../truth/hiertext_val/ce352d145c529219.json",
+   "engine_sha256": "dc8a5e0ede0e2ad46e0df0119ac2923b4105aa4961480ad8ccf0d35e7ccf6605",
+   "truth_sha256": "530b8bb01afaa5fc3737b0ac0bc198abaf31c4c23abea6d886904cb415572c17",
+   "document_slice": false
+  },
+  {
+   "page": "cf4c771f4039c125",
+   "engine": "../../engine/hiertext_val/glypharis_v1/cf4c771f4039c125.json",
+   "truth": "../../truth/hiertext_val/cf4c771f4039c125.json",
+   "engine_sha256": "8c6d91a751d9cd63882a8ff550fc3c0c05f5975b48a325913981c18802c9ec22",
+   "truth_sha256": "b65e67092583b9c6053e72c8721da1f18313734f71d5ae7bdd2d3f22a650aa29",
+   "document_slice": false
+  },
+  {
+   "page": "cfe1c93cbc720a4c",
+   "engine": "../../engine/hiertext_val/glypharis_v1/cfe1c93cbc720a4c.json",
+   "truth": "../../truth/hiertext_val/cfe1c93cbc720a4c.json",
+   "engine_sha256": "8f0416856db4d4d1b904529597973b92f3b6d32fd38ac73137797293d70b3670",
+   "truth_sha256": "ccf6dafd2b23df53cc42744666d468b6d22e2f6c3fdae0d2e54e96347d22fa03",
+   "document_slice": false
+  },
+  {
+   "page": "d08b0e22bdf0ec25",
+   "engine": "../../engine/hiertext_val/glypharis_v1/d08b0e22bdf0ec25.json",
+   "truth": "../../truth/hiertext_val/d08b0e22bdf0ec25.json",
+   "engine_sha256": "aa849e54ac3c41e858b4eace95894966ccdf4ef1222c174f43a6dc604b9dc0b2",
+   "truth_sha256": "a23416325340dc8a76c8e116ed0f2e0603f34bf0a1f77fd25ef896f1817f950a",
+   "document_slice": false
+  },
+  {
+   "page": "d1afbf0749bd8c9b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/d1afbf0749bd8c9b.json",
+   "truth": "../../truth/hiertext_val/d1afbf0749bd8c9b.json",
+   "engine_sha256": "a18b3d88f4dc553c548fa4234deed98e6e00c46d6d6fcf37b194d8c58fd3d00c",
+   "truth_sha256": "009435f4c024f4c4359a75a2f715ee29ba5f0d0e2a3d9a20745bdb1fee9213d7",
+   "document_slice": false
+  },
+  {
+   "page": "d1dcbd177c99e6b6",
+   "engine": "../../engine/hiertext_val/glypharis_v1/d1dcbd177c99e6b6.json",
+   "truth": "../../truth/hiertext_val/d1dcbd177c99e6b6.json",
+   "engine_sha256": "0c4bb1d1c3fb3acb5b0b8b8ca3c671faa98f2ecc3c1a70448a5ba23f5623b4c7",
+   "truth_sha256": "7a4ee6b1653c42f772e3d3de09585cbf44ce8f119d2174e8006d5953f348e839",
+   "document_slice": false
+  },
+  {
+   "page": "d2b5e97ac55ad790",
+   "engine": "../../engine/hiertext_val/glypharis_v1/d2b5e97ac55ad790.json",
+   "truth": "../../truth/hiertext_val/d2b5e97ac55ad790.json",
+   "engine_sha256": "2e66cec0fe8f128d9ea1ca9013daed4438d89c3be11af68c4ba6b65e095e94eb",
+   "truth_sha256": "20df8f1ef5c3366d39136cd5bb0adba62d56aa4eb88fc44b682e3b7f4bd267d0",
+   "document_slice": false
+  },
+  {
+   "page": "d2bf971ebb7433d6",
+   "engine": "../../engine/hiertext_val/glypharis_v1/d2bf971ebb7433d6.json",
+   "truth": "../../truth/hiertext_val/d2bf971ebb7433d6.json",
+   "engine_sha256": "b3aec5a28b964efe519c951ec0d0344c2bdadb3f3fc7120fad22496a52adc4cc",
+   "truth_sha256": "8fc7af2fe5bd8c2331ae2b96c89505092670669c053be30bad7d6e61627be61f",
+   "document_slice": false
+  },
+  {
+   "page": "d35f5e9ced5515b8",
+   "engine": "../../engine/hiertext_val/glypharis_v1/d35f5e9ced5515b8.json",
+   "truth": "../../truth/hiertext_val/d35f5e9ced5515b8.json",
+   "engine_sha256": "392a8f79909f04c74319c2639e07052516c9918f692f3df71f243d2ece954fd8",
+   "truth_sha256": "be79515dac44ec7417d44b123b305bb1e54ae1d1795d858b0a1c90189c335ea9",
+   "document_slice": false
+  },
+  {
+   "page": "d3d338ac14bf48ad",
+   "engine": "../../engine/hiertext_val/glypharis_v1/d3d338ac14bf48ad.json",
+   "truth": "../../truth/hiertext_val/d3d338ac14bf48ad.json",
+   "engine_sha256": "ae49c475a2249e0d021c1a4b2075151aa66c87017d16ad9713cc003fe5eb2e0e",
+   "truth_sha256": "ff45568c9a39928d9ad5e0be51a40a2e7a039d594b14250e96d8763eff566298",
+   "document_slice": false
+  },
+  {
+   "page": "d557c085f02bd560",
+   "engine": "../../engine/hiertext_val/glypharis_v1/d557c085f02bd560.json",
+   "truth": "../../truth/hiertext_val/d557c085f02bd560.json",
+   "engine_sha256": "4002ce6821409b01d17175e935c9c21dd7e797ba75100876be15d2753f1fa30f",
+   "truth_sha256": "1f05952824386ce9dd2c611f9fa4326af4a50b4a8f64089cc5f3960b74bab501",
+   "document_slice": false
+  },
+  {
+   "page": "d5faa15bfda6af49",
+   "engine": "../../engine/hiertext_val/glypharis_v1/d5faa15bfda6af49.json",
+   "truth": "../../truth/hiertext_val/d5faa15bfda6af49.json",
+   "engine_sha256": "a27c4195d5ffd35849c80e5230b33dab08998b58d6a2b0c701c051a7934c7f96",
+   "truth_sha256": "6d4310b39c91917d6d24f08881ab350e6d900d6572c41f80a498e22e108f7735",
+   "document_slice": false
+  },
+  {
+   "page": "d6b06e4a5637c9b4",
+   "engine": "../../engine/hiertext_val/glypharis_v1/d6b06e4a5637c9b4.json",
+   "truth": "../../truth/hiertext_val/d6b06e4a5637c9b4.json",
+   "engine_sha256": "86f5241e7a6200e508fd62e74ceaafcca24fa2dcada28783b90abc794fa3b793",
+   "truth_sha256": "455352d9d90f315900ab370e9cce8a874960ff5716e283a100ba3126c2e3f146",
+   "document_slice": false
+  },
+  {
+   "page": "d6cffab23f5a1e4a",
+   "engine": "../../engine/hiertext_val/glypharis_v1/d6cffab23f5a1e4a.json",
+   "truth": "../../truth/hiertext_val/d6cffab23f5a1e4a.json",
+   "engine_sha256": "11967da49ac1cca54fbc0d3dac947021aecdce277dc07eb07688722bb191f912",
+   "truth_sha256": "2103b2fb744ff23fc64abb33c7a81b417d7456bd660cf1f483fbcd5899f55d40",
+   "document_slice": false
+  },
+  {
+   "page": "d7d4198f9562e565",
+   "engine": "../../engine/hiertext_val/glypharis_v1/d7d4198f9562e565.json",
+   "truth": "../../truth/hiertext_val/d7d4198f9562e565.json",
+   "engine_sha256": "ad9d9760d478125dc0fc97c6339d64c5bce758f1bfdbdef31ad64a8ba98e20d6",
+   "truth_sha256": "b133333c8309873ef4892cf4fe8f5c7f18fe8cadd351bc9690157ad206e289c5",
+   "document_slice": false
+  },
+  {
+   "page": "d80a51ee1cda2d38",
+   "engine": "../../engine/hiertext_val/glypharis_v1/d80a51ee1cda2d38.json",
+   "truth": "../../truth/hiertext_val/d80a51ee1cda2d38.json",
+   "engine_sha256": "841a4114317454f18abca08a45ae91a9334d103484cf73da98e0ac6b080627e4",
+   "truth_sha256": "7d89a2e2b4bf289d0a742269961a476dba16ee3ad670bb508a43b324f1d2fedf",
+   "document_slice": false
+  },
+  {
+   "page": "d8f6c27c291cccbf",
+   "engine": "../../engine/hiertext_val/glypharis_v1/d8f6c27c291cccbf.json",
+   "truth": "../../truth/hiertext_val/d8f6c27c291cccbf.json",
+   "engine_sha256": "eccb212cbd5356a1c8dd90338a7a841be319592f05016c7656a5c6dcec62e05d",
+   "truth_sha256": "311f48fc8975cd4850641dc1791a522d110bd2cef396c0545d3d7046bc8c5f0e",
+   "document_slice": false
+  },
+  {
+   "page": "d94b53ee52c45aaa",
+   "engine": "../../engine/hiertext_val/glypharis_v1/d94b53ee52c45aaa.json",
+   "truth": "../../truth/hiertext_val/d94b53ee52c45aaa.json",
+   "engine_sha256": "884f92084fdd74a8c6b4f34ab7bca44bb19ce26d79a1d4803bf075c3d0d75e50",
+   "truth_sha256": "08471d68bb3dd02aef23532d6026da71a8430d936181a09c8fc7fb43a246dddd",
+   "document_slice": false
+  },
+  {
+   "page": "d989ba898a556309",
+   "engine": "../../engine/hiertext_val/glypharis_v1/d989ba898a556309.json",
+   "truth": "../../truth/hiertext_val/d989ba898a556309.json",
+   "engine_sha256": "a03ac3d89bf9abd37d611ee299fa11e7e256433e349b0d7e4b06669d5b0f9123",
+   "truth_sha256": "edff74a9f6990486427563f2a3919eca86b3e9dd0379211d4379330d62a5b66d",
+   "document_slice": false
+  },
+  {
+   "page": "da17eb0417d10ab3",
+   "engine": "../../engine/hiertext_val/glypharis_v1/da17eb0417d10ab3.json",
+   "truth": "../../truth/hiertext_val/da17eb0417d10ab3.json",
+   "engine_sha256": "d65c3e4cb2df56fc2a85811dee5afb6ed7fc6d77e98575922cea81ea135ef106",
+   "truth_sha256": "c76ff3c732a56cc2da344b4a1c7490383052922517babc929ab911c7efc3feed",
+   "document_slice": false
+  },
+  {
+   "page": "da3d7308d0722742",
+   "engine": "../../engine/hiertext_val/glypharis_v1/da3d7308d0722742.json",
+   "truth": "../../truth/hiertext_val/da3d7308d0722742.json",
+   "engine_sha256": "c6d5c600f88646d955ff0fa5489b5da185894891d10fd30c7bb1de03d1ed704e",
+   "truth_sha256": "622c73a99057064653bb7c12656d436ddddb2577d4d7c79d001d03a141cce029",
+   "document_slice": false
+  },
+  {
+   "page": "da589d39cc2c3cea",
+   "engine": "../../engine/hiertext_val/glypharis_v1/da589d39cc2c3cea.json",
+   "truth": "../../truth/hiertext_val/da589d39cc2c3cea.json",
+   "engine_sha256": "f23f29697ed9e70e303a0dde75021f0f9fbc9a8101e22c896d074e58dbf080af",
+   "truth_sha256": "4ce974a88c03c59e7be43c7fc18e0e2e16c8f3c6193dcd1411974a5208bc1e06",
+   "document_slice": false
+  },
+  {
+   "page": "db883fbef1be064a",
+   "engine": "../../engine/hiertext_val/glypharis_v1/db883fbef1be064a.json",
+   "truth": "../../truth/hiertext_val/db883fbef1be064a.json",
+   "engine_sha256": "3b66e512358c5e2b74dfbe04ed0e24f661c8fef62c4259fa33f3c23f7e186a49",
+   "truth_sha256": "b21fa9b9916742dd7088f1c54ff3cb37c84dd5ba4238c72be1826cba46d20187",
+   "document_slice": false
+  },
+  {
+   "page": "dca3f995ed5c49ad",
+   "engine": "../../engine/hiertext_val/glypharis_v1/dca3f995ed5c49ad.json",
+   "truth": "../../truth/hiertext_val/dca3f995ed5c49ad.json",
+   "engine_sha256": "b1db0cd34da804a9eed560a2c383575789ef1feee5a6e573d30a6888b1314d06",
+   "truth_sha256": "e11ae6bc5c1ff79ddad7ee24880d9a7dc9650f04cc3986d83e2963ad75443489",
+   "document_slice": false
+  },
+  {
+   "page": "dcfa13daf1dff73b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/dcfa13daf1dff73b.json",
+   "truth": "../../truth/hiertext_val/dcfa13daf1dff73b.json",
+   "engine_sha256": "0c33d14a7c41c6b22d12d15991aea2eca68400f3b7742d83b19e5438d3f06c9a",
+   "truth_sha256": "36a38a18bfa8805f6c350d3a9dce798c4f34bfa8154df3c76ebcf0a853ea2835",
+   "document_slice": false
+  },
+  {
+   "page": "dd90edd054effcaa",
+   "engine": "../../engine/hiertext_val/glypharis_v1/dd90edd054effcaa.json",
+   "truth": "../../truth/hiertext_val/dd90edd054effcaa.json",
+   "engine_sha256": "e7df439346bcee23581e447d9e7990ae41e4ff8a5e06e604f631c22e7d2d36c4",
+   "truth_sha256": "0e9573dacfcf9a964c28a88ce8cc6fa7ddb384f5295918e423da86a04e57560a",
+   "document_slice": false
+  },
+  {
+   "page": "de87bd0c0c565c80",
+   "engine": "../../engine/hiertext_val/glypharis_v1/de87bd0c0c565c80.json",
+   "truth": "../../truth/hiertext_val/de87bd0c0c565c80.json",
+   "engine_sha256": "c5c6bd3def7583bc600268dbefb60b05bac46822d84ec29032304bc4ae617535",
+   "truth_sha256": "7109d5acff1140ac793226b66fa9e800a1a389d8c2ba896d412a00c35c1792b9",
+   "document_slice": false
+  },
+  {
+   "page": "e064064d8464c9c7",
+   "engine": "../../engine/hiertext_val/glypharis_v1/e064064d8464c9c7.json",
+   "truth": "../../truth/hiertext_val/e064064d8464c9c7.json",
+   "engine_sha256": "e0a813e68740dc9a9b488d3e52675c73af3bf14a9dc67598308d50f3277ea66f",
+   "truth_sha256": "0abb0115f06d03990b0f98f418aa0b67c97d198f5812b978122767870559fb5d",
+   "document_slice": true
+  },
+  {
+   "page": "e21d00c299083ea3",
+   "engine": "../../engine/hiertext_val/glypharis_v1/e21d00c299083ea3.json",
+   "truth": "../../truth/hiertext_val/e21d00c299083ea3.json",
+   "engine_sha256": "a9864a811250ad9dc74c0faff561c32ebde5cb90c5dc4364e94d3d8302ffc9a7",
+   "truth_sha256": "db9e4e40e78fd81fe0a7433cac3112870b45f4c663a750b340984b0edb5039e4",
+   "document_slice": false
+  },
+  {
+   "page": "e2f2692f8c622a2e",
+   "engine": "../../engine/hiertext_val/glypharis_v1/e2f2692f8c622a2e.json",
+   "truth": "../../truth/hiertext_val/e2f2692f8c622a2e.json",
+   "engine_sha256": "b70e706259390f7d145ecd7cda5d560bbc242276fffa9bd5323db435494a2694",
+   "truth_sha256": "8eaae423568959f7fd48bd83aafbe1f96ffe960f82ad2c612239cd08472930ec",
+   "document_slice": false
+  },
+  {
+   "page": "e3c7be8a3cdecff8",
+   "engine": "../../engine/hiertext_val/glypharis_v1/e3c7be8a3cdecff8.json",
+   "truth": "../../truth/hiertext_val/e3c7be8a3cdecff8.json",
+   "engine_sha256": "eec8197cbe5aa8c109144b7e0988c5b84a5aa3430227be4992b6b5f4e9138c97",
+   "truth_sha256": "39968314408ac2f3ceefe5fe56dc7ce968466ffff9a4c7074deade6cd70184c4",
+   "document_slice": false
+  },
+  {
+   "page": "e4222b861b8e0ca4",
+   "engine": "../../engine/hiertext_val/glypharis_v1/e4222b861b8e0ca4.json",
+   "truth": "../../truth/hiertext_val/e4222b861b8e0ca4.json",
+   "engine_sha256": "bf7ee1f08edd4cdc6bf7e4bda741778a630cce64d10172394f5e22544b2a2a79",
+   "truth_sha256": "1c38de3447127e29e3ab7f9d582ab6ef69bb38178f1481cef711afd11c78f33c",
+   "document_slice": false
+  },
+  {
+   "page": "e4ad54312ed491bb",
+   "engine": "../../engine/hiertext_val/glypharis_v1/e4ad54312ed491bb.json",
+   "truth": "../../truth/hiertext_val/e4ad54312ed491bb.json",
+   "engine_sha256": "26dc813c294d67ca1c39255a4e87a7bf5fdf783c3d043c4cef0f2db60b481238",
+   "truth_sha256": "a8bbf3e7a1d2b06d577cdb21cb488d6541a5229ad5ce6bbc37d47fba74cdfb54",
+   "document_slice": false
+  },
+  {
+   "page": "e58977951c820e11",
+   "engine": "../../engine/hiertext_val/glypharis_v1/e58977951c820e11.json",
+   "truth": "../../truth/hiertext_val/e58977951c820e11.json",
+   "engine_sha256": "4cfcd9ff6ddd05322afd9775d5a5348d51e89da87962a011f189f59e370a7aed",
+   "truth_sha256": "54dfc7957e12e14f39013a8acf4578c8e0e494f95f6f90d4f94900e77f7cc566",
+   "document_slice": false
+  },
+  {
+   "page": "e58a963adfd47bc0",
+   "engine": "../../engine/hiertext_val/glypharis_v1/e58a963adfd47bc0.json",
+   "truth": "../../truth/hiertext_val/e58a963adfd47bc0.json",
+   "engine_sha256": "7a9e4a656966aa740311f1baba33f2afd88459ffc96ade0b47dc637ce76589b8",
+   "truth_sha256": "6ecff3921f48b7eb1486d76cb0e71df4310a43c9e91f8eea3806d9d98464744f",
+   "document_slice": false
+  },
+  {
+   "page": "e5b1687bc73d7804",
+   "engine": "../../engine/hiertext_val/glypharis_v1/e5b1687bc73d7804.json",
+   "truth": "../../truth/hiertext_val/e5b1687bc73d7804.json",
+   "engine_sha256": "1bd93195bbe86420671d4fa9719d08bae0d6ddcd0bea1ab1f58d2614fdb8920b",
+   "truth_sha256": "56576034ababe7419dee2ed9975c895489165bd0b3ce6d1283d9a26d58ae56ea",
+   "document_slice": false
+  },
+  {
+   "page": "e60b49cda13fd4c4",
+   "engine": "../../engine/hiertext_val/glypharis_v1/e60b49cda13fd4c4.json",
+   "truth": "../../truth/hiertext_val/e60b49cda13fd4c4.json",
+   "engine_sha256": "3c5ab25ad50db0be2862f0b33ff70b5a488b0cb0c87815dbeebad47040a51c65",
+   "truth_sha256": "251f442bc02dec65a780ecd0523dd0a8700cf413657219da90772b484ca388e6",
+   "document_slice": false
+  },
+  {
+   "page": "e9238c80a2d410b0",
+   "engine": "../../engine/hiertext_val/glypharis_v1/e9238c80a2d410b0.json",
+   "truth": "../../truth/hiertext_val/e9238c80a2d410b0.json",
+   "engine_sha256": "faa4e942f7762c8511a5e5e2aa8bc747ff7fdd91bd452aef968077ace658176c",
+   "truth_sha256": "c9e96316aa5d25db7a3723d71fc2587c466f399f99c0f3d44464d38587dcf6a4",
+   "document_slice": false
+  },
+  {
+   "page": "e966d48f77cc771f",
+   "engine": "../../engine/hiertext_val/glypharis_v1/e966d48f77cc771f.json",
+   "truth": "../../truth/hiertext_val/e966d48f77cc771f.json",
+   "engine_sha256": "9189ae487b72f9b23e24c11c98a147451d4363d811c88de0dccbadbd2dc2ff44",
+   "truth_sha256": "dfbb6c8f4c17227973c3c2d7e4dabb4ec89750bb0938f0804307fa6e83a834db",
+   "document_slice": false
+  },
+  {
+   "page": "ea3d8673c4e7d188",
+   "engine": "../../engine/hiertext_val/glypharis_v1/ea3d8673c4e7d188.json",
+   "truth": "../../truth/hiertext_val/ea3d8673c4e7d188.json",
+   "engine_sha256": "99d9a507cf498ca11a4cfe7b695491adb5a22858605cd8228e9ccfaab6d2eedd",
+   "truth_sha256": "749fb2198c9fa817c7743352136460654ad4dec41645eefc26af1e909988ad83",
+   "document_slice": false
+  },
+  {
+   "page": "eaee38e88c385f87",
+   "engine": "../../engine/hiertext_val/glypharis_v1/eaee38e88c385f87.json",
+   "truth": "../../truth/hiertext_val/eaee38e88c385f87.json",
+   "engine_sha256": "e4054aec9fa0bcc466fac00c8647eaa2e5ce93e7ae3b9060244f1a35c0ea978a",
+   "truth_sha256": "8ff3880710bb406d8bf0291e030155860aa55555f6b106f629cd8e6ca0fdcc77",
+   "document_slice": false
+  },
+  {
+   "page": "eaf397d178ba2a47",
+   "engine": "../../engine/hiertext_val/glypharis_v1/eaf397d178ba2a47.json",
+   "truth": "../../truth/hiertext_val/eaf397d178ba2a47.json",
+   "engine_sha256": "6fb02eb5603d1a7d2ac0a767e81944c8cca6c042fa43b5cb0fa5a53eb93d25b5",
+   "truth_sha256": "7d7bca32ad4c192d4692b7d9578cd188442b1f34b43f3c95d06c0e0505868c59",
+   "document_slice": true
+  },
+  {
+   "page": "eb0afd8f6614a669",
+   "engine": "../../engine/hiertext_val/glypharis_v1/eb0afd8f6614a669.json",
+   "truth": "../../truth/hiertext_val/eb0afd8f6614a669.json",
+   "engine_sha256": "ee2199becee817ac2d3cdc27737249f2b727011f2d17f6d708ef217dbd7a5414",
+   "truth_sha256": "ae23cc60b8351a62c69a8321be6bec9547f59c1ff05b5b509a6474d0c192ed86",
+   "document_slice": false
+  },
+  {
+   "page": "eb8c79cd2f1e0825",
+   "engine": "../../engine/hiertext_val/glypharis_v1/eb8c79cd2f1e0825.json",
+   "truth": "../../truth/hiertext_val/eb8c79cd2f1e0825.json",
+   "engine_sha256": "9aa4ae36863efbf424fa3dc18c4def9eede8a952e90671f5476bbd4710f43988",
+   "truth_sha256": "44bf9b693664d34dff28ee0994c894093fbeeaa55f23a83e8be820113c0386c6",
+   "document_slice": false
+  },
+  {
+   "page": "ecb60e4964a2d95d",
+   "engine": "../../engine/hiertext_val/glypharis_v1/ecb60e4964a2d95d.json",
+   "truth": "../../truth/hiertext_val/ecb60e4964a2d95d.json",
+   "engine_sha256": "c374db9247a6317a17b2f9fabf327ce000a605919690f7ae68e33f0537151cb8",
+   "truth_sha256": "2ff087489b7519b261f8dac8b6499fd947fc86f1d7e3b592abbb0faf124c462e",
+   "document_slice": false
+  },
+  {
+   "page": "ed3cad008dd3b44b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/ed3cad008dd3b44b.json",
+   "truth": "../../truth/hiertext_val/ed3cad008dd3b44b.json",
+   "engine_sha256": "47c11d52cb544258159af12f513c70e6c05e54ca8ec1fc965bdf87dd4475f811",
+   "truth_sha256": "88cb944a44282e6cc392178cc6e087bbb7bd91657e9b15d748ea07b61f6437cc",
+   "document_slice": true
+  },
+  {
+   "page": "eec86efed1be34cf",
+   "engine": "../../engine/hiertext_val/glypharis_v1/eec86efed1be34cf.json",
+   "truth": "../../truth/hiertext_val/eec86efed1be34cf.json",
+   "engine_sha256": "8341e5977de6c48d07b010aae2dab59628c3a51ae10293cca748fd618d1a59ac",
+   "truth_sha256": "14d040781aaa01b927891f5f600ef5bf1573589f250898cee44347a9e100b679",
+   "document_slice": false
+  },
+  {
+   "page": "ef4e35edac32660b",
+   "engine": "../../engine/hiertext_val/glypharis_v1/ef4e35edac32660b.json",
+   "truth": "../../truth/hiertext_val/ef4e35edac32660b.json",
+   "engine_sha256": "356b227ae91f937765ec0f87c5322cc3569b3eb56fb4421d9e826f32227fab97",
+   "truth_sha256": "eafb02d768bc32b7e276eff4ebbffe713b87c4e693ade57b8b97b083beb0766f",
+   "document_slice": false
+  },
+  {
+   "page": "ef5aaa43a281314c",
+   "engine": "../../engine/hiertext_val/glypharis_v1/ef5aaa43a281314c.json",
+   "truth": "../../truth/hiertext_val/ef5aaa43a281314c.json",
+   "engine_sha256": "7b6a2ca2de83bc7ddea692aef076e00cd85ab3d5012e6cb78ee4c33f74d7ec56",
+   "truth_sha256": "930576adfc429dea07aee6b67bbd58d2cfcd56c6736fd862d343e550209e254c",
+   "document_slice": false
+  },
+  {
+   "page": "f171b0c4366c0cbe",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f171b0c4366c0cbe.json",
+   "truth": "../../truth/hiertext_val/f171b0c4366c0cbe.json",
+   "engine_sha256": "2fb596a014bf8bf09fbb0951716dd6c7faf3b49efd57b8008d50edd9b833a804",
+   "truth_sha256": "c18c53b0357d898b786d273f7e65534bf1476331310ca2e2e77037f63eb7af7f",
+   "document_slice": false
+  },
+  {
+   "page": "f1893e4c0f2dfd38",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f1893e4c0f2dfd38.json",
+   "truth": "../../truth/hiertext_val/f1893e4c0f2dfd38.json",
+   "engine_sha256": "1ad6f0502c57be85ce37d4a2027ea8429858562598703032d6a4df2aa473f996",
+   "truth_sha256": "ffb4bd6158c3437b60b272e866b6d643ffc09f057e0b840a31a94d7f54d9102e",
+   "document_slice": false
+  },
+  {
+   "page": "f1974911e41a1675",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f1974911e41a1675.json",
+   "truth": "../../truth/hiertext_val/f1974911e41a1675.json",
+   "engine_sha256": "74a67f4ec340feba60ec5540f7dc66f37162f5aaefe7d7bc5e7fd01cb7ff2cb1",
+   "truth_sha256": "1ea8d093f427d53403e34f7c1df93595256c835a7bc4f04835caa9e9afce5d3d",
+   "document_slice": false
+  },
+  {
+   "page": "f248b5d555a67530",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f248b5d555a67530.json",
+   "truth": "../../truth/hiertext_val/f248b5d555a67530.json",
+   "engine_sha256": "021c1c65f4ba0127055db9a8cb2a64b1ae4236c69ed97245e14337cf05071f06",
+   "truth_sha256": "55e8a5ac0386164d3a616baad7ea7d60be3d057e9302d9e4b11691c8385546d2",
+   "document_slice": false
+  },
+  {
+   "page": "f3f3db73848153f6",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f3f3db73848153f6.json",
+   "truth": "../../truth/hiertext_val/f3f3db73848153f6.json",
+   "engine_sha256": "b9495c63acb081485bf21d5b350098b7512959dbf99589f7a4844f4a56ea12d9",
+   "truth_sha256": "b5ac0b4e8e70187a8499842392cd4e3322e996970e7c6f1adb22d98f3fdbc369",
+   "document_slice": false
+  },
+  {
+   "page": "f40d14c3bba6b675",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f40d14c3bba6b675.json",
+   "truth": "../../truth/hiertext_val/f40d14c3bba6b675.json",
+   "engine_sha256": "8bd722bfc623efc7465944b26e640fb0ba37c672453b5b69811a01b49fbb4b4a",
+   "truth_sha256": "e1e2931e6390b9a486c6b849c2a41f4cefab319367daef30ec3e8439766a81f0",
+   "document_slice": false
+  },
+  {
+   "page": "f4ae087f600d4255",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f4ae087f600d4255.json",
+   "truth": "../../truth/hiertext_val/f4ae087f600d4255.json",
+   "engine_sha256": "6641b5b7bb64215bad1fad7339b3876b8ef970a103a18bec5e16a00f81b0f087",
+   "truth_sha256": "4a6ec6ac633099162aeb64dc43ed268e103ad9af796dd5f55cd49f8494a7135b",
+   "document_slice": false
+  },
+  {
+   "page": "f4bd31e301f5f613",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f4bd31e301f5f613.json",
+   "truth": "../../truth/hiertext_val/f4bd31e301f5f613.json",
+   "engine_sha256": "ef9241ecf9e4d78b12527133b240a25c30cc1637217cb0557a6603f67e86c1a4",
+   "truth_sha256": "8d574912081b48328aec97e11d502f8d37a94b7a4a27b32bc27ac5c261f350ab",
+   "document_slice": true
+  },
+  {
+   "page": "f598b347357b9628",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f598b347357b9628.json",
+   "truth": "../../truth/hiertext_val/f598b347357b9628.json",
+   "engine_sha256": "be28b2d6fce427fd8fa9af48c951b2ce016625b45d90dd887900f0fc5d360168",
+   "truth_sha256": "524fc77b74a3feff5929459d6aa9e7b6be3bcbbe781dd868da7d2f4c38341288",
+   "document_slice": false
+  },
+  {
+   "page": "f5e0a9fe7c61fc7c",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f5e0a9fe7c61fc7c.json",
+   "truth": "../../truth/hiertext_val/f5e0a9fe7c61fc7c.json",
+   "engine_sha256": "f01f1ca8ae064b9e2a43afe13c4bf03b78e97853332709b5b25b6264960287b2",
+   "truth_sha256": "5422c3d25d40e135b7324618a4357a556ed043092a3d93a41349bff9f5553323",
+   "document_slice": false
+  },
+  {
+   "page": "f5e4d32892146de2",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f5e4d32892146de2.json",
+   "truth": "../../truth/hiertext_val/f5e4d32892146de2.json",
+   "engine_sha256": "3ca9eb7fcf270416fbd3d03c3216d25b48ee89c9ed2b0a0d2048ec29ca5afbe3",
+   "truth_sha256": "e1d29565542d816f70fbad1fdcccf326886ff7923fede7d7400a7a87806ae02b",
+   "document_slice": false
+  },
+  {
+   "page": "f64ae3dac67307c2",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f64ae3dac67307c2.json",
+   "truth": "../../truth/hiertext_val/f64ae3dac67307c2.json",
+   "engine_sha256": "b27558091a66f26b8917e724ec05f478944c608eec6e273f2b64312eeb1a27f8",
+   "truth_sha256": "da52c32c91d4f7256ddab6defdf0d09a840a89b4ec396ac90f5c2da562c41b1f",
+   "document_slice": false
+  },
+  {
+   "page": "f70efbb02c4146ac",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f70efbb02c4146ac.json",
+   "truth": "../../truth/hiertext_val/f70efbb02c4146ac.json",
+   "engine_sha256": "f503cb91b879f1bf6cfd36d442f8e22b42c3e4b41d73852d4a135f93691778d7",
+   "truth_sha256": "1310f83b88da98a0945ce9d450185deeef834ce183b4e2a23be2fd849279658c",
+   "document_slice": false
+  },
+  {
+   "page": "f77f2292658b8b07",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f77f2292658b8b07.json",
+   "truth": "../../truth/hiertext_val/f77f2292658b8b07.json",
+   "engine_sha256": "c8603ea120440bd24e35d50ed51de99036a99dc521556ac04707f6d4a126e430",
+   "truth_sha256": "a9b6a608df15e8800010bc8991c612379eb4728c4c99b92605ad0f82b2c9ff58",
+   "document_slice": false
+  },
+  {
+   "page": "f7bc66eff2dff626",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f7bc66eff2dff626.json",
+   "truth": "../../truth/hiertext_val/f7bc66eff2dff626.json",
+   "engine_sha256": "30b83a761197da9fc3410e6fb22bb2c5d0943c94fbc34937a47cdb5abb8e9d58",
+   "truth_sha256": "11b0f1d1f1f481bad3b64a2b521d1817bb7dfc411156779d1c1c2b56b28cf2f0",
+   "document_slice": false
+  },
+  {
+   "page": "f7c8532abe10bca0",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f7c8532abe10bca0.json",
+   "truth": "../../truth/hiertext_val/f7c8532abe10bca0.json",
+   "engine_sha256": "2548f840f9f1e835f2dc92f1bb4d6a4cef420ec4bf91b4c7c73c3964a606376a",
+   "truth_sha256": "f12c7b02e0f7340a89cd53855e47eeaacd2aa868d228cd087a210ffdc70f235a",
+   "document_slice": false
+  },
+  {
+   "page": "f8620a6791d2d831",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f8620a6791d2d831.json",
+   "truth": "../../truth/hiertext_val/f8620a6791d2d831.json",
+   "engine_sha256": "4cecc1b3fdd7224eb846cff8fa79470878193c2c7c85461162d0adb0b0c7d1fa",
+   "truth_sha256": "317104fb95a15bce4e18e80190ae4160e81be0232e351b83ff4549e69af587d2",
+   "document_slice": false
+  },
+  {
+   "page": "f8cbc54f25fc8415",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f8cbc54f25fc8415.json",
+   "truth": "../../truth/hiertext_val/f8cbc54f25fc8415.json",
+   "engine_sha256": "9219fccbb875c015553b174a3d9047eda4375c54d1e2f1011473614f98647d91",
+   "truth_sha256": "b41e30891a6083f0c4bc7cbc049047d167dc391a2d34e86382014ba4f0f2576c",
+   "document_slice": false
+  },
+  {
+   "page": "f9466f33f421a3a9",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f9466f33f421a3a9.json",
+   "truth": "../../truth/hiertext_val/f9466f33f421a3a9.json",
+   "engine_sha256": "d45ffe3a4b61bfc6297afaedcac93b632e644904555eb9a8f1e227765dbaa7ee",
+   "truth_sha256": "2a3e18fe5216d85196c93359105fc783dc0c59e79a432a587bfa2d2f09ffd239",
+   "document_slice": false
+  },
+  {
+   "page": "f97c212a95a7c3dc",
+   "engine": "../../engine/hiertext_val/glypharis_v1/f97c212a95a7c3dc.json",
+   "truth": "../../truth/hiertext_val/f97c212a95a7c3dc.json",
+   "engine_sha256": "9c67a7affb84cdd0a3c8417e35deb12ab357083d0fe831226477e3d70f280768",
+   "truth_sha256": "cabf0b24cdfdc5c4adcf05f3f7e81e9b4b24ed8877a2240becffa374eb4a5e2a",
+   "document_slice": true
+  },
+  {
+   "page": "fbbe85e2a216ec46",
+   "engine": "../../engine/hiertext_val/glypharis_v1/fbbe85e2a216ec46.json",
+   "truth": "../../truth/hiertext_val/fbbe85e2a216ec46.json",
+   "engine_sha256": "48d9675495d94381e5eff703a66e814d97975a3b6d3e22eaed878fcaa214f9ee",
+   "truth_sha256": "735a09c03d8b61857d4449fe05b47b11c9097a2c75bcb0d572726f1866bb2aef",
+   "document_slice": false
+  },
+  {
+   "page": "fbe008a36fb2a53c",
+   "engine": "../../engine/hiertext_val/glypharis_v1/fbe008a36fb2a53c.json",
+   "truth": "../../truth/hiertext_val/fbe008a36fb2a53c.json",
+   "engine_sha256": "585a011fcc2341a3cb36cfadf69081855fdfb9c75c36207c617344130a2e2dc6",
+   "truth_sha256": "2992c1ec4d1e20fe6e183c7f094669918f141e1f7d9147c175d9cff5e0423eb4",
+   "document_slice": false
+  },
+  {
+   "page": "fc11b07f8c02d4fb",
+   "engine": "../../engine/hiertext_val/glypharis_v1/fc11b07f8c02d4fb.json",
+   "truth": "../../truth/hiertext_val/fc11b07f8c02d4fb.json",
+   "engine_sha256": "c1330964650b9a298457f945678c533b787afbae3e71f63d8f07556d06e1843f",
+   "truth_sha256": "c936b7071e5c37144df3d14e14a95645182ecb4ab0a5354ef7b2c6db7c7c9bc5",
+   "document_slice": false
+  },
+  {
+   "page": "fcc9074ffd5ba3ad",
+   "engine": "../../engine/hiertext_val/glypharis_v1/fcc9074ffd5ba3ad.json",
+   "truth": "../../truth/hiertext_val/fcc9074ffd5ba3ad.json",
+   "engine_sha256": "252a2a4b39df0d358f262742341d690fd3b36888ce65c380af6d22cf6d3ff0df",
+   "truth_sha256": "e143ce15947f8fcc85d243018705cb80b339331b60ce900ef78b1fd54048ef1d",
+   "document_slice": false
+  },
+  {
+   "page": "fe07d4bae206aa1f",
+   "engine": "../../engine/hiertext_val/glypharis_v1/fe07d4bae206aa1f.json",
+   "truth": "../../truth/hiertext_val/fe07d4bae206aa1f.json",
+   "engine_sha256": "0262cdbe01dec920fa514b4562d1e8351972fd287f988b01ee8b208aa9d0e0ae",
+   "truth_sha256": "91c0408b04e5dff901d0f419304baee4ad2fb6b07d6c9351ae12357d66dadbf8",
+   "document_slice": false
+  },
+  {
+   "page": "fe38725c7c9e9b65",
+   "engine": "../../engine/hiertext_val/glypharis_v1/fe38725c7c9e9b65.json",
+   "truth": "../../truth/hiertext_val/fe38725c7c9e9b65.json",
+   "engine_sha256": "3f96d676495d6d82aa572d9a58a8eb43189007b8d1ae5adcf2b3d856aa24c7d8",
+   "truth_sha256": "a871e485d61789a20ef1ef8d24be337ab04b9d5338557278de8d35807875253d",
+   "document_slice": false
+  },
+  {
+   "page": "fee2e39894078dd1",
+   "engine": "../../engine/hiertext_val/glypharis_v1/fee2e39894078dd1.json",
+   "truth": "../../truth/hiertext_val/fee2e39894078dd1.json",
+   "engine_sha256": "f63cf9daeb414808b392a095eea67c9c64838f70e6b9b541fd2f541c64315245",
+   "truth_sha256": "31b5a1220ffe09618aa93e8f5d63891eb4367eb55f39d3b26d6700850552afe1",
+   "document_slice": false
+  },
+  {
+   "page": "ff4300d24bdd765c",
+   "engine": "../../engine/hiertext_val/glypharis_v1/ff4300d24bdd765c.json",
+   "truth": "../../truth/hiertext_val/ff4300d24bdd765c.json",
+   "engine_sha256": "5074beff31c20d17430891fda84da3dd8bf1fca4e6ed404209ce614b716daaf6",
+   "truth_sha256": "9e2bf90f7f1120264ba17db0fd19458782c70874f096dfbe08fdce3f58716360",
+   "document_slice": false
+  },
+  {
+   "page": "ff641068bb5d8c03",
+   "engine": "../../engine/hiertext_val/glypharis_v1/ff641068bb5d8c03.json",
+   "truth": "../../truth/hiertext_val/ff641068bb5d8c03.json",
+   "engine_sha256": "79f9b858e2f9708ec6cb7db5ffcc7609100d1c29cdf63c09cd0e193619e4d5af",
+   "truth_sha256": "9b977641781b3674c2cacb1ad81d0f0cedb88bd01306ea178770650917eeb540",
+   "document_slice": false
+  },
+  {
+   "page": "ff703ad6fd295d29",
+   "engine": "../../engine/hiertext_val/glypharis_v1/ff703ad6fd295d29.json",
+   "truth": "../../truth/hiertext_val/ff703ad6fd295d29.json",
+   "engine_sha256": "17e88131e33fd1d0a8c39372e228a3d1d83a39c73f05864398daa00ddad13f75",
+   "truth_sha256": "8f674a1656e8cbb657e5ea1219428f77f2154fbc503410a725ea44ad94be8ace",
+   "document_slice": false
+  },
+  {
+   "page": "fff21410301b0683",
+   "engine": "../../engine/hiertext_val/glypharis_v1/fff21410301b0683.json",
+   "truth": "../../truth/hiertext_val/fff21410301b0683.json",
+   "engine_sha256": "8ef3a9305e2c09f62a7fca1f4a34496982fb2d93a4456d3ba7f140818fb08d43",
+   "truth_sha256": "b1e2b56628656a21244642e9eb880b65c349b7070381e8184a019accbba49e9a",
+   "document_slice": false
+  }
+ ]
+}

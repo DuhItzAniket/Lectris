@@ -19,12 +19,13 @@ folder:
                 "truth": "../../truth/a1b2c3.json"}]}
 
 Each system is a profile and a policy: ``parity`` (LECTRIS v0.1's decisions) or ``none`` (no
-guess accepted: the transforms only, baseline B0). Every page is read, cleaned by each system and
-scored (``lectris.eval.scoring``). The report holds, for the uncorrected text and for each
-system: CER (normalised and raw tracks), WER, the harm rate, edit counts by label, the precision
-of edits and the share of pages made worse, with bootstrap intervals over pages; and each
-system's paired CER difference from the uncorrected text. It holds aggregates only, never text
-(ground rule 5).
+guess accepted: the transforms only, baseline B0). Every page is read, its OCR lines on
+don't-care ground truth are dropped (``scoring.drop_dont_care``), and it is cleaned by each
+system and scored (``lectris.eval.scoring``). The report holds, for the uncorrected text and
+for each system: CER (normalised and raw tracks), WER, the harm rate, edit counts by label, the
+precision of edits and the share of pages made worse, with bootstrap intervals over pages; and
+each system's paired CER difference from the uncorrected text. It holds aggregates only, never
+text (ground rule 5).
 """
 
 import hashlib
@@ -38,7 +39,7 @@ from lectris import __version__, io
 from lectris.decide import PARITY, Policy, Threshold
 from lectris.errors import FormatError
 from lectris.eval import truth as truth_io
-from lectris.eval.scoring import PageScore, score_page
+from lectris.eval.scoring import PageScore, drop_dont_care, score_page
 from lectris.eval.stats import Interval, bootstrap, ratio
 from lectris.io._common import decode
 from lectris.io._json import array, load, number, obj, required, string
@@ -130,8 +131,8 @@ def run(config: Config) -> dict[str, Any]:
         raise FormatError(f"{config.pairs}: the manifest has no pages")
     scores: dict[str, list[PageScore]] = {system.name: [] for system in config.systems}
     for pair in pairs:
-        document = io.read(pair.engine)
         truth = truth_io.read(pair.truth)
+        document = drop_dont_care(io.read(pair.engine), truth, iou_threshold=config.iou)
         for system in config.systems:
             result = clean(document, profile=system.profile, policy=POLICIES[system.policy])
             scores[system.name].append(score_page(result, truth, iou_threshold=config.iou))
@@ -204,6 +205,22 @@ def markdown(report: dict[str, Any]) -> str:
         "Intervals are 95% paired-bootstrap percentile intervals over pages. ΔCER is the "
         "system's normalised CER minus the uncorrected text's, in points. The harm rate is the "
         "characters broken by harmful edits per reference character (ADR-0002).",
+        "",
+        "## Edits by rule",
+        "",
+        "| System | Rule | Fix | Harm | Neutral | Net effect (characters) |",
+        "|---|---|---|---|---|---|",
+    ]
+    for name, result in report["results"].items():
+        for rule, counts in result["by_rule"].items():
+            lines.append(
+                f"| {name} | `{rule}` | {counts['fix']} | {counts['harm']} | "
+                f"{counts['neutral']} | {counts['effect']:+d} |"
+            )
+    lines += [
+        "",
+        "The net effect is the sum of the edits' effects on the distance to the reference: "
+        "below zero the rule repaired more than it broke.",
         "",
     ]
     return "\n".join(lines)
@@ -292,7 +309,21 @@ def _summary(pages: Sequence[PageScore], config: Config) -> dict[str, Any]:
         "precision": fixes / (fixes + harms) if fixes + harms else None,
         "pages_worse": sum(1 for page in pages if page.chars.after > page.chars.before)
         / len(pages),
+        "by_rule": _by_rule(pages),
     }
+
+
+def _by_rule(pages: Sequence[PageScore]) -> dict[str, dict[str, int]]:
+    """Each rule's edits by label, and the sum of their effects, rules in name order."""
+    found: dict[str, dict[str, int]] = {}
+    for page in pages:
+        for item in page.labels:
+            counts = found.setdefault(
+                item.edit.rule, {"fix": 0, "harm": 0, "neutral": 0, "effect": 0}
+            )
+            counts[item.label] += 1
+            counts["effect"] += item.effect
+    return dict(sorted(found.items()))
 
 
 def _pct(value: Any, *, digits: int = 2) -> str:

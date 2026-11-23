@@ -1,0 +1,14 @@
+{
+  "id": "LX-DATA-001",
+  "question": "Phase 5 audit: GLYPHARIS glypharis_v1 on the HierText validation fit split. Uncorrected CER and WER, and what the v0.1 rules (B1) and the transforms alone (B0) change. Descriptive: no hypothesis is tested on it.",
+  "pairs": "../data/manifests/pairs/hiertext_val_glypharis_v1_fit.json",
+  "systems": [
+    {"name": "B0", "profile": "standard", "policy": "none"},
+    {"name": "B1-conservative", "profile": "conservative", "policy": "parity"},
+    {"name": "B1-standard", "profile": "standard", "policy": "parity"},
+    {"name": "B1-aggressive", "profile": "aggressive", "policy": "parity"}
+  ],
+  "resamples": 1000,
+  "seed": 1337,
+  "iou": 0.5
+}
