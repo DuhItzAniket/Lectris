@@ -20,6 +20,7 @@ Aggregates only.
 import argparse
 import json
 import math
+import sys
 from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
@@ -167,6 +168,7 @@ def main() -> int:
         json.dumps(result, indent=2) + "\n", encoding="utf-8", newline="\n"
     )
     (arguments.out / "report.md").write_text(markdown(result), encoding="utf-8", newline="\n")
+    sys.stdout.reconfigure(encoding="utf-8")  # type: ignore[attr-defined]
     print(markdown(result))
     return 0
 

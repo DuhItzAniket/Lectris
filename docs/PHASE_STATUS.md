@@ -14,7 +14,7 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 | 6 | Evidence models and model packs | **COMPLETE** (#26, #27; no phase tag) | — |
 | 7 | Acceptance model and risk control | **COMPLETE** (#28; no phase tag) | — |
 | 8 | Explanations, flags and the v0.3 interface | **COMPLETE** (#29; no phase tag) | — |
-| 9 | Baselines | **IN PROGRESS** (B0, B1, B2 done; B3/B4 need the research environment) | — |
+| 9 | Baselines | **IN PROGRESS** (B0–B3 done; B4 not run) | — |
 | 10 | Main study (dev) | **IN PROGRESS** (H3 tested: LX-RISK-002) | — |
 | 11 | Ablations | not started | — |
 | 12 | Engine transfer | **IN PROGRESS** (H4 decided on dev: LX-XFER-001) | — |
@@ -29,13 +29,14 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 | Item | Needed by | Status |
 |---|---|---|
 | Review the v2 architecture and the research framing (ADR-0001, 0002) | Phase 2 | open |
-| Approve or decline the research environment for neural baselines (ADR-0004, point 3) | Phase 9 | open |
-| Decide whether GLYPHARIS exports per-character `chars` (ADR-0003); GLYPHARIS 1.0 does not | Phase 6 (RQ2 character arm) | open |
+| Approve or decline the research environment for neural baselines (ADR-0004, point 3) | Phase 9 | **approved** (2026-11-23); B3 run |
+| Decide whether GLYPHARIS exports per-character `chars` (ADR-0003); GLYPHARIS 1.0 does not | Phase 6 (RQ2 character arm) | open; the owner asked that LECTRIS work not touch the GLYPHARIS repository |
 | GLYPHARIS v1.1 installable on Python 3.12+ (1.0 pins `<3.12`, LECTRIS needs `>=3.12`); the CLI handoff through JSON works across two environments meanwhile | joint Python use | open (GLYPHARIS side) |
-| GLYPHARIS output (JSON) on HierText validation and GlyphSynth validation pages, with the model version | Phase 5 | open |
-| Tesseract installed, its version, for the transfer engine | Phase 5 | open |
+| GLYPHARIS output (JSON) on HierText validation and GlyphSynth validation pages, with the model version | Phase 5 | HierText done (glypharis_v1, Phase 5); GlyphSynth not (line images) |
+| Tesseract installed, its version, for the transfer engine | Phase 5 | **done** (5.4.0, 2026-11-23; H4 run) |
 | Target venue (journal or conference) and its page limit | Phase 16 | open |
-| PyPI: a pending publisher for `lectris` and the protected `pypi` environment (docs/RELEASING.md); the release workflow is merged (#23) | first PyPI release | open |
+| PyPI: a pending publisher for `lectris` and the protected `pypi` environment (docs/RELEASING.md); the release workflow is merged (#23) | first PyPI release | open; **v0.3.0 is tagged and a draft GitHub release is ready** (2026-11-23): publish it after the setup |
+| The GDC test (Phase 13): freeze the configuration and run it once, logging the access in both projects | Phase 13 | open: the owner chose to wait (2026-11-23) |
 
 ---
 
@@ -353,7 +354,12 @@ owner's call (docs/RELEASING.md).
   by the new feature `lexical_rank`). Distance 1, not the protocol's 2 (deviation).
   LX-BASE-001 (dev): ΔCER +0.98 [+0.86, +1.10] points, 610 fixes / 2,686 harms, precision 18.51%,
   harm rate 1.410%, 78% of pages worse.
-- B3 (ByT5) and B4 (an LLM) need the research environment of ADR-0004 point 3 (still Proposed).
+- **B3, ByT5-small** (LX-BASE-002; the research environment approved 2026-11-23,
+  `research/baselines/byt5/`): it never beat copying on cal; on dev, every correction kept, ΔCER
+  +1.08 [+0.44, +1.88] points at a 1.231% harm rate; harm-matched to LECTRIS-standard, no clear
+  difference (−0.03 [−0.07, +0.01]). H5 not supported as stated.
+- B4 (an LLM) is not run: it would send data to a provider, which the protocol allows only for
+  data whose licence permits it; HierText's terms were not checked for that.
 
 ## Phase 10 — Main study (in progress)
 

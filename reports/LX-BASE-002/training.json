@@ -1,0 +1,42 @@
+{
+  "model": "google/byt5-small",
+  "train_pairs": 26317,
+  "validation_sample": 2000,
+  "epochs": 4,
+  "batch": 16,
+  "accumulate": 2,
+  "optimizer": "Adafactor",
+  "lr": 0.0005,
+  "max_bytes": 160,
+  "seed": 1337,
+  "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "seconds": 2197.711321592331,
+  "best_validation_cer": 0.08167851748148694,
+  "log": [
+    {
+      "epoch": 0,
+      "validation_cer": 10.626386176914858,
+      "copy_cer": 0.08167851748148694
+    },
+    {
+      "epoch": 1,
+      "validation_cer": 0.08167851748148694,
+      "train_loss": 0.6432236330057168
+    },
+    {
+      "epoch": 2,
+      "validation_cer": 0.09567844379766423,
+      "train_loss": 0.29855347075315597
+    },
+    {
+      "epoch": 3,
+      "validation_cer": 0.10437313487823749,
+      "train_loss": 0.24373491595422786
+    },
+    {
+      "epoch": 4,
+      "validation_cer": 0.08499428950373945,
+      "train_loss": 0.20578686092813192
+    }
+  ]
+}

@@ -78,8 +78,15 @@ stated.
   higher harm rate; at matched harm, LECTRIS lowers CER at least as much.
 - **Test:** Phase 10 (LX-BASE-*, LX-MAIN-*), if B3 is approved (ADR-0004).
 - **Success criterion:** each part CI-separated; "inconclusive" if B3 cannot be harm-matched.
-- **Status:** testing (LX-BASE-002, registered 2026-11-23; the research environment approved by
-  the owner the same day; compared with LECTRIS-standard, the profile calibrated as ADR-0008/9 set).
+- **Status:** not supported as stated (LX-BASE-002, 2026-11-23, 433 dev pages; against
+  LECTRIS-standard, whose output equals aggressive's under ADR-0009's thresholds). ByT5-small
+  fine-tuned on the 26,317 fit line pairs never beat copying its input on cal (best CER 0.0817,
+  the copy CER) and, keeping every correction, **raises** CER by 1.08 points [+0.44, +1.88]: the
+  first clause fails. Its harm rate is 1.231% against LECTRIS's 0.060%: the second holds. At
+  matched harm (B3 keeping a correction only if its mean byte log probability is at least
+  −0.005), LECTRIS minus B3 is −0.03 [−0.07, +0.01] points: no clear difference, so the third is
+  inconclusive. Limitations: a laptop budget (4 epochs, 37 minutes on an RTX 4050) and scene text,
+  where most errors are not local.
 
 ### H6 — Correction is cheap next to recognition (RQ6)
 

@@ -1,8 +1,8 @@
 # ADR-0004: Standard library at run time; learned models as data packs; neural baselines isolated
 
-- **Status:** Accepted for the run time (2026-11-14, Phase 1). **Proposed** for the research
-  environment (point 3), which adds dependencies outside the package and needs the owner's
-  approval (ground rule 4).
+- **Status:** Accepted for the run time (2026-11-14, Phase 1). Point 3, the research environment,
+  **accepted by the owner on 2026-11-23** and set up in `research/baselines/byt5/` (its own uv
+  project and lock: torch 2.14.1+cu126, transformers 5.24.0).
 
 ## Context
 LECTRIS has no runtime dependencies, and that is part of its value: it installs anywhere, next to
