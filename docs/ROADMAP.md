@@ -9,7 +9,7 @@ Milestones, the order of the phases, and where LECTRIS and GLYPHARIS meet. The p
 |---|---|---|---|
 | v0.1.0 ✅ | rule engine, five readers, layout, metrics | 0 | — |
 | v0.2.0 | **integration-ready**: GLYPHARIS reader and contract, uncertainty model, propose/decide core with v0.1 parity, evaluation harness | 2, 3, 4 | — |
-| v0.3.0 | **the method**: evidence models, model packs, acceptance model, risk control, explanations and flags | 6, 7, 8 | Phase 5 data (GLYPHARIS output) |
+| v0.3.0 | **the method**: evidence models, model packs, acceptance model, risk control, explanations and flags — **built** (2026-11-23), not yet released | 6, 7, 8 | Phase 5 data (GLYPHARIS output) |
 | v0.4.0 | **results on dev**: baselines, main study, ablations, engine transfer | 9–12 | final GLYPHARIS model for reported numbers |
 | v1.0.0 | test evaluation, error analysis, efficiency, paper, release | 13–17 | GLYPHARIS test-set freeze and its paper's model |
 

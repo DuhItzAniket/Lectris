@@ -26,7 +26,7 @@ from typing import TYPE_CHECKING, Final
 
 from lectris import propose
 from lectris.confidence import block_confidence
-from lectris.decide import PARITY, Policy, decide
+from lectris.decide import PARITY, Guarantee, Policy, decide
 from lectris.edits import Candidate, Decision, Edit, OffsetMap, Revision
 from lectris.io import plain
 from lectris.io._common import strip_bom
@@ -114,6 +114,23 @@ class Change:
 
 
 @dataclass(frozen=True, slots=True)
+class Flag:
+    """A candidate worth a person's look: declined, but with a probability of at least the
+    flag threshold. Its span is in the text its step received."""
+
+    page: int
+    block: int
+    step: int
+    rule: str
+    start: int
+    end: int
+    before: str
+    after: str
+    probability: float
+    reason: str
+
+
+@dataclass(frozen=True, slots=True)
 class Judgement:
     """One decision on a candidate edit, located like a ``Change``."""
 
@@ -168,6 +185,45 @@ class Result:
             for step, (_, revision) in enumerate(block.revisions):
                 for decision in revision.decisions:
                     yield Judgement(block.page, block.index, step, decision)
+
+    def flags(self, threshold: float = 0.3) -> tuple[Flag, ...]:
+        """The declined candidates whose probability is at least ``threshold``: what a person
+        reviewing the text should look at first. Only policies with probabilities give any."""
+        return tuple(
+            Flag(
+                j.page,
+                j.block,
+                j.step,
+                j.decision.candidate.rule,
+                j.decision.candidate.start,
+                j.decision.candidate.end,
+                j.decision.candidate.before,
+                j.decision.candidate.after,
+                j.decision.probability,
+                j.decision.reason,
+            )
+            for j in self.decisions()
+            if not j.decision.accepted
+            and j.decision.probability is not None
+            and j.decision.probability >= threshold
+        )
+
+    @property
+    def guarantee(self) -> Guarantee | None:
+        """The policy's guarantee, if it is risk-controlled."""
+        return getattr(self.policy, "guarantee", None)
+
+    @property
+    def guarantee_applies(self) -> bool:
+        """Whether the guarantee holds for this input: it came from the engine and model the
+        policy was calibrated for."""
+        guarantee = self.guarantee
+        engine = self.document.engine
+        return (
+            guarantee is not None
+            and engine is not None
+            and (engine.name, engine.model) == (guarantee.engine, guarantee.model)
+        )
 
     def counts(self) -> dict[str, int]:
         """How many edits each rule made, in the profile's order (rules with none included)."""

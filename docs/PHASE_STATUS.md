@@ -12,8 +12,8 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 | 4 | Evaluation harness | **COMPLETE** (#22; no phase tag) | — |
 | 5 | Paired data | **COMPLETE** (#24, R-15 fix #25; no phase tag) | — |
 | 6 | Evidence models and model packs | **COMPLETE** (#26, #27; no phase tag) | — |
-| 7 | Acceptance model and risk control | **COMPLETE** (in review) | — |
-| 8 | Explanations, flags and the v0.3 interface | not started | — |
+| 7 | Acceptance model and risk control | **COMPLETE** (#28; no phase tag) | — |
+| 8 | Explanations, flags and the v0.3 interface | **COMPLETE** (in review) | — |
 | 9 | Baselines | not started | — |
 | 10 | Main study (dev) | not started | — |
 | 11 | Ablations | not started | — |
@@ -309,3 +309,36 @@ is the 18.9% of errors that lie inside a token.
   (126 / 13); it needs features of its own (the noise score) for the acceptance model to judge it.
 
 **Results (tests):** `uv run pytest`: 1,584 passed (2026-11-23).
+
+---
+
+## Phase 8 — Explanations, flags and the v0.3 interface
+
+**Status:** COMPLETE (opened and closed 2026-11-23 on `phase/08-interface`).
+
+**Implemented**
+- `lectris.decide.Guarantee`; `Threshold.guarantee`; `ModelPack.policy(profile)` (the risk
+  policy, with its guarantee; `lectris.eval.calibrate.risk_policy` delegates to it).
+- `Result.guarantee`, `Result.guarantee_applies`, `Result.flags(threshold=0.3)` and `Flag`.
+- Reports: the JSON holds the guarantee, every decision (rule, span, accepted, reason,
+  probability, threshold, features) and the flags; the Markdown states the guarantee and lists
+  the flags for review.
+- `lectris clean --pack P [--policy parity|risk|none]`, with a warning when the guarantee does
+  not apply to the input's engine.
+- README ("With a model pack"), `docs/rules.md` (the new proposers and the evidence).
+
+**Exit criteria**
+
+| Criterion | Result | Evidence |
+|---|---|---|
+| Every accepted edit in a report shows its probability and features | pass | `tests/test_interface_v03.py::TestReports` |
+| A mismatched engine is warned about | pass | `TestCleanCommand::test_another_engine_gets_a_warning`; `TestGuarantee` |
+
+**Checked by hand:** `lectris clean` with the LX-CAL-003 pack on a dev page states the guarantee
+("harm rate at most 0.02 with confidence 0.9, threshold 0.52 … applies") and lists for review
+near-misses such as `Corference` → `Conference` (0.51).
+
+**Results (tests):** `uv run pytest`: 1,598 passed (2026-11-23).
+
+**v0.3 (the method, complete) is reached with this phase.** Not tagged or released: that is the
+owner's call (docs/RELEASING.md).
