@@ -1,0 +1,32 @@
+{
+  "id": "LX-BASE-001",
+  "question": "Phase 9: baseline B2, a lexicon corrector (each word not in the pack's lexicon becomes its most frequent word one edit away), against B0, B1 and LECTRIS-standard under the risk policy, on dev. Descriptive.",
+  "pairs": "../data/manifests/pairs/hiertext_val_glypharis_v1_dev.json",
+  "systems": [
+    {
+      "name": "B0",
+      "profile": "standard",
+      "policy": "none"
+    },
+    {
+      "name": "B1-standard",
+      "profile": "standard",
+      "policy": "parity"
+    },
+    {
+      "name": "B2-lexicon",
+      "profile": "standard",
+      "policy": "lexicon",
+      "pack": "../data/packs/glypharis_v1.calibrated.lectris.json.gz"
+    },
+    {
+      "name": "LX-standard",
+      "profile": "standard",
+      "policy": "risk",
+      "pack": "../data/packs/glypharis_v1.calibrated.lectris.json.gz"
+    }
+  ],
+  "resamples": 1000,
+  "seed": 1337,
+  "iou": 0.5
+}

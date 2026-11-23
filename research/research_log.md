@@ -109,3 +109,20 @@ tested.
   HierText is the wrong showcase for its CER gains. The document-domain test (GDC, Phase 13)
   and a corpus where in-token errors dominate are where the gains should show; the error
   taxonomy should be reported next to every CER number.
+
+## 2026-11-23 — H3 across 1,000 re-splits, and baseline B2
+
+- **H3 (LX-RISK-002).** Pooling cal and dev (863 pages) and re-splitting them 1,000 times, the
+  threshold certified and chosen on each calibration half never let the test half's harm exceed
+  its budget: 0 violations per profile. The budgets are loose against the realised loss (the
+  largest test loss was 0.002, against α = 0.01–0.05), which ADR-0008 already said: validity holds
+  with a wide margin, and the price of the guarantee on this data is its looseness, not its
+  failure. The recall gap to the "most permissive within budget" oracle is 73–80%, far above the
+  25% the hypothesis named: that oracle maximises recall at any precision, and ADR-0009 chose not
+  to. Reported as written.
+- **B2 (LX-BASE-001).** A classic lexicon corrector, accepting each unknown word's most frequent
+  neighbour, makes 610 fixes and 2,686 harms on dev (precision 18.51%), raises CER by 0.98
+  points [+0.86, +1.10] and worsens 78% of pages. LECTRIS-standard draws on the same
+  `lexical.word` candidates and accepts 100 fixes against 32 harms. **This is the paper's clearest
+  result so far:** the same candidates, accepted by a calibrated probability under a harm
+  budget, turn a corrector that damages text into one that does not.

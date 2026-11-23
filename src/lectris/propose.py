@@ -11,7 +11,8 @@ what no v0.1 rule would (``v01 = 0``), for a calibrated decision to accept or no
 
 - ``Lexical`` (rule ``lexical.word``): a token of letters that is not in the lexicon gets, as
   candidates, the lexicon's words one edit away (a character deleted, inserted or substituted,
-  found through a deletion index, as SymSpell does), the most frequent first, in the token's case;
+  found through a deletion index, as SymSpell does), the most frequent first (the feature
+  ``lexical_rank`` is 0 for the most frequent), in the token's case;
 - ``Segmentation`` (rules ``segmentation.split`` and ``segmentation.merge``): a token not in the
   lexicon that is two lexicon words run together gets a space inserted between them; two tokens
   separated by one space that make a lexicon word together, when one of them is not a word,
@@ -113,10 +114,17 @@ class Lexical:
                 near.update(self._index.get(key, ()))
             near = {w for w in near if _one_edit(lower, w)}
             ranked = sorted(near, key=lambda w: (-self._lexicon.frequency(w), w))
+            kept = [w for w in ranked[: self._limit] if in_case_of(w, word) != word]
             found.extend(
-                Candidate(self.RULE, start, end, word, in_case_of(w, word), ((V01, 0.0),))
-                for w in ranked[: self._limit]
-                if in_case_of(w, word) != word
+                Candidate(
+                    self.RULE,
+                    start,
+                    end,
+                    word,
+                    in_case_of(w, word),
+                    (("lexical_rank", float(rank)), (V01, 0.0)),
+                )
+                for rank, w in enumerate(kept)
             )
         return tuple(found)
 

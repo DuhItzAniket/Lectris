@@ -19,7 +19,8 @@ folder:
                 "truth": "../../truth/a1b2c3.json"}]}
 
 Each system is a profile and a policy: ``parity`` (LECTRIS v0.1's decisions), ``none`` (no
-guess accepted: the transforms only, baseline B0) or ``risk`` (the pack's acceptance model and
+guess accepted: the transforms only, baseline B0), ``lexicon`` (baseline B2, a lexicon
+corrector, ``LEXICON``) or ``risk`` (the pack's acceptance model and
 the profile's risk-controlled threshold, ``lectris.eval.calibrate.risk_policy``). A system can
 name a model ``pack`` (relative to the configuration's folder): it adds evidence and the lexicon
 proposers, and ``risk`` needs one. Every page is read, its OCR lines on
@@ -53,7 +54,14 @@ from lectris.profiles import PROFILES
 NONE: Final = Threshold(lambda _: 0.0, 1.0)
 """A policy that accepts no guess: every candidate's probability is 0, below the bar of 1."""
 
-POLICIES: Final[dict[str, Policy]] = {"parity": PARITY, "none": NONE}
+LEXICON: Final = Threshold(
+    lambda c: 1.0 if c.rule == "lexical.word" and c.feature("lexical_rank", 9.0) == 0 else 0.0, 1.0
+)
+"""Baseline B2, a lexicon corrector: every token not in the lexicon becomes the lexicon's most
+frequent word one edit away (``lexical.word``'s first candidate); no other guess is accepted.
+It needs a pack, for the word list."""
+
+POLICIES: Final[dict[str, Policy]] = {"parity": PARITY, "none": NONE, "lexicon": LEXICON}
 """The policies a configuration can name, besides ``risk`` (which needs a pack)."""
 
 _POLICY_NAMES: Final = (*POLICIES, "risk")

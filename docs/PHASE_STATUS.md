@@ -13,9 +13,9 @@ The phases are defined in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 | 5 | Paired data | **COMPLETE** (#24, R-15 fix #25; no phase tag) | — |
 | 6 | Evidence models and model packs | **COMPLETE** (#26, #27; no phase tag) | — |
 | 7 | Acceptance model and risk control | **COMPLETE** (#28; no phase tag) | — |
-| 8 | Explanations, flags and the v0.3 interface | **COMPLETE** (in review) | — |
-| 9 | Baselines | not started | — |
-| 10 | Main study (dev) | not started | — |
+| 8 | Explanations, flags and the v0.3 interface | **COMPLETE** (#29; no phase tag) | — |
+| 9 | Baselines | **IN PROGRESS** (B0, B1, B2 done; B3/B4 need the research environment) | — |
+| 10 | Main study (dev) | **IN PROGRESS** (H3 tested: LX-RISK-002) | — |
 | 11 | Ablations | not started | — |
 | 12 | Engine transfer | not started | — |
 | 13 | Test evaluation | not started | — |
@@ -342,3 +342,22 @@ near-misses such as `Corference` → `Conference` (0.51).
 
 **v0.3 (the method, complete) is reached with this phase.** Not tagged or released: that is the
 owner's call (docs/RELEASING.md).
+
+---
+
+## Phase 9 — Baselines (in progress)
+
+- B0 (no correction, transforms only) and B1 (v0.1 rules, `parity`) run in every experiment.
+- **B2, a lexicon corrector** (`lectris.eval.experiment.LEXICON`): each token not in the pack's
+  lexicon becomes its most frequent word one edit away (`lexical.word`'s first candidate, marked
+  by the new feature `lexical_rank`). Distance 1, not the protocol's 2 (deviation).
+  LX-BASE-001 (dev): ΔCER +0.98 [+0.86, +1.10] points, 610 fixes / 2,686 harms, precision 18.51%,
+  harm rate 1.410%, 78% of pages worse.
+- B3 (ByT5) and B4 (an LLM) need the research environment of ADR-0004 point 3 (still Proposed).
+
+## Phase 10 — Main study (in progress)
+
+- **H3** (LX-RISK-002): 0 violations in 1,000 cal/dev re-splits for every profile; recall gap to
+  the oracle 72.8% (standard). Partly supported (hypotheses.md).
+- H1 has its first dev evidence (LX-RISK-001); H2 waits for the ablation of the engine features
+  (Phase 11).

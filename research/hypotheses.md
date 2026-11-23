@@ -42,7 +42,13 @@ stated.
 - **Test:** Phase 10 (LX-RISK-*).
 - **Success criterion:** violation share ≤ δ (its binomial upper bound reported); recall gap
   measured.
-- **Status:** open.
+- **Status:** partly supported on dev (LX-RISK-002, 2026-11-23; losses estimated from
+  marginal effects; budgets as ADR-0008 sets them). **Validity:** 0 violations in 1,000
+  re-splits for every profile (95% upper bound 0.004 ≤ δ = 0.1); the largest test loss
+  was 0.002. **Recall cost:** 72.8% (standard), 80.1% (conservative), 76.6% (aggressive)
+  relative to the oracle, not under 25%: the threshold is chosen by net CER effect
+  (ADR-0009, adopted after this hypothesis was written), the oracle by recall alone, and
+  the recall it adds is mostly wrong edits (LX-BASE-001). To confirm on GDC (Phase 13).
 
 ### H4 — Calibration transfers across engines, the guarantee does not (RQ4)
 
