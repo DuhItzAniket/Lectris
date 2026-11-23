@@ -359,5 +359,7 @@ owner's call (docs/RELEASING.md).
 
 - **H3** (LX-RISK-002): 0 violations in 1,000 cal/dev re-splits for every profile; recall gap to
   the oracle 72.8% (standard). Partly supported (hypotheses.md).
-- H1 has its first dev evidence (LX-RISK-001); H2 waits for the ablation of the engine features
-  (Phase 11).
+- H1 has its first dev evidence (LX-RISK-001).
+- **H2** (LX-ABL-001, Phase 11's first ablation): supported on dev for the line-level arm; the
+  engine features add +0.03 [+0.02, +0.04] points of repaired characters at the same budget.
+  `lectris calibrate --exclude` and paired `compare` in experiment configs make ablations.

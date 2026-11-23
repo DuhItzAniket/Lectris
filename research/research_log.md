@@ -126,3 +126,15 @@ tested.
   `lexical.word` candidates and accepts 100 fixes against 32 harms. **This is the paper's clearest
   result so far:** the same candidates, accepted by a calibrated probability under a harm
   budget, turn a corrector that damages text into one that does not.
+
+## 2026-11-23 — H2: the engine's confidence helps the corrector (LX-ABL-001)
+
+- The same pack calibrated without the engine features (`line_confidence`, `detection`,
+  `engine_missing`) gets a stricter threshold (0.64 against 0.52) and repairs less: paired over
+  the 433 dev pages, the engine-aware system repairs +0.03 points more of the reference's
+  characters [+0.02, +0.04] and its CER is 0.02 points lower [−0.03, −0.01]; it breaks slightly
+  more (+0.01 [+0.00, +0.01]), within the same budget. 174 fixes against 115.
+- This is the link between the two projects in numbers: GLYPHARIS's calibrated line confidence,
+  passed through its JSON, tells LECTRIS where corrections are likely to be right. H2 is
+  supported on dev for the line-level arm; per-character confidences (`chars`, ADR-0003) are the
+  next step, and need GLYPHARIS to export them.

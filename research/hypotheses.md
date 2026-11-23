@@ -32,7 +32,12 @@ stated.
 - **Test:** Phase 11 (LX-ABL-*).
 - **Success criterion:** recall difference CI-separated above zero at α = 0.005; reported apart for
   the line-level and the character-level arms.
-- **Status:** open.
+- **Status:** supported on dev for the line-level arm (LX-ABL-001, 2026-11-23, standard budget
+  α = 0.02 as ADR-0008 sets it, not 0.005): with the engine's line confidence and detection score,
+  the same method repairs +0.03 points of the reference's characters more [+0.02, +0.04] and
+  lowers CER by 0.02 points more [−0.03, −0.01], paired over 433 pages (174 fixes against 115,
+  precision 67.18% against 60.85%). The character-level arm waits for glyphs. To confirm on GDC
+  (Phase 13).
 
 ### H3 — The guarantee holds in distribution (RQ3)
 

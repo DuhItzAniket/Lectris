@@ -83,6 +83,9 @@ def _parser() -> argparse.ArgumentParser:
     calibrating.add_argument(
         "--cal", type=Path, required=True, help="pairs to choose thresholds on"
     )
+    calibrating.add_argument(
+        "--exclude", action="append", default=[], help="a feature to fit without (repeatable)"
+    )
     calibrating.add_argument("-o", "--output", type=Path, required=True, help="the pack to write")
 
     experiment = commands.add_parser("experiment", help="run a registered experiment")
@@ -242,7 +245,10 @@ def _calibrate(arguments: argparse.Namespace) -> int:
     from lectris.models import pack  # noqa: PLC0415
 
     calibrated = calibrate(
-        pack.load(arguments.pack), load_pairs(arguments.fit), load_pairs(arguments.cal)
+        pack.load(arguments.pack),
+        load_pairs(arguments.fit),
+        load_pairs(arguments.cal),
+        exclude=arguments.exclude,
     )
     pack.save(calibrated, arguments.output)
     budgets = calibrated.risk or {}
