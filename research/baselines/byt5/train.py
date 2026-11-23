@@ -95,7 +95,10 @@ def main() -> int:
     model.gradient_checkpointing_enable()  # the 6 GB laptop GPU: recompute activations
     model.config.use_cache = False
     optimizer = Adafactor(
-        model.parameters(), lr=arguments.lr, scale_parameter=False, relative_step=False,
+        model.parameters(),
+        lr=arguments.lr,
+        scale_parameter=False,
+        relative_step=False,
         warmup_init=False,
     )  # T5's optimizer: factored second moments, no first moment, small state
     steps = arguments.epochs * math.ceil(len(train) / (arguments.batch * arguments.accumulate))
